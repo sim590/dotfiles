@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/simon/.spectrwm'
+let g:netrw_dirhist_2='/home/simon/.spectrwm/scripts/action_bar'
+let g:netrw_dirhist_3='/home/simon/Documents/Éducation/UQTR/Mathématiques et Informatique/2013 - Été/Recherches/Combinatoire/prog/Serpent par colonne Unix 2'
+let g:netrw_dirhist_4='/home/simon/.spectrwm/scripts'
+let g:netrw_dirhist_5='/home/simon/.spectrwm'
+let g:netrw_dirhist_6='/etc/X11/xkb'
+let g:netrw_dirhist_7='/home/simon/.spectrwm'
+let g:netrw_dirhist_8='/tmp/tutoriel-git'
+let g:netrw_dirhist_9='/home/simon/.mutt'

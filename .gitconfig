@@ -1,0 +1,10 @@
+[user]
+	name = Simon Désaulniers
+	email = rostydela@gmail.com
+[color]
+	ui = true
+[alias]
+	lol = log --decorate --graph --oneline
+	st = status -s
+	co = checkout
+	br = branch
