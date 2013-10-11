@@ -7,10 +7,13 @@ map <F5> :TlistUpdate<CR>
 " search the word under the cursor with firefox
 "---------------------------------------------------
 nmap <leader>s/ yiW:!firefox -search <C-R>0
+vmap <leader>s/ y:!firefox -search "<C-R>0"
 " search on Larousse.fr
 nmap <leader>s/fr yiW:!firefox -search "\!fr <C-R>0"
+vmap <leader>s/fr y:!firefox -search "\!fr <C-R>0"
 " search on wikipedia
 nmap <leader>s/w yiW:!firefox -search "\!w <C-R>0"
+vmap <leader>s/w y:!firefox -search "\!w <C-R>0"
 "---------------------------------------------------
 "adding line below
 nmap go  o<ESC>k
