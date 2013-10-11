@@ -4,6 +4,14 @@ map <F3> :call Toggle_ai()<CR>
 map <F4> :NERDTree<CR>
 " taglist
 map <F5> :TlistUpdate<CR>
+" search the word under the cursor with firefox
+"---------------------------------------------------
+nmap <leader>s/ yiW:!firefox -search <C-R>0
+" search on Larousse.fr
+nmap <leader>s/fr yiW:!firefox -search "\!fr <C-R>0"
+" search on wikipedia
+nmap <leader>s/w yiW:!firefox -search "\!w <C-R>0"
+"---------------------------------------------------
 "adding line below
 nmap go  o<ESC>k
 "adding line above
