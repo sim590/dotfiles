@@ -18,7 +18,7 @@ update() {
 				
 			elif [[ $1 == "out" ]]; 
 			then
-				cp -fr $DIR/* ~/
+				cp -fr $DIR/$file ~/
 			fi
 		fi
 	done
