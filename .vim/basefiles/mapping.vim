@@ -63,17 +63,17 @@ imap <leader>x <ESC>l%%a
 "imap <leader>l <leader>
 " LaTeX maps
 au Filetype tex 
-	\ imap <leader>it {\it }<ESC>i|
-	\ imap <leader>bf {\bf }<ESC>i|
-    \ imap <leader>tt {\tt }<ESC>i
+	\ imap <buffer> <leader>it {\it }<ESC>i|
+	\ imap <buffer> <leader>bf {\bf }<ESC>i|
+    \ imap <buffer> <leader>tt {\tt }<ESC>i
 " man page maps
 au Filetype nroff 
-	\ imap <leader>it \fI \fP<ESC>Bi|
-	\ imap <leader>bf \fB \fP<ESC>Bi
+	\ imap <buffer> <leader>it \fI \fP<ESC>Bi|
+	\ imap <buffer> <leader>bf \fB \fP<ESC>Bi
 " rst maps
 au Filetype rst
-	\ imap <leader>it **<ESC>i|
-	\ imap <leader>bf ****<ESC>hi
+	\ imap <buffer> <leader>it **<ESC>i|
+	\ imap <buffer> <leader>bf ****<ESC>hi
 " code mapping
 au Filetype c,cpp,java,cs 
     \ nmap <leader>; maA;<ESC>`a
