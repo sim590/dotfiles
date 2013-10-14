@@ -24,6 +24,7 @@ let g:multi_cursor_exit_from_visual_mode = 0
 "Installs plugins automatically from ~/.vim/bundle
 execute pathogen#infect()
 
+set autochdir
 
 " enable syntax highlighting
 syntax on
@@ -45,9 +46,6 @@ set smartcase
 " highlight brackets 
 set showmatch
 
-" set textwidth to 70 to cause wrapping
-set textwidth=100
-
 " 50 lines of command lines history
 set history=50
 
@@ -65,7 +63,7 @@ au BufRead,BufNewFile *.sage,*.pyx,*.spyx set filetype=python
 au BufRead,BufNewFile *.tikz,*.sagetex set filetype=tex
 
 " tabulation
-au Filetype rst,python,c,cpp,tex,java,cs set tabstop=4|set shiftwidth=4|set expandtab
+au Filetype yaml,rst,python,c,cpp,tex,java,cs set tabstop=4|set shiftwidth=4|set expandtab
 
 set smarttab
 
@@ -74,9 +72,9 @@ set softtabstop=4
 
 set backspace=2 " make backspace work like most other apps
 
-" wrapping lines in rst file
-au Filetype rst set tw=80
-
+" wrapping lines in rst and yaml file
+au Filetype rst,yaml set tw=80
+au Filetype tex set tw=100
 " line numbers
 set number
 
@@ -93,6 +91,7 @@ autocmd BufReadPost *
 set laststatus=2
 
 " colorscheme
+"colorscheme wombat256mod
 colorscheme askapachecode
 " using 256 colors
 if !has('gui_running')

@@ -1,9 +1,10 @@
 map <F2> :source $MYVIMRC<CR>
 map <F3> :call Toggle_ai()<CR>
 " Arborescence NERDTree 
-map <F4> :NERDTree<CR>
+map <F4> :NERDTreeToggle<CR>
 " taglist
-map <F5> :TlistUpdate<CR>
+map <F5> :TlistToggle<CR>
+map <leader>tu :TlistUpdate<CR>
 " search the word under the cursor with firefox
 "---------------------------------------------------
 nmap <leader>s/ yiW:!firefox -new-tab "https://duckduckgo.com/?q=<C-R>0"&
@@ -46,6 +47,9 @@ nmap <leader>ss :setlocal spell!<cr>
 vnoremap <silent> <Leader>mr ygvmaomb:r !perl -e '$x = <C-R>a; print $x'<CR>"ay$dd`bv`a"ap$
 " same, but appends the answer instead of replacing the stirng.
 vnoremap <silent> <Leader>ma yo<Esc>pV:!perl -e '$x = <C-R>a; print $x'<CR>"<CR>k$
+" move block of text
+vmap < <gv
+vmap > >gv
 "write the file
 nmap <leader>s :w<CR>
 "move a line up and down
