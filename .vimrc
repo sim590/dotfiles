@@ -8,6 +8,14 @@ fu! Toggle_ai()
     endif
 endfunction!
 
+function! ToggleRelNumber()
+    if &relativenumber == 1
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunction!
+
 
 " VARIABLES
 " -----------
@@ -73,10 +81,12 @@ set softtabstop=4
 set backspace=2 " make backspace work like most other apps
 
 " wrapping lines in rst and yaml file
-au Filetype rst,yaml set tw=80
+au Filetype rst,yaml,gitcommit set tw=80
 au Filetype tex set tw=100
 " line numbers
 set number
+" relative numbers too
+set relativenumber
 
 " enables plugins
 filetype plugin indent on

@@ -1,5 +1,6 @@
 map <F2> :source $MYVIMRC<CR>
 map <F3> :call Toggle_ai()<CR>
+map <leader>n :call ToggleRelNumber()<CR>
 " Arborescence NERDTree 
 map <F4> :NERDTreeToggle<CR>
 " taglist
@@ -38,20 +39,23 @@ nmap <leader>pf yiW:!evince <C-R>0&<CR>
 nmap <leader>mk :make<CR>
 nmap <leader>m :make 
 " quickly open a file
-nmap <leader>se :split 
-nmap <leader>e :edit 
-nmap <leader>te :tabedit 
+nmap <leader>e :FufFile<CR>
 nmap <leader>tf yiW:tabedit <C-R>0<CR>
+nmap <leader>sw yiW:Ack <C-R>0<CR>
 nmap <leader>ss :setlocal spell!<cr>
+" buffer navigation
+" -----------------
+" change buffer
+nmap <leader>bc :FufBuffer<CR>
 " evaluate mathematical expression selected in visual mode. 
-vnoremap <silent> <Leader>mr ygvmaomb:r !perl -e '$x = <C-R>a; print $x'<CR>"ay$dd`bv`a"ap$
+vnoremap <silent> <Leader>mr "aygvmaomb<ESC>:r !perl -e '$x = <C-R>a; print $x'<CR>"ay$dd`bv`a"ap$
 " same, but appends the answer instead of replacing the stirng.
-vnoremap <silent> <Leader>ma yo<Esc>pV:!perl -e '$x = <C-R>a; print $x'<CR>"<CR>k$
+vnoremap <silent> <Leader>ma "ayo<Esc>pV:!perl -e '$x = <C-R>a; print $x'<CR>"<CR>k$
 " move block of text
 vmap < <gv
 vmap > >gv
 "write the file
-nmap <leader>s :w<CR>
+nmap <leader>w :w<CR>
 "move a line up and down
 nmap <S-l> mz:m+<cr>`z
 nmap <S-h> mz:m-2<cr>`z
@@ -63,23 +67,23 @@ imap <leader>( ()<ESC>i|imap <leader>) ()<ESC>i
 imap <leader>{ {}<ESC>i|imap <leader>} {}<ESC>i
 " get out of the container: (),{},[] 
 imap <leader>x <ESC>l%%a
-" pq ça marche pas?
-"imap <leader>l <leader>
+nmap <leader>T YpVr
+nmap <leader>; maA;<ESC>`a
 " LaTeX maps
 au Filetype tex 
 	\ imap <buffer> <leader>it {\it }<ESC>i|
 	\ imap <buffer> <leader>bf {\bf }<ESC>i|
-    \ imap <buffer> <leader>tt {\tt }<ESC>i
+    \ imap <buffer> <leader>tt {\tt }<ESC>i|
+    \ imap <buffer> <leader>$ $$<ESC>i|
+    \ nmap <buffer> <leader>; maA;<ESC>`a
 " man page maps
 au Filetype nroff 
 	\ imap <buffer> <leader>it \fI \fP<ESC>Bi|
 	\ imap <buffer> <leader>bf \fB \fP<ESC>Bi
 " rst maps
-au Filetype rst
+au Filetype rst,python 
 	\ imap <buffer> <leader>it **<ESC>i|
-	\ imap <buffer> <leader>bf ****<ESC>hi
-" code mapping
-au Filetype c,cpp,java,cs 
-    \ nmap <leader>; maA;<ESC>`a
+	\ imap <buffer> <leader>bf ****<ESC>hi|
+    \ imap <buffer> <leader>li ````<ESC>hi|
 " ---------
 
