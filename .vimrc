@@ -19,10 +19,13 @@ endfunction!
 
 " VARIABLES
 " -----------
-
-"Place la fenêtre taglist à droite 
-let Tlist_Use_Right_Window = 1
 let mapleader=","
+
+" PLUGINS CONFIGURATIONS
+" ---------------------
+" Taglist
+let Tlist_Use_Right_Window = 1
+" vim-multi-cursor
 " lets exit the insert mode
 let g:multi_cursor_exit_from_insert_mode = 0
 " lets exit the visual mode
@@ -65,13 +68,16 @@ set ruler
 
 " autoindenting
 set ai
+" save and recover folding areas
+autocmd BufWrite * mkview
+autocmd BufRead * silent loadview
 
 " highlights sage files like python file
 au BufRead,BufNewFile *.sage,*.pyx,*.spyx set filetype=python
 au BufRead,BufNewFile *.tikz,*.sagetex set filetype=tex
 
 " tabulation
-au Filetype yaml,rst,python,c,cpp,tex,java,cs set tabstop=4|set shiftwidth=4|set expandtab
+au Filetype yaml,rst,python,c,cpp,tex,java,cs,html,css,php set tabstop=4|set shiftwidth=4|set expandtab
 
 set smarttab
 
@@ -101,8 +107,8 @@ autocmd BufReadPost *
 set laststatus=2
 
 " colorscheme
-"colorscheme wombat256mod
-colorscheme askapachecode
+colorscheme wombat256mod
+"colorscheme askapachecode
 " using 256 colors
 if !has('gui_running')
     set t_Co=256
@@ -118,4 +124,4 @@ if &term =~ '^screen'
 endif
 
 "sourcing my files
-source ~/.vim/basefiles/mapping.vim
+source ~/.vim/mappings.vim

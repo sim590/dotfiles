@@ -3,7 +3,7 @@ dotfiles
 
 The dotfiles are:
 
-    - .vim/
+    - .vim/mappings.vim
     - .bashrc
     - .gitconfig
     - .pythonrc

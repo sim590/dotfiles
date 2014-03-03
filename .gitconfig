@@ -1,6 +1,7 @@
 [user]
 	name = Simon Désaulniers
 	email = rostydela@gmail.com
+	editor = vim
 [color]
 	ui = true
 [alias]
@@ -8,3 +9,8 @@
 	st = status -s
 	co = checkout
 	br = branch
+	merff = merge --ff
+	samend = commit --amend --no-edit
+[merge]
+    ff = false
+    tool = vimdiff
