@@ -1,0 +1,5 @@
+vmap <expr> <left> DVB_Drag('left')
+vmap <expr> <right> DVB_Drag('right')
+vmap <expr> <down> DVB_Drag('down')
+vmap <expr> <up> DVB_Drag('up')
+vmap <expr> D DVB_Duplicate()
