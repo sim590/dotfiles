@@ -79,8 +79,7 @@ let s:configs = ["taglist.vim",
             \ "dragvisuals.vim",
             \ "fuzzyfinder.vim",
             \ "markdown.vim",
-            \ "syntastic.vim",
-            \ "switch.vim"]
+            \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
 endfor
