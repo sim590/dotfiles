@@ -1,0 +1,81 @@
+#!/bin/bash
+#----------------------------------------------------------
+# File: update              Author(s): Simon Désaulniers
+# Date: 2015-03-11
+#----------------------------------------------------------
+# Updates dotfiles from user's $HOME directory.
+#----------------------------------------------------------
+vimhome="${HOME}.vim/"
+
+update() {
+    if [[ $1 == "in" ]]; then
+        printf "Updating repository files...\n"
+    elif [[ $1 == "out" ]]; then
+        printf "Updating ${HOME}...\n"
+    fi
+
+    #files at root of repository
+    for file in * ; do
+        if [ -f $file ]; then
+            basename="${file##*/}"
+            homefile="${HOME}.${basename}" 
+            if [[ $1 == "in" ]]; then
+                cp -uv $homefile ${basename} 2>/dev/null
+            elif [[ $1 == "out" ]]; then
+                [ -f $homefile ] && cp -iv ${basename} $homefile
+            fi
+        fi
+    done
+
+    if [[ $1 == "out" ]]; then
+        printf "Updating ${vimhome}...\n"
+    fi
+
+    #files under ./vim
+    for file in vim/* ; do
+        basename="${file##*/}"
+        vimfile="${vimhome}${basename}" 
+        if [[ $1 == "in" ]]; then
+            cp -urv $vimfile "./vim" 2>/dev/null
+        elif [[ $1 == "out" ]]; then
+            if ( [ -d $vimfile  ] || [ -f $vimfile ] ); then
+                cp -irv "./vim/${basename}" $vimfile
+            fi
+        fi
+    done
+
+    printf "Done.\n"
+}
+
+eval set -- "$(getopt --options 'hio' --longoptions 'help,in,out' -- "$@")"
+if (( $? != 0 )); then exit 1; fi
+
+while [[ "$1" != "--" ]]
+do
+    case "$1" in
+    -h|--help)
+        cat << EOF
+SYNOPSYS
+    update --in | --out
+    update -h 
+OPTIONS
+    -h|--help
+        Show this help.
+    -i|--in
+        Updates the repository files from user's \$HOME directory.
+    -o|--out
+        Updates user's \$HOME files from this repository. If destination file
+        exists, a prompt will ask for overwrite.
+EOF
+        exit 0
+        ;;
+    -o|--out)
+        update out
+        exit 0
+        ;;
+    -i|--in)
+        update in
+        exit 0
+        ;;
+    esac
+done

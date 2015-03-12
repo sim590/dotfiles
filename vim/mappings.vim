@@ -31,7 +31,7 @@ nnoremap <leader>o :!xdg-open &<left>
 nnoremap <leader>of yiW:!xdg-open <C-R>0&<CR>
 " Makefile
 nnoremap <leader>mk :make<CR>
-nnoremap <leader>m :make
+nnoremap <leader>m :make 
 " quickly open a file
 nnoremap <leader>tf yiW:tabedit <C-R>0<CR>
 " spell
@@ -83,13 +83,13 @@ au Syntax html
 	\ inoremap <buffer> <leader>bf <b></b><ESC>3hi
 " LaTeX maps
 au Syntax tex
-    \ nnoremap <buffer> <leader>it ciw{\it }<ESC>P|
-	\ inoremap <buffer> <leader>it {\it }<ESC>i|
+    \ nnoremap <buffer> <leader>it ciw\emph{}<ESC>P|
+    \ inoremap <buffer> <leader>it \emph{}<ESC>i|
 	\ inoremap <buffer> <leader>ti {\tiny }<ESC>i|
-    \ nnoremap <buffer> <leader>bf ciw{\bf }<ESC>P|
-	\ inoremap <buffer> <leader>bf {\bf }<ESC>i|
-	\ inoremap <buffer> <leader>li {\tt }<ESC>i|
-    \ nnoremap <buffer> <leader>li ciw{\tt }<ESC>P|
+    \ nnoremap <buffer> <leader>bf ciw{\bfseries }<ESC>P|
+	\ inoremap <buffer> <leader>bf {\bfseries }<ESC>i|
+	\ inoremap <buffer> <leader>li {\ttfamily }<ESC>i|
+    \ nnoremap <buffer> <leader>li ciw\ttfamily{}<ESC>P|
 	\ inoremap <buffer> <leader>$ $$<ESC>i|
 	\ inoremap <buffer> <leader>lr] \left[\right]<ESC>F\i|
 	\ inoremap <buffer> <leader>lr[ \left[\right]<ESC>F\i|
