@@ -39,7 +39,7 @@ update() {
             cp -urv $vimfile "./vim" 2>/dev/null
         elif [[ $1 == "out" ]]; then
             if ( [ -d $vimfile  ] || [ -f $vimfile ] ); then
-                cp -irv "./vim/${basename}" $vimfile
+                cp -irv "./vim/${basename}" $vimhome
             fi
         fi
     done
