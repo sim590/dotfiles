@@ -60,29 +60,6 @@ filetype plugin indent on
 let mapleader=","
 let g:syntaxed_languages ='vim,tex,python,pyrex,c,cpp,php,js,html,css,cs,java,mkd,markdown,rst'
 
-""" PERSONNAL PLUGIN SETTINGS
-let s:settings_dir="~/.vim/settings/"
-let s:configs = ["taglist.vim",
-            \ "vundle.vim",
-            \ "rsi.vim",
-            \ "gundo.vim",
-            \ "NERDCommenter.vim",
-            \ "pyclewn.vim",
-            \ "vim-multi-cursor.vim",
-            \ "ack.vim",
-            \ "fugitive.vim",
-            \ "snipMate.vim",
-            \ "clang_complete.vim",
-            \ "ultisnips.vim",
-            \ "jedi-vim.vim",
-            \ "pi_netrw.vim",
-            \ "dragvisuals.vim",
-            \ "fuzzyfinder.vim",
-            \ "markdown.vim",
-            \ "syntastic.vim"]
-for s:plugin in s:configs
-    execute ":source " . s:settings_dir . s:plugin
-endfor
 " ==================================================
 
 " COMMANDS ====================================
