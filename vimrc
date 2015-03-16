@@ -90,7 +90,7 @@ endfor
 " COMMANDS ====================================
 " Start a urxvt in the current working directory
 command! Shell !urxvt -cd "$PWD" &
-command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
+au BufRead,BufNewFile,Filetype  yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
 " =============================================
 
 "TODO: Comments
@@ -126,7 +126,7 @@ au BufRead,BufNewFile *.tex,*.tikz,*.sagetex set filetype=tex
 au BufRead,BufRead *.mustache set filetype=html
 set tw=80 " wrapping lines
 au BufRead,BufNewFile,Filetype python,c,cpp,java,cs,html,css,php set tw=80
-au BufRead,BufNewFile,Filetype yaml set tw=40
+au BufRead,BufNewFile,Filetype yaml set tw=80
 au BufRead,BufNewFile,Filetype tex set tw=100
 
 " COLORSCHEME ==========
