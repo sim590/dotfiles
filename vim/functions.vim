@@ -2,10 +2,10 @@ fun! s:DuckDuckgoSearch(q_args)
   let l:_args = split(a:q_args)
   let l:index = match(l:_args[0], '-[a-zA-Z]\+')
 
-  if l:index != -1 
-    let l:_option = l:_args[l:index] 
-  else 
-    let l:_option = '' 
+  if l:index != -1
+    let l:_option = l:_args[l:index]
+  else
+    let l:_option = ''
   endif
 
   let l:expression = join(l:_args[l:index+1:])
@@ -23,7 +23,7 @@ function! Toggle_ai()
         echo 'ai unset'
         set noai
     endif
-endfunction!  
+endfunction!
 
 function! ToggleRelNumber()
     if &relativenumber == 1

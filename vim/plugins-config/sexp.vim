@@ -1,1 +1,1 @@
-let g:sexp_filetypes = g:syntaxed_languages
+let g:sexp_filetypes = join(g:syntaxed_languages, ',')

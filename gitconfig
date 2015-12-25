@@ -5,14 +5,15 @@
 [color]
 	ui = true
 [alias]
-    ;lol = log --graph --pretty=format:'%Cgreen(%an)%n%C(yellow)%h%Creset %s'
 	lol = log --decorate --graph --oneline
+	loll = log --decorate --graph --oneline --all
 	st = status -s
 	co = checkout
 	br = branch
 	merff = merge --ff
     puff = pull --ff
 	samend = commit --amend --no-edit
+    whatsnew = fetch --dry-run
 [merge]
     ff = false
     tool = vimdiff

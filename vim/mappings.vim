@@ -1,5 +1,4 @@
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
-
 " source vim files
 au Filetype vim nnoremap <F6> :source %<CR>
 nnoremap <F2> :source $MYVIMRC<CR>
@@ -9,8 +8,6 @@ nnoremap <leader>rc :e $MYVIMRC<CR>
 nnoremap <leader>vrc :vsplit $MYVIMRC<CR><C-W>L
 nnoremap <F3> :call Toggle_ai()<CR>
 nnoremap <leader>n :call ToggleRelNumber()<CR>
-" Arborescence NERDTree
-nnoremap <F4> :NERDTree<CR>
 " Move the window buffer down
 nnoremap <silent> <C-w>x <C-W>x<C-W>j
 " add tab
@@ -20,7 +17,7 @@ nnoremap <leader>mt :tabmove +1<CR>
 " Move the tab to the
 nnoremap <leader>mT :tabmove -1<CR>
 " Close a tab
-nnoremap gc :tabclose<CR>
+nnoremap gC :tabclose<CR>
 "simple navigating in windows
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
@@ -31,7 +28,7 @@ nnoremap <leader>o :!xdg-open &<left>
 nnoremap <leader>of yiW:!xdg-open <C-R>0&<CR>
 " Makefile
 nnoremap <leader>mk :make<CR>
-nnoremap <leader>m :make 
+nnoremap <leader>m :make<space>
 " quickly open a file
 nnoremap <leader>tf yiW:tabedit <C-R>0<CR>
 " spell
@@ -44,7 +41,7 @@ vnoremap <silent> <Leader>mr "aygvmaomb<ESC>:r !perl -e '$x = <C-R>a; print $x'<
 " same, but appends the answer instead of replacing the stirng.
 vnoremap <silent> <Leader>ma "ayo<Esc>pV:!perl -e '$x = <C-R>a; print $x'<CR>"<CR>k$
 " quickly change text width
-nnoremap <silent> <leader>tw :set tw=
+nnoremap <silent> <leader>stw :set tw=
 " move block of text
 vnoremap < <gv
 vnoremap > >gv
@@ -52,9 +49,6 @@ vnoremap > >gv
 nnoremap <leader>w :w<CR>
 "write as root
 nnoremap <leader>suw :w !sudo tee %<CR>
-"move a line up and down
-nnoremap <S-l> mz:m+<cr>`z
-nnoremap <S-h> mz:m-2<cr>`z
 " adds brackets and prepare for insertion
 inoremap <leader>" ""<ESC>i
 inoremap <leader>' ''<ESC>i
@@ -66,14 +60,14 @@ inoremap <leader>< <><ESC>i
 inoremap <leader>x <ESC>l%%a
 " underline with specified char
 nnoremap <leader>T ^y$o<ESC>pVr
-nnoremap <silent> <leader>l ml:%s/\s*$//<CR>:let @/=''<CR>`l
+nnoremap <silent> <leader>l :%s/\s\+$//e \| let @/=""<CR><C-O>
 nnoremap <silent> <leader>L :noh<CR>
 " vimdiff
 nnoremap <silent> <leader>U :diffupdate<CR>
 vnoremap <silent> <leader>dp :diffput<CR>
 vnoremap <silent> <leader>do :diffget<CR>
 
-nmap <buffer> <leader>; mzA;<ESC>`z
+nnoremap <buffer> <leader>; mzA;<ESC>`z
 
 " HTML maps
 au Syntax html
@@ -89,7 +83,7 @@ au Syntax tex
     \ nnoremap <buffer> <leader>bf ciw{\bfseries }<ESC>P|
 	\ inoremap <buffer> <leader>bf {\bfseries }<ESC>i|
 	\ inoremap <buffer> <leader>li {\ttfamily }<ESC>i|
-    \ nnoremap <buffer> <leader>li ciw\ttfamily{}<ESC>P|
+    \ nnoremap <buffer> <leader>li ciw{\ttfamily }<ESC>P|
 	\ inoremap <buffer> <leader>$ $$<ESC>i|
 	\ inoremap <buffer> <leader>lr] \left[\right]<ESC>F\i|
 	\ inoremap <buffer> <leader>lr[ \left[\right]<ESC>F\i|

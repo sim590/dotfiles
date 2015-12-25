@@ -3,6 +3,7 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
+
 call vundle#begin()
 """ Vundle
 Plugin 'gmarik/Vundle.vim'
@@ -31,7 +32,7 @@ Plugin 'ack.vim'
 Plugin 'taglist.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'loremipsum'
-Plugin 'tpope/vim-abolish' 
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-surround'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'DrawIt'
@@ -47,13 +48,15 @@ Plugin 'sage-notebook.vim'
 Plugin 'scrooloose/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'Rip-Rip/clang_complete'
+"Plugin 'justmao945/vim-clang'
 Plugin 'dahu/Area-41'
 Plugin 'Xe/lolcode.vim'
+"Plugin 'klen/python-mode'
 
 " This is taken care by pacman (archlinux)
-"Plugin 'vim-jedi' -- pacman 
-"Plugin 'vim-runtime' -- pacman 
-"Plugin 'vim-spell-fr' -- pacman 
+"Plugin 'vim-jedi' -- pacman
+"Plugin 'vim-runtime' -- pacman
+"Plugin 'vim-spell-fr' -- pacman
 call vundle#end()
 
 filetype plugin indent on
@@ -74,13 +77,13 @@ let s:configs = ["taglist.vim",
             \ "ack.vim",
             \ "fugitive.vim",
             \ "snipMate.vim",
-            \ "clang_complete.vim",
             \ "ultisnips.vim",
             \ "jedi-vim.vim",
             \ "pi_netrw.vim",
             \ "dragvisuals.vim",
             \ "fuzzyfinder.vim",
             \ "markdown.vim",
+            \ "clang_complete.vim",
             \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin

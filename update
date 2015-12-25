@@ -5,7 +5,7 @@
 #----------------------------------------------------------
 # Updates dotfiles from user's $HOME directory.
 #----------------------------------------------------------
-vimhome="${HOME}.vim/"
+vimhome="${HOME}/.vim/"
 
 update() {
     if [[ $1 == "in" ]]; then
@@ -18,7 +18,7 @@ update() {
     for file in * ; do
         if [ -f $file ]; then
             basename="${file##*/}"
-            homefile="${HOME}.${basename}" 
+            homefile="${HOME}/.${basename}"
             if [[ $1 == "in" ]]; then
                 cp -uv $homefile ${basename} 2>/dev/null
             elif [[ $1 == "out" ]]; then
@@ -33,13 +33,30 @@ update() {
 
     #files under ./vim
     for file in vim/* ; do
-        basename="${file##*/}"
-        vimfile="${vimhome}${basename}" 
-        if [[ $1 == "in" ]]; then
-            cp -urv $vimfile "./vim" 2>/dev/null
-        elif [[ $1 == "out" ]]; then
-            if ( [ -d $vimfile  ] || [ -f $vimfile ] ); then
-                cp -irv "./vim/${basename}" $vimhome
+        if [ -f $file ]; then
+            basename="${file##*/}"
+            vimfile="${vimhome}/${basename}"
+            if [[ $1 == "in" ]]; then
+                cp -urv $vimfile "./vim" 2>/dev/null
+            elif [[ $1 == "out" ]]; then
+                if ( [ -d $vimfile  ] || [ -f $vimfile ] ); then
+                    cp -irv "./vim/${basename}" $vimhome
+                fi
+            fi
+        fi
+    done
+
+    # awesome rc.lua
+    cfg_awesome_dir=~/.config/awesome
+    awesome=./awesome
+    for file in ${awesome}/* ; do
+        if [ -f $file ]; then
+            basename="${file##*/}"
+            awesome_file="${cfg_awesome_dir}/${basename}"
+            if [[ $1 == "in" ]]; then
+                cp -uv ${awesome_file} $file
+            elif [[ $1 == "out" ]]; then
+                cp -iv awesome/${basename} ${awesome_file}
             fi
         fi
     done
@@ -57,7 +74,7 @@ do
         cat << EOF
 SYNOPSYS
     update --in | --out
-    update -h 
+    update -h
 OPTIONS
     -h|--help
         Show this help.

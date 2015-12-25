@@ -1,4 +1,5 @@
 let Tlist_Use_Right_Window = 1
+let Tlist_Close_On_Select  = 1
 
 fun! TlistToggleMap()
     "'#' matching the case
