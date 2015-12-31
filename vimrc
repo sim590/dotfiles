@@ -1,77 +1,69 @@
 " PLUGIN CONFIGURATION =============================
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-
-
-call vundle#begin()
-""" Vundle
-Plugin 'gmarik/Vundle.vim'
-
-" This is taken care by Vundle
-Plugin 'L9'
-Plugin 'Colour-Sampler-Pack'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'itchyny/lightline.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
+call plug#begin('~/.vim/plugged')
+Plug 'L9'
+Plug 'Colour-Sampler-Pack'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
 "snippets --------------------
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "-----------------------------
-Plugin 'fugitive.vim'
-Plugin 'searchfold.vim'
-Plugin 'Tabular'
-Plugin 'The-NERD-tree'
-Plugin 'The-NERD-Commenter'
-Plugin 'EasyMotion'
-Plugin 'FuzzyFinder'
-Plugin 'mattn/webapi-vim' "vim-quicklink dependency
-Plugin 'christoomey/vim-quicklink'
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'ack.vim'
-Plugin 'taglist.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'loremipsum'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-surround'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'DrawIt'
-Plugin 'tpope/vim-rsi'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'atweiden/vim-dragvisuals'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'tpope/vim-scriptease'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-eunuch'
-Plugin 'sage-notebook.vim'
-"Regarder syntastic
-Plugin 'scrooloose/syntastic'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'Rip-Rip/clang_complete'
-"Plugin 'justmao945/vim-clang'
-Plugin 'dahu/Area-41'
-Plugin 'Xe/lolcode.vim'
-"Plugin 'klen/python-mode'
+Plug 'fugitive.vim' " TODO: nvim-compatible
+Plug 'searchfold.vim'
+Plug 'Tabular'
+Plug 'The-NERD-Commenter'
+"Plug 'tpope/vim-commentary'
+Plug 'EasyMotion'
+Plug 'FuzzyFinder'
+Plug 'mattn/webapi-vim' "vim-quicklink dependency
+Plug 'christoomey/vim-quicklink'
+Plug 'AndrewRadev/switch.vim'
+Plug 'ack.vim'
+Plug 'taglist.vim'
+Plug 'sjl/gundo.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
+Plug 'plasticboy/vim-markdown', { 'frozen': 1 }
+Plug 'DrawIt'
+Plug 'tpope/vim-rsi', 'no_meta_opts'
+Plug 'tpope/vim-unimpaired'
+Plug 'atweiden/vim-dragvisuals'
+Plug 'shinokada/listtrans.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-speeddating'
+" tpop/vim-eunuch -----------------------
+Plug 'tpope/vim-eunuch', { 'frozen': 1 }
+Plug 'tpope/vim-eunuch', 'RmSwp-command'
+"----------------------------------------
+Plug 'scrooloose/syntastic' " TODO: nvim-compatible
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.sh --clang-completer --omnisharp-completer' } " TODO: nvim-compatible
+Plug 'rdnetto/YCM-Generator', 'stable' " TODO: nvim-compatible
+Plug 'dahu/Area-41'
+Plug 'Xe/lolcode.vim'
+Plug 'aaronbieber/vim-quicktask'
+Plug 'TaskList.vim'
+Plug 'mhinz/vim-startify'
+Plug 'Raimondi/delimitMate'
 
 " This is taken care by pacman (archlinux)
 "Plugin 'vim-jedi' -- pacman
 "Plugin 'vim-runtime' -- pacman
 "Plugin 'vim-spell-fr' -- pacman
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 let mapleader=","
-let g:syntaxed_languages ='vim,tex,python,pyrex,c,cpp,php,js,html,css,cs,java,mkd,markdown,rst'
+let g:syntaxed_fts = ["vim","tex","python","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make"]
 
 """ PERSONNAL PLUGIN SETTINGS
 " This code sources files under a directory. I've stopped using this in favor of
 " placing all files under ~/.vim/after/plugin/
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = ["taglist.vim",
-            \ "vundle.vim",
             \ "rsi.vim",
             \ "gundo.vim",
-            \ "NERDCommenter.vim",
             \ "pyclewn.vim",
             \ "vim-multi-cursor.vim",
             \ "ack.vim",
@@ -79,11 +71,14 @@ let s:configs = ["taglist.vim",
             \ "snipMate.vim",
             \ "ultisnips.vim",
             \ "jedi-vim.vim",
+            \ "NERDCommenter.vim",
             \ "pi_netrw.vim",
             \ "dragvisuals.vim",
+            \ "quicktask.vim",
+            \ "listtrans.vim",
             \ "fuzzyfinder.vim",
             \ "markdown.vim",
-            \ "clang_complete.vim",
+            \ "youcompleteme.vim",
             \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
@@ -93,14 +88,16 @@ endfor
 " COMMANDS ====================================
 " Start a urxvt in the current working directory
 command! Shell !urxvt -cd "$PWD" &
-au BufRead,BufNewFile,Filetype  yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
+au BufRead,BufNewFile,Filetype yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
+au BufRead,BufNewFile,FileType tex command! WcLatex write !detex | wc -w
+nnoremap <leader>yp :YaumlPdf<CR>
 " =============================================
 
 "TODO: Comments
 syntax on " enable syntax highlighting
 set fo=tcroql " wraps comments after hitting <enter>, 'o' or when typing text after textwidth
 set autochdir
-set encoding=utf8
+set encoding=utf-8
 set hlsearch " hightlight search
 set incsearch " search preview
 set ignorecase " search is not case sensitive
@@ -121,20 +118,33 @@ set number " line numbers
 set relativenumber " relative numbers too
 set laststatus=2 "status bar always show
 set noshowmode
-set t_Co=256 " using 256 colors (needed for colorschemes and lightline plugin)
 " filetype settings
+au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 au BufRead,BufNewFile *.sage set filetype=python
 au BufRead,BufNewFile *.pxd,*.pyx,*.spyx set filetype=python | set syntax=pyrex
 au BufRead,BufNewFile *.tex,*.tikz,*.sagetex set filetype=tex
 au BufRead,BufRead *.mustache set filetype=html
 set tw=80 " wrapping lines
 au BufRead,BufNewFile,Filetype python,c,cpp,java,cs,html,css,php set tw=80
-au BufRead,BufNewFile,Filetype yaml set tw=80
+au BufRead,BufNewFile,Filetype yaml,mkd,markdown set tw=80
 au BufRead,BufNewFile,Filetype tex set tw=100
 
 " COLORSCHEME ==========
+"set t_Co=256 " using 256 colors (needed for colorschemes and lightline plugin)
 colorscheme wombat256mod
 " ======================
+
+" highlighting extra white sapces ====================================
+fun! s:StripTrailingWhiteSpaces()
+    let l:pos = getcurpos()
+    exec ":%s/\\s\\+$//e"
+    call setpos('.', l:pos)
+endf
+highlight ExtraWhiteSpaces ctermbg=red guibg=red
+autocmd ColorScheme hightlight ExtraWhiteSpaces ctermbg=red guibg=red
+match ExtraWhiteSpaces /\s\+$\| \+\ze\t/
+exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
+" ====================================================================
 
 au BufRead,BufNewFile,Filetype c,cpp set si
 " TODO:
@@ -147,6 +157,13 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
+
+" Source $MYVIMRC every time it's edited
+" TODO: bug avec le lightline
+"augroup vimrc
+	"au!
+	"au bufwritepost .vimrc source $MYVIMRC
+"augroup END
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'

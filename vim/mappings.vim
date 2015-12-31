@@ -6,8 +6,6 @@ nnoremap <silent> <leader>spl :call SpellFixLast()<CR>
 inoremap <leader>spl <ESC>:call SpellFixLast()<CR>a
 nnoremap <leader>rc :e $MYVIMRC<CR>
 nnoremap <leader>vrc :vsplit $MYVIMRC<CR><C-W>L
-nnoremap <F3> :call Toggle_ai()<CR>
-nnoremap <leader>n :call ToggleRelNumber()<CR>
 " Move the window buffer down
 nnoremap <silent> <C-w>x <C-W>x<C-W>j
 " add tab
@@ -32,10 +30,7 @@ nnoremap <leader>m :make<space>
 " quickly open a file
 nnoremap <leader>tf yiW:tabedit <C-R>0<CR>
 " spell
-"nnoremap <leader>ss :setlocal spell!<cr> "disabled as unimpaired does it already
 nnoremap <leader>sl :set spelllang=
-" change buffer
-nnoremap <leader>bc :FufBuffer<CR>
 " evaluate mathematical expression selected in visual mode.
 vnoremap <silent> <Leader>mr "aygvmaomb<ESC>:r !perl -e '$x = <C-R>a; print $x'<CR>"ay$dd`bv`a"ap$
 " same, but appends the answer instead of replacing the stirng.
@@ -47,14 +42,7 @@ vnoremap < <gv
 vnoremap > >gv
 "write the file
 nnoremap <leader>w :w<CR>
-"write as root
-nnoremap <leader>suw :w !sudo tee %<CR>
 " adds brackets and prepare for insertion
-inoremap <leader>" ""<ESC>i
-inoremap <leader>' ''<ESC>i
-inoremap <leader>[ []<ESC>i|inoremap <leader>] []<ESC>i
-inoremap <leader>( ()<ESC>i|inoremap <leader>) ()<ESC>i
-inoremap <leader>{ {}<ESC>i|inoremap <leader>} {}<ESC>i
 inoremap <leader>< <><ESC>i
 " get out of the container: (),{},[]
 inoremap <leader>x <ESC>l%%a

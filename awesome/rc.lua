@@ -117,6 +117,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal_cmd .. editor
 
 -- applications
+browser = "qutebrowser"
 mail         = terminal_cmd .. "mutt"
 mpdclient    = terminal_cmd .. "ncmpcpp"
 image_viewer = "gpicview"
@@ -665,7 +666,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end),
     --
     -- {{ my apps }}--
-    awful.key({ modkey,         }, "z", function () awful.util.spawn("chromium") end),
+    awful.key({ modkey,         }, "z", function () awful.util.spawn(browser) end),
     awful.key({ modkey, "Shift" }, "t", function () awful.util.spawn(terminal_cmd .. 'htop') end),
     awful.key({ modkey,         }, "a", function () awful.util.spawn(terminal_cmd .. 'ranger') end),
     awful.key({ modkey,         }, "i", function () awful.util.spawn(mail) end),
