@@ -11,9 +11,9 @@
 	co = checkout
 	br = branch
 	merff = merge --ff
-    puff = pull --ff
+	puff = pull --ff
 	samend = commit --amend --no-edit
-    whatsnew = fetch --dry-run
+	whatsnew = fetch --dry-run
 [merge]
-    ff = false
-    tool = vimdiff
+	ff = false
+	tool = vimdiff
