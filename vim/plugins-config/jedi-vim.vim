@@ -14,4 +14,5 @@ let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 0
 let g:jedi#auto_close_doc = 0
 " disabling show_call_signatures because sometimes intensively slowing down.
-let g:jedi#show_call_signatures = 0
+autocmd BufWinEnter,FileType pyrex let g:jedi#show_call_signatures = 0
+autocmd BufWinEnter,FileType python let g:jedi#show_call_signatures = 0

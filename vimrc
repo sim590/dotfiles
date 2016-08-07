@@ -12,8 +12,8 @@ Plug 'honza/vim-snippets'
 Plug 'fugitive.vim' " TODO: nvim-compatible
 Plug 'searchfold.vim'
 Plug 'Tabular'
-Plug 'The-NERD-Commenter'
-"Plug 'tpope/vim-commentary'
+"Plug 'The-NERD-Commenter'
+Plug 'tpope/vim-commentary'
 Plug 'EasyMotion'
 Plug 'FuzzyFinder'
 Plug 'mattn/webapi-vim' "vim-quicklink dependency
@@ -21,7 +21,6 @@ Plug 'christoomey/vim-quicklink'
 Plug 'AndrewRadev/switch.vim'
 Plug 'ack.vim'
 Plug 'taglist.vim'
-Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'plasticboy/vim-markdown', { 'frozen': 1 }
@@ -38,7 +37,7 @@ Plug 'tpope/vim-eunuch', { 'frozen': 1 }
 Plug 'tpope/vim-eunuch', 'RmSwp-command'
 "----------------------------------------
 Plug 'scrooloose/syntastic' " TODO: nvim-compatible
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.sh --clang-completer --omnisharp-completer' } " TODO: nvim-compatible
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --omnisharp-completer' } " TODO: nvim-compatible
 Plug 'rdnetto/YCM-Generator', 'stable' " TODO: nvim-compatible
 Plug 'dahu/Area-41'
 Plug 'Xe/lolcode.vim'
@@ -46,34 +45,34 @@ Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
 Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
+" vim-radical & dependencies --- "TODO: Check pourquoi ça load pas??
+Plug 'glts/vim-radical'
+Plug 'google/vim-maktaba'
+Plug 'glts/vim-magnum'
+" ------------------------------
 
 " This is taken care by pacman (archlinux)
-"Plugin 'vim-jedi' -- pacman
 "Plugin 'vim-runtime' -- pacman
 "Plugin 'vim-spell-fr' -- pacman
 call plug#end()
 
 filetype plugin indent on
 let mapleader=","
-let g:syntaxed_fts = ["vim","tex","python","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make"]
+let g:syntaxed_fts = ["vim","tex","python","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
 
 """ PERSONNAL PLUGIN SETTINGS
-" This code sources files under a directory. I've stopped using this in favor of
-" placing all files under ~/.vim/after/plugin/
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = ["taglist.vim",
             \ "rsi.vim",
-            \ "gundo.vim",
             \ "pyclewn.vim",
             \ "vim-multi-cursor.vim",
             \ "ack.vim",
             \ "fugitive.vim",
             \ "snipMate.vim",
             \ "ultisnips.vim",
-            \ "jedi-vim.vim",
-            \ "NERDCommenter.vim",
             \ "pi_netrw.vim",
             \ "dragvisuals.vim",
+            \ "jedi-vim.vim",
             \ "quicktask.vim",
             \ "listtrans.vim",
             \ "fuzzyfinder.vim",
@@ -88,6 +87,7 @@ endfor
 " COMMANDS ====================================
 " Start a urxvt in the current working directory
 command! Shell !urxvt -cd "$PWD" &
+command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
 au BufRead,BufNewFile,Filetype yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
 au BufRead,BufNewFile,FileType tex command! WcLatex write !detex | wc -w
 nnoremap <leader>yp :YaumlPdf<CR>
@@ -98,25 +98,26 @@ syntax on " enable syntax highlighting
 set fo=tcroql " wraps comments after hitting <enter>, 'o' or when typing text after textwidth
 set autochdir
 set encoding=utf-8
-set hlsearch " hightlight search
-set incsearch " search preview
-set ignorecase " search is not case sensitive
-set smartcase " smart search
-set showmatch " highlight brackets
-set history=50 " 50 lines of command lines history
-set viminfo='20,\"50 " .viminfo file with 50 lines of registers
-set ruler " show the cursor position all the time
-set spelllang=fr " spellcheck language
-set ai " autoindenting
-set tabstop=4 " tabulation
-set shiftwidth=4 " tabulation
-set expandtab " tabulation
+set hlsearch          " hightlight search
+set incsearch         " search preview
+set ignorecase        " search is not case sensitive
+set smartcase         " smart search
+set showmatch         " highlight brackets
+set history=50        " 50 lines of command lines history
+set viminfo='20,\"50  " .viminfo file with 50 lines of registers
+set ruler             " show the cursor position all the time
+set spelllang=fr      " spellcheck language
+set ai                " autoindenting
+set tabstop=4         " tabulation
+set shiftwidth=4      " tabulation
+set expandtab         " tabulation
+au FileType cmake,automake set noexpandtab
 set smarttab
-set softtabstop=4 " Comportement du «backspace» avec les tabs
-set backspace=2 " make backspace work like most other apps
-set number " line numbers
-set relativenumber " relative numbers too
-set laststatus=2 "status bar always show
+set softtabstop=4     " Comportement du «backspace» avec les tabs
+set backspace=2       " make backspace work like most other apps
+set number            " line numbers
+set relativenumber    " relative numbers too
+set laststatus=2      " status bar always show
 set noshowmode
 " filetype settings
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
@@ -125,9 +126,9 @@ au BufRead,BufNewFile *.pxd,*.pyx,*.spyx set filetype=python | set syntax=pyrex
 au BufRead,BufNewFile *.tex,*.tikz,*.sagetex set filetype=tex
 au BufRead,BufRead *.mustache set filetype=html
 set tw=80 " wrapping lines
-au BufRead,BufNewFile,Filetype python,c,cpp,java,cs,html,css,php set tw=80
-au BufRead,BufNewFile,Filetype yaml,mkd,markdown set tw=80
-au BufRead,BufNewFile,Filetype tex set tw=100
+au BufRead,BufNewFile,FileType gitcommit,*.py,*.c,*.cpp,*.java,*.cs,*.html,*.css,*.php set tw=80
+au BufRead,BufNewFile *.yaml,*.yml,*.md set tw=80
+au BufRead,BufNewFile *.tex set tw=100
 
 " COLORSCHEME ==========
 "set t_Co=256 " using 256 colors (needed for colorschemes and lightline plugin)
@@ -136,17 +137,19 @@ colorscheme wombat256mod
 
 " highlighting extra white sapces ====================================
 fun! s:StripTrailingWhiteSpaces()
-    let l:pos = getcurpos()
+    let l:pos = getpos('.')
     exec ":%s/\\s\\+$//e"
     call setpos('.', l:pos)
 endf
 highlight ExtraWhiteSpaces ctermbg=red guibg=red
 autocmd ColorScheme hightlight ExtraWhiteSpaces ctermbg=red guibg=red
 match ExtraWhiteSpaces /\s\+$\| \+\ze\t/
+command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
 exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
 " ====================================================================
 
-au BufRead,BufNewFile,Filetype c,cpp set si
+exec "au BufRead,BufNewFile,Filetype ".join(g:syntaxed_fts, ',')." set si"
+
 " TODO:
 " save and recover folding areas
 "autocmd BufWrite * mkview

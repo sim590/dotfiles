@@ -15,33 +15,13 @@ fun! s:DuckDuckgoSearch(q_args)
 endf
 command! -nargs=+ DuckDuckgoSearch call <sid>DuckDuckgoSearch(<q-args>)
 
-function! Toggle_ai()
-    if &ai == '0'
-        echo 'ai set'
-        set ai
-    else
-        echo 'ai unset'
-        set noai
-    endif
-endfunction!
-
-function! ToggleRelNumber()
-    if &relativenumber == 1
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-endfunction!
-
-function! Toggle_diff()
-    if &diff == 0
-	diffthis
-    else
-	diffoff
-    endif
-endfunction!
-
 "Fix the last spelling error
 function! SpellFixLast()
     normal! m"[s1z=`"
 endfunction!
+
+fun! s:StringBaseConvert(str, a, b)
+    "TODO: prendre le string en dessous du curseur.
+    "TODO: parse '0x' prefix string.
+    return system('echo "obase='.a:b.'; $(('.a:a.'#'.a:str.'))" | bc')
+endf

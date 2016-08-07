@@ -1,6 +1,6 @@
 " configurable variables
 let g:QTFileName = "todo.txt"
-let g:QTWindowHeight = 10
+let g:QTWindowHeight = 15
 
 " script local variables
 if !exists('QTfileNames')
