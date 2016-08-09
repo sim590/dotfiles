@@ -17,7 +17,7 @@ subdirs:
 	done
 
 clean:
-	rm -rf $(DEST_LINKS)
+	rm -irf $(DEST_LINKS)
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done

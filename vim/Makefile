@@ -12,4 +12,4 @@ $(DEST):
 $(DEST)/%: %
 	ln -s $(CURDIR)/$< $@
 clean:
-	rm -rf $(DEST_LINKS)
+	rm -irf $(DEST_LINKS)
