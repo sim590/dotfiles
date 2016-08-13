@@ -39,7 +39,6 @@ Plug 'tpope/vim-eunuch', 'RmSwp-command'
 Plug 'scrooloose/syntastic' " TODO: nvim-compatible
 Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --omnisharp-completer' } " TODO: nvim-compatible
 Plug 'rdnetto/YCM-Generator', 'stable' " TODO: nvim-compatible
-Plug 'dahu/Area-41'
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
@@ -58,7 +57,7 @@ call plug#end()
 
 filetype plugin indent on
 let mapleader=","
-let g:syntaxed_fts = ["vim","tex","python","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
+let g:syntaxed_fts = ["vim","tex","python","lua","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
 
 """ PERSONNAL PLUGIN SETTINGS
 let s:settings_dir="~/.vim/plugins-config/"
