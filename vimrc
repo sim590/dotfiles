@@ -11,11 +11,14 @@ Plug 'honza/vim-snippets'
 "-----------------------------
 Plug 'fugitive.vim' " TODO: nvim-compatible
 Plug 'searchfold.vim'
-Plug 'Tabular'
+Plug 'Tabular' "Must load before vim-markdown (see :h vim-markdown)
 "Plug 'The-NERD-Commenter'
 Plug 'tpope/vim-commentary'
 Plug 'EasyMotion'
-Plug 'FuzzyFinder'
+" Plug 'FuzzyFinder' " issue with opening files when have split buffers.
+                     " Doesn't open the file in the right buffer or just doesn't
+                     " open the file correctly (empty buffer).
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/webapi-vim' "vim-quicklink dependency
 Plug 'christoomey/vim-quicklink'
 Plug 'AndrewRadev/switch.vim'
@@ -74,7 +77,7 @@ let s:configs = ["taglist.vim",
             \ "jedi-vim.vim",
             \ "quicktask.vim",
             \ "listtrans.vim",
-            \ "fuzzyfinder.vim",
+            \ "ctrlp.vim",
             \ "markdown.vim",
             \ "youcompleteme.vim",
             \ "syntastic.vim"]
