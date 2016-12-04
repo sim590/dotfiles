@@ -11,6 +11,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      size_hints_honor = false } },
+    { rule = { class = "mpv" },
+      properties = { floating = true } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "Wine", instance = "Battle.net.exe" },

@@ -23,22 +23,22 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("slimlock") end),
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
     awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend && slimlock") end),
-    awful.key({			  }, "Print", function () awful.util.spawn("/home/simon/bin/sshot") end),
-    awful.key({ modkey    }, "Print", function ()
-        -------------------------------------------------------------
-        --  Takes a screenshot and opens it right after it's done  --
-        -------------------------------------------------------------
-        awful.util.spawn("/home/simon/bin/sshot")
-        os.execute("sleep 2")
-        local filenames = {}
-        local pipe_file = io.popen("find /tmp -maxdepth 1 -name sshot\\[0-9\\]\\*.png", "r")
-        for line in pipe_file:lines() do
-            table.insert(filenames, line)
-        end
-        io.close(pipe_file)
-        table.sort(filenames, function (a, b) return tonumber(a:match("%d+")) >= tonumber(b:match("%d+")) end)
-        awful.util.spawn(image_viewer .. " " .. filenames[1])
-    end),
+    awful.key({			  }, "Print", function () awful.util.spawn("gnome-screenshot -i") end),
+    -- awful.key({ modkey    }, "Print", function ()
+    --     -------------------------------------------------------------
+    --     --  Takes a screenshot and opens it right after it's done  --
+    --     -------------------------------------------------------------
+    --     awful.util.spawn("/home/simon/bin/sshot")
+    --     os.execute("sleep 2")
+    --     local filenames = {}
+    --     local pipe_file = io.popen("find /tmp -maxdepth 1 -name sshot\\[0-9\\]\\*.png", "r")
+    --     for line in pipe_file:lines() do
+    --         table.insert(filenames, line)
+    --     end
+    --     io.close(pipe_file)
+    --     table.sort(filenames, function (a, b) return tonumber(a:match("%d+")) >= tonumber(b:match("%d+")) end)
+    --     awful.util.spawn(image_viewer .. " " .. filenames[1])
+    -- end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.util.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.util.spawn("light -A 15") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.util.spawn("light -U 15") end),
@@ -99,22 +99,23 @@ globalkeys = awful.util.table.join(
         local url = io.popen("xsel -ob"):read('l')
         naughty.notify({ title = "Starting mpv",
                          text = url })
-        awful.util.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl' .. ' "' .. url .. '"')
+        awful.util.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl --ytdl-format=22' .. ' "' .. url .. '"')
     end),
     awful.key({ modkey,         }, "z", function () awful.util.spawn(browser) end),
     awful.key({ modkey, "Shift" }, "z", function () awful.util.spawn(scnd_browser) end),
     awful.key({ modkey, "Shift" }, "t", function () awful.util.spawn(terminal_cmd .. 'htop') end),
     awful.key({ modkey,         }, "a", function () awful.util.spawn(terminal_cmd .. 'ranger') end),
     awful.key({ modkey,         }, "i", function () awful.util.spawn(terminal_cmd .. mail) end),
-    awful.key({ modkey, "Control" }, "i", set_mail_layout),
+    awful.key({ modkey, "Control" }, "i", set_one_window_sidemenu_style),
     awful.key({ modkey, "Shift" }, "i",
         function ()
             awful.util.spawn(terminal_cmd .. mail)
-            awful.util.spawn(icon_exec .. " " .. icon_dir .. "/google-calendar.desktop")
+            -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "/google-calendar.desktop")
+            awful.util.spawn("env QUTE_QTBUG54419_PATCHED=1 qutebrowser --backend webengine --target window" .. " " .. "https://calendar.google.com/")
             --bug... xdg-open badly interprets spaces in file...
-            -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "/google-keep.desktop")
+            -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "google-keep_Profile-1.desktop")
 
-            set_mail_layout()
+            set_one_window_sidemenu_style()
         end),
     awful.key({ modkey,         }, "e", function () awful.util.spawn(editor_cmd) end),
     awful.key({ modkey,         }, "d", function () awful.util.spawn(terminal_cmd .. mpdclient) end),

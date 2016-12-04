@@ -87,7 +87,7 @@ layouts = {
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "α", "🌎", "✉", "π", "ε", "ζ", "η", "♫" }, s, layouts[1])
+    tags[s] = awful.tag({ "α", "🌎", "✉", "π", "ε", "ζ", "Ϡ", "η", "♫" }, s, layouts[1])
     --tags[s] = awful.tag({"➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒"}, s, layouts[1]) -- numbers in black circle
 end
 -- }}}
@@ -207,7 +207,8 @@ for s = 1, screen.count() do
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = "20" })
 
     -- Widgets that are aligned to the left
-    local left_layout = wibox.layout.fixed.horizontal()
+    left_layout = wibox.layout.fixed.horizontal()
+
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(arrl_ld)
@@ -215,7 +216,8 @@ for s = 1, screen.count() do
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
+    right_layout = wibox.layout.fixed.horizontal()
+
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(arrl_ld)
     right_layout:add(mpdicon)

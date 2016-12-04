@@ -42,10 +42,10 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-function set_mail_layout ()
+function set_one_window_sidemenu_style ()
     --layout conf
-    awful.tag.setnmaster(2)
-    awful.tag.setmwfact(0.7)
-    awful.layout.set(awful.layout.suit.tile)
+    awful.tag.setnmaster(1)
+    awful.tag.setmwfact(0.3)
+    awful.layout.set(awful.layout.suit.tile.left)
 end
 

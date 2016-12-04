@@ -13,7 +13,7 @@ markup = lain.util.markup
 mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 
 -- calendar
-lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 10 })
+lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 11 })
 
 -- {{ Time and Date Widget }} --
 tdwidget = wibox.widget.textbox()
@@ -76,7 +76,7 @@ volumewidget = lain.widgets.alsa({
 -- mailwidget = wibox.widget.background(lain.widgets.imap({
 --     timeout  = 180,
 --     server   = "imap.gmail.com",
---     mail     = "", -- use `pass` to get password from encrypted files.
+--     mail     = "", -- TODO use `pass` to get password from encrypted files.
 --     password = "",
 --     settings = function()
 --         if mailcount > 0 then
