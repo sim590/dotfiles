@@ -100,55 +100,79 @@ syntax on " enable syntax highlighting
 set fo=tcroql " wraps comments after hitting <enter>, 'o' or when typing text after textwidth
 set autochdir
 set encoding=utf-8
-set hlsearch          " hightlight search
-set incsearch         " search preview
-set ignorecase        " search is not case sensitive
-set smartcase         " smart search
-set showmatch         " highlight brackets
-set history=50        " 50 lines of command lines history
-set viminfo='20,\"50  " .viminfo file with 50 lines of registers
-set ruler             " show the cursor position all the time
-set spelllang=fr      " spellcheck language
-set ai                " autoindenting
-set tabstop=4         " tabulation
-set shiftwidth=4      " tabulation
-set expandtab         " tabulation
-au FileType cmake,automake set noexpandtab
+set hlsearch                       " hightlight search
+set incsearch                      " search preview
+set ignorecase                     " search is not case sensitive
+set smartcase                      " smart search
+set showmatch                      " highlight brackets
+set history=50                     " 50 lines of command lines history
+set viminfo='20,\"50               " .viminfo file with 50 lines of registers
+set ruler                          " show the cursor position all the time
+set spelllang=fr                   " spellcheck language
+set ai                             " autoindenting
+au BufRead,BufNewFile * set tw=120 " text wraping
+set tabstop=4                      " tabulation
+set shiftwidth=4                   " tabulation
+set softtabstop=4                  " tabulation
+set expandtab                      " tabulation
+au BufRead,BufNewFile,FileType cmake,automake set noexpandtab
 set smarttab
-set softtabstop=4     " Comportement du «backspace» avec les tabs
-set backspace=2       " make backspace work like most other apps
-set number            " line numbers
-set relativenumber    " relative numbers too
-set laststatus=2      " status bar always show
+set backspace=2    " make backspace work like most other apps
+set number         " line numbers
+set relativenumber " relative numbers too
+set laststatus=2   " status bar always show
 set noshowmode
-" filetype settings
-au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
+
+"""""""""""""""""""""""
+"  filetype settings  "
+"""""""""""""""""""""""
+" LaTeX
+au BufRead,BufNewFile,FileType *.tex,*.tikz,*.sagetex
+            \ set filetype=tex|
+            \ set tw=100|
+            \ set ts=2|
+            \ set sw=2
+" python
 au BufRead,BufNewFile *.sage set filetype=python
-au BufRead,BufNewFile *.pxd,*.pyx,*.spyx set filetype=python | set syntax=pyrex
-au BufRead,BufNewFile *.tex,*.tikz,*.sagetex set filetype=tex
+au BufRead,BufNewFile *.pxd,*.pyx,*.spyx
+            \ set filetype=python |
+            \ set syntax=pyrex
+" html
 au BufRead,BufRead *.mustache set filetype=html
-set tw=80 " wrapping lines
-au BufRead,BufNewFile,FileType gitcommit,*.py,*.c,*.cpp,*.java,*.cs,*.html,*.css,*.php set tw=80
-au BufRead,BufNewFile *.yaml,*.yml,*.md set tw=80
-au BufRead,BufNewFile *.tex set tw=100
+
+au BufRead,BufNewFile,FileType gitcommit,mail,*.yaml,*.yml,*.md set tw=80
+" code
+au BufRead,BufNewFile,FileType *.py,*.c,*.cpp,*.java,*.cs,*.html,*.css,*.php set tw=120
+" others
+au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 
 " COLORSCHEME ==========
 "set t_Co=256 " using 256 colors (needed for colorschemes and lightline plugin)
 colorscheme wombat256mod
 " ======================
 
-" highlighting extra white sapces ====================================
+" handle unwanted characters in file ====================================
+
+" replace false spaces by spaces
+fun! s:RemoveFalseSpaces()
+    let l:pos = getpos('.')
+    exec ":%s/\\%o240/ /ge"
+    call setpos('.', l:pos)
+endf
+au! BufWritePre * call s:RemoveFalseSpaces()
+
+" get rid of trailing white spaces
 fun! s:StripTrailingWhiteSpaces()
     let l:pos = getpos('.')
     exec ":%s/\\s\\+$//e"
     call setpos('.', l:pos)
 endf
 highlight ExtraWhiteSpaces ctermbg=red guibg=red
-autocmd ColorScheme hightlight ExtraWhiteSpaces ctermbg=red guibg=red
+autocmd ColorScheme highlight ExtraWhiteSpaces ctermbg=red guibg=red
 match ExtraWhiteSpaces /\s\+$\| \+\ze\t/
 command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
 exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
-" ====================================================================
+" =======================================================================
 
 exec "au BufRead,BufNewFile,Filetype ".join(g:syntaxed_fts, ',')." set si"
 
