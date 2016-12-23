@@ -51,6 +51,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'glts/vim-radical'
 Plug 'google/vim-maktaba'
 Plug 'glts/vim-magnum'
+Plug 'neomake/neomake'
 " ------------------------------
 
 " This is taken care by pacman (archlinux)
@@ -80,7 +81,8 @@ let s:configs = ["taglist.vim",
             \ "ctrlp.vim",
             \ "markdown.vim",
             \ "youcompleteme.vim",
-            \ "syntastic.vim"]
+            \ "syntastic.vim",
+            \ "neomake.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
 endfor

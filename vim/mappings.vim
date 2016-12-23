@@ -36,9 +36,9 @@ nnoremap <C-l> <C-W>l
 " quickly open file using xdg-open
 nnoremap <leader>o :!xdg-open &<left>
 nnoremap <leader>of yiW:!xdg-open <C-R>0&<CR>
-" Makefile
-nnoremap <leader>mk :make<CR>
-nnoremap <leader>m :make<space>
+" Makefile. commented favor of neomake
+" nnoremap <leader>mk :make<CR>
+" nnoremap <leader>m :make<space>
 " quickly open a file
 nnoremap <leader>tf yiW:tabedit <C-R>0<CR>
 " spell
