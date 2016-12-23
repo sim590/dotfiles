@@ -13,6 +13,7 @@ markup = lain.util.markup
 mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 
 -- calendar
+-- FIXME: désactivé: plante avec un errur "nill called value"
 lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 11 })
 
 -- {{ Time and Date Widget }} --
@@ -86,11 +87,21 @@ volumewidget = lain.widgets.alsa({
 -- }), "#313131")
 
 -- MPD
+-- function mpd_bar(pass)
+--     local naughty = require("naughty")
+--     naughty.notify({ title = "My password", text = pass })
+-- TODO: need awesome v3.6
+-- awful.spawn.easy_async("pass" .. " " .. "personnel/mpd", function(stdout, stderr, r, c)
+--     if c == 0 then
+--         mpd_pass = stdout
+--     end
+-- end)
 mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(terminal_cmd .. mpdclient) end)))
 mpdwidget = lain.widgets.mpd({
     music_dir = home_dir .. "/Musique",
-    password = "", -- use `pass` to get password from encrypted files.
+    password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
+    -- password = mpd_pass,
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -109,3 +120,6 @@ mpdwidget = lain.widgets.mpd({
     end
 })
 mpdwidgetbg = wibox.widget.background(mpdwidget, "#313131")
+-- local glib = require( "lgi" ).GLib
+-- glib.idle_add(glib.PRIORITY_HIGH_IDLE, function() mpdwidget.password = io.popen():lines()() end)
+-- end
