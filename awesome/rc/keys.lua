@@ -20,9 +20,9 @@ globalkeys = awful.util.table.join(
     -- {{{ My bindings
     -- BUG: dm-tool ne verrouille pas vraiment la session...
     -- awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("dm-tool lock") end),
-    awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("slimlock") end),
+    awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("light-locker-command -l") end),
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
-    awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend && slimlock") end),
+    awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend") end),
     awful.key({			  }, "Print", function () awful.util.spawn("gnome-screenshot -i") end),
     -- awful.key({ modkey    }, "Print", function ()
     --     -------------------------------------------------------------
@@ -73,9 +73,16 @@ globalkeys = awful.util.table.join(
     -- {{ Cycle through screen settings }}
     awful.key({ modkey, }, "F8", xrandr.xrandr),
     -- {{ Volume Control }} --
-    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer set Master 5%+", false) end),
-    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("amixer set Master 5%-", false) end),
-    awful.key({     }, "XF86AudioMute", function() awful.util.spawn("amixer set Master toggle", false) end),
+    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("pamixer -i 5") end),
+    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("pamixer -d 5") end),
+    awful.key({     }, "XF86AudioMute", function()
+        muted = {io.popen("pamixer --get-mute"):close()}
+        if muted[1] then
+            awful.util.spawn("pamixer -u")
+        else
+            awful.util.spawn("pamixer -m")
+        end
+    end),
     --
     -- {{ music }} --
     -- ducky mini conf
@@ -105,7 +112,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "z", function () awful.util.spawn(scnd_browser) end),
     awful.key({ modkey, "Shift" }, "t", function () awful.util.spawn(terminal_cmd .. 'htop') end),
     awful.key({ modkey,         }, "a", function () awful.util.spawn(terminal_cmd .. 'ranger') end),
-    awful.key({ modkey,         }, "i", function () awful.util.spawn(terminal_cmd .. mail) end),
+    awful.key({ modkey,         }, "i", function ()
+        awful.util.spawn(terminal_cmd .. mail)
+        -- this will trigger offlineimap to use small window for recovering password (using pass/gpg)
+        awful.util.spawn("pkill -SIGUSR1 offlineimap")
+    end),
     awful.key({ modkey, "Control" }, "i", set_one_window_sidemenu_style),
     awful.key({ modkey, "Shift" }, "i",
         function ()
@@ -127,7 +138,6 @@ globalkeys = awful.util.table.join(
             awful.util.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "search_engine")
         end),
     awful.key({ modkey, "Control", "Shift" }, "s", synergy),
-    awful.key({ modkey,         }, "F12", function () awful.util.spawn("okular /home/simon/Documents/Education/UQTR/math-info/2015-hiver/h15-horaire.pdf") end),
     -- }}}
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),

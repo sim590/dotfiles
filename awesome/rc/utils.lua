@@ -11,7 +11,7 @@ my_theme = "powerarrow-darker"
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
 terminal_cmd = terminal .. " -e "
-editor = os.getenv("EDITOR") or "vim"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal_cmd .. editor
 mpd_remote = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
 

@@ -47,10 +47,6 @@ batwidget = lain.widgets.bat({
     end
 })
 
--- {{ cmus-status Widget }} --
---cmus_status = wibox.widget.textbox()
---vicious.register(cmus_status, vicious.contrib.cmus, '<span font="Inconsolata 11" color="#AAAAAA" background="#1F2428"> $1 - $2 </span>', nil)
-
 -- {{ Volume Widget }} --
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
