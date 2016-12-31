@@ -1,44 +1,22 @@
------------------------
---  Awesome modules  --
------------------------
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
-
 -- Widget and layout library
 local wibox = require("wibox")
-
 -- Theme handling library
 local beautiful = require("beautiful")
-
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local vicious = require("vicious")
-
---vicious.contrib = require("vicious.contrib")
-local lain      = require("lain")
-local revelation = require("revelation")
 
 ----------------------
 --  Initialization  --
 ----------------------
--- {{{
-require("rc.utils") -- variables, utility functions...
-
-beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
-revelation.init()                                                   -- revelation plugin
-
 require("rc.xrandr")  -- use xrandr to cycle through display layouts
-require("rc.synergy") -- starts synergy on multiple computers using ssh
 require("rc.keys")    -- key bindings
-require("rc.widgets") -- menu widgets
-require("rc.rules")   -- window rules
 
-require("rc.auto")    -- autostart applications
--- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -65,6 +43,22 @@ do
 end
 -- }}}
 
+-- {{{ Variable definitions
+-- Themes define colours, icons, font and wallpapers.
+beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+
+-- This is used later as the default terminal and editor to run.
+terminal = "urxvt"
+editor = os.getenv("EDITOR") or "nvim"
+editor_cmd = terminal .. " -e " .. editor
+
+-- Default modkey.
+-- Usually, Mod4 is the key with a logo between Control and Alt.
+-- If you do not like this or do not have such a key,
+-- I suggest you to remap Mod4 to another key using xmodmap or other tools.
+-- However, you can use another modifier like Mod1, but it may interact with others.
+modkey = "Mod4"
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
     awful.layout.suit.fair,
@@ -82,6 +76,14 @@ layouts = {
 }
 -- }}}
 
+-- {{{ Wallpaper
+if beautiful.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
+-- }}}
+
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
@@ -92,49 +94,30 @@ for s = 1, screen.count() do
 end
 -- }}}
 
-menubar.cache_entries = true
-app_folders = { "/usr/share/applications/", "~/.local/share/applications/" }
-menubar.refresh()
-
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal_cmd .. "man awesome" },
+   { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({
-    items = {
-        { "awesome", myawesomemenu, beautiful.awesome_icon },
-        { "open terminal", terminal }
-    }
-})
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "open terminal", terminal }
+                                  }
+                        })
 
-mylauncher = awful.widget.launcher({ menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- {{{ Wallpaper
-awful.util.spawn_with_shell("~/.fehbg")
---if beautiful.wallpaper then
-    --for s = 1, screen.count() do
-	--gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    --end
---end
--- }}}
-
--- {{ Powerarrow-dark icons }} --
-spr = wibox.widget.textbox(' ')
-arrl = wibox.widget.imagebox()
-arrl:set_image(beautiful.arrl)
-arrl_dl = wibox.widget.imagebox()
-arrl_dl:set_image(beautiful.arrl_dl)
-arrl_ld = wibox.widget.imagebox()
-arrl_ld:set_image(beautiful.arrl_ld)
+-- {{{ Wibox
+-- Create a textclock widget
+mytextclock = awful.widget.textclock()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -204,37 +187,18 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = "20" })
+    mywibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the left
-    left_layout = wibox.layout.fixed.horizontal()
-
+    local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
-    left_layout:add(arrl_ld)
-    left_layout:add(arrl_dl)
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
-    right_layout = wibox.layout.fixed.horizontal()
-
+    local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(arrl_ld)
-    right_layout:add(mpdicon)
-    right_layout:add(mpdwidgetbg)
-    right_layout:add(arrl_dl)
-    right_layout:add(volicon)
-    right_layout:add(volumewidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(arrl_dl)
-    --right_layout:add(tempicon)
-    --right_layout:add(tempwidget)
-    right_layout:add(baticon)
-    right_layout:add(batwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(arrl_dl)
     right_layout:add(mytextclock)
-    right_layout:add(arrl_ld)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -248,41 +212,39 @@ end
 -- }}}
 
 
+clientbuttons = awful.util.table.join(
+    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+    awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 3, awful.mouse.client.resize))
+
+-- Set keys
+root.keys(globalkeys)
+-- }}}
+
+-- {{{ Rules
+-- Rules to apply to new clients (through the "manage" signal).
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = { },
+      properties = { border_width = beautiful.border_width,
+                     border_color = beautiful.border_normal,
+                     focus = awful.client.focus.filter,
+                     raise = true,
+                     keys = clientkeys,
+                     buttons = clientbuttons } },
+    { rule = { class = "MPlayer" },
+      properties = { floating = true } },
+    { rule = { class = "pinentry" },
+      properties = { floating = true } },
+    { rule = { class = "gimp" },
+      properties = { floating = true } },
+    -- Set Firefox to always map on tags number 2 of screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[1][2] } },
+}
+-- }}}
+
 -- {{{ Signals
-
--- Fullscreen client to trigger disabling DPMS
-local fullscreened_clients = {}
-local function remove_client(tabl, c)
-    local index = awful.util.table.hasitem(tabl, c)
-    if index then
-        table.remove(tabl, index)
-        if #tabl == 0 then
-            awful.util.spawn("xset s on")
-            awful.util.spawn("xset +dpms")
-        end
-    end
-end
-
-client.connect_signal("property::fullscreen",
-function(c)
-    if c.fullscreen then
-        table.insert(fullscreened_clients, c)
-        if #fullscreened_clients == 1 then
-            awful.util.spawn("xset s off")
-            awful.util.spawn("xset -dpms")
-        end
-    else
-        remove_client(fullscreened_clients, c)
-    end
-end)
-
-client.connect_signal("unmanage",
-function(c)
-    if c.fullscreen then
-        remove_client(fullscreened_clients, c)
-    end
-end)
-
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
@@ -303,6 +265,9 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_overlap(c)
             awful.placement.no_offscreen(c)
         end
+    elseif not c.size_hints.user_position and not c.size_hints.program_position then
+        -- Prevent clients from being unreachable after screen count change
+        awful.placement.no_offscreen(c)
     end
 
     local titlebars_enabled = false
@@ -351,6 +316,6 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = "#535d6c" end)
-client.connect_signal("unfocus", function(c) c.border_color = "#000000" end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

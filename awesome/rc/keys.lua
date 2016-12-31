@@ -24,40 +24,10 @@ globalkeys = awful.util.table.join(
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
     awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend") end),
     awful.key({			  }, "Print", function () awful.util.spawn("gnome-screenshot -i") end),
-    -- awful.key({ modkey    }, "Print", function ()
-    --     -------------------------------------------------------------
-    --     --  Takes a screenshot and opens it right after it's done  --
-    --     -------------------------------------------------------------
-    --     awful.util.spawn("/home/simon/bin/sshot")
-    --     os.execute("sleep 2")
-    --     local filenames = {}
-    --     local pipe_file = io.popen("find /tmp -maxdepth 1 -name sshot\\[0-9\\]\\*.png", "r")
-    --     for line in pipe_file:lines() do
-    --         table.insert(filenames, line)
-    --     end
-    --     io.close(pipe_file)
-    --     table.sort(filenames, function (a, b) return tonumber(a:match("%d+")) >= tonumber(b:match("%d+")) end)
-    --     awful.util.spawn(image_viewer .. " " .. filenames[1])
-    -- end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.util.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.util.spawn("light -A 15") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.util.spawn("light -U 15") end),
     awful.key({modkey,	          }, "F1", revelation),
-    -- TODO: bouton toggle pour screen saver ou pas
-    --awful.key({},  "Pause",
-        --function ()
-            --local screen_saver_timeout = tonumber(io.popen("xset q | grep timeout | gawk '{print $2}'"))
-            --if not screen_saver_timeout == nil and not screen_saver_timeout == 0 then
-                --os.execute("xset s off")
-            --elseif screen_saver_timeout == 0 then
-                --os.execute("xset s on")
-            --end
-        --end),
-    -- mount/unmount last plugged-in device
-    awful.key({ modkey, "Shift"   }, "m", function ()
-        local output = io.popen("lastmount 2>&1", "r"):read('l')
-        awful.util.spawn('notify-send "Last plugged-in device" "' .. output .. '"')
-    end),
     -- {{ Window control }}
     ---------------------------------------------------------------------
     --  Makes window floating with reasonable 700x475 pixels geometry  --
@@ -212,15 +182,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
-        function ()
-          awful.prompt.run {
-            prompt       = "Run Lua code: ",
-            textbox      = awful.screen.focused().mypromptbox.widget,
-            exe_callback = awful.util.eval,
-            history_path = awful.util.get_cache_dir() .. "/history_eval"
-          }
-        end,
-        {description = "lua execute prompt", group = "awesome"}),
+              function ()
+                  awful.prompt.run({ prompt = "Run Lua code: " },
+                  mypromptbox[mouse.screen].widget,
+                  awful.util.eval, nil,
+                  awful.util.getdir("cache") .. "/history_eval")
+              end),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end)
 )
@@ -250,6 +217,7 @@ clientkeys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
+        -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
@@ -258,6 +226,7 @@ for i = 1, 9 do
                            awful.tag.viewonly(tag)
                         end
                   end),
+        -- Toggle tag.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
@@ -266,6 +235,7 @@ for i = 1, 9 do
                          awful.tag.viewtoggle(tag)
                       end
                   end),
+        -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -275,6 +245,7 @@ for i = 1, 9 do
                           end
                      end
                   end),
+        -- Toggle tag.
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
