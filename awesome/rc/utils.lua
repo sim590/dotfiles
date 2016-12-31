@@ -1,5 +1,4 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
 
 -- {{{ Variable definitions
 -- Setup directories
