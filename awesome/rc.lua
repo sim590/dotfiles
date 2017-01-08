@@ -1,44 +1,15 @@
------------------------
---  Awesome modules  --
------------------------
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
-
 -- Widget and layout library
 local wibox = require("wibox")
-
 -- Theme handling library
 local beautiful = require("beautiful")
-
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local vicious = require("vicious")
-
---vicious.contrib = require("vicious.contrib")
-local lain      = require("lain")
-local revelation = require("revelation")
-
-----------------------
---  Initialization  --
-----------------------
--- {{{
-require("rc.utils") -- variables, utility functions...
-
-beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
-revelation.init()                                                   -- revelation plugin
-
-require("rc.xrandr")  -- use xrandr to cycle through display layouts
-require("rc.synergy") -- starts synergy on multiple computers using ssh
-require("rc.keys")    -- key bindings
-require("rc.widgets") -- menu widgets
-require("rc.rules")   -- window rules
-
-require("rc.auto")    -- autostart applications
--- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -65,6 +36,24 @@ do
 end
 -- }}}
 
+--------------------------------
+--  MY CUSTOM CONFIG MODULES  --
+--------------------------------
+
+-- {{{
+require("rc.utils") -- variables, utility functions...
+
+require("rc.synergy") -- starts synergy on multiple computers using ssh
+require("rc.keys")    -- key bindings
+require("rc.widgets") -- menu widgets
+require("rc.auto")    -- autostart applications
+-- }}}
+
+-- {{{ Variable definitions
+-- Themes define colours, icons, font and wallpapers.
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
     awful.layout.suit.fair,
@@ -82,6 +71,15 @@ layouts = {
 }
 -- }}}
 
+-- {{{ Wallpaper
+awful.util.spawn_with_shell("~/.fehbg")
+-- if beautiful.wallpaper then
+--     for s = 1, screen.count() do
+--         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+--     end
+-- end
+-- }}}
+
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
@@ -92,10 +90,6 @@ for s = 1, screen.count() do
 end
 -- }}}
 
-menubar.cache_entries = true
-app_folders = { "/usr/share/applications/", "~/.local/share/applications/" }
-menubar.refresh()
-
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
@@ -105,26 +99,16 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({
-    items = {
-        { "awesome", myawesomemenu, beautiful.awesome_icon },
-        { "open terminal", terminal }
-    }
-})
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "open terminal", terminal }
+                                  }
+                        })
 
-mylauncher = awful.widget.launcher({ menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
-
--- {{{ Wallpaper
-awful.util.spawn_with_shell("~/.fehbg")
---if beautiful.wallpaper then
-    --for s = 1, screen.count() do
-	--gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    --end
---end
 -- }}}
 
 -- {{ Powerarrow-dark icons }} --
@@ -135,6 +119,7 @@ arrl_dl = wibox.widget.imagebox()
 arrl_dl:set_image(beautiful.arrl_dl)
 arrl_ld = wibox.widget.imagebox()
 arrl_ld:set_image(beautiful.arrl_ld)
+
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -204,11 +189,10 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = "20" })
+    mywibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the left
-    left_layout = wibox.layout.fixed.horizontal()
-
+    local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(arrl_ld)
@@ -216,8 +200,7 @@ for s = 1, screen.count() do
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
-    right_layout = wibox.layout.fixed.horizontal()
-
+    local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(arrl_ld)
     right_layout:add(mpdicon)
@@ -247,6 +230,16 @@ for s = 1, screen.count() do
 end
 -- }}}
 
+
+clientbuttons = awful.util.table.join(
+    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+    awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 3, awful.mouse.client.resize))
+
+--------------------------
+--  REQUIRE RULES HERE  --
+--------------------------
+require("rc.rules")
 
 -- {{{ Signals
 
@@ -303,6 +296,9 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_overlap(c)
             awful.placement.no_offscreen(c)
         end
+    elseif not c.size_hints.user_position and not c.size_hints.program_position then
+        -- Prevent clients from being unreachable after screen count change
+        awful.placement.no_offscreen(c)
     end
 
     local titlebars_enabled = false
@@ -351,6 +347,6 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = "#535d6c" end)
-client.connect_signal("unfocus", function(c) c.border_color = "#000000" end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

@@ -1,30 +1,30 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
 
 -- {{{ Variable definitions
 -- Setup directories
-home_dir = os.getenv("HOME")
+home_dir   = os.getenv("HOME")
 config_dir = (home_dir .."/.config/awesome/")
 themes_dir = (config_dir .. "/" .. "themes")
-my_theme = "powerarrow-darker"
+my_theme   = "powerarrow-darker"
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal     = "urxvt"
 terminal_cmd = terminal .. " -e "
-editor = os.getenv("EDITOR") or "nvim"
-editor_cmd = terminal_cmd .. editor
+editor       = os.getenv("EDITOR") or "nvim"
+editor_cmd   = terminal_cmd .. editor
 -- TODO: use pass for safely getting password
-mpd_remote = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
+mpd_remote   = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
 
 -- applications
-browser = "qutebrowser"
+browser      = "qutebrowser"
 scnd_browser = "chromium"
 mail         = "mutt"
 mpdclient    = "ncmpcpp"
 image_viewer = "gpicview"
+pamixer      = "/home/simon/bin/pamixer"
 
-icon_exec    = home_dir .. "/bin/x-icon"
-icon_dir = home_dir .. "/.local/share/applications/"
+icon_exec = home_dir .. "/bin/x-icon"
+icon_dir  = home_dir .. "/.local/share/applications/"
 
 
 -- Default modkey.
