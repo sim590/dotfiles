@@ -1,6 +1,6 @@
 SUBDIRS = awesome qutebrowser vim
 
-DOTFILES = gitconfig vimrc
+DOTFILES = gitconfig vimrc Xresources
 DEST_LINKS = $(addprefix $(HOME)/.,$(DOTFILES))
 
 .PHONY: all links subdirs clean
@@ -12,7 +12,7 @@ $(HOME)/.%: %
 	ln -s $(CURDIR)/$< $@
 
 subdirs:
-	for dir in $(SUBDIRS); do \
+	@for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir; \
 	done
 
