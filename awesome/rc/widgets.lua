@@ -23,7 +23,8 @@ lain.widget.cal { attach_to = { widgets.mytextclock } }
 widgets.baticon = wibox.widget.imagebox(beautiful.widget_battery)
 widgets.batwidget = lain.widget.bat({
     ac        = "AC",
-    settings  = function()
+    batteries = { "BAT0", "BAT1" },
+    settings = function()
         if bat_now.status == "Charging" then
             widgets.baticon:set_image(beautiful.widget_ac)
         else -- Discharging
