@@ -11,17 +11,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-----------------------
---  Initialization  --
-----------------------
--- {{{
-require("rc.utils") -- variables, utility functions...
-
-require("rc.synergy") -- starts synergy on multiple computers using ssh
-require("rc.keys")    -- key bindings
-require("rc.auto")    -- autostart applications
--- }}}
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -47,9 +36,23 @@ do
 end
 -- }}}
 
+--------------------------------
+--  MY CUSTOM CONFIG MODULES  --
+--------------------------------
+
+-- {{{
+require("rc.utils") -- variables, utility functions...
+
+require("rc.synergy") -- starts synergy on multiple computers using ssh
+require("rc.keys")    -- key bindings
+require("rc.widgets") -- menu widgets
+require("rc.auto")    -- autostart applications
+-- }}}
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
@@ -69,11 +72,12 @@ layouts = {
 -- }}}
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
+awful.util.spawn_with_shell("~/.fehbg")
+-- if beautiful.wallpaper then
+--     for s = 1, screen.count() do
+--         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+--     end
+-- end
 -- }}}
 
 -- {{{ Tags
@@ -89,7 +93,7 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
+   { "manual", terminal_cmd .. "man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
@@ -107,9 +111,15 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock()
+-- {{ Powerarrow-dark icons }} --
+spr = wibox.widget.textbox(' ')
+arrl = wibox.widget.imagebox()
+arrl:set_image(beautiful.arrl)
+arrl_dl = wibox.widget.imagebox()
+arrl_dl:set_image(beautiful.arrl_dl)
+arrl_ld = wibox.widget.imagebox()
+arrl_ld:set_image(beautiful.arrl_ld)
+
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -185,12 +195,29 @@ for s = 1, screen.count() do
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
+    left_layout:add(arrl_ld)
+    left_layout:add(arrl_dl)
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(arrl_ld)
+    right_layout:add(mpdicon)
+    right_layout:add(mpdwidgetbg)
+    right_layout:add(arrl_dl)
+    right_layout:add(volicon)
+    right_layout:add(volumewidget)
+    right_layout:add(arrl_ld)
+    right_layout:add(arrl_dl)
+    --right_layout:add(tempicon)
+    --right_layout:add(tempwidget)
+    right_layout:add(baticon)
+    right_layout:add(batwidget)
+    right_layout:add(arrl_ld)
+    right_layout:add(arrl_dl)
     right_layout:add(mytextclock)
+    right_layout:add(arrl_ld)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -215,6 +242,40 @@ clientbuttons = awful.util.table.join(
 require("rc.rules")
 
 -- {{{ Signals
+
+-- Fullscreen client to trigger disabling DPMS
+local fullscreened_clients = {}
+local function remove_client(tabl, c)
+    local index = awful.util.table.hasitem(tabl, c)
+    if index then
+        table.remove(tabl, index)
+        if #tabl == 0 then
+            awful.util.spawn("xset s on")
+            awful.util.spawn("xset +dpms")
+        end
+    end
+end
+
+client.connect_signal("property::fullscreen",
+function(c)
+    if c.fullscreen then
+        table.insert(fullscreened_clients, c)
+        if #fullscreened_clients == 1 then
+            awful.util.spawn("xset s off")
+            awful.util.spawn("xset -dpms")
+        end
+    else
+        remove_client(fullscreened_clients, c)
+    end
+end)
+
+client.connect_signal("unmanage",
+function(c)
+    if c.fullscreen then
+        remove_client(fullscreened_clients, c)
+    end
+end)
+
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus

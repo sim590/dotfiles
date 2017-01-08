@@ -14,13 +14,14 @@ mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 
 -- calendar
 -- FIXME: désactivé: plante avec un errur "nill called value"
-lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 11 })
+-- lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 11 })
 
 -- {{ Time and Date Widget }} --
 tdwidget = wibox.widget.textbox()
 vicious.register(tdwidget, vicious.widgets.date, '<span font="Inconsolata 11" color="#AAAAAA" background="#1F2428"> %A, %b %d %H:%M </span>', 20)
 
 -- Coretemp
+-- TODO
 --tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 --tempwidget = lain.widgets.temp({
     --settings = function()
@@ -29,7 +30,7 @@ vicious.register(tdwidget, vicious.widgets.date, '<span font="Inconsolata 11" co
 --})
 
 --{{ Battery Widget }} --
-
+-- TODO: check if displayed info is consistent with multiple batteries
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
     settings = function()
