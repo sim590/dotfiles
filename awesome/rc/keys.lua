@@ -1,6 +1,4 @@
 local awful = require("awful")
-awful.rules = require("awful.rules")
-local wibox = require("wibox")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local revelation = require("revelation")
@@ -43,16 +41,10 @@ globalkeys = awful.util.table.join(
     -- {{ Cycle through screen settings }}
     awful.key({ modkey, }, "F8", xrandr.xrandr),
     -- {{ Volume Control }} --
-    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("pamixer -i 5") end),
-    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("pamixer -d 5") end),
-    awful.key({     }, "XF86AudioMute", function()
-        muted = {io.popen("pamixer --get-mute"):close()}
-        if muted[1] then
-            awful.util.spawn("pamixer -u")
-        else
-            awful.util.spawn("pamixer -m")
-        end
-    end),
+    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn(pamixer .. " " .. "-i 5") end),
+    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn(pamixer .. " " .. "-d 5") end),
+    awful.key({     }, "XF86AudioMute", function() awful.util.spawn(pamixer .. " " .. "-t") end),
+    awful.key({     }, "XF86AudioMicMute", function() awful.util.spawn("amixer set Capture toggle") end),
     --
     -- {{ music }} --
     -- ducky mini conf
@@ -67,13 +59,13 @@ globalkeys = awful.util.table.join(
     --
     -- {{ my apps }}--
     awful.key({ modkey,         }, "c", function ()
-        local url = io.popen("xsel -ob"):read('l')
+        local url = io.popen("xsel -ob"):read('*l')
         naughty.notify({ title = "Casting on local chromecast",
                          text = url })
         awful.util.spawn(terminal_cmd .. 'castnow' .. ' "' .. url .. '"')
     end),
     awful.key({ modkey,         }, "v", function ()
-        local url = io.popen("xsel -ob"):read('l')
+        local url = io.popen("xsel -ob"):read('*l')
         naughty.notify({ title = "Starting mpv",
                          text = url })
         awful.util.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl --ytdl-format=22' .. ' "' .. url .. '"')
@@ -92,7 +84,7 @@ globalkeys = awful.util.table.join(
         function ()
             awful.util.spawn(terminal_cmd .. mail)
             -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "/google-calendar.desktop")
-            awful.util.spawn("env QUTE_QTBUG54419_PATCHED=1 qutebrowser --backend webengine --target window" .. " " .. "https://calendar.google.com/")
+            awful.util.spawn("qutebrowser --target window" .. " " .. "https://calendar.google.com/")
             --bug... xdg-open badly interprets spaces in file...
             -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "google-keep_Profile-1.desktop")
 

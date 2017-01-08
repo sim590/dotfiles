@@ -21,6 +21,7 @@ scnd_browser = "chromium"
 mail         = "mutt"
 mpdclient    = "ncmpcpp"
 image_viewer = "gpicview"
+pamixer      = "/home/simon/bin/pamixer"
 
 icon_exec    = home_dir .. "/bin/x-icon"
 icon_dir = home_dir .. "/.local/share/applications/"
