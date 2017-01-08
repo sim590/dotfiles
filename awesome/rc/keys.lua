@@ -4,6 +4,7 @@ local menubar = require("menubar")
 local revelation = require("revelation")
 
 require("rc.utils")
+require("rc.xrandr")  -- use xrandr to cycle through display layouts
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(

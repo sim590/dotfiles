@@ -16,9 +16,11 @@ local menubar = require("menubar")
 ----------------------
 -- {{{
 require("rc.utils") -- variables, utility functions...
-require("rc.xrandr")  -- use xrandr to cycle through display layouts
-require("rc.keys")    -- key bindings
 
+require("rc.synergy") -- starts synergy on multiple computers using ssh
+require("rc.keys")    -- key bindings
+require("rc.auto")    -- autostart applications
+-- }}}
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -207,32 +209,10 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
--- Set keys
-root.keys(globalkeys)
--- }}}
-
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
-}
--- }}}
+--------------------------
+--  REQUIRE RULES HERE  --
+--------------------------
+require("rc.rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
