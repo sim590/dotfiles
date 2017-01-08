@@ -1,22 +1,24 @@
 [user]
-	name       = Simon Désaulniers
-	email      = sim.desaulniers@gmail.com
-	editor     = vim
+    name       = Simon Désaulniers
+    email      = sim.desaulniers@gmail.com
+    editor     = vim
     signingkey = F97E4B08
 [color]
-	ui         = true
+    ui         = true
 [alias]
-	lol        = log --decorate --graph --oneline
-	loll       = log --decorate --graph --oneline --all
-	st         = status -s
-	co         = checkout
-	br         = branch
-	merff      = merge --ff
+    lol        = log --decorate --graph --oneline
+    loll       = log --decorate --graph --oneline --all
+    st         = status -s
+    co         = checkout
+    br         = branch
+    merff      = merge --ff
     puff       = pull --ff
-	samend     = commit --amend --no-edit
+    samend     = commit --amend --no-edit
     whatsnew   = fetch --dry-run
-	merge      = merge --no-ff --no-edit
+    merge      = merge --no-ff --no-edit
     show       = show --show-signature
 [merge]
     ff         = false
     tool       = vimdiff
+
+# vim:filetype=gitconfig:

@@ -97,7 +97,8 @@ nnoremap <leader>yp :YaumlPdf<CR>
 
 "TODO: Comments
 syntax on " enable syntax highlighting
-set fo=tcroql " wraps comments after hitting <enter>, 'o' or when typing text after textwidth
+set fo=tcroql                      " wraps comments after hitting <enter>, 'o'
+                                   " or when typing text after textwidth
 set autochdir
 set encoding=utf-8
 set hlsearch                       " hightlight search
@@ -110,7 +111,7 @@ set viminfo='20,\"50               " .viminfo file with 50 lines of registers
 set ruler                          " show the cursor position all the time
 set spelllang=fr                   " spellcheck language
 set ai                             " autoindenting
-au BufRead,BufNewFile * set tw=120 " text wraping
+set tw=120                         " text wraping
 set tabstop=4                      " tabulation
 set shiftwidth=4                   " tabulation
 set softtabstop=4                  " tabulation
@@ -190,8 +191,8 @@ autocmd BufReadPost *
 " Source $MYVIMRC every time it's edited
 " TODO: bug avec le lightline
 "augroup vimrc
-	"au!
-	"au bufwritepost .vimrc source $MYVIMRC
+    "au!
+    "au bufwritepost .vimrc source $MYVIMRC
 "augroup END
 
 " tmux will send xterm-style keys when its xterm-keys option is on
