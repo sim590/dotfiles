@@ -13,8 +13,7 @@ markup = lain.util.markup
 mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 
 -- calendar
--- FIXME: désactivé: plante avec un errur "nill called value"
--- lain.widgets.calendar:attach(mytextclock, { font = "", font_size = 11 })
+lain.widgets.calendar.attach(mytextclock, { font = "Inconsolata", font_size = 11 })
 
 -- {{ Time and Date Widget }} --
 tdwidget = wibox.widget.textbox()
