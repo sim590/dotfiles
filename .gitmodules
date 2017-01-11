@@ -1,6 +1,6 @@
 [submodule "awesome/lain"]
 	path = awesome/lain
-	url = git@github.com:copycat-killer/lain.git
+	url = git@github.com:sim590/lain.git
 [submodule "awesome/themes"]
 	path = awesome/themes
-	url = git@github.com:serialoverflow/awesome-themes.git
+	url = git@github.com:sim590/awesome-themes.git
