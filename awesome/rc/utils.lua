@@ -22,7 +22,7 @@ scnd_browser = "chromium"
 mail         = "mutt"
 mpdclient    = "ncmpcpp"
 image_viewer = "gpicview"
-pamixer      = home_dir .. "/bin/pamixer"
+pamixer      = "pamixer"
 vmixer       = home_dir .. "/bin/pulsemixer"
 redshift     = "redshift -l manual -l 45.55:-73.72 -t 6500:3700"
 
