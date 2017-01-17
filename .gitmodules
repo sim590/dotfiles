@@ -4,3 +4,6 @@
 [submodule "awesome/themes"]
 	path = awesome/themes
 	url = https://github.com/sim590/awesome-themes.git
+[submodule "vim/vim-plug"]
+	path = vim/vim-plug
+	url = https://github.com/junegunn/vim-plug
