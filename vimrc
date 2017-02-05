@@ -148,7 +148,6 @@ au BufRead,BufNewFile,FileType *.py,*.c,*.cpp,*.java,*.cs,*.html,*.css,*.php set
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 
 " COLORSCHEME ==========
-"set t_Co=256 " using 256 colors (needed for colorschemes and lightline plugin)
 colorscheme wombat256mod
 " ======================
 
@@ -187,13 +186,6 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-
-" Source $MYVIMRC every time it's edited
-" TODO: bug avec le lightline
-"augroup vimrc
-    "au!
-    "au bufwritepost .vimrc source $MYVIMRC
-"augroup END
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'

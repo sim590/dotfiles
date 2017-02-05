@@ -1,15 +1,3 @@
-" fun! MyCtrlDU(DU)
-"     for l:i in range(1, &scroll)
-"         if a:DU ==# 'd'
-"             execute "normal \<c-e>"
-"         endif
-"         if a:DU ==# 'u'
-"             execute "normal \<c-y>"
-"         endif
-"     endfor
-" endf
-" au BufEnter,VimResized * nnoremap <c-d> :call MyCtrlDU('d')<CR>
-" au BufEnter,VimResized * nnoremap <c-u> :call MyCtrlDU('u')<CR>
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
 " source vim files
 au Filetype vim nnoremap <F6> :source %<CR>
