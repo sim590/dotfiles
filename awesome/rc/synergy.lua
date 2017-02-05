@@ -3,7 +3,7 @@ local naughty = require("naughty")
 -- Starts syenrgyc on synergyc_host and synergys on the this machine. This
 -- requires the remote host permits ssh acces to $USER with ssh key.
 function synergy(host)
-    if not host then host = 'ultralisk.local' end
+    host = host or 'ultralisk.local'
 
     -- {{ little hack to get my ip address
     socket = require("socket")
