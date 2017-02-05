@@ -51,6 +51,9 @@ Plug 'Raimondi/delimitMate'
 Plug 'glts/vim-radical'
 Plug 'google/vim-maktaba'
 Plug 'glts/vim-magnum'
+Plug 'vim-auto-save', 'noautocmd'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " ------------------------------
 
 " This is taken care by pacman (archlinux)
@@ -80,6 +83,7 @@ let s:configs = ["taglist.vim",
             \ "ctrlp.vim",
             \ "markdown.vim",
             \ "youcompleteme.vim",
+            \ "auto-save.vim",
             \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
@@ -133,6 +137,11 @@ au BufRead,BufNewFile,FileType *.tex,*.tikz,*.sagetex
             \ set tw=100|
             \ set ts=2|
             \ set sw=2
+" pandoc
+au BufRead,BufNewFile,FileType pandoc
+            \ set tw=100|
+            \ set ts=2|
+            \ set sw=2
 " python
 au BufRead,BufNewFile *.sage set filetype=python
 au BufRead,BufNewFile *.pxd,*.pyx,*.spyx
@@ -143,7 +152,10 @@ au BufRead,BufRead *.mustache set filetype=html
 
 au BufRead,BufNewFile,FileType gitcommit,mail,*.yaml,*.yml,*.md set tw=80
 " code
-au BufRead,BufNewFile,FileType *.py,*.c,*.cpp,*.java,*.cs,*.html,*.css,*.php set tw=120
+au BufRead,BufNewFile,FileType python,c,cpp,java,cs,html,css,php
+            \ set tw=120|
+            \ set ts=4|
+            \ set sw=4
 " others
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 
