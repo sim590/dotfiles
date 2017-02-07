@@ -40,7 +40,7 @@ function run_once(cmd)
   if firstspace then
      findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
 function start_mail()
@@ -50,7 +50,7 @@ function start_mail()
     awful.spawn("pkill -SIGUSR1 offlineimap")
 end
 
-function set_one_window_sidemenu_style ()
+function set_one_window_sidemenu_style()
     local t = awful.screen.focused().selected_tag
     t.master_count = 1
     t.master_width_factor = 0.3

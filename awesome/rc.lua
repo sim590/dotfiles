@@ -72,7 +72,7 @@ layouts = {
 -- }}}
 
 -- {{{ Wallpaper
-awful.util.spawn_with_shell("~/.fehbg")
+awful.spawn.with_shell("~/.fehbg")
 -- if beautiful.wallpaper then
 --     for s = 1, screen.count() do
 --         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
@@ -86,7 +86,6 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ "α", "🌎", "✉", "π", "ε", "ζ", "Ϡ", "η", "♫" }, s, layouts[1])
-    --tags[s] = awful.tag({"➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒"}, s, layouts[1]) -- numbers in black circle
 end
 -- }}}
 
@@ -250,8 +249,8 @@ local function remove_client(tabl, c)
     if index then
         table.remove(tabl, index)
         if #tabl == 0 then
-            awful.util.spawn("xset s on")
-            awful.util.spawn("xset +dpms")
+            awful.spawn("xset s on")
+            awful.spawn("xset +dpms")
         end
     end
 end
@@ -261,8 +260,8 @@ function(c)
     if c.fullscreen then
         table.insert(fullscreened_clients, c)
         if #fullscreened_clients == 1 then
-            awful.util.spawn("xset s off")
-            awful.util.spawn("xset -dpms")
+            awful.spawn("xset s off")
+            awful.spawn("xset -dpms")
         end
     else
         remove_client(fullscreened_clients, c)
