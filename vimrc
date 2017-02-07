@@ -84,6 +84,7 @@ let s:configs = ["taglist.vim",
             \ "markdown.vim",
             \ "youcompleteme.vim",
             \ "auto-save.vim",
+            \ "pandoc.vim",
             \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
