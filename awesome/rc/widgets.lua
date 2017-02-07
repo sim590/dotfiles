@@ -73,7 +73,7 @@ volumewidget = lain.widgets.alsa({
 
 -- Mail IMAP check
 -- mailicon = wibox.widget.imagebox(beautiful.widget_mail)
--- mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
+-- mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
 -- mailwidget = wibox.widget.background(lain.widgets.imap({
 --     timeout  = 180,
 --     server   = "imap.gmail.com",
@@ -101,7 +101,7 @@ volumewidget = lain.widgets.alsa({
 --     end
 -- end)
 mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(terminal_cmd .. mpdclient) end)))
+mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn_with_shell(terminal_cmd .. mpdclient) end)))
 mpdwidget = lain.widgets.mpd({
     music_dir = home_dir .. "/Musique",
     password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
@@ -123,7 +123,7 @@ mpdwidget = lain.widgets.mpd({
         widget:set_markup(markup("#EA6F81", artist) .. title)
     end
 })
-mpdwidgetbg = wibox.widget.background(mpdwidget, "#313131")
+mpdwidgetbg = wibox.container.background(mpdwidget, "#313131")
 -- local glib = require( "lgi" ).GLib
 -- glib.idle_add(glib.PRIORITY_HIGH_IDLE, function() mpdwidget.password = io.popen():lines()() end)
 -- end
