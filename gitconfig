@@ -11,14 +11,12 @@
     st         = status -s
     co         = checkout
     br         = branch
-    merff      = merge --ff
-    puff       = pull --ff
+    mernff     = merge --no-ff
+    punff      = pull --no-ff
     samend     = commit --amend --no-edit
     whatsnew   = fetch --dry-run
-    merge      = merge --no-ff --no-edit
     show       = show --show-signature
 [merge]
-    ff         = false
     tool       = vimdiff
 
 # vim:filetype=gitconfig:
