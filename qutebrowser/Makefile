@@ -10,6 +10,6 @@ links: $(DEST) $(DEST_LINKS)
 $(DEST):
 	mkdir -p $@
 $(DEST)/%: %
-	ln -s $(CURDIR)/$< $@
+	ln -s $(CURDIR)/$< $@ ; true
 clean:
 	rm -irf $(DEST_LINKS)

@@ -9,7 +9,7 @@ all: links subdirs
 links: $(DEST_LINKS) subdirs
 
 $(HOME)/.%: %
-	ln -s $(CURDIR)/$< $@
+	ln -s $(CURDIR)/$< $@ ; true
 
 subdirs:
 	@for dir in $(SUBDIRS); do \

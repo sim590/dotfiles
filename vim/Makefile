@@ -14,10 +14,10 @@ dirs:
 		$(DEST_DIR)/autoload
 
 $(DEST_DIR)/%: %
-	ln -s $(CURDIR)/$< $@
+	ln -s $(CURDIR)/$< $@ ; true
 
 $(VIMPLUG_DEST_LINK): vim-plug/plug.vim
-	ln -s $(CURDIR)/$< $@
+	ln -s $(CURDIR)/$< $@ ; true
 
 clean:
 	rm -irf $(DEST_LINKS)
