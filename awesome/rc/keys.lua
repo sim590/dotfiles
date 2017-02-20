@@ -18,8 +18,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- {{{ My bindings
     -- BUG: dm-tool ne verrouille pas vraiment la session...
-    -- awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("dm-tool lock") end),
-    awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("light-locker-command -l") end),
+    awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("i3lock-fancy -- scrot -z") end),
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
     awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend") end),
     awful.key({			  }, "Print", function () awful.util.spawn("gnome-screenshot -i") end),
