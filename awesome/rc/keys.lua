@@ -20,7 +20,10 @@ globalkeys = awful.util.table.join(
     -- BUG: dm-tool ne verrouille pas vraiment la session...
     awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("i3lock-fancy -- scrot -z") end),
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
-    awful.key({ modkey }, "F3", function () awful.util.spawn_with_shell("systemctl suspend") end),
+    awful.key({ modkey }, "F3", function ()
+        awful.spawn("i3lock-fancy -- scrot -z")
+        awful.spawn("systemctl suspend")
+    end),
     awful.key({			  }, "Print", function () awful.util.spawn("gnome-screenshot -i") end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.util.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.util.spawn("light -A 15") end),
