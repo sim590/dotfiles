@@ -236,21 +236,28 @@ for i = 1, 9 do
                               awful.client.toggletag(tag)
                           end
                       end
-                  end) --,
-        --TODO: fix... un seul client est envoyé au lieu de tous le clients...
-        -- C'est depuis l'update.
-        --awful.key({ "Mod1", "Shift" }, "#" .. i + 9,
-        --          function ()
-        --              if not client.focus then return end
+                  end),
+        awful.key({ "Mod1", "Shift" }, "#" .. i + 9,
+                 function ()
+                     if not client.focus then return end
 
-        --              local clients = awful.client.tiled(client.focus.screen)
-        --              local tag = awful.tag.gettags(client.focus.screen)[i]
-        --              if clients then
-        --                  for _ in pairs(clients) do
-        --                      awful.client.movetotag(tag)
-        --                  end
-        --              end
-        --          end)
+                     local clients = awful.client.tiled(client.focus.screen)
+                     local s = awful.screen.focused()
+                     local tag = s.tags[i]
+                     local this_tag = s.selected_tag
+
+                     if #tag:clients() == 0 then
+                         -- replicate layout on target.
+                         tag.layout = this_tag.layout
+                         tag.master_count = this_tag.master_count
+                         tag.master_width_factor = this_tag.master_width_factor
+                     end
+                     if clients then
+                         for _,c in pairs(clients) do
+                             c:move_to_tag(tag)
+                         end
+                     end
+                 end)
         )
 end
 
