@@ -43,11 +43,27 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
+function start_mail()
+    awful.spawn(terminal_cmd .. mail)
+    -- this triggers offlineimap to use small window for recovering password
+    -- (using pass/gpg)
+    awful.spawn("pkill -SIGUSR1 offlineimap")
+end
+
 function set_one_window_sidemenu_style ()
-    --layout conf
-    awful.tag.setnmaster(1)
-    awful.tag.setmwfact(0.3)
+    local t = awful.screen.focused().selected_tag
+    t.master_count = 1
+    t.master_width_factor = 0.3
     awful.layout.set(awful.layout.suit.tile.left)
+end
+
+function start_mail_calendar ()
+    start_mail()
+    -- starting calendar
+    awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
+    awful.spawn(browser .. " " .. "--target tab" .. " " .. "https://zimbra.savoirfairelinux.com/zimbra/h/calendar?view=month")
+
+    set_one_window_sidemenu_style()
 end
 
 -- TODO: trouver comment utiliser `pass` pour les passwords...

@@ -77,22 +77,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "z", function () awful.util.spawn(scnd_browser) end),
     awful.key({ modkey, "Shift" }, "t", function () awful.util.spawn(terminal_cmd .. 'htop') end),
     awful.key({ modkey,         }, "a", function () awful.util.spawn(terminal_cmd .. 'ranger') end),
-    awful.key({ modkey,         }, "i", function ()
-        awful.util.spawn(terminal_cmd .. mail)
-        -- this will trigger offlineimap to use small window for recovering password (using pass/gpg)
-        awful.util.spawn("pkill -SIGUSR1 offlineimap")
-    end),
+    awful.key({ modkey,         }, "i", start_mail),
     awful.key({ modkey, "Control" }, "i", set_one_window_sidemenu_style),
-    awful.key({ modkey, "Shift" }, "i",
-        function ()
-            awful.util.spawn(terminal_cmd .. mail)
-            -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "/google-calendar.desktop")
-            awful.util.spawn("qutebrowser --target window" .. " " .. "https://calendar.google.com/")
-            --bug... xdg-open badly interprets spaces in file...
-            -- awful.util.spawn(icon_exec .. " " .. icon_dir .. "google-keep_Profile-1.desktop")
-
-            set_one_window_sidemenu_style()
-        end),
+    awful.key({ modkey, "Shift" }, "i", start_mail_calendar),
     awful.key({ modkey,         }, "e", function () awful.util.spawn(editor_cmd) end),
     awful.key({ modkey,         }, "d", function () awful.util.spawn(terminal_cmd .. mpdclient) end),
     awful.key({ modkey, "Shift" }, "d",
