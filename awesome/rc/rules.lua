@@ -2,6 +2,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 -- {{{ Rules
+-- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -11,26 +12,52 @@ awful.rules.rules = {
                      size_hints_honor = false,               -- closes the gaps in between temrinal windows.
                      raise = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "okular" },
-      properties = { floating = true } },
-    { rule = { class = "Pinentry-gtk-2" },
-      properties = { floating = true } },
-    { rule = { class = "mpv" },
-      properties = { floating = true } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "Wine", instance = "Battle.net.exe" },
-      properties = { floating = true } },
-    { rule = { class = "Wine", instance = "Hearthstone.exe" },
-      properties = { floating = true } },
-    --{ rule_any = { class = { "Battle.net.exe", "Wine" } },
-      --properties = { floating = true } },
-    --{ rule_any = { class = { "Hearthstone.exe", "Wine" } },
-      --properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
+                     buttons = clientbuttons,
+                     screen = awful.screen.preferred,
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+     }
+    },
+
+    -- Floating clients.
+    { rule_any = {
+        instance = {
+            "DTA",  -- Firefox addon DownThemAll.
+            "copyq",  -- Includes session name in class.
+            "Battle.net.exe",
+            "Hearthstone.exe",
+        },
+        class = {
+            "Arandr",
+            "Gpick",
+            "Kruler",
+            "MessageWin",  -- kalarm.
+            "Sxiv",
+            "Wpa_gui",
+            "pinentry",
+            "veromix",
+            "gimp" ,
+            "okular",
+            "mpv",
+            "MPlayer",
+            "Wine",
+            "xtightvncviewer"},
+
+        name = {
+          "Event Tester",  -- xev.
+        },
+        role = {
+          "AlarmWindow",  -- Thunderbird's calendar.
+          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+        }
+      }, properties = { floating = true }},
+
+    -- Add titlebars to normal clients and dialogs
+    { rule_any = {type = { "normal", "dialog" }
+      }, properties = { titlebars_enabled = true }
+    },
+
+    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
