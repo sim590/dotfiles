@@ -25,6 +25,9 @@ awful.rules.rules = {
             "copyq",  -- Includes session name in class.
             "Battle.net.exe",
             "Hearthstone.exe",
+            "HeroesOfTheStorm",
+            "Steam",
+            "Wine",
         },
         class = {
             "screenkey", "Screenkey",
@@ -35,6 +38,7 @@ awful.rules.rules = {
             "Sxiv",
             "Wpa_gui",
             "pinentry",
+            "pinentry-gtk-2",
             "veromix",
             "gimp" ,
             "okular",

@@ -17,7 +17,7 @@ editor_cmd   = terminal_cmd .. editor
 mpd_remote   = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
 
 -- applications
-browser      = "qutebrowser"
+browser      = "qutebrowser --backend webengine"
 scnd_browser = "chromium"
 mail         = "mutt"
 mpdclient    = "ncmpcpp"
