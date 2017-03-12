@@ -27,7 +27,7 @@ local editor_cmd   = terminal_cmd .. editor
 local mpd_remote   = "env MPD_HOST=M4_MPD_ADDRESS mpc"
 
 -- applications
-local browser      = "qutebrowser"
+local browser      = "qutebrowser --backend webengine"
 local scnd_browser = "chromium"
 local mail         = "neomutt"
 local mpdclient    = "ncmpcpp"
