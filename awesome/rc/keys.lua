@@ -26,7 +26,7 @@ globalkeys = awful.util.table.join(
     --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
     awful.key({ modkey }, "F3", function ()
         awful.spawn("i3lock-fancy -- scrot -z")
-        awful.spawn("systemctl suspend")
+        awful.spawn.with_shell("sleep 2 && systemctl suspend")
     end),
     awful.key({ modkey }, "F4", function ()
         awful.spawn("i3lock-fancy -- scrot -z")
