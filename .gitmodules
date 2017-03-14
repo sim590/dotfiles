@@ -7,3 +7,6 @@
 [submodule "vim/vim-plug"]
 	path = vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "awesome/penlight"]
+	path = awesome/penlight
+	url = https://github.com/stevedonovan/Penlight
