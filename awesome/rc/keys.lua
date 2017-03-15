@@ -2,6 +2,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local revelation = require("revelation")
+local gears = require("gears")
 
 require("rc.utils")
 require("rc.xrandr")  -- use xrandr to cycle through display layouts
@@ -84,10 +85,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         }, "d", function () awful.spawn(terminal_cmd .. mpdclient) end),
     awful.key({ modkey, "Shift" }, "d",
         function ()
-            awful.spawn(terminal_cmd .. 'pulsemixer')
-            awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "playlist")
-            awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "media_library")
-            awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "search_engine")
+            awful.spawn.with_shell(terminal_cmd .. vmixer)
+            gears.timer.start_new(0.1, function ()
+                awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "playlist")
+                gears.timer.start_new(0.1, function ()
+                    awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "media_library")
+                    gears.timer.start_new(0.1, function () awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "search_engine") end)
+                end)
+            end)
         end),
     awful.key({ modkey, "Control", "Shift" }, "s", synergy),
     -- }}}

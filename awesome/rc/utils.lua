@@ -1,4 +1,5 @@
 local awful = require("awful")
+local gears = require("gears")
 
 -- {{{ Variable definitions
 -- Setup directories
@@ -21,7 +22,8 @@ scnd_browser = "chromium"
 mail         = "mutt"
 mpdclient    = "ncmpcpp"
 image_viewer = "gpicview"
-pamixer      = "/home/simon/bin/pamixer"
+pamixer      = home_dir .. "/bin/pamixer"
+vmixer        = home_dir .. "/bin/pulsemixer"
 
 icon_exec = home_dir .. "/bin/x-icon"
 icon_dir  = home_dir .. "/.local/share/applications/"
@@ -47,7 +49,7 @@ function start_mail()
     awful.spawn(terminal_cmd .. mail)
     -- this triggers offlineimap to use small window for recovering password
     -- (using pass/gpg)
-    awful.spawn("pkill -SIGUSR1 offlineimap")
+    gears.timer.start_new(2, awful.spawn("pkill -SIGUSR1 offlineimap"))
 end
 
 function set_one_window_sidemenu_style ()
@@ -58,11 +60,15 @@ function set_one_window_sidemenu_style ()
 end
 
 function start_mail_calendar ()
-    start_mail()
-    -- starting calendar
-    awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
-    awful.spawn(browser .. " " .. "--target tab" .. " " .. "https://zimbra.savoirfairelinux.com/zimbra/h/calendar?view=month")
-
+    awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
+    gears.timer.start_new(0.8, function ()
+        start_mail()
+        -- starting calendar
+        awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
+        gears.timer.start_new(0.1, function ()
+            awful.spawn(browser .. " " .. "--target tab" .. " " .. "https://mail.savoirfairelinux.com/zimbra/?app=Calendar&view=month#1")
+        end)
+    end)
     set_one_window_sidemenu_style()
 end
 
