@@ -65,8 +65,10 @@ function start_mail_calendar ()
         start_mail()
         -- starting calendar
         awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
-        gears.timer.start_new(0.1, function ()
-            awful.spawn(browser .. " " .. "--target tab" .. " " .. "https://mail.savoirfairelinux.com/zimbra/?app=Calendar&view=month#1")
+        gears.timer.start_new(0.3, function ()
+            awful.spawn(browser .. " " .. "--target tab" .. " "
+                        ..  "https://mail.savoirfairelinux.com/zimbra/?app=Calendar&view=month#1"
+                        .. " " .. "https://www.moodle2.uqam.ca/coursv3/my/")
         end)
     end)
     set_one_window_sidemenu_style()
