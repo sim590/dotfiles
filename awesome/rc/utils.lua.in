@@ -157,7 +157,7 @@ end
 
 local function start_mail_calendar()
     awful.spawn("firefox" .. " " .. "https://keep.google.com/")
-    gears.timer.start_new(1, function ()
+    gears.timer.start_new(2, function ()
         start_mail()
         awful.spawn(browser .. " " .. "':session-load agenda'")
     end)
