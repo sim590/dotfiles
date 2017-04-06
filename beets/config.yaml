@@ -1,0 +1,5 @@
+directory: ~/Musique
+plugins: fetchart lastgenre fromfilename info
+
+paths:
+    singleton: $artist/$title

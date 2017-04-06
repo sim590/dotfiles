@@ -1,4 +1,4 @@
-SUBDIRS = awesome qutebrowser vim ncmpcpp
+SUBDIRS = awesome qutebrowser vim ncmpcpp beets
 
 DOTFILES = gitconfig vimrc Xresources
 DEST_LINKS = $(addprefix $(HOME)/.,$(DOTFILES))
