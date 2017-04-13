@@ -6,6 +6,7 @@ DOTFILES = gitconfig\
 					 taskrc\
 					 tigrc\
 					 Xmodmap\
+					 gbp.conf\
 					 mbsyncrc\
 					 zshrc\
 					 conky\
