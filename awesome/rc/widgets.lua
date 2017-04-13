@@ -10,7 +10,7 @@ require("rc.utils")
 -- {{{ Wibox
 markup = lain.util.markup
 -- Textclock
-mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
+mytextclock = awful.widget.textclock(" %a %d %b  %H:%M", 10)
 
 -- calendar
 lain.widgets.calendar.attach(mytextclock, { font = "Inconsolata", font_size = 11 })
