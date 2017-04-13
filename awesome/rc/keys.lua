@@ -126,7 +126,8 @@ globalkeys = awful.util.table.join(
         end
     end),
     awful.key({ "Mod1", "Control"   }, "o", function ()
-        local clients = awful.client.tiled(client.focus.screen)
+        -- TODO: marche po sur thinkpad (awesome 4.0)
+        local clients = awful.screen.focused().selected_tag:clients()
         if clients then
             for _,cli in pairs(clients) do
                 awful.screen.focus(cli.screen)
