@@ -11,7 +11,7 @@ Plug 'honza/vim-snippets'
 "-----------------------------
 Plug 'fugitive.vim' " TODO: nvim-compatible
 Plug 'searchfold.vim'
-Plug 'Tabular' "Must load before vim-markdown (see :h vim-markdown)
+Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
 "Plug 'The-NERD-Commenter'
 Plug 'tpope/vim-commentary'
 Plug 'EasyMotion'
