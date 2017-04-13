@@ -1,5 +1,7 @@
 directory: ~/Musique
 plugins: fetchart lastgenre fromfilename info
 
+import:
+    incremental: yes
 paths:
     singleton: $artist/$title
