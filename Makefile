@@ -1,6 +1,6 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets
 
-DOTFILES = gitconfig vimrc Xresources
+DOTFILES = gitconfig vimrc Xresources tigrc
 DEST_LINKS = $(addprefix $(HOME)/.,$(DOTFILES))
 
 .PHONY: all links subdirs clean
