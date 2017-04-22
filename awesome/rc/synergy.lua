@@ -46,7 +46,6 @@ function synergy(host)
         })
     end
 
-    naughty.notify({text = tostring(synergized)})
     if synergized == 0 then
         naughty.notify({
             title = notify_titletext,
