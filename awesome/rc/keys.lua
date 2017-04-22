@@ -25,6 +25,10 @@ globalkeys = awful.util.table.join(
         awful.spawn("i3lock-fancy -- scrot -z")
         awful.spawn("systemctl suspend")
     end),
+    awful.key({ modkey }, "F4", function ()
+        awful.spawn("i3lock-fancy -- scrot -z")
+        awful.spawn.with_shell("sleep 2 && systemctl hibernate")
+    end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 15") end),
