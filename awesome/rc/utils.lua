@@ -52,7 +52,7 @@ function start_mail()
     gears.timer.start_new(2, awful.spawn("pkill -SIGUSR1 offlineimap"))
 end
 
-function set_one_window_sidemenu_style ()
+function set_one_window_sidemenu_style()
     local t = awful.screen.focused().selected_tag
     t.master_count = 1
     t.master_width_factor = 0.3
