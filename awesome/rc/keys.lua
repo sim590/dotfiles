@@ -2,6 +2,9 @@ local awful = require("awful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local revelation = require("revelation")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+-- Enable VIM help for hotkeys widget when client with matching name is opened:
+require("awful.hotkeys_popup.keys.vim")
 
 require("rc.utils")
 require("rc.xrandr")  -- use xrandr to cycle through display layouts
