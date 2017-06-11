@@ -55,7 +55,7 @@
 
 set blame-view  = date:default author:full file-name:auto id:yes,color line-number:no,interval=5 text
 set grep-view   = file-name:no line-number:yes,interval=1 text
-set main-view   = line-number:no,interval=5 id:no date:default author:full commit-title:yes,graph,refs,overflow=no
+set main-view   = line-number:no,interval=5 id:yes date:default author:full commit-title:yes,graph,refs,overflow=no
 set refs-view   = line-number:no id:no date:default author:full ref commit-title
 set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
 set status-view = line-number:no,interval=5 status:short file-name
@@ -90,8 +90,6 @@ set reference-format        = [branch] <tag> {remote} ~replace~
 
 # Settings controlling how content is read from Git
 set commit-order                = auto          # Enum: auto, default, topo, date, reverse (main)
-set status-show-untracked-dirs  = yes           # Show files in untracked directories? (status)
-set status-show-untracked-files = yes           # Show untracked files?
 set ignore-space                = no            # Enum: no, all, some, at-eol (diff)
 set show-notes                  = yes           # When non-bool passed as `--show-notes=...` (diff)
 # set diff-context              = 3             # Number of lines to show around diff changes (diff)
