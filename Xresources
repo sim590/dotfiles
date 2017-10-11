@@ -8,7 +8,7 @@ URxvt*depth: 32
 ! URxvt*geometry: geom
 
 ! Use the specified colour as the windows background colour [default White]; option -bg.
-URxvt*background: [80]#252525
+URxvt*background: [90]#252525
 
 ! Use the specified colour as the windows foreground colour [default Black]; option -fg.
 URxvt*foreground: #ffffff
@@ -84,8 +84,8 @@ URxvt*color14: #4FF0EE
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font names that are checked in order when
-URxvt*font: xft:DejaVu Sans Mono:pixelsize=15:antialias=true:hinting=true
-URxvt.letterSpace: 0
+URxvt*font: xft:DejaVu Sans Mono:size=12:antialias=true:hinting=true
+URxvt.letterSpace: -1
 
 ! URxvt*boldFont: fontlist
 
@@ -288,10 +288,12 @@ URxvt*cursorBlink: true
  *  PERL EXTENSIONS  *
  *********************/
 
-URxvt.perl-ext: default,clipboard,url-select,font-size
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/qutebrowser
-URxvt.url-select.underline: true
+URxvt.perl-ext: default,clipboard,matcher,font-size
+
+!Url matcher select ----------------------------
+URxvt.keysym.M-u: perl:matcher:select
+URxvt.url-launcher: /usr/bin/qutebrowser
+!-----------------------------------------------
 
 !Font changing on the fly -------------------
 URxvt.keysym.C-equal: perl:font-size:increase
@@ -299,12 +301,3 @@ URxvt.keysym.C-minus: perl:font-size:decrease
 URxvt.keysym.C-0: perl:font-size:reset
 !--------------------------------------------
 
-!Transparent background --------
-/* URxvt*.transparent: true */
-/* URxvt.tintColor: #373737 */
-!-------------------------------
-
-!Clipboard mappings for copying selection over to clipboard.
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-!-----------------------------------------------------------
