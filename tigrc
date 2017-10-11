@@ -164,20 +164,20 @@ bind refs   !    ?git branch -D %(branch)
 # ---------------
 
 # View switching
-bind generic    m    view-main
-bind generic    d    view-diff
-bind generic    l    view-log
-bind generic    t    view-tree
-bind generic    f    view-blob
-bind generic    b    view-blame
-bind generic    r    view-refs
-bind generic    p    view-pager
-bind generic    h    view-help
-bind generic    s    view-status
-bind generic    S    view-status        # Compat binding to avoid going crazy!
-bind generic    c    view-stage
-bind generic    y    view-stash
-bind generic    g    view-grep
+bind generic    m     view-main
+bind generic    d     view-diff
+bind generic    l     view-log
+bind generic    t     view-tree
+bind generic    f     view-blob
+bind generic    b     view-blame
+bind generic    r     view-refs
+bind generic    p     view-pager
+bind generic    h     view-help
+bind generic    s     view-status
+bind generic    S     view-status        # Compat binding to avoid going crazy!
+bind generic    c     view-stage
+bind generic    y     view-stash
+bind generic    <C-g> view-grep
 
 # View manipulation
 bind generic    <Enter> enter      # Enter and open selected entry
@@ -196,35 +196,36 @@ bind generic    O       maximize   # Maximize the current view
 bind generic    q       view-close # Close the current view
 bind generic    Q       quit       # Close all views and quit
 
-                                             # View specific
-bind status    u status-update               # Stage/unstage changes in file
-bind status    ! status-revert               # Revert changes in file
-bind status    M status-merge                # Open git-mergetool(1)
-# bind status    ???    :toggle status       # Show short or long status labels
-bind stage    u  status-update               # Stage/unstage current diff (c)hunk
-bind stage    1  stage-update-line           # Stage/unstage current line
-bind stage    !  status-revert               # Revert current diff (c)hunk
-bind stage    \  stage-split-chunk           # Split current diff (c)hunk
-bind stage    @ :/^@@                        # Jump to next (c)hunk
-bind stage    [ :toggle diff-context -1      # Decrease the diff context
-bind stage    ] :toggle diff-context +1      # Increase the diff context
-bind diff    @  :/^@@                        # Jump to next (c)hunk
-bind diff    [  :toggle diff-context -1
-bind diff    ]  :toggle diff-context +1
-bind main    G  :toggle commit-title-graph   # Toggle revision graph visualization
-bind main    F  :toggle commit-title-refs    # Toggle reference display (tags/branches)
+                                                    # View specific
+bind status    u        status-update               # Stage/unstage changes in file
+bind status    !        status-revert               # Revert changes in file
+bind status    M        status-merge                # Open git-mergetool(1)
+# bind status    ???    :toggle status              # Show short or long status labels
+bind stage     u        status-update               # Stage/unstage current diff (c)hunk
+bind stage     1        stage-update-line           # Stage/unstage current line
+bind stage     !        status-revert               # Revert current diff (c)hunk
+bind stage     \        stage-split-chunk           # Split current diff (c)hunk
+bind stage     @        :/^@@                       # Jump to next (c)hunk
+bind stage     [        :toggle diff-context -1     # Decrease the diff context
+bind stage     ]        :toggle diff-context +1     # Increase the diff context
+bind diff      @        :/^@@                       # Jump to next (c)hunk
+bind diff      [        :toggle diff-context -1
+bind diff      ]        :toggle diff-context +1
+bind main      <C-t>    :toggle commit-title-graph  # Toggle revision graph visualization
+bind main      F        :toggle commit-title-refs   # Toggle reference display (tags/branches)
 
 # Cursor navigation
-bind generic    j        move-down
-bind generic    k        move-up
-bind generic    <C-D>    move-half-page-down
-bind generic    <C-U>    move-half-page-up
-bind generic    <PgDown> move-page-down
-bind generic    <Space>  move-page-down
-bind generic    <PgUp>   move-page-up
-bind generic    -        move-page-up
-bind generic    <Home>   move-first-line
-bind generic    <End>    move-last-line
+bind generic    j           move-down
+bind generic    k           move-up
+bind generic    <C-D>       move-half-page-down
+bind generic    <C-U>       move-half-page-up
+bind generic    <PgDown>    move-page-down
+bind generic    <Space>     move-page-down
+bind generic    <PgUp>      move-page-up
+bind generic    -           move-page-up
+bind generic    g           move-first-line
+bind generic    G           move-last-line
+bind main       G           move-last-line
 
 # Scrolling
 bind generic    |       scroll-first-col
