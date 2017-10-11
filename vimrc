@@ -60,11 +60,9 @@ Plug 'glts/vim-magnum'
 Plug 'vim-auto-save', 'noautocmd'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-" ------------------------------
+Plug 'floobits/floobits-neovim'
+Plug 'jamessan/vim-gnupg'
 
-" This is taken care by pacman (archlinux)
-"Plugin 'vim-runtime' -- pacman
-"Plugin 'vim-spell-fr' -- pacman
 call plug#end()
 
 filetype plugin indent on
