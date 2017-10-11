@@ -10,3 +10,6 @@
 [submodule "awesome/penlight"]
 	path = awesome/penlight
 	url = https://github.com/stevedonovan/Penlight
+[submodule "awesome/revelation"]
+	path = awesome/revelation
+	url = https://github.com/guotsuan/awesome-revelation
