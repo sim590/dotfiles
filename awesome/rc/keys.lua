@@ -7,7 +7,7 @@ local gears         = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
-require("rc.hotkeys_popup.keys.qutebrowser")
+require("awful.hotkeys_popup.keys.qutebrowser")
 
 require("rc.utils")
 require("rc.xrandr")  -- use xrandr to cycle through display layouts
