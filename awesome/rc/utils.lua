@@ -61,7 +61,7 @@ end
 
 function start_mail_calendar ()
     awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
-    gears.timer.start_new(0.8, function ()
+    gears.timer.start_new(1, function ()
         start_mail()
         -- starting calendar
         awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
