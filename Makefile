@@ -21,3 +21,6 @@ clean:
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done
+
+# vim:set noet sts=0 sw=2 ts=2 tw=80:
+

@@ -21,3 +21,6 @@ $(VIMPLUG_DEST_LINK): vim-plug/plug.vim
 
 clean:
 	rm -irf $(DEST_LINKS)
+
+# vim:set noet sts=0 sw=2 ts=2 tw=80:
+
