@@ -27,6 +27,7 @@ awful.rules.rules = {
             "Hearthstone.exe",
         },
         class = {
+            "screenkey", "Screenkey",
             "Arandr",
             "Gpick",
             "Kruler",
@@ -40,6 +41,8 @@ awful.rules.rules = {
             "mpv",
             "MPlayer",
             "Wine",
+            "Zenity",
+            "Alarm-clock-applet",
             "xtightvncviewer"},
 
         name = {

@@ -1,8 +1,9 @@
-local awful = require("awful")
-local naughty = require("naughty")
-local menubar = require("menubar")
+local awful         = require("awful")
+local screen        = require("screen")
+local naughty       = require("naughty")
+local menubar       = require("menubar")
 local revelation = require("revelation")
-local gears = require("gears")
+local gears         = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
@@ -37,7 +38,13 @@ globalkeys = awful.util.table.join(
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 15") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 15") end),
-    awful.key({modkey,	          }, "F1", revelation),
+    awful.key({modkey,	          }, "F1", function ()
+			-- go around the bug:
+			-- https://github.com/guotsuan/awesome-revelation/issues/29
+			if screen:count() == 1 then
+				revelation()
+			end
+		end),
     -- {{ Window control }}
     ---------------------------------------------------------------------
     --  Makes window floating with reasonable 700x475 pixels geometry  --
@@ -80,7 +87,7 @@ globalkeys = awful.util.table.join(
         local url = io.popen("xsel -ob"):read('*l')
         naughty.notify({ title = "Starting mpv",
                          text = url })
-        awful.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl --ytdl-format=22' .. ' "' .. url .. '"')
+        awful.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl' .. ' "' .. url .. '"')
     end),
     awful.key({ modkey,         }, "z", function () awful.spawn(browser) end),
     awful.key({ modkey, "Shift" }, "z", function () awful.spawn.with_shell(scnd_browser) end),
@@ -143,14 +150,9 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ "Mod1", "Control"   }, "o",
         function ()
-            -- TODO: marche po sur thinkpad (awesome 4.0)
-            local clients = awful.screen.focused().selected_tag:clients()
-            if clients then
-                for _,cli in pairs(clients) do
-                    awful.screen.focus(cli.screen)
-                    awful.client.focus.byidx(0, awful.client.getmaster())
-                    awful.client.movetoscreen()
-                end
+            local s = awful.screen.focused()
+            for _,cli in pairs(s.clients) do
+                cli:move_to_screen() -- next screen by default
             end
         end,
         { description = "Move all clients to next screen", group = "client" }),

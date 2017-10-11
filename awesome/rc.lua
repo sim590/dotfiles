@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local revelation = require("revelation")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -53,6 +54,7 @@ require("rc.auto")    -- autostart applications
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
+revelation.init()
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
