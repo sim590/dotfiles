@@ -1,7 +1,12 @@
 " PLUGIN CONFIGURATION =============================
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
-Plug 'Colour-Sampler-Pack'
+" Colors ============================
+Plug 'michalbachowski/vim-wombat256mod'
+Plug 'crusoexia/vim-monokai'
+Plug 'preocanin/greenwint'
+Plug 'prognostic/plasticine'
+"====================================
 Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -51,6 +56,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'glts/vim-radical'
 Plug 'google/vim-maktaba'
 Plug 'glts/vim-magnum'
+" ------------------------------
 Plug 'vim-auto-save', 'noautocmd'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -160,10 +166,6 @@ au BufRead,BufNewFile,FileType python,c,cpp,java,cs,html,css,php
 " others
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 
-" COLORSCHEME ==========
-colorscheme wombat256mod
-" ======================
-
 " handle unwanted characters in file ====================================
 
 " replace false spaces by spaces
@@ -213,3 +215,8 @@ source ~/.vim/abbreviations.vim
 source ~/.vim/functions.vim
 source ~/.vim/mappings.vim
 " ===============================
+
+" COLORSCHEME ==========
+MyColorscheme wombat256mod
+" ======================
+
