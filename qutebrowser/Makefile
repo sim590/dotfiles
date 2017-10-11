@@ -1,4 +1,4 @@
-TARGETS    = keys.conf qutebrowser.conf
+TARGETS    = config.py
 DEST       = $(HOME)/.config/qutebrowser/
 DEST_LINKS = $(addprefix $(DEST)/,$(TARGETS))
 
