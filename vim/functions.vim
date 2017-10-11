@@ -90,3 +90,24 @@ endfunction
 
 command! -nargs=1 -complete=color MyColorscheme call <SID>AccurateColorscheme(<q-args>)
 
+"""""""""""""""""""""""""""""""""""""""""
+"  HANDLE UNWANTED CHARACTERS IN FILE   "
+"""""""""""""""""""""""""""""""""""""""""
+
+" replace false spaces by spaces
+fun! s:RemoveFalseSpaces()
+  let l:pos = getpos('.')
+  exec ":%s/\\%o240/ /ge"
+  call setpos('.', l:pos)
+endf
+au! BufWritePre * call s:RemoveFalseSpaces()
+
+" get rid of trailing white spaces
+fun! s:StripTrailingWhiteSpaces()
+  let l:pos = getpos('.')
+  exec ":%s/\\s\\+$//e"
+  call setpos('.', l:pos)
+endf
+command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
+exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
+

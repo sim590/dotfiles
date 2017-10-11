@@ -89,6 +89,7 @@ let s:configs = ["taglist.vim",
             \ "youcompleteme.vim",
             \ "auto-save.vim",
             \ "pandoc.vim",
+            \ "switch.vim",
             \ "syntastic.vim"]
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
@@ -128,6 +129,7 @@ set expandtab                      " tabulation
 au BufRead,BufNewFile,FileType gitconfig set noexpandtab
 set smarttab
 set backspace=2    " make backspace work like most other apps
+set cursorcolumn
 set number         " line numbers
 set relativenumber " relative numbers too
 set laststatus=2   " status bar always show
@@ -143,7 +145,7 @@ au BufRead,BufNewFile,FileType *.tex,*.tikz,*.sagetex
             \ set ts=2|
             \ set sw=2
 " pandoc
-au BufRead,BufNewFile,FileType pandoc
+au BufRead,BufNewFile,FileType vim,pandoc
             \ set tw=100|
             \ set ts=2|
             \ set sw=2
@@ -163,29 +165,6 @@ au BufRead,BufNewFile,FileType python,c,cpp,java,cs,html,css,php
             \ set sw=4
 " others
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
-
-" handle unwanted characters in file ====================================
-
-" replace false spaces by spaces
-fun! s:RemoveFalseSpaces()
-    let l:pos = getpos('.')
-    exec ":%s/\\%o240/ /ge"
-    call setpos('.', l:pos)
-endf
-au! BufWritePre * call s:RemoveFalseSpaces()
-
-" get rid of trailing white spaces
-fun! s:StripTrailingWhiteSpaces()
-    let l:pos = getpos('.')
-    exec ":%s/\\s\\+$//e"
-    call setpos('.', l:pos)
-endf
-highlight ExtraWhiteSpaces ctermbg=red guibg=red
-autocmd ColorScheme highlight ExtraWhiteSpaces ctermbg=red guibg=red
-match ExtraWhiteSpaces /\s\+$\| \+\ze\t/
-command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
-exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
-" =======================================================================
 
 exec "au BufRead,BufNewFile,Filetype ".join(g:syntaxed_fts, ',')." set si"
 

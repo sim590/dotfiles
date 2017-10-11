@@ -18,6 +18,7 @@ endf
 command! -nargs=1 SyntasticAddInclude call s:AddCppInclude(<q-args>)
 command! -nargs=1 SyntasticPyVer let g:syntastic_python_python_exec = "/usr/bin/python" . <args>
 
+let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler_options = '-std=c++14'
 let g:syntastic_cpp_include_dirs = ['.']

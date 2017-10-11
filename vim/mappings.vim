@@ -1,4 +1,6 @@
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
+nmap <silent> <leader>cs :let @+=expand("%")<CR>
+nmap <silent> <leader>cl :let @+=expand("%:p")<CR>
 " source vim files
 au Filetype vim nnoremap <F6> :source %<CR>
 nnoremap <F2> :source $MYVIMRC<CR>
