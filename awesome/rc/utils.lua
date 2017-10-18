@@ -36,6 +36,8 @@ icon_dir  = home_dir .. "/.local/share/applications/"
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+function async_dummy_cb(stdout, stderr, exitreason, exitcode) end
+
 function run_once(cmd)
   findme = cmd
   firstspace = cmd:find(" ")

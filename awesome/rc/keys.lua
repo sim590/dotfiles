@@ -25,14 +25,13 @@ globalkeys = awful.util.table.join(
     -- TODO: add {description, group} for each keybindings
     -- {{{ My bindings
     awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("i3lock-fancy -- scrot -z") end),
-    --hook (/etc/systemd/system/dmlock.service) is triggered when suspending
     awful.key({ modkey }, "F3", function ()
-        awful.spawn("i3lock-fancy -- scrot -z")
-        awful.spawn.with_shell("sleep 2 && systemctl suspend")
+        awful.spawn.easy_async("i3lock-fancy -- scrot -z", async_dummy_cb)
+        awful.spawn.easy_async("bash -c 'sleep 2 ; systemctl suspend'", async_dummy_cb)
     end),
     awful.key({ modkey }, "F4", function ()
-        awful.spawn("i3lock-fancy -- scrot -z")
-        awful.spawn.with_shell("sleep 2 && systemctl hibernate")
+        awful.spawn.easy_async("i3lock-fancy -- scrot -z", async_dummy_cb)
+        awful.spawn.easy_async("bash -c 'sleep 2 ; systemctl hibernate'", async_dummy_cb)
     end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
