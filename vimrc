@@ -45,7 +45,7 @@ Plug 'tpope/vim-eunuch', { 'frozen': 1 }
 Plug 'tpope/vim-eunuch', 'RmSwp-command'
 "----------------------------------------
 Plug 'scrooloose/syntastic' " TODO: nvim-compatible
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --omnisharp-completer' } " TODO: nvim-compatible
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --cs-completer' } " TODO: nvim-compatible
 Plug 'rdnetto/YCM-Generator', 'stable' " TODO: nvim-compatible
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
