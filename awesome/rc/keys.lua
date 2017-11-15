@@ -45,7 +45,7 @@ globalkeys = awful.util.table.join(
         awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl hibernate'", utils.async_dummy_cb)
     end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
-    awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
+    awful.key({			  }, "XF86Tools", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 5") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 5") end),
     awful.key({  "Shift"  }, "XF86MonBrightnessUp", function ()
