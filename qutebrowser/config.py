@@ -8,13 +8,17 @@ c.session_default_name = "default"
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "aur"    : "https://aur.archlinux.org/packages/?K={}",
+    "g"      : "https://encrypted.google.com/search?hl=fr&q={}",
     "gt"     : "https://translate.google.com/#fr/en/{}",
+    "gi"     : "https://www.google.ca/search?tbm=isch&q={}&tbs=imgo:1&gws_rd=cr&dcr=0&ei=AKXuWfTQOIK0jgTNkYagDg",
+    "gm"     : "https://www.google.ca/maps?hl=fr&q={}",
     "w"      : "https://fr.wikipedia.org/wiki/{}",
     "wen"    : "https://en.wikipedia.org/wiki/{}",
     "aw"     : "https://wiki.archlinux.org/?search={}",
     "cppref" : "http://en.cppreference.com/mwiki/?search={}",
     "yt"     : "https://www.youtube.com/results?search_query={}",
-    "gh"     : "https://github.com/search?q={}"
+    "gh"     : "https://github.com/search?q={}",
+    "imdb"   : "http://www.imdb.com/find?s=all&q={}"
 }
 
 c.spellcheck.languages = ["fr-FR", "en-CA"]
