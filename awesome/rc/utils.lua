@@ -38,13 +38,27 @@ modkey = "Mod4"
 
 function async_dummy_cb(stdout, stderr, exitreason, exitcode) end
 
+function pgrep(cmd)
+    package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
+    require("pl.stringx").import()
+
+    findme = cmd
+    firstspace = cmd:find(" ")
+    if firstspace then
+        findme = cmd:sub(0, firstspace-1)
+    end
+
+    local ret = os.execute("pgrep -u $USER -x " .. findme .. " > /dev/null")
+    local version = tonumber(_VERSION:split(' ')[2])
+    if version > 5.1 then
+        return ret[3] == 0
+    else
+        return ret == 0
+    end
+end
+
 function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-     findme = cmd:sub(0, firstspace-1)
-  end
-  awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+    if not pgrep(cmd) then awful.spawn.with_shell("(" .. cmd .. ")") end
 end
 
 function start_mail()
