@@ -60,7 +60,9 @@ Plug 'glts/vim-magnum'
 Plug 'vim-auto-save', 'noautocmd'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'floobits/floobits-neovim'
+if ! has('gui_running')
+  Plug 'floobits/floobits-neovim'
+endif
 Plug 'jamessan/vim-gnupg'
 
 call plug#end()
