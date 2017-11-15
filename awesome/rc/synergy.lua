@@ -23,8 +23,6 @@ function synergy(host)
     -- everything freezes.
     awful.spawn.easy_async("avahi-resolve-host-name -4 " .. host,
             function (stdout, stderr, exitreason, exitcode)
-                print("avahi appelé")
-                -- TODO: checker si l'adresse est déjà IPv4. Si oui, ne pas faire de resolve.
                 local host_ip = stdout:split('\t')[2] or ''
 
                 awful.spawn.easy_async(
