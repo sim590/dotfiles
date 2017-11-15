@@ -64,6 +64,7 @@ if ! has('gui_running')
   Plug 'floobits/floobits-neovim'
 endif
 Plug 'jamessan/vim-gnupg'
+Plug 'tomlion/vim-solidity'
 
 call plug#end()
 
