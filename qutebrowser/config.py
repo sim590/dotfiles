@@ -27,7 +27,7 @@ c.spellcheck.languages = ["fr-FR", "en-CA"]
 config.bind('"', 'enter-mode set_mark')
 ## passthrough allow ctrl-v for pasting clipboard
 config.unbind('<ctrl-v>', mode='passthrough')
-config.bind('<ctrl-z>','leave-mode', mode='passthrough')
+config.bind('<ctrl-d>','leave-mode', mode='passthrough')
 config.bind(';iy', 'hint images yank')
 # sessions
 config.bind('sw',  'set-cmd-text -s :session-save --only-active-window')
