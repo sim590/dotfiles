@@ -38,25 +38,45 @@ modkey = "Mod4"
 
 function async_dummy_cb(stdout, stderr, exitreason, exitcode) end
 
-function pgrep(cmd)
+-- Safely returns exec code from os.execute(...)
+function os_exec_code(os_execute_ret)
+    local naughty = require("naughty")
     package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
     require("pl.stringx").import()
-
-    findme = cmd
-    firstspace = cmd:find(" ")
-    if firstspace then
-        findme = cmd:sub(0, firstspace-1)
-    end
-
-    local ret = os.execute("pgrep -u $USER -x " .. findme .. " > /dev/null")
     local version = tonumber(_VERSION:split(' ')[2])
     if version > 5.1 then
-        return ret[3] == 0
+        return os_execute_ret[3]
     else
-        return ret == 0
+        return os_execute_ret
     end
 end
 
+-- Gives the name of the program called in the command  ̀cmd`.
+local prg_name = function (cmd)
+    firstspace = cmd:find(" ")
+    if firstspace then
+        return cmd:sub(0, firstspace-1)
+    else
+        return cmd
+    end
+end
+
+-- Wrapper around pgrep program. Tells whether the called program from the
+-- command ̀cmd` is running or not
+function pgrep(cmd)
+    local prg = prg_name(cmd)
+    local ret = os.execute("pgrep -u $USER -x " .. prg .. " > /dev/null")
+    return os_exec_code(ret) == 0
+end
+
+-- Wrapper around pkill program. Kills the program. Returns pkill exec code.
+function pkill(cmd)
+    local prg = prg_name(cmd)
+    local ret = os.execute("pkill -u $USER -x " .. prg .. " > /dev/null")
+    return os_exec_code(ret) == 0
+end
+
+-- Runs a command only if the program is not already running
 function run_once(cmd)
     if not pgrep(cmd) then awful.spawn.with_shell("(" .. cmd .. ")") end
 end
