@@ -9,6 +9,7 @@ c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "aur"    : "https://aur.archlinux.org/packages/?K={}",
     "g"      : "https://encrypted.google.com/search?hl=fr&q={}",
+    "fr"     : "http://www.larousse.fr/dictionnaires/francais/{}",
     "gt"     : "https://translate.google.com/#fr/en/{}",
     "gi"     : "https://www.google.ca/search?tbm=isch&q={}&tbs=imgo:1&gws_rd=cr&dcr=0&ei=AKXuWfTQOIK0jgTNkYagDg",
     "gm"     : "https://www.google.ca/maps?hl=fr&q={}",
