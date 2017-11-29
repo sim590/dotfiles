@@ -24,7 +24,7 @@ mpdclient    = "ncmpcpp"
 image_viewer = "gpicview"
 pamixer      = home_dir .. "/bin/pamixer"
 vmixer       = home_dir .. "/bin/pulsemixer"
-redshift     = "redshift -l 45.55:-73.72 -t 5700:3700"
+redshift     = "redshift -l 45.55:-73.72 -t 6500:3700"
 
 icon_exec = home_dir .. "/bin/x-icon"
 icon_dir  = home_dir .. "/.local/share/applications/"
