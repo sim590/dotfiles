@@ -19,7 +19,7 @@ Plug 'searchfold.vim'
 Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
 "Plug 'The-NERD-Commenter'
 Plug 'tpope/vim-commentary'
-Plug 'EasyMotion'
+Plug 'easymotion/vim-easymotion'
 " Plug 'FuzzyFinder' " issue with opening files when have split buffers.
                      " Doesn't open the file in the right buffer or just doesn't
                      " open the file correctly (empty buffer).
