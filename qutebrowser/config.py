@@ -30,6 +30,7 @@ c.spellcheck.languages = ["fr-FR", "en-CA"]
 
 # general
 config.bind('"', 'enter-mode set_mark')
+config.bind('0', 'scroll-to-perc -x 0')
 ## passthrough allow ctrl-v for pasting clipboard
 config.unbind('<ctrl-v>', mode='passthrough')
 config.bind('<ctrl-d>','leave-mode', mode='passthrough')
