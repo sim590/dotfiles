@@ -37,6 +37,13 @@ globalkeys = awful.util.table.join(
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 15") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 15") end),
+    awful.key({	modkey, "Shift" }, "s", function ()
+        if not pgrep(redshift) then
+            awful.spawn(redshift)
+        else
+            pkill(redshift)
+        end
+    end),
     awful.key({modkey,	          }, "F1", function ()
 			-- go around the bug:
 			-- https://github.com/guotsuan/awesome-revelation/issues/29
