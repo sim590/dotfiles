@@ -9,7 +9,7 @@ function synergy(host)
     package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
     require("pl.stringx").import()
 
-    host = host or 'ultralisk.local'
+    host = host or 'hydralisk.local'
     local notify_titletext = "Synergy"
 
     -- {{ little hack to get my ip address
