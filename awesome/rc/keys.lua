@@ -52,9 +52,10 @@ globalkeys = awful.util.table.join(
         local focused_client = awful.client.next(0)
         local w = focused_client.geometry(focused_client).width
         local h = focused_client.geometry(focused_client).height
+        local sg = client.focus.screen.geometry
 
         awful.client.floating.set(focused_client, true)
-        awful.client.moveresize(0,0,700 - w, 475 - h)
+        awful.client.moveresize(0,0,.75*sg.width-w, .75*sg.height-h)
         end),
     -- {{ Cycle through screen settings }}
     awful.key({ modkey, }, "F8", xrandr.xrandr),
