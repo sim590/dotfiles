@@ -38,16 +38,15 @@ modkey = "Mod4"
 
 function async_dummy_cb(stdout, stderr, exitreason, exitcode) end
 
--- Safely returns exec code from os.execute(...)
-function os_exec_code(os_execute_ret)
-    local naughty = require("naughty")
+-- Safely returns return value from os.execute(...)
+function os_exec_rv(os_execute_ret)
     package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
     require("pl.stringx").import()
     local version = tonumber(_VERSION:split(' ')[2])
     if version > 5.1 then
-        return os_execute_ret[3]
-    else
         return os_execute_ret
+    else
+        return os_execute_ret == 0
     end
 end
 
@@ -66,14 +65,14 @@ end
 function pgrep(cmd)
     local prg = prg_name(cmd)
     local ret = os.execute("pgrep -u $USER -x " .. prg .. " > /dev/null")
-    return os_exec_code(ret) == 0
+    return os_exec_rv(ret)
 end
 
 -- Wrapper around pkill program. Kills the program. Returns pkill exec code.
 function pkill(cmd)
     local prg = prg_name(cmd)
     local ret = os.execute("pkill -u $USER -x " .. prg .. " > /dev/null")
-    return os_exec_code(ret) == 0
+    return os_exec_rv(ret)
 end
 
 -- Runs a command only if the program is not already running
