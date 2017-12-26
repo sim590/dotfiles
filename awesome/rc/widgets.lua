@@ -19,15 +19,6 @@ lain.widgets.calendar.attach(mytextclock, { font = "Inconsolata", font_size = 11
 tdwidget = wibox.widget.textbox()
 vicious.register(tdwidget, vicious.widgets.date, '<span font="Inconsolata 11" color="#AAAAAA" background="#1F2428"> %A, %b %d %H:%M </span>', 20)
 
--- Coretemp
--- TODO
---tempicon = wibox.widget.imagebox(beautiful.widget_temp)
---tempwidget = lain.widgets.temp({
-    --settings = function()
-        --widget:set_text(" " .. coretemp_now .. "°C ")
-    --end
---})
-
 --{{ Battery Widget }} --
 -- TODO: check if displayed info is consistent with multiple batteries
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
@@ -71,41 +62,12 @@ volumewidget = lain.widgets.alsa({
     timeout = 0.5
 })
 
--- Mail IMAP check
--- mailicon = wibox.widget.imagebox(beautiful.widget_mail)
--- mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
--- mailwidget = wibox.widget.background(lain.widgets.imap({
---     timeout  = 180,
---     server   = "imap.gmail.com",
---     mail     = "", -- TODO use `pass` to get password from encrypted files.
---     password = "",
---     settings = function()
---         if mailcount > 0 then
---             widget:set_text(" " .. mailcount .. " ")
---             mailicon:set_image(beautiful.widget_mail_on)
---         else
---             widget:set_text("")
---             mailicon:set_image(beautiful.widget_mail)
---         end
---     end
--- }), "#313131")
-
--- MPD
--- function mpd_bar(pass)
---     local naughty = require("naughty")
---     naughty.notify({ title = "My password", text = pass })
--- TODO: need awesome v3.6
--- awful.spawn.easy_async("pass" .. " " .. "personnel/mpd", function(stdout, stderr, r, c)
---     if c == 0 then
---         mpd_pass = stdout
---     end
--- end)
+-- {{ MPD Widget }} --
 mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn_with_shell(terminal_cmd .. mpdclient) end)))
 mpdwidget = lain.widgets.mpd({
     music_dir = home_dir .. "/Musique",
     password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
-    -- password = mpd_pass,
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -124,6 +86,6 @@ mpdwidget = lain.widgets.mpd({
     end
 })
 mpdwidgetbg = wibox.container.background(mpdwidget, "#313131")
--- local glib = require( "lgi" ).GLib
--- glib.idle_add(glib.PRIORITY_HIGH_IDLE, function() mpdwidget.password = io.popen():lines()() end)
--- end
+
+-- vim:set et sw=4 ts=4 tw=120:
+

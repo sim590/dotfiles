@@ -110,19 +110,5 @@ function start_mail_calendar ()
     set_one_window_sidemenu_style()
 end
 
--- TODO: trouver comment utiliser `pass` pour les passwords...
--- {{{ Get passwords
-pass_process_list = {}
-function pass()
-    local helpers      = require("lain.helpers")
-    -- passwords = {}
-    -- passwords["mpd_bar"] = io.popen("pass" .. " " .. "personnel/mpd"):lines()()
-    -- for i,p in pairs(pass_process_list) do p(passwords[i]) end
+-- vim:set et sw=4 ts=4 tw=120:
 
-    mpdwidget.password = "q1w2e3r4"
-    -- mpdwidget.password = passwords["mpd_bar"]
-end
--- local gears = require("gears")
--- local t = gears.timer({})
--- gears.timer:delayed_call(pass)
--- }}}
