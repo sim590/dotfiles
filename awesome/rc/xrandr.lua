@@ -1,16 +1,19 @@
-local awful = require("awful")
-awful.rules = require("awful.rules")
-local naughty = require("naughty")
+--- Separating Multiple Monitor functions as a separeted module (taken from awesome wiki)
 
-xrandr = {}
+local awful     = require("awful")
+local naughty   = require("naughty")
+
+-- A path to a fancy icon
+local icon_path = ""
 
 -- Get active outputs
-xrandr.outputs = function()
+local function outputs()
     local outputs = {}
-    local xrandr = io.popen("xrandr -q")
+    local xrandr = io.popen("xrandr -q --current")
+
     if xrandr then
         for line in xrandr:lines() do
-            output = line:match("^([%w-]+) connected ")
+            local output = line:match("^([%w-]+) connected ")
             if output then
                 outputs[#outputs + 1] = output
             end
@@ -21,9 +24,9 @@ xrandr.outputs = function()
     return outputs
 end
 
-xrandr.arrange = function(out)
-    -- We need to enumerate all the way to combinate output. We assume
-    -- we want only an horizontal layout.
+local function arrange(out)
+    -- We need to enumerate all permutations of horizontal outputs.
+
     local choices  = {}
     local previous = { {} }
     for i = 1, #out do
@@ -47,10 +50,10 @@ xrandr.arrange = function(out)
 end
 
 -- Build available choices
-xrandr.menu = function()
+local function menu()
     local menu = {}
-    local out = xrandr.outputs()
-    local choices = xrandr.arrange(out)
+    local out = outputs()
+    local choices = arrange(out)
 
     for _, choice in pairs(choices) do
         local cmd = "xrandr"
@@ -78,61 +81,58 @@ xrandr.menu = function()
             end
         end
 
-        menu[#menu + 1] = {
-            label,
-            cmd,
-            "/usr/share/icons/Tango/32x32/devices/display.png"
-        }
+        menu[#menu + 1] = { label, cmd }
     end
 
     return menu
 end
 
 -- Display xrandr notifications from choices
-local state = { iterator = nil,
-timer = nil,
-cid = nil }
-xrandr.xrandr = function()
-    -- Stop any previous timer
-    if state.timer then
-        state.timer:stop()
-        state.timer = nil
-    end
+local state = { cid = nil }
 
+local function naughty_destroy_callback(reason)
+    if reason == naughty.notificationClosedReason.expired or
+        reason == naughty.notificationClosedReason.dismissedByUser then
+        local action = state.index and state.menu[state.index - 1][2]
+        if action then
+            awful.util.spawn(action, false)
+            state.index = nil
+        end
+    end
+end
+
+local function xrandr()
     -- Build the list of choices
-    if not state.iterator then
-        state.iterator = awful.util.table.iterate(xrandr.menu(),
-        function() return true end)
+    if not state.index then
+        state.menu = menu()
+        state.index = 1
     end
 
     -- Select one and display the appropriate notification
-    local next = state.iterator()
-    local label, action, icon
-    if not next then
-        label, icon = "Keep the current configuration", "/usr/share/icons/Tango/32x32/devices/display.png"
-        state.iterator = nil
-    else
-        label, action, icon = unpack(next)
-    end
-    state.cid = naughty.notify({
-        text = label,
-        icon = icon,
-        timeout = 4,
-        screen = mouse.screen, -- Important, not all screens may be visible
-        font = "Free Sans 18",
-        replaces_id = state.cid
-    }).id
+    local label, action
+    local next  = state.menu[state.index]
+    state.index = state.index + 1
 
-    -- Setup the timer
-    state.timer = timer { timeout = 4 }
-    state.timer:connect_signal("timeout",
-    function()
-        state.timer:stop()
-        state.timer = nil
-        state.iterator = nil
-        if action then
-            awful.spawn(action, false)
-        end
-    end)
-    state.timer:start()
+    if not next then
+        label = "Keep the current configuration"
+        state.index = nil
+    else
+        label, action = unpack(next)
+    end
+    state.cid = naughty.notify({ text = label,
+    icon = icon_path,
+    timeout = 4,
+    screen = mouse.screen,
+    replaces_id = state.cid,
+    destroy = naughty_destroy_callback}).id
 end
+
+return {
+    outputs = outputs,
+    arrange = arrange,
+    menu = menu,
+    xrandr = xrandr
+}
+
+-- vim:set et sw=4 ts=4 tw=120:
+

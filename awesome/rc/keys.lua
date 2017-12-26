@@ -10,7 +10,7 @@ require("awful.hotkeys_popup.keys.vim")
 require("awful.hotkeys_popup.keys.qutebrowser")
 
 require("rc.utils")
-require("rc.xrandr")  -- use xrandr to cycle through display layouts
+local xrandr = require("rc.xrandr")  -- use xrandr to cycle through display layouts
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
