@@ -1,12 +1,12 @@
 local naughty = require("naughty")
 local awful = require("awful")
 
-require("rc.utils")
+local utils = require("rc.utils")
 
 -- Starts syenrgyc on synergyc_host and synergys on the this machine. This
 -- requires the remote host permits ssh acces to $USER with ssh key.
 function synergy(host)
-    package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
+    package.path = package.path .. ';' .. utils.config_dir .. '/penlight/lua/?.lua'
     require("pl.stringx").import()
 
     host = host or 'ultralisk.local'
@@ -34,7 +34,7 @@ function synergy(host)
                                     title = notify_titletext,
                                     text  = "Starting synergyc on " .. host .. " (" .. host_ip .. ")" .. "..."
                                 })
-                                run_once('synergys')
+                                utils.run_once('synergys')
                             else
                                 naughty.notify({ preset = naughty.config.presets.critical,
                                     title = notify_titletext,

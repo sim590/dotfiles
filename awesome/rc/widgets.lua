@@ -5,7 +5,7 @@ local lain      = require("lain")
 local wibox     = require("wibox")
 local vicious   = require("vicious")
 
-require("rc.utils")
+local utils = require("rc.utils")
 
 -- {{{ Wibox
 markup = lain.util.markup
@@ -64,9 +64,9 @@ volumewidget = lain.widgets.alsa({
 
 -- {{ MPD Widget }} --
 mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn_with_shell(terminal_cmd .. mpdclient) end)))
+mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.spawn_with_shell(utils.terminal_cmd .. utils.mpdclient) end)))
 mpdwidget = lain.widgets.mpd({
-    music_dir = home_dir .. "/Musique",
+    music_dir = utils.home_dir .. "/Musique",
     password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
     settings = function()
         if mpd_now.state == "play" then

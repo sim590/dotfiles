@@ -42,7 +42,7 @@ end
 --------------------------------
 
 -- {{{
-require("rc.utils") -- variables, utility functions...
+local utils = require("rc.utils") -- variables, utility functions...
 
 require("rc.synergy") -- starts synergy on multiple computers using ssh
 require("rc.keys")    -- key bindings
@@ -53,7 +53,7 @@ require("rc.auto")    -- autostart applications
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init(themes_dir .. "/" .. my_theme .. "/" .. "theme.lua") -- theme
+beautiful.init(utils.themes_dir .. "/" .. utils.my_theme .. "/" .. "theme.lua") -- theme
 revelation.init()
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -96,14 +96,14 @@ end
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal_cmd .. "man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "manual", utils.terminal_cmd .. "man awesome" },
+   { "edit config", utils.editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", utils.terminal }
                                   }
                         })
 
@@ -111,7 +111,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = utils.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher

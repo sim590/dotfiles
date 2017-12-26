@@ -4,12 +4,13 @@ local naughty       = require("naughty")
 local menubar       = require("menubar")
 local revelation = require("revelation")
 local gears         = require("gears")
+
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 require("awful.hotkeys_popup.keys.qutebrowser")
 
-require("rc.utils")
+local utils = require("rc.utils")
 local xrandr = require("rc.xrandr")  -- use xrandr to cycle through display layouts
 
 -- {{{ Mouse bindings
@@ -26,12 +27,12 @@ globalkeys = awful.util.table.join(
     -- {{{ My bindings
     awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("i3lock-fancy -- scrot -z") end),
     awful.key({ modkey }, "F3", function ()
-        awful.spawn.easy_async("i3lock-fancy -- scrot -z", async_dummy_cb)
-        awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl suspend'", async_dummy_cb)
+        awful.spawn.easy_async("i3lock-fancy -- scrot -z", utils.async_dummy_cb)
+        awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl suspend'", utils.async_dummy_cb)
     end),
     awful.key({ modkey }, "F4", function ()
-        awful.spawn.easy_async("i3lock-fancy -- scrot -z", async_dummy_cb)
-        awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl hibernate'", async_dummy_cb)
+        awful.spawn.easy_async("i3lock-fancy -- scrot -z", utils.async_dummy_cb)
+        awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl hibernate'", utils.async_dummy_cb)
     end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
@@ -60,28 +61,28 @@ globalkeys = awful.util.table.join(
     -- {{ Cycle through screen settings }}
     awful.key({ modkey, }, "F8", xrandr.xrandr),
     -- {{ Volume Control }} --
-    awful.key({     }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell(pamixer .. " " .. "-i 5") end),
-    awful.key({     }, "XF86AudioLowerVolume", function() awful.spawn.with_shell(pamixer .. " " .. "-d 5") end),
-    awful.key({     }, "XF86AudioMute", function() awful.spawn.with_shell(pamixer .. " " .. "-t") end),
+    awful.key({     }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-i 5") end),
+    awful.key({     }, "XF86AudioLowerVolume", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-d 5") end),
+    awful.key({     }, "XF86AudioMute", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-t") end),
     awful.key({     }, "XF86AudioMicMute", function() awful.spawn("amixer set Capture toggle") end),
     --
     -- {{ music }} --
     -- ducky mini conf
-    awful.key({modkey, "Shift"}, "p", function () awful.spawn(mpd_remote .. " toggle") end),
-    awful.key({modkey, "Mod5" }, ",", function () awful.spawn(mpd_remote .. " prev") end),
-    awful.key({modkey, "Mod5" }, ".", function () awful.spawn(mpd_remote .. " next") end),
+    awful.key({modkey, "Shift"}, "p", function () awful.spawn(utils.mpd_remote .. " toggle") end),
+    awful.key({modkey, "Mod5" }, ",", function () awful.spawn(utils.mpd_remote .. " prev") end),
+    awful.key({modkey, "Mod5" }, ".", function () awful.spawn(utils.mpd_remote .. " next") end),
     -- normal
-    awful.key({ }, "XF86AudioStop", function () awful.spawn(mpd_remote .. " stop") end),
-    awful.key({ }, "XF86AudioPlay", function () awful.spawn(mpd_remote .. " toggle") end),
-    awful.key({ }, "XF86AudioPrev", function () awful.spawn(mpd_remote .. " prev") end),
-    awful.key({ }, "XF86AudioNext", function () awful.spawn(mpd_remote .. " next") end),
+    awful.key({ }, "XF86AudioStop", function () awful.spawn(utils.mpd_remote .. " stop") end),
+    awful.key({ }, "XF86AudioPlay", function () awful.spawn(utils.mpd_remote .. " toggle") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.spawn(utils.mpd_remote .. " prev") end),
+    awful.key({ }, "XF86AudioNext", function () awful.spawn(utils.mpd_remote .. " next") end),
     --
     -- {{ my apps }}--
     awful.key({ modkey,         }, "c", function ()
         local url = io.popen("xsel -ob"):read('*l')
         naughty.notify({ title = "Casting on local chromecast",
                          text = url })
-        awful.spawn(terminal_cmd .. 'castnow' .. ' "' .. url .. '"')
+        awful.spawn(utils.terminal_cmd .. 'castnow' .. ' "' .. url .. '"')
     end),
     awful.key({ modkey,         }, "v", function ()
         local url = io.popen("xsel -ob"):read('*l')
@@ -89,23 +90,23 @@ globalkeys = awful.util.table.join(
                          text = url })
         awful.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl' .. ' "' .. url .. '"')
     end),
-    awful.key({ modkey,         }, "z", function () awful.spawn(browser) end),
-    awful.key({ modkey, "Shift" }, "z", function () awful.spawn.with_shell(scnd_browser) end),
-    awful.key({ modkey, "Shift" }, "t", function () awful.spawn(terminal_cmd .. 'htop') end),
-    awful.key({ modkey,         }, "a", function () awful.spawn(terminal_cmd .. 'ranger') end),
-    awful.key({ modkey,         }, "i", start_mail),
-    awful.key({ modkey, "Control" }, "i", set_one_window_sidemenu_style),
-    awful.key({ modkey, "Shift" }, "i", start_mail_calendar),
-    awful.key({ modkey,         }, "e", function () awful.spawn(editor_cmd) end),
-    awful.key({ modkey,         }, "d", function () awful.spawn(terminal_cmd .. mpdclient) end),
+    awful.key({ modkey,         }, "z", function () awful.spawn(utils.browser) end),
+    awful.key({ modkey, "Shift" }, "z", function () awful.spawn.with_shell(utils.scnd_browser) end),
+    awful.key({ modkey, "Shift" }, "t", function () awful.spawn(utils.terminal_cmd .. 'htop') end),
+    awful.key({ modkey,         }, "a", function () awful.spawn(utils.terminal_cmd .. 'ranger') end),
+    awful.key({ modkey,         }, "i", utils.start_mail),
+    awful.key({ modkey, "Control" }, "i", utils.set_one_window_sidemenu_style),
+    awful.key({ modkey, "Shift" }, "i", utils.start_mail_calendar),
+    awful.key({ modkey,         }, "e", function () awful.spawn(utils.editor_cmd) end),
+    awful.key({ modkey,         }, "d", function () awful.spawn(utils.terminal_cmd .. utils.mpdclient) end),
     awful.key({ modkey, "Shift" }, "d",
         function ()
-            awful.spawn.with_shell(terminal_cmd .. vmixer)
+            awful.spawn.with_shell(utils.terminal_cmd .. utils.vmixer)
             gears.timer.start_new(0.1, function ()
-                awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "playlist")
+                awful.spawn(utils.terminal_cmd .. utils.mpdclient .. " " .. "-s" .. "playlist")
                 gears.timer.start_new(0.1, function ()
-                    awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "media_library")
-                    gears.timer.start_new(0.1, function () awful.spawn(terminal_cmd .. mpdclient .. " " .. "-s" .. "search_engine") end)
+                    awful.spawn(utils.terminal_cmd .. utils.mpdclient .. " " .. "-s" .. "media_library")
+                    gears.timer.start_new(0.1, function () awful.spawn(utils.terminal_cmd .. utils.mpdclient .. " " .. "-s" .. "search_engine") end)
                 end)
             end)
         end),
@@ -176,7 +177,7 @@ globalkeys = awful.util.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(utils.terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
