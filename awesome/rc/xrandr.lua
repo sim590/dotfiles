@@ -4,7 +4,7 @@ local awful     = require("awful")
 local naughty   = require("naughty")
 
 -- A path to a fancy icon
-local icon_path = ""
+local icon_path = "/usr/share/icons/gnome/48x48/devices/display.png"
 
 -- Get active outputs
 local function outputs()
