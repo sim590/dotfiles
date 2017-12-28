@@ -97,16 +97,14 @@ local function set_one_window_sidemenu_style()
     awful.layout.set(awful.layout.suit.tile.left)
 end
 
-local function start_mail_calendar ()
+local function start_mail_calendar()
     awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
     gears.timer.start_new(1, function ()
         start_mail()
         -- starting calendar
         awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
         gears.timer.start_new(0.3, function ()
-            awful.spawn(browser .. " " .. "--target tab" .. " "
-                        ..  "https://www.moodle2.uqam.ca/coursv3/my/"
-                        .. " " .. "https://monportail.umontreal.ca/Pages/Accueil.aspx")
+            awful.spawn(browser .. " " .. "--target tab" .. " " ..  "https://www.moodle2.uqam.ca/coursv3/my/")
         end)
     end)
     set_one_window_sidemenu_style()
