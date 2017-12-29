@@ -26,6 +26,7 @@ local image_viewer = "gpicview"
 local pamixer      = home_dir .. "/bin/pamixer"
 local vmixer       = home_dir .. "/bin/pulsemixer"
 local redshift     = "redshift -l manual -l 45.55:-73.72 -t 6500:3700"
+local i3lockfancy  = "env LANG=en_US.UTF-8 DISPLAY=:0 i3lock-fancy -- scrot -z"
 
 local icon_exec = home_dir .. "/bin/x-icon"
 local icon_dir  = home_dir .. "/.local/share/applications/"
@@ -203,6 +204,7 @@ return {
     pamixer                       = pamixer,
     vmixer                        = vmixer,
     redshift                      = redshift,
+    i3lockfancy                   = i3lockfancy,
     icon_exec                     = icon_exec,
     icon_dir                      = icon_dir,
     -- functions

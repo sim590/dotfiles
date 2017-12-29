@@ -26,13 +26,16 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- TODO: add {description, group} for each keybindings
     -- {{{ My bindings
-    awful.key({ modkey,	"Shift"   }, "Delete", function () awful.util.spawn("i3lock-fancy -- scrot -z") end),
+    awful.key({ modkey,	"Shift"   }, "Delete", function ()
+        multihost.spawn(utils.i3lockfancy)
+        awful.util.spawn(utils.i3lockfancy)
+    end),
     awful.key({ modkey }, "F3", function ()
-        awful.spawn.easy_async("i3lock-fancy -- scrot -z", utils.async_dummy_cb)
+        awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
         awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl suspend'", utils.async_dummy_cb)
     end),
     awful.key({ modkey }, "F4", function ()
-        awful.spawn.easy_async("i3lock-fancy -- scrot -z", utils.async_dummy_cb)
+        awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
         awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl hibernate'", utils.async_dummy_cb)
     end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
