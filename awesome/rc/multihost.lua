@@ -12,7 +12,7 @@ end
 
 -- spawn a command on all hosts
 local function spawn(cmd, cb)
-    for _,h in pairs(hosts) do
+    for _,host in pairs(hosts) do
         utils.remote_spawn(host, cmd, cb)
     end
 end
