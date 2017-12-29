@@ -10,9 +10,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys.vim")
 require("awful.hotkeys_popup.keys.qutebrowser")
 
-local utils   = require("rc.utils")
-local xrandr  = require("rc.xrandr")
-local synergy = require("rc.synergy")
+local utils     = require("rc.utils")
+local xrandr    = require("rc.xrandr")
+local multihost = require("rc.multihost")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -118,7 +118,7 @@ globalkeys = awful.util.table.join(
                 end)
             end)
         end),
-    awful.key({ modkey, "Control", "Shift" }, "s", function() synergy.synergy("hydralisk.local") end),
+    awful.key({ modkey, "Control", "Shift" }, "s", multihost.synergy),
     -- }}}
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
