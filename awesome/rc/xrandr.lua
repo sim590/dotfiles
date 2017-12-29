@@ -1,7 +1,6 @@
 --- Separating Multiple Monitor functions as a separeted module (taken from awesome wiki)
 
-local awful     = require("awful")
-local naughty   = require("naughty")
+local awful = require("awful")
 
 -- A path to a fancy icon
 local icon_path = "/usr/share/icons/gnome/48x48/devices/display.png"
@@ -81,50 +80,15 @@ local function menu()
             end
         end
 
-        menu[#menu + 1] = { label, cmd }
+        menu[#menu + 1] = { label, { function() awful.spawn(cmd) end } }
     end
 
     return menu
 end
 
--- Display xrandr notifications from choices
-local state = { cid = nil }
-
-local function naughty_destroy_callback(reason)
-    if reason == naughty.notificationClosedReason.expired or
-        reason == naughty.notificationClosedReason.dismissedByUser then
-        local action = state.index and state.menu[state.index - 1][2]
-        if action then
-            awful.util.spawn(action, false)
-            state.index = nil
-        end
-    end
-end
-
 local function xrandr()
-    -- Build the list of choices
-    if not state.index then
-        state.menu = menu()
-        state.index = 1
-    end
-
-    -- Select one and display the appropriate notification
-    local label, action
-    local next  = state.menu[state.index]
-    state.index = state.index + 1
-
-    if not next then
-        label = "Keep the current configuration"
-        state.index = nil
-    else
-        label, action = unpack(next)
-    end
-    state.cid = naughty.notify({ text = label,
-    icon = icon_path,
-    timeout = 4,
-    screen = mouse.screen,
-    replaces_id = state.cid,
-    destroy = naughty_destroy_callback}).id
+    local menu_iterator = require("rc.menu_iterator")
+    menu_iterator.iterate(menu(), 4, icon_path)
 end
 
 return {
