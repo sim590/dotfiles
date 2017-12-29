@@ -1,3 +1,4 @@
+local naughty = require("naughty")
 local awful = require("awful")
 local gears = require("gears")
 
@@ -110,6 +111,67 @@ local function start_mail_calendar()
     set_one_window_sidemenu_style()
 end
 
+-- Returns the first valid ip address
+local function myip()
+    socket = require("socket")
+    mysocket = socket.udp()
+    mysocket:setpeername('8.8.8.8', "80")
+    ip,_ = mysocket:getsockname()
+    return ip
+end
+
+-- TODO: if host is IPv4 address, don't try to resolve it
+-- Runs a command on a remote host. The host is resolved to IPv4 address, then
+-- the command is run through SSH protocol.
+--  * host: the host on which to run the command
+--  * cmd:  the command to spawn
+--  * cb:   the callback to run upon success
+--
+-- Dependencies: {avahi}, {ssh}
+local function remote_spawn(host, cmd, cb)
+    if not host then return end -- if no host, return
+    local remotespawn_label = "Remote Spawn"
+
+    -- important not to call synchrouneously as if the main loop takes too much
+    -- time, awesome has trouble with dbus and everything freezes.
+    awful.spawn.easy_async("avahi-resolve-host-name -4 " .. host,
+        function (stdout, stderr, exitreason, exitcode)
+            -- Invalid hostname
+            if not exitcode == 0 then
+                naughty.notify({
+                    preset = naughty.config.presets.critical,
+                    title = remotespawn_label,
+                    text = "Couldn't resolve host '" .. host .. "'"
+                })
+            end
+
+            package.path = package.path .. ';' .. config_dir .. '/penlight/lua/?.lua'
+            require("pl.stringx").import()
+            local host_ip = stdout:split('\t')[2] or ''
+            awful.spawn.easy_async('ssh -o StrictHostKeyChecking=no ' .. host_ip .. ' "' .. cmd .. '"',
+                function(stdout, stderr, exitreason, exitcode)
+                    if exitcode == 0 then
+                        naughty.notify({
+                            title = remotespawn_label,
+                            text  = "Running command '" .. cmd
+                                    .. "' on " .. host
+                                    .. " (" .. host_ip .. ")" .. "..."
+                        })
+                        if cb then cb() end
+                    else
+                        -- Valid hostname, but can't connect through
+                        -- SSH to host
+                        naughty.notify({ preset = naughty.config.presets.critical,
+                            title = remotespawn_label,
+                            text  = "Failed to run command on remote host \""
+                                    .. host .. " (" .. host_ip .. ")" ..
+                                    "\"... " .. "exit with code " .. tostring(exitcode)
+                        })
+                    end
+                end)
+        end)
+end
+
 return {
     -- variables
     home_dir                      = home_dir,
@@ -139,7 +201,9 @@ return {
     run_once                      = run_once,
     start_mail                    = start_mail,
     set_one_window_sidemenu_style = set_one_window_sidemenu_style,
-    start_mail_calendar           = start_mail_calendar
+    start_mail_calendar           = start_mail_calendar,
+    myip                          = myip,
+    remote_spawn                  = remote_spawn
 }
 
 -- vim:set et sw=4 ts=4 tw=120:

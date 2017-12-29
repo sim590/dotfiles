@@ -10,8 +10,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys.vim")
 require("awful.hotkeys_popup.keys.qutebrowser")
 
-local utils = require("rc.utils")
-local xrandr = require("rc.xrandr")  -- use xrandr to cycle through display layouts
+local utils   = require("rc.utils")
+local xrandr  = require("rc.xrandr")
+local synergy = require("rc.synergy")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -117,7 +118,7 @@ globalkeys = awful.util.table.join(
                 end)
             end)
         end),
-    awful.key({ modkey, "Control", "Shift" }, "s", synergy),
+    awful.key({ modkey, "Control", "Shift" }, "s", function() synergy.synergy("hydralisk.local") end),
     -- }}}
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
