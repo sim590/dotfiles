@@ -40,6 +40,18 @@ awful.util.shell = "/bin/bash"
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+-- returns the powerset of a given set
+local function powerset(s)
+    if not s then return {} end
+    local t = {{}}
+    for i = 1, #s do
+        for j = 1, #t do
+            t[#t+1] = {s[i],unpack(t[j])}
+        end
+    end
+    return t
+end
+
 local function async_dummy_cb(stdout, stderr, exitreason, exitcode) end
 
 -- Safely returns return value from os.execute(...)
@@ -194,6 +206,7 @@ return {
     icon_exec                     = icon_exec,
     icon_dir                      = icon_dir,
     -- functions
+    powerset                      = powerset,
     async_dummy_cb                = async_dummy_cb,
     os_exec_rv                    = os_exec_rv,
     pgrep                         = pgrep,
