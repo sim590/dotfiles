@@ -11,7 +11,7 @@ end
 
 local function menu(hosts, url)
     local m = {}
-    for _,h in pairs(awful.util.table.join(hosts, { "localhost" })) do
+    for _,h in pairs(awful.util.table.join({ "localhost" }, hosts)) do
         if h == "localhost" then
             m[#m + 1] = {
                 "Mpv: " .. h, {
