@@ -27,8 +27,10 @@ globalkeys = awful.util.table.join(
     -- TODO: add {description, group} for each keybindings
     -- {{{ My bindings
     awful.key({ modkey,	"Shift"   }, "Delete", function ()
-        multihost.spawn(utils.i3lockfancy)
-        awful.util.spawn(utils.i3lockfancy)
+        multihost.spawn(utils.i3lockfancy, nil, false)
+        awful.spawn.easy_async(utils.i3lockfancy, function (stdout, stderr, exitreason, exitcode)
+            multihost.spawn("pkill -u $USER -x i3lock", nil, false)
+        end)
     end),
     awful.key({ modkey }, "F3", function ()
         awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
