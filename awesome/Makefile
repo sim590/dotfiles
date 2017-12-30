@@ -1,4 +1,4 @@
-TARGETS    = rc rc.lua themes lain revelation penlight
+TARGETS    = rc rc.lua themes lain revelation penlight amh
 DEST       = $(HOME)/.config/awesome/
 DEST_LINKS = $(addprefix $(DEST)/,$(TARGETS))
 

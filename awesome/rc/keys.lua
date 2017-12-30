@@ -10,9 +10,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys.vim")
 require("awful.hotkeys_popup.keys.qutebrowser")
 
-local utils     = require("rc.utils")
-local xrandr    = require("rc.xrandr")
-local multihost = require("rc.multihost")
+local utils  = require("rc.utils")
+local xrandr = require("rc.xrandr")
+local amh    = require("amh")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -27,9 +27,9 @@ globalkeys = awful.util.table.join(
     -- TODO: add {description, group} for each keybindings
     -- {{{ My bindings
     awful.key({ modkey,	"Shift"   }, "Delete", function ()
-        multihost.spawn(utils.i3lockfancy, nil, false)
+        amh.spawn(utils.i3lockfancy, nil, false)
         awful.spawn.easy_async(utils.i3lockfancy, function (stdout, stderr, exitreason, exitcode)
-            multihost.spawn("pkill -u $USER -x i3lock", nil, false)
+            amh.spawn("pkill -u $USER -x i3lock", nil, false)
         end)
     end),
     awful.key({ modkey }, "F3", function ()
@@ -99,7 +99,7 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({ modkey,         }, "v", function ()
         local url = io.popen("xsel -ob"):read('*l')
-        multihost.mpv(url)
+        amh.mpv(url)
     end),
     awful.key({ modkey,         }, "z", function () awful.spawn(utils.browser) end),
     awful.key({ modkey, "Shift" }, "z", function () awful.spawn.with_shell(utils.scnd_browser) end),
@@ -121,7 +121,7 @@ globalkeys = awful.util.table.join(
                 end)
             end)
         end),
-    awful.key({ modkey, "Control", "Shift" }, "s", multihost.synergy),
+    awful.key({ modkey, "Control", "Shift" }, "s", amh.synergy),
     -- }}}
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),

@@ -12,6 +12,9 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local revelation = require("revelation")
 
+-- add penlight in package path
+package.path = package.path .. ';/home/simon/.config/awesome/penlight/lua/?.lua'
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -44,7 +47,6 @@ end
 -- {{{
 local utils = require("rc.utils") -- variables, utility functions...
 
-require("rc.synergy") -- starts synergy on multiple computers using ssh
 require("rc.keys")    -- key bindings
 require("rc.widgets") -- menu widgets
 require("rc.auto")    -- autostart applications
