@@ -353,3 +353,5 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
+-- vim:set et sw=4 ts=4 tw=120:
+

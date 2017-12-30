@@ -41,5 +41,5 @@ return {
     synergy = synergy
 }
 
--- vim:set et sw=4 ts=4 tw=80:
+-- vim:set et sw=4 ts=4 tw=120:
 
