@@ -17,9 +17,9 @@ local function mpv_multi_host_menu(url)
 end
 
 -- spawn a command on all hosts
-local function spawn(cmd, cb)
+local function spawn(cmd, cb, verbose)
     for _,host in pairs(hosts) do
-        utils.remote_spawn(host, cmd, cb)
+        utils.remote_spawn(host, cmd, cb, verbose)
     end
 end
 
