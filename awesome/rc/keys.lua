@@ -97,9 +97,7 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({ modkey,         }, "v", function ()
         local url = io.popen("xsel -ob"):read('*l')
-        naughty.notify({ title = "Starting mpv",
-                         text = url })
-        awful.spawn('mpv --force-window --no-terminal --keep-open=yes --ytdl' .. ' "' .. url .. '"')
+        multihost.mpv(url)
     end),
     awful.key({ modkey,         }, "z", function () awful.spawn(utils.browser) end),
     awful.key({ modkey, "Shift" }, "z", function () awful.spawn.with_shell(utils.scnd_browser) end),
