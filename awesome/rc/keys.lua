@@ -1,10 +1,10 @@
-local awful         = require("awful")
-local screen        = require("screen")
-local client        = require("client")
-local naughty       = require("naughty")
-local menubar       = require("menubar")
+local awful      = require("awful")
+local screen     = require("screen")
+local client     = require("client")
+local naughty    = require("naughty")
+local menubar    = require("menubar")
 local revelation = require("revelation")
-local gears         = require("gears")
+local gears      = require("gears")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
@@ -27,12 +27,16 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- TODO: add {description, group} for each keybindings
     -- {{{ My bindings
-    awful.key({ modkey,	"Shift"   }, "Delete", function ()
-        amh.spawn(utils.i3lockfancy, nil, false)
+    awful.key({ modkey,	"Shift" }, "Delete", function ()
+        awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
+    end),
+    awful.key({ modkey,	"Control", "Shift"   }, "Delete", function ()
+        amh.spawn("bash -c \'pgrep -u $USER -x i3lock || " .. utils.i3lockfancy .. "\'", nil, false)
         awful.spawn.easy_async(utils.i3lockfancy, function (stdout, stderr, exitreason, exitcode)
             amh.spawn("pkill -u $USER -x i3lock", nil, false)
         end)
     end),
+    awful.key({ modkey,	"Control" }, "Delete", function () amh.i3lock_fancy() end),
     awful.key({ modkey }, "F3", function ()
         awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
         awful.spawn.easy_async("bash -c 'sleep ".. (screen:count() > 1 and '3' or '2') .." ; systemctl suspend'", utils.async_dummy_cb)
