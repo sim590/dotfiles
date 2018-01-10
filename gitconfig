@@ -1,13 +1,10 @@
 [core]
     # workaround this: https://github.com/ranger/ranger/issues/214 in debian
     pager      = less
-[commit]
-    gpgSign = true
 [user]
     name       = Simon Désaulniers
     email      = sim.desaulniers@gmail.com
     editor     = vim
-    signingkey = F97E4B08
 [color]
     ui         = true
 [alias]
