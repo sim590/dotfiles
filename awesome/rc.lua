@@ -1,15 +1,15 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
-awful.rules = require("awful.rules")
+local gears      = require("gears")
+local awful      = require("awful")
+awful.rules      = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox      = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful  = require("beautiful")
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
+local naughty    = require("naughty")
+local menubar    = require("menubar")
 local revelation = require("revelation")
 
 -- add penlight in package path
@@ -45,11 +45,11 @@ end
 --------------------------------
 
 -- {{{
-local utils = require("rc.utils") -- variables, utility functions...
+local utils   = require("rc.utils")   -- variables, utility functions...
+local widgets = require("rc.widgets") -- menu widgets
 
-require("rc.keys")    -- key bindings
-require("rc.widgets") -- menu widgets
-require("rc.auto")    -- autostart applications
+require("rc.keys") -- key bindings
+require("rc.auto") -- autostart applications
 -- }}}
 
 -- {{{ Variable definitions
@@ -121,7 +121,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -232,20 +231,20 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             arrl_ld,
-            mpdicon,
-            mpdwidgetbg,
+            widgets.mpdicon,
+            widgets.mpdwidgetbg,
             arrl_dl,
-            volicon,
-            volumewidget,
+            widgets.volicon,
+            widgets.volumewidget,
             arrl_ld,
             arrl_dl,
             -- tempicon,
             -- tempwidget,
-            baticon,
-            batwidget,
+            widgets.baticon,
+            widgets.batwidget,
             arrl_ld,
             arrl_dl,
-            mytextclock,
+            widgets.mytextclock,
             arrl_ld,
             s.mylayoutbox,
         },
@@ -374,3 +373,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = "#e66e7f" end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- vim:set et sw=4 ts=4 tw=120:
+
