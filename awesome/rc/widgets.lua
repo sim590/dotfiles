@@ -97,6 +97,13 @@ widgets.mpdwidget = lain.widgets.mpd({
 })
 widgets.mpdwidgetbg = wibox.container.background(widgets.mpdwidget, "#313131")
 
+--{{ Coretemp }} --
+widgets.tempwidget = lain.widgets.temp({
+    settings = function()
+        widget:set_markup(markup.font(nil, " " .. coretemp_now .. "°C "))
+    end
+})
+
 return widgets
 
 -- vim:set et sw=4 ts=4 tw=120:
