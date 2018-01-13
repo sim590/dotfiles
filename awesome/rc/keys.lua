@@ -31,7 +31,7 @@ globalkeys = awful.util.table.join(
         awful.spawn.easy_async(utils.i3lockfancy, utils.async_dummy_cb)
     end),
     awful.key({ modkey,	"Control", "Shift"   }, "Delete", function ()
-        amh.spawn("bash -c \'pgrep -u $USER -x i3lock || " .. utils.i3lockfancy .. "\'", nil, false)
+        amh.spawn("pgrep -u $USER -x i3lock || " .. utils.i3lockfancy, nil, false)
         awful.spawn.easy_async(utils.i3lockfancy, function (stdout, stderr, exitreason, exitcode)
             amh.spawn("pkill -u $USER -x i3lock", nil, false)
         end)
