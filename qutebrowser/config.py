@@ -2,7 +2,7 @@
 #  MAIN CONFIGURATION  #
 ########################
 
-c.session_default_name = "default"
+c.session.default_name = "default"
 
 # search engines
 c.url.searchengines = {
