@@ -28,6 +28,7 @@ awful.rules.rules = {
         },
         class = {
             "screenkey", "Screenkey",
+            "Blender", "Blender",
             "Arandr",
             "Gpick",
             "Kruler",
