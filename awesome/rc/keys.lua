@@ -80,9 +80,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "F8", xrandr.xrandr),
     -- {{ Volume Control }} --
     awful.key({     }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-i 5") end),
+    awful.key({ modkey, "Shift", "Mod5" }, ".", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-i 5") end),
     awful.key({     }, "XF86AudioLowerVolume", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-d 5") end),
+    awful.key({ modkey, "Shift", "Mod5" }, ",", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-d 5") end),
     awful.key({     }, "XF86AudioMute", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-t") end),
+    awful.key({ modkey, "Shift" }, "é", function() awful.spawn.with_shell(utils.pamixer .. " " .. "-t") end),
     awful.key({     }, "XF86AudioMicMute", function() awful.spawn("amixer set Capture toggle") end),
+    awful.key({modkey, "Shift" }, "è", function() awful.spawn("amixer set Capture toggle") end),
     --
     -- {{ music }} --
     -- ducky mini conf
