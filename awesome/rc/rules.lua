@@ -29,6 +29,7 @@ awful.rules.rules = {
         class = {
             "screenkey", "Screenkey",
             "Blender", "Blender",
+            "Godot_Engine", "Godot",
             "Arandr",
             "Gpick",
             "Kruler",
