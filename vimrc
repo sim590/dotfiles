@@ -70,7 +70,7 @@ call plug#end()
 
 filetype plugin indent on
 let mapleader=","
-let g:syntaxed_fts = ["vim","tex","python","lua","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
+let g:syntaxed_fts = ["vim","tex","python", "haskell","lua","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
 
 """ PERSONNAL PLUGIN SETTINGS
 let s:settings_dir="~/.vim/plugins-config/"
