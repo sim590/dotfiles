@@ -1,24 +1,26 @@
 [core]
     # workaround this: https://github.com/ranger/ranger/issues/214 in debian
-    pager      = less
+    pager     = less
+	quotepath = off
 [user]
-    name       = Simon Désaulniers
-    email      = sim.desaulniers@gmail.com
-    editor     = vim
+    name      = Simon Désaulniers
+    email     = sim.desaulniers@gmail.com
+    editor    = vim
 [color]
-    ui         = true
+    ui        = true
 [alias]
-    lol        = log --decorate --graph --oneline
-    loll       = log --decorate --graph --oneline --all
-    st         = status -s
-    co         = checkout
-    br         = branch
-    mernff     = merge --no-ff
-    punff      = pull --no-ff
-    samend     = commit --amend --no-edit
-    whatsnew   = fetch --dry-run
-    show       = show --show-signature
+    lol       = log --decorate --graph --oneline
+    loll      = log --decorate --graph --oneline --all
+    st        = status -s
+    co        = checkout
+    br        = branch
+    mernff    = merge --no-ff
+    punff     = pull --no-ff
+    samend    = commit --amend --no-edit
+    whatsnew  = fetch --dry-run
+    show      = show --show-signature
 [merge]
-    tool       = vimdiff
+    tool      = vimdiff
+
 
 # vim:filetype=gitconfig:
