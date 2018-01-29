@@ -33,6 +33,7 @@ config.bind('"', 'enter-mode set_mark')
 config.bind('0', 'scroll-to-perc -x 0')
 config.bind('tg', 'set-cmd-text -s :tab-give')
 config.bind('tt', 'set-cmd-text -s :tab-take')
+config.unbind('<ctrl-q>', mode='normal')
 ## passthrough allow ctrl-v for pasting clipboard
 config.unbind('<ctrl-v>', mode='passthrough')
 config.bind('<ctrl-d>','leave-mode', mode='passthrough')
