@@ -115,6 +115,15 @@ local function set_one_window_sidemenu_style()
     awful.layout.set(awful.layout.suit.tile.left)
 end
 
+local function replicate_layout(tagid)
+    local s = awful.screen.focused()
+    local tag = s.tags[tagid]
+
+    tag.layout = s.selected_tag.layout
+    tag.master_count = s.selected_tag.master_count
+    tag.master_width_factor = s.selected_tag.master_width_factor
+end
+
 local function start_mail_calendar()
     awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
     gears.timer.start_new(1, function ()
@@ -167,6 +176,7 @@ return {
     pkill                         = pkill,
     run_once                      = run_once,
     start_mail                    = start_mail,
+    replicate_layout              = replicate_layout,
     set_one_window_sidemenu_style = set_one_window_sidemenu_style,
     start_mail_calendar           = start_mail_calendar,
     myip                          = myip,
