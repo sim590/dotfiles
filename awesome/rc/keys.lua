@@ -331,24 +331,14 @@ for i = 1, 9 do
                   {description = "toggle focused client on tag #" .. i, group = "tag"}),
         awful.key({ "Mod1", "Shift" }, "#" .. i + 9,
                  function ()
-                     if not client.focus then return end
-
-                     local clients = awful.client.tiled(client.focus.screen)
-                     local s = awful.screen.focused()
-                     local tag = s.tags[i]
-                     local this_tag = s.selected_tag
-
-                     if #tag:clients() == 0 then
-                         -- replicate layout on target.
-                         tag.layout = this_tag.layout
-                         tag.master_count = this_tag.master_count
-                         tag.master_width_factor = this_tag.master_width_factor
-                     end
-                     if clients then
-                         for _,c in pairs(clients) do
-                             c:move_to_tag(tag)
-                         end
-                     end
+                      local s = awful.screen.focused()
+                      local clients = s.selected_tag:clients()
+                      if #clients ~= 0 then
+                          utils.replicate_layout(i)
+                          for _,c in pairs(clients) do
+                              c:move_to_tag(s.tags[i])
+                          end
+                      end
                  end)
     )
 end
