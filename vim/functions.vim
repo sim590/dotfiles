@@ -11,7 +11,7 @@ fun! s:DuckDuckgoSearch(q_args)
   let l:expression = join(l:_args[l:index+1:])
   call system('xdg-open "https://duckduckgo.com/?q='
         \ .escape(substitute(l:_option, '-', '!', ""), '!')
-        \ .' '.l:expression.'"')
+        \ .(l:_option == '' ? '' : ' ').l:expression.'"')
 endf
 command! -nargs=+ DuckDuckgoSearch call <sid>DuckDuckgoSearch(<q-args>)
 
