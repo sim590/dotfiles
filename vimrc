@@ -15,6 +15,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "-----------------------------
 Plug 'tpope/vim-fugitive' " TODO: nvim-compatible
+Plug 'tpope/vim-rhubarb'
 Plug 'searchfold.vim'
 Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
 "Plug 'The-NERD-Commenter'
