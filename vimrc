@@ -71,30 +71,57 @@ call plug#end()
 
 filetype plugin indent on
 let mapleader=","
-let g:syntaxed_fts = ["vim","tex","python", "haskell","lua","pyrex","c","cpp","php","js","html","css","cs","java","mkd","markdown","rst","cmake","make","sh"]
+let g:programming_fts = [
+      \ "c",
+      \ "cpp",
+      \ "python",
+      \ "pyrex",
+      \ "haskell",
+      \ "lua",
+      \ "php",
+      \ "js",
+      \ "html",
+      \ "css",
+      \ "cs",
+      \ "java",
+      \ "sh"
+      \ ]
+let g:syntaxed_fts = g:programming_fts + [
+      \ "vim",
+      \ "tex",
+      \ "mkd",
+      \ "markdown",
+      \ "rst",
+      \ "cmake",
+      \ "make"
+      \ ]
 
 """ PERSONNAL PLUGIN SETTINGS
 let s:settings_dir="~/.vim/plugins-config/"
-let s:configs = ["taglist.vim",
-            \ "rsi.vim",
-            \ "pyclewn.vim",
-            \ "vim-multi-cursor.vim",
-            \ "ack.vim",
-            \ "fugitive.vim",
-            \ "snipMate.vim",
-            \ "ultisnips.vim",
-            \ "pi_netrw.vim",
-            \ "dragvisuals.vim",
-            \ "jedi-vim.vim",
-            \ "quicktask.vim",
-            \ "listtrans.vim",
-            \ "ctrlp.vim",
-            \ "markdown.vim",
-            \ "youcompleteme.vim",
-            \ "auto-save.vim",
-            \ "pandoc.vim",
-            \ "switch.vim",
-            \ "syntastic.vim"]
+let s:configs = [
+      \ "taglist.vim",
+      \ "rsi.vim",
+      \ "pyclewn.vim",
+      \ "vim-multi-cursor.vim",
+      \ "ack.vim",
+      \ "fugitive.vim",
+      \ "snipMate.vim",
+      \ "ultisnips.vim",
+      \ "pi_netrw.vim",
+      \ "dragvisuals.vim",
+      \ "jedi-vim.vim",
+      \ "quicktask.vim",
+      \ "listtrans.vim",
+      \ "ctrlp.vim",
+      \ "markdown.vim",
+      \ "youcompleteme.vim",
+      \ "auto-save.vim",
+      \ "pandoc.vim",
+      \ "switch.vim",
+      \ "neco-ghc.vim",
+      \ "syntastic.vim"
+      \ ]
+
 for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
 endfor
@@ -110,7 +137,7 @@ nnoremap <leader>yp :YaumlPdf<CR>
 " =============================================
 
 "TODO: Comments
-syntax on " enable syntax highlighting
+syntax on                          " enable syntax highlighting
 set fo=tcroql                      " wraps comments after hitting <enter>, 'o'
                                    " or when typing text after textwidth
 set autochdir
@@ -162,14 +189,16 @@ au BufRead,BufNewFile *.pxd,*.pyx,*.spyx
 au BufRead,BufRead *.mustache set filetype=html
 
 au BufRead,BufNewFile,FileType gitcommit,mail,*.yaml,*.yml,*.md set tw=80
+
 " code
-au BufRead,BufNewFile,FileType python,c,cpp,java,cs,html,css,php
-            \ set tw=120|
-            \ set ts=4|
-            \ set sw=4
+exec "au BufRead,BufNewFile,FileType ".join(g:programming_fts, ',').
+            \ "set tw=120|"
+            \ "set ts=4|"
+            \ "set sw=4"
 " others
 au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
 
+" syntaxed filetypes
 exec "au BufRead,BufNewFile,Filetype ".join(g:syntaxed_fts, ',')." set si"
 
 " TODO:
