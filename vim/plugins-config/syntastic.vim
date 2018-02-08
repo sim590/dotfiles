@@ -24,4 +24,4 @@ let g:syntastic_cpp_compiler_options = '-std=c++14'
 let g:syntastic_cpp_include_dirs = ['.']
 let g:syntastic_mode_map = { "mode" : "passive", "active_filetypes" : [], "passive_filetypes": ["tex"] }
 
-let g:syntastic_haskell_checkers = [ 'ghc-mod' ]
+let g:syntastic_haskell_checkers = [ 'hlint' ]

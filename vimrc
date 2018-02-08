@@ -66,6 +66,7 @@ if ! has('gui_running')
 endif
 Plug 'jamessan/vim-gnupg'
 Plug 'tomlion/vim-solidity'
+Plug 'eagletmt/neco-ghc'
 
 call plug#end()
 
@@ -191,7 +192,7 @@ au BufRead,BufRead *.mustache set filetype=html
 au BufRead,BufNewFile,FileType gitcommit,mail,*.yaml,*.yml,*.md set tw=80
 
 " code
-exec "au BufRead,BufNewFile,FileType ".join(g:programming_fts, ',').
+exec "au BufRead,BufNewFile,FileType ".join(g:programming_fts, ',')." ".
             \ "set tw=120|"
             \ "set ts=4|"
             \ "set sw=4"
