@@ -115,7 +115,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "t", function () awful.spawn(utils.terminal_cmd .. 'htop') end),
     awful.key({ modkey,         }, "a", function () awful.spawn(utils.terminal_cmd .. 'ranger') end),
     awful.key({ modkey,         }, "i", utils.start_mail),
-    awful.key({ modkey, "Control" }, "i", utils.set_one_window_sidemenu_style),
+    awful.key({ modkey, "Control" }, "i", function ()
+        local t = awful.screen.focused().selected_tag
+        utils.sidemenu:set_sidemenu_style(
+            t.index == 2
+            and utils.sidemenu.browser_news_style
+            or  (t.index == 3 and utils.sidemenu.mail_calendar_style or {})
+        )
+    end),
     awful.key({ modkey, "Shift" }, "i", utils.start_mail_calendar),
     awful.key({ modkey,         }, "e", function () awful.spawn(utils.editor_cmd) end),
     awful.key({ modkey,         }, "d", function () awful.spawn(utils.terminal_cmd .. utils.mpdclient) end),

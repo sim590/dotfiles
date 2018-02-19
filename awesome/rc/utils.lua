@@ -108,12 +108,42 @@ local function start_mail()
     gears.timer.start_new(2, awful.spawn("pkill -SIGUSR1 offlineimap"))
 end
 
-local function set_one_window_sidemenu_style()
+-- {{ sidemenu
+
+local sidemenu = {
+    default_style = {
+        master_width_factor = 0.3,
+        master_count        = 1,
+        layout              = awful.layout.suit.tile.right
+    }
+}
+
+sidemenu.mail_calendar_style = {
+    master_width_factor = 0.3,
+    master_count = 1,
+    layout = awful.layout.suit.tile.left
+}
+
+sidemenu.browser_news_style = {
+    master_width_factor = 0.2,
+    master_count = 1,
+    layout = awful.layout.suit.tile.right
+}
+
+function sidemenu:set_sidemenu_style(args)
+    if args then
+        mwf    = args.master_width_factor or sidemenu.default_style.master_width_factor
+        mc     = args.master_count        or sidemenu.default_style.master_count
+        layout = args.layout              or sidemenu.default_style.layout
+    end
+
     local t = awful.screen.focused().selected_tag
-    t.master_count = 1
-    t.master_width_factor = 0.3
-    awful.layout.set(awful.layout.suit.tile.left)
+    t.master_count        = mc
+    t.master_width_factor = mwf
+    awful.layout.set(layout)
 end
+
+-- }}
 
 local function replicate_layout(tagid)
     local s = awful.screen.focused()
@@ -134,7 +164,7 @@ local function start_mail_calendar()
             awful.spawn(browser .. " " .. "--target tab" .. " " ..  "https://www.moodle2.uqam.ca/coursv3/my/")
         end)
     end)
-    set_one_window_sidemenu_style()
+    sidemenu:set_sidemenu_style(sidemenu.mail_calendar_style)
 end
 
 -- Returns the first valid ip address
@@ -147,40 +177,42 @@ local function myip()
 end
 
 return {
+    -- classes
+    sidemenu            = sidemenu,
     -- variables
-    home_dir                      = home_dir,
-    config_dir                    = config_dir,
-    themes_dir                    = themes_dir,
-    my_theme                      = my_theme,
-    terminal                      = terminal,
-    terminal_cmd                  = terminal_cmd,
-    editor                        = editor,
-    editor_cmd                    = editor_cmd,
-    mpd_remote                    = mpd_remote,
-    browser                       = browser,
-    scnd_browser                  = scnd_browser,
-    mail                          = mail,
-    mpdclient                     = mpdclient,
-    image_viewer                  = image_viewer,
-    pamixer                       = pamixer,
-    vmixer                        = vmixer,
-    redshift                      = redshift,
-    i3lockfancy                   = i3lockfancy,
-    icon_exec                     = icon_exec,
-    icon_dir                      = icon_dir,
+    home_dir            = home_dir,
+    config_dir          = config_dir,
+    themes_dir          = themes_dir,
+    my_theme            = my_theme,
+    terminal            = terminal,
+    terminal_cmd        = terminal_cmd,
+    editor              = editor,
+    editor_cmd          = editor_cmd,
+    mpd_remote          = mpd_remote,
+    browser             = browser,
+    scnd_browser        = scnd_browser,
+    mail                = mail,
+    mpdclient           = mpdclient,
+    image_viewer        = image_viewer,
+    pamixer             = pamixer,
+    vmixer              = vmixer,
+    redshift            = redshift,
+    i3lockfancy         = i3lockfancy,
+    icon_exec           = icon_exec,
+    icon_dir            = icon_dir,
     -- functions
-    powerset                      = powerset,
-    async_dummy_cb                = async_dummy_cb,
-    os_exec_rv                    = os_exec_rv,
-    pgrep                         = pgrep,
-    pkill                         = pkill,
-    run_once                      = run_once,
-    start_mail                    = start_mail,
-    replicate_layout              = replicate_layout,
-    set_one_window_sidemenu_style = set_one_window_sidemenu_style,
-    start_mail_calendar           = start_mail_calendar,
-    myip                          = myip,
-    remote_spawn                  = amh.util.remote_spawn
+    powerset            = powerset,
+    async_dummy_cb      = async_dummy_cb,
+    os_exec_rv          = os_exec_rv,
+    pgrep               = pgrep,
+    pkill               = pkill,
+    run_once            = run_once,
+    start_mail          = start_mail,
+    replicate_layout    = replicate_layout,
+    set_sidemenu_style  = set_sidemenu_style,
+    start_mail_calendar = start_mail_calendar,
+    myip                = myip,
+    remote_spawn        = amh.util.remote_spawn
 }
 
 -- vim:set et sw=4 ts=4 tw=120:
