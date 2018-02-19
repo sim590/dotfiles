@@ -115,32 +115,24 @@ local sidemenu = {
         master_width_factor = 0.3,
         master_count        = 1,
         layout              = awful.layout.suit.tile.right
+    },
+    mail_calendar_style = {
+        master_width_factor = 0.3,
+        master_count = 1,
+        layout = awful.layout.suit.tile.left
+    },
+    browser_news_style = {
+        master_width_factor = 0.2,
+        master_count = 1,
+        layout = awful.layout.suit.tile.right
     }
 }
 
-sidemenu.mail_calendar_style = {
-    master_width_factor = 0.3,
-    master_count = 1,
-    layout = awful.layout.suit.tile.left
-}
-
-sidemenu.browser_news_style = {
-    master_width_factor = 0.2,
-    master_count = 1,
-    layout = awful.layout.suit.tile.right
-}
-
 function sidemenu:set_sidemenu_style(args)
-    if args then
-        mwf    = args.master_width_factor or sidemenu.default_style.master_width_factor
-        mc     = args.master_count        or sidemenu.default_style.master_count
-        layout = args.layout              or sidemenu.default_style.layout
-    end
-
     local t = awful.screen.focused().selected_tag
-    t.master_count        = mc
-    t.master_width_factor = mwf
-    awful.layout.set(layout)
+    t.master_width_factor = args and args.master_width_factor or sidemenu.default_style.master_width_factor
+    t.master_count        = args and args.master_count        or sidemenu.default_style.master_count
+    awful.layout.set(args and args.layout or sidemenu.default_style.layout)
 end
 
 -- }}
