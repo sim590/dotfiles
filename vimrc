@@ -32,7 +32,7 @@ Plug 'ack.vim'
 Plug 'taglist.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
-Plug 'plasticboy/vim-markdown', { 'frozen': 1 }
+Plug 'plasticboy/vim-markdown'
 Plug 'DrawIt'
 Plug 'tpope/vim-rsi', 'no_meta_opts'
 Plug 'tpope/vim-unimpaired'
