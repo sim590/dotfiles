@@ -97,37 +97,6 @@ let g:syntaxed_fts = g:programming_fts + [
       \ "make"
       \ ]
 
-""" PERSONNAL PLUGIN SETTINGS
-let s:settings_dir="~/.vim/plugins-config/"
-let s:configs = [
-      \ "taglist.vim",
-      \ "rsi.vim",
-      \ "pyclewn.vim",
-      \ "vim-multi-cursor.vim",
-      \ "ack.vim",
-      \ "fugitive.vim",
-      \ "snipMate.vim",
-      \ "ultisnips.vim",
-      \ "pi_netrw.vim",
-      \ "dragvisuals.vim",
-      \ "jedi-vim.vim",
-      \ "quicktask.vim",
-      \ "listtrans.vim",
-      \ "ctrlp.vim",
-      \ "markdown.vim",
-      \ "youcompleteme.vim",
-      \ "auto-save.vim",
-      \ "pandoc.vim",
-      \ "switch.vim",
-      \ "neco-ghc.vim",
-      \ "syntastic.vim"
-      \ ]
-
-for s:plugin in s:configs
-    execute ":source " . s:settings_dir . s:plugin
-endfor
-" ==================================================
-
 " COMMANDS ====================================
 " Start a urxvt in the current working directory
 command! Shell !urxvt -cd "$PWD" &
@@ -230,4 +199,35 @@ source ~/.vim/mappings.vim
 " COLORSCHEME ==========
 MyColorscheme wombat256mod
 " ======================
+
+""" PERSONNAL PLUGIN SETTINGS
+let s:settings_dir="~/.vim/plugins-config/"
+let s:configs = [
+      \ "taglist.vim",
+      \ "rsi.vim",
+      \ "pyclewn.vim",
+      \ "vim-multi-cursor.vim",
+      \ "ack.vim",
+      \ "fugitive.vim",
+      \ "snipMate.vim",
+      \ "ultisnips.vim",
+      \ "pi_netrw.vim",
+      \ "dragvisuals.vim",
+      \ "jedi-vim.vim",
+      \ "quicktask.vim",
+      \ "listtrans.vim",
+      \ "ctrlp.vim",
+      \ "markdown.vim",
+      \ "youcompleteme.vim",
+      \ "auto-save.vim",
+      \ "pandoc.vim",
+      \ "switch.vim",
+      \ "neco-ghc.vim",
+      \ "syntastic.vim"
+      \ ]
+
+for s:plugin in s:configs
+    execute ":source " . s:settings_dir . s:plugin
+endfor
+" ==================================================
 
