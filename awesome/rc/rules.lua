@@ -27,6 +27,7 @@ awful.rules.rules = {
             "Hearthstone.exe",
         },
         class = {
+            "Godot_ProjectList", "Godot", "Godot_Engine",
             "synergy", "Synergy",
             "screenkey", "Screenkey",
             "Blender", "Blender",
