@@ -141,20 +141,20 @@ set noshowmode
 """""""""""""""""""""""
 " LaTeX
 au BufRead,BufNewFile,FileType *.tex,*.tikz,*.sagetex
-            \ set filetype=tex|
-            \ set tw=100|
-            \ set ts=2|
-            \ set sw=2
+      \ set filetype=tex|
+      \ set tw=100|
+      \ set ts=2|
+      \ set sw=2
 " pandoc
 au BufRead,BufNewFile,FileType vim,pandoc
-            \ set tw=100|
-            \ set ts=2|
-            \ set sw=2
+      \ set tw=100|
+      \ set ts=2|
+      \ set sw=2
 " python
 au BufRead,BufNewFile *.sage set filetype=python
 au BufRead,BufNewFile *.pxd,*.pyx,*.spyx
-            \ set filetype=python |
-            \ set syntax=pyrex
+      \ set filetype=python |
+      \ set syntax=pyrex
 " html
 au BufRead,BufRead *.mustache set filetype=html
 
