@@ -127,7 +127,7 @@ set tabstop=4                      " tabulation
 set shiftwidth=4                   " tabulation
 set softtabstop=4                  " tabulation
 set expandtab                      " tabulation
-au BufRead,BufNewFile,FileType gitconfig set noexpandtab
+au BufRead,BufNewFile,FileType cmake,automake set noexpandtab
 set smarttab
 set backspace=2    " make backspace work like most other apps
 set cursorcolumn
