@@ -25,6 +25,8 @@ vnoremap > >gv
 nnoremap <leader>T ^y$o<ESC>pVr
 " remove trailing white spaces
 nnoremap <silent> <leader>l :%s/\s\+$//e \| let @/=""<CR><C-O>
+" append modeline at the end of file
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 " HTML maps
 au Syntax html

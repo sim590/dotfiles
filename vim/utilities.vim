@@ -123,6 +123,15 @@ augroup StrippingWhiteSpaces
         \ ." au BufWritePre * call s:StripTrailingWhiteSpaces()"
 augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""
+"  Append modeline after last line in buffer   "
+""""""""""""""""""""""""""""""""""""""""""""""""
+fun! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
 
 " vim:set et sw=2 ts=2 tw=100:
 
