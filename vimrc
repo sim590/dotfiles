@@ -14,19 +14,13 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "-----------------------------
-Plug 'tpope/vim-fugitive' " TODO: nvim-compatible
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'searchfold.vim'
 Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
-"Plug 'The-NERD-Commenter'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
-" Plug 'FuzzyFinder' " issue with opening files when have split buffers.
-                     " Doesn't open the file in the right buffer or just doesn't
-                     " open the file correctly (empty buffer).
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/webapi-vim' "vim-quicklink dependency
-Plug 'christoomey/vim-quicklink'
 Plug 'AndrewRadev/switch.vim'
 Plug 'ack.vim'
 Plug 'taglist.vim'
@@ -45,9 +39,9 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-eunuch', { 'frozen': 1 }
 Plug 'tpope/vim-eunuch', 'RmSwp-command'
 "----------------------------------------
-Plug 'scrooloose/syntastic' " TODO: nvim-compatible
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --cs-completer' } " TODO: nvim-compatible
-Plug 'rdnetto/YCM-Generator', 'stable' " TODO: nvim-compatible
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --system-libclang --clang-completer --cs-completer' }
+Plug 'rdnetto/YCM-Generator', 'stable'
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
@@ -92,7 +86,6 @@ let g:programming_fts = [
 let g:syntaxed_fts = g:programming_fts + [
       \ "vim",
       \ "tex",
-      \ "mkd",
       \ "markdown",
       \ "rst",
       \ "cmake",
@@ -110,7 +103,7 @@ source ~/.vim/mappings.vim
 MyColorscheme wombat256mod
 " ======================
 
-""" PERSONNAL PLUGIN SETTINGS
+" PLUGIN SETTINGS ==================================
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = [
       \ "taglist.vim",
@@ -140,4 +133,6 @@ for s:plugin in s:configs
     execute ":source " . s:settings_dir . s:plugin
 endfor
 " ==================================================
+
+" vim:set et sw=2 ts=2 tw=100:
 
