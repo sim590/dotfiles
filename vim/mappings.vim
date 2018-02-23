@@ -28,38 +28,6 @@ nnoremap <silent> <leader>l :%s/\s\+$//e \| let @/=""<CR><C-O>
 " append modeline at the end of file
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
-" HTML maps
-au Syntax html
-      \ nnoremap <buffer> <leader>it ciwem><ESC>4hP|
-      \ inoremap <buffer> <leader>it <em></em><ESC>4hi|
-      \ nnoremap <buffer> <leader>it ciw<b></b><ESC>3hP|
-      \ inoremap <buffer> <leader>bf <b></b><ESC>3hi
-" LaTeX maps
-au Syntax tex
-      \ nnoremap <buffer> <leader>it ciw\emph{}<ESC>P|
-      \ inoremap <buffer> <leader>it \emph{}<ESC>i|
-      \ inoremap <buffer> <leader>ti {\tiny }<ESC>i|
-      \ nnoremap <buffer> <leader>bf ciw{\bfseries }<ESC>P|
-      \ inoremap <buffer> <leader>bf {\bfseries }<ESC>i|
-      \ inoremap <buffer> <leader>li {\ttfamily }<ESC>i|
-      \ nnoremap <buffer> <leader>li ciw{\ttfamily }<ESC>P|
-      \ inoremap <buffer> <leader>$ $$<ESC>i|
-      \ inoremap <buffer> <leader>lr] \left[\right]<ESC>F\i|
-      \ inoremap <buffer> <leader>lr[ \left[\right]<ESC>F\i|
-      \ inoremap <buffer> <leader>lr( \left(\right)<ESC>F\i|
-      \ inoremap <buffer> <leader>lr) \left(\right)<ESC>F\i|
-      \ inoremap <buffer> <leader>\| \|\|<ESC>i|
-      \ nnoremap <buffer> <leader>tk :!pdflatex %<CR>
-" man page maps
-au Syntax nroff,groff,troff
-      \ inoremap <buffer> <leader>it \fI\fP<ESC>2hi|
-      \ inoremap <buffer> <leader>bf \fB\fP<ESC>2hi
-" rst maps
-au Syntax mkd,markdown,rst,python
-      \ inoremap <buffer> <leader>it **<ESC>i|
-      \ inoremap <buffer> <leader>bf ****<ESC>hi|
-      \ inoremap <buffer> <leader>li ``<ESC>i
-
 """""""""""""""""""""
 "  Shell, programs  "
 """""""""""""""""""""
