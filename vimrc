@@ -71,6 +71,8 @@ Plug 'eagletmt/neco-ghc'
 call plug#end()
 
 filetype plugin indent on
+syntax on
+
 let mapleader=","
 let g:programming_fts = [
       \ "c",
@@ -104,36 +106,6 @@ command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincm
 au BufRead,BufNewFile,Filetype yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
 au BufRead,BufNewFile,FileType tex command! WcLatex write !detex | wc -w
 " =============================================
-
-"TODO: Comments
-syntax on                          " enable syntax highlighting
-set fo=tcroql                      " wraps comments after hitting <enter>, 'o'
-                                   " or when typing text after textwidth
-set autochdir
-set encoding=utf-8
-set hlsearch                       " hightlight search
-set incsearch                      " search preview
-set ignorecase                     " search is not case sensitive
-set smartcase                      " smart search
-set showmatch                      " highlight brackets
-set history=50                     " 50 lines of command lines history
-set viminfo='20,\"50               " .viminfo file with 50 lines of registers
-set ruler                          " show the cursor position all the time
-set spelllang=fr                   " spellcheck language
-set ai                             " autoindenting
-set tw=120                         " text wraping
-set tabstop=4                      " tabulation
-set shiftwidth=4                   " tabulation
-set softtabstop=4                  " tabulation
-set expandtab                      " tabulation
-au BufRead,BufNewFile,FileType cmake,automake set noexpandtab
-set smarttab
-set backspace=2    " make backspace work like most other apps
-set cursorcolumn
-set number         " line numbers
-set relativenumber " relative numbers too
-set laststatus=2   " status bar always show
-set noshowmode
 
 """""""""""""""""""""""
 "  filetype settings  "
@@ -180,14 +152,6 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-
-" tmux will send xterm-style keys when its xterm-keys option is on
-if &term =~ '^screen'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
 
 " CUSTOM CONFIGURATION ==========
 source ~/.vim/abbreviations.vim
