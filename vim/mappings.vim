@@ -35,9 +35,9 @@ nnoremap <leader>yp :YaumlPdf<CR>
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
 
 " copy file name to clipboard
-nmap <silent> <leader>cs :let @+=expand("%")<CR>:echo @+
+nmap <leader>cs :let @+=expand("%")<CR>:echo @+<CR>
 " copy absolute file name to clipboard
-nmap <silent> <leader>cl :let @+=expand("%:p")<CR>:echo @+
+nmap <leader>cl :let @+=expand("%:p")<CR>:echo @+<CR>
 
 " quickly open file using xdg-open
 nnoremap <leader>o :!xdg-open &<left>
