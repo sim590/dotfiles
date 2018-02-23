@@ -1,3 +1,7 @@
+if &filetype !~# "html"
+  finish
+endif
+
 set textwidth=120
 set tabstop=4
 set shiftwidth=4
