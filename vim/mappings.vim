@@ -90,7 +90,7 @@ nnoremap <leader>vrc :vsplit $MYVIMRC<CR><C-W>L
 "  Spelling  "
 """"""""""""""
 " fix last spelling error
-nnoremap <silent> <leader>spl :call SpellFixLast()<CR>
+nnoremap <silent> <leader>spl m"[s1z=`"
 inoremap <leader>spl <ESC>:call SpellFixLast()<CR>a
 " set spell option cmdline text
 nnoremap <leader>sl :set spelllang=

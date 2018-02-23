@@ -1,3 +1,12 @@
+" Start a urxvt in the current working directory
+command! Shell !urxvt -cd "$PWD" &
+" Diff between the file and it's swap file
+command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
+
+"""""""""""""""""""""""
+"  DuckDuckGo search  "
+"""""""""""""""""""""""
+
 fun! s:DuckDuckgoSearch(q_args)
   let l:_args = split(a:q_args)
   let l:index = match(l:_args[0], '-[a-zA-Z]\+')
@@ -14,17 +23,6 @@ fun! s:DuckDuckgoSearch(q_args)
         \ .(l:_option == '' ? '' : ' ').l:expression.'"')
 endf
 command! -nargs=+ DuckDuckgoSearch call <sid>DuckDuckgoSearch(<q-args>)
-
-"Fix the last spelling error
-function! SpellFixLast()
-    normal! m"[s1z=`"
-endfunction!
-
-fun! s:StringBaseConvert(str, a, b)
-    "TODO: prendre le string en dessous du curseur.
-    "TODO: parse '0x' prefix string.
-    return system('echo "obase='.a:b.'; $(('.a:a.'#'.a:str.'))" | bc')
-endf
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  switch vim colorscheme without breaking colors            "
@@ -91,7 +89,7 @@ endfunction
 command! -nargs=1 -complete=color MyColorscheme call <SID>AccurateColorscheme(<q-args>)
 
 """""""""""""""""""""""""""""""""""""""""
-"  HANDLE UNWANTED CHARACTERS IN FILE   "
+"  Handle unwanted characters in file   "
 """""""""""""""""""""""""""""""""""""""""
 
 " replace false spaces by spaces
@@ -102,6 +100,15 @@ fun! s:RemoveFalseSpaces()
 endf
 au! BufWritePre * call s:RemoveFalseSpaces()
 
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+"""""""""""""""""""""""""""""""""
+"  Strip Trailing white spaces  "
+"""""""""""""""""""""""""""""""""
 " get rid of trailing white spaces
 fun! s:StripTrailingWhiteSpaces()
   let l:pos = getpos('.')
@@ -109,5 +116,13 @@ fun! s:StripTrailingWhiteSpaces()
   call setpos('.', l:pos)
 endf
 command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
-exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre * call s:StripTrailingWhiteSpaces()"
+
+augroup StrippingWhiteSpaces
+  autocmd!
+  exec "au FileType ".join(g:syntaxed_fts, ',')
+        \ ." au BufWritePre * call s:StripTrailingWhiteSpaces()"
+augroup END
+
+
+" vim:set et sw=2 ts=2 tw=100:
 

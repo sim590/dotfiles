@@ -99,26 +99,10 @@ let g:syntaxed_fts = g:programming_fts + [
       \ "make"
       \ ]
 
-" COMMANDS ====================================
-" Start a urxvt in the current working directory
-command! Shell !urxvt -cd "$PWD" &
-command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
-" =============================================
-
-" TODO:
-" save and recover folding areas
-"autocmd BufWrite * mkview
-"autocmd BufRead * silent loadview
-
-" Return to last edit position when opening files
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-" CUSTOM CONFIGURATION ==========
+" OTHER FILES ===================
+source ~/.vim/options.vim
 source ~/.vim/abbreviations.vim
-source ~/.vim/functions.vim
+source ~/.vim/utilities.vim
 source ~/.vim/mappings.vim
 " ===============================
 
