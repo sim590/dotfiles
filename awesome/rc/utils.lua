@@ -18,7 +18,7 @@ local my_theme   = "powerarrow-darker"
 -- This is used later as the default terminal and editor to run.
 local terminal     = "urxvt"
 local terminal_cmd = terminal .. " -e "
-local editor       = os.getenv("EDITOR") or "nvim"
+local editor       = os.getenv("EDITOR") or "vim"
 local editor_cmd   = terminal_cmd .. editor
 -- TODO: use pass for safely getting password
 local mpd_remote   = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
