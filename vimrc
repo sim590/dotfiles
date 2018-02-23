@@ -103,7 +103,6 @@ command! Shell !urxvt -cd "$PWD" &
 command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
 au BufRead,BufNewFile,Filetype yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
 au BufRead,BufNewFile,FileType tex command! WcLatex write !detex | wc -w
-nnoremap <leader>yp :YaumlPdf<CR>
 " =============================================
 
 "TODO: Comments
