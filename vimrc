@@ -103,44 +103,7 @@ let g:syntaxed_fts = g:programming_fts + [
 " Start a urxvt in the current working directory
 command! Shell !urxvt -cd "$PWD" &
 command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
-au BufRead,BufNewFile,Filetype yaml command! YaumlPdf !yauml -Tpdf -o '%:p:t:r'.pdf '%:p:t'
-au BufRead,BufNewFile,FileType tex command! WcLatex write !detex | wc -w
 " =============================================
-
-"""""""""""""""""""""""
-"  filetype settings  "
-"""""""""""""""""""""""
-" LaTeX
-au BufRead,BufNewFile,FileType *.tex,*.tikz,*.sagetex
-      \ set filetype=tex|
-      \ set tw=100|
-      \ set ts=2|
-      \ set sw=2
-" pandoc
-au BufRead,BufNewFile,FileType vim,pandoc
-      \ set tw=100|
-      \ set ts=2|
-      \ set sw=2
-" python
-au BufRead,BufNewFile *.sage set filetype=python
-au BufRead,BufNewFile *.pxd,*.pyx,*.spyx
-      \ set filetype=python |
-      \ set syntax=pyrex
-" html
-au BufRead,BufRead *.mustache set filetype=html
-
-au BufRead,BufNewFile,FileType gitcommit,mail,*.yaml,*.yml,*.md set tw=80
-
-" code
-exec "au BufRead,BufNewFile,FileType ".join(g:programming_fts, ',')." ".
-            \ "set tw=120|"
-            \ "set ts=4|"
-            \ "set sw=4"
-" others
-au BufRead,BufNewFile ~/.mutt/* set filetype=muttrc
-
-" syntaxed filetypes
-exec "au BufRead,BufNewFile,Filetype ".join(g:syntaxed_fts, ',')." set si"
 
 " TODO:
 " save and recover folding areas
