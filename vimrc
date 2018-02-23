@@ -55,7 +55,7 @@ Plug 'glts/vim-magnum'
 Plug 'vim-auto-save', 'noautocmd'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-if ! has('gui_running')
+if has('nvim')
   Plug 'floobits/floobits-neovim'
 endif
 Plug 'jamessan/vim-gnupg'
