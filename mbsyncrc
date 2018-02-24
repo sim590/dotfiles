@@ -1,0 +1,123 @@
+###############################
+#  sim.desaulniers@gmail.com  #
+###############################
+IMAPAccount gmail-sim-desaulniers
+Host imap.gmail.com
+User sim.desaulniers@gmail.com
+PassCmd "pass personnel/web/google.com.sim.desaulniers"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-sim-desaulniers-remote
+Account gmail-sim-desaulniers
+
+MaildirStore gmail-sim-desaulniers-local
+# Path must exist
+Path ~/.mail/gmail.sim.desaulniers/
+Inbox ~/.mail/gmail.sim.desaulniers/INBOX
+
+Channel gmail-sim-desaulniers-inbox
+Master :gmail-sim-desaulniers-remote:
+Slave :gmail-sim-desaulniers-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-sim-desaulniers-sent
+Master :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
+Slave :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-sim-desaulniers-spam
+Master :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
+Slave :gmail-sim-desaulniers-local:"[Gmail].Spam"
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-sim-desaulniers-drafts
+Master :gmail-sim-desaulniers-remote:"[Gmail]/Drafts"
+Slave :gmail-sim-desaulniers-local:"[Gmail].Drafts"
+Create Both
+Expunge Both
+SyncState *
+
+Group gmail-sim-desaulniers
+Channel gmail-sim-desaulniers-inbox
+Channel gmail-sim-desaulniers-sent
+Channel gmail-sim-desaulniers-spam
+Channel gmail-sim-desaulniers-drafts
+
+########################################
+#  desaulniers.simon@courrier.uqam.ca  #
+########################################
+IMAPAccount courrier-uqam-desaulniers-simon
+Host outlook.office365.com
+User ag991016@ens.uqam.ca
+PassCmd "pass personnel/web/courriel.uqam.ca"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore courrier-uqam-desaulniers-simon-remote
+Account courrier-uqam-desaulniers-simon
+
+MaildirStore courrier-uqam-desaulniers-simon-local
+# Path must exist
+Path ~/.mail/courrier.uqam.desaulniers.simon/
+Inbox ~/.mail/courrier.uqam.desaulniers.simon/INBOX
+
+Channel courrier-uqam-desaulniers-simon-inbox
+Master :courrier-uqam-desaulniers-simon-remote:
+Slave :courrier-uqam-desaulniers-simon-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel courrier-uqam-desaulniers-simon-sent
+Master :courrier-uqam-desaulniers-simon-remote:"Sent"
+Slave :courrier-uqam-desaulniers-simon-local:"Sent"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel courrier-uqam-desaulniers-simon-spam
+Master :courrier-uqam-desaulniers-simon-remote:"Spam"
+Slave :courrier-uqam-desaulniers-simon-local:"Spam"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel courrier-uqam-desaulniers-simon-indesirable
+Master :courrier-uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
+Slave :courrier-uqam-desaulniers-simon-local:"Courrier Indesirable"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel courrier-uqam-desaulniers-simon-drafts
+Master :courrier-uqam-desaulniers-simon-remote:"Drafts"
+Slave :courrier-uqam-desaulniers-simon-local:"Drafts"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Group courrier-uqam-desaulniers-simon
+Channel courrier-uqam-desaulniers-simon-inbox
+Channel courrier-uqam-desaulniers-simon-sent
+Channel courrier-uqam-desaulniers-simon-spam
+Channel courrier-uqam-desaulniers-simon-indesirable
+Channel courrier-uqam-desaulniers-simon-drafts
+
+# vim:set et sw=4 ts=4 tw=120:
+
