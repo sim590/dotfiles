@@ -1,6 +1,6 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets
 
-DOTFILES = gitconfig vimrc Xresources tigrc Xmodmap mbsyncrc
+DOTFILES = gitconfig vimrc Xresources tigrc Xmodmap mbsyncrc zshrc
 DEST_LINKS = $(addprefix $(HOME)/.,$(DOTFILES))
 
 .PHONY: all links subdirs clean
@@ -10,6 +10,10 @@ links: $(DEST_LINKS) subdirs
 
 $(HOME)/.%: %
 	ln -s $(CURDIR)/$< $@ ; true
+
+zshrc:
+	git submodule update --init
+	ln grml/etc/zsh/zshrc
 
 subdirs:
 	@for dir in $(SUBDIRS); do \

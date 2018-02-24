@@ -1,3 +1,6 @@
 *.swo
 *.swp
 *.orig
+
+# hard links
+zshrc

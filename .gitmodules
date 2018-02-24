@@ -16,3 +16,6 @@
 [submodule "awesome/amh"]
 	path = awesome/amh
 	url = https://github.com/sim590/amh
+[submodule "grml"]
+	path = grml
+	url = https://github.com/grml/grml-etc-core
