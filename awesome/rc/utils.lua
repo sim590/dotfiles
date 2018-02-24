@@ -20,8 +20,7 @@ local terminal     = "urxvt"
 local terminal_cmd = terminal .. " -e "
 local editor       = os.getenv("EDITOR") or "vim"
 local editor_cmd   = terminal_cmd .. editor
--- TODO: use pass for safely getting password
-local mpd_remote   = "env MPD_HOST=q1w2e3r4@/home/simon/.mpd/socket mpc"
+local mpd_remote   = "env MPD_HOST=/home/simon/.mpd/socket mpc"
 
 -- applications
 local browser      = "qutebrowser"

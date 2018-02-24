@@ -1,14 +1,18 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets
 
-DOTFILES = gitconfig vimrc Xresources tigrc Xmodmap mbsyncrc zshrc
-DEST_LINKS = $(addprefix $(HOME)/.,$(DOTFILES))
+DOTFILES     = gitconfig vimrc Xresources tigrc Xmodmap mbsyncrc zshrc
+CONFIG_PATH  = $(HOME)/.config
+DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
 
 .PHONY: all links subdirs clean
 all: links subdirs
 
-links: $(DEST_LINKS) subdirs
+links: $(DEST_LINKS) $(CONFIG_PATH)/mpd/mpd.conf subdirs
 
 $(HOME)/.%: %
+	ln -s $(CURDIR)/$< $@ ; true
+
+$(CONFIG_PATH)/mpd/mpd.conf: mpd.conf
 	ln -s $(CURDIR)/$< $@ ; true
 
 zshrc:
