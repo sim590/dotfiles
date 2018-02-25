@@ -1,3 +1,4 @@
+let g:vim_markdown_no_default_key_mappings = 1
 
 au BufRead,BufNewFile,Filetype markdown
             \ nnoremap <buffer> <silent> [h :HeaderDecrease<CR>|
