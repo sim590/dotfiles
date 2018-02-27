@@ -4,7 +4,7 @@
 IMAPAccount gmail-sim-desaulniers
 Host imap.gmail.com
 User sim.desaulniers@gmail.com
-PassCmd "pass personnel/web/google.com.sim.desaulniers"
+PassCmd "gpg -q --decrypt ~/.mail/gmail.sim.desaulniers/pw.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -62,7 +62,7 @@ Channel gmail-sim-desaulniers-drafts
 IMAPAccount courrier-uqam-desaulniers-simon
 Host outlook.office365.com
 User ag991016@ens.uqam.ca
-PassCmd "pass personnel/web/courriel.uqam.ca"
+PassCmd "gpg -q --decrypt ~/.mail/courrier.uqam.desaulniers.simon/pw.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
