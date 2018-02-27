@@ -130,7 +130,8 @@ fun! AppendModeline()
   let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
         \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-  call append(line("$"), l:modeline)
+  " also append a newline before and after the modeline
+  call append(line("$"), ['', l:modeline, ''])
 endfunction
 
 " vim:set et sw=2 ts=2 tw=100:
