@@ -23,6 +23,7 @@ set number
 set relativenumber
 set laststatus=2
 set noshowmode
+set modeline
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
