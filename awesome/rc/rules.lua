@@ -27,6 +27,7 @@ awful.rules.rules = {
             "Hearthstone.exe",
         },
         class = {
+            "animate-im6.q16", "Animate-im6.q16",
             "Godot_ProjectList", "Godot", "Godot_Engine",
             "synergy", "Synergy",
             "screenkey", "Screenkey",
