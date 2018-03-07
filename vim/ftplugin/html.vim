@@ -1,4 +1,4 @@
-if &filetype !~# "html"
+if &filetype !~# "^html"
   finish
 endif
 
