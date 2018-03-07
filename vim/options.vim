@@ -24,6 +24,7 @@ set relativenumber
 set laststatus=2
 set noshowmode
 set modeline
+set foldlevelstart=2
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
