@@ -13,14 +13,15 @@ dirs:
 		$(DEST_DIR) \
 		$(DEST_DIR)/autoload
 
-$(DEST_DIR)/%: %
-	ln -s $(CURDIR)/$< $@ ; true
-
-$(VIMPLUG_DEST_LINK): vim-plug/plug.vim
-	ln -s $(CURDIR)/$< $@ ; true
+define MAKE_LINKS
+$(1): $(2)
+	ln -s $$(CURDIR)/$$< $$@ ; true
+endef
+$(eval $(call MAKE_LINKS,$(DEST_DIR)/%, %))
+$(eval $(call MAKE_LINKS,$(DEST_DIR)/autoload/%,vim-plug/%))
 
 clean:
-	rm -irf $(DEST_LINKS)
+	rm -irf $(DEST_LINKS) $(VIMPLUG_DEST_LINK)
 
 # vim:set noet sts=0 sw=2 ts=2 tw=80:
 

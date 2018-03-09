@@ -9,11 +9,12 @@ all: links subdirs
 
 links: $(DEST_LINKS) $(CONFIG_PATH)/mpd/mpd.conf subdirs
 
-$(HOME)/.%: %
-	ln -s $(CURDIR)/$< $@ ; true
-
-$(CONFIG_PATH)/mpd/mpd.conf: mpd.conf
-	ln -s $(CURDIR)/$< $@ ; true
+define MAKE_LINKS
+$(1): $(2)
+	ln -s $$(CURDIR)/$$< $$@ ; true
+endef
+$(eval $(call MAKE_LINKS,$(HOME)/.%, %))
+$(eval $(call MAKE_LINKS,$(CONFIG_PATH)/mpd/%,%))
 
 zshrc:
 	git submodule update --init

@@ -15,11 +15,11 @@ dirs:
 	@mkdir -p $(DEST_DIR)
 
 define MAKE_LINKS
-$(1)/%: $(2)%
+$(1): $(2)
 	ln -s $$(CURDIR)/$$< $$@ ; true
 endef
-$(eval $(call MAKE_LINKS,plugins,devicons/))
-$(eval $(call MAKE_LINKS,$(DEST_DIR)))
+$(eval $(call MAKE_LINKS,plugins/%,devicons/%))
+$(eval $(call MAKE_LINKS,$(DEST_DIR)/%))
 
 clean:
 	rm -irf $(DEST_LINKS) $(DEVICONS_LINKS)
