@@ -1,1 +1,1 @@
-au BufRead,BufRead *.mustache set filetype=html
+au BufNewFile,BufRead *.mustache set filetype=html
