@@ -31,7 +31,8 @@ vicious.register(
 -- TODO: check if displayed info is consistent with multiple batteries
 widgets.baticon = wibox.widget.imagebox(beautiful.widget_battery)
 widgets.batwidget = lain.widgets.bat({
-    settings = function()
+    ac        = "AC",
+    settings  = function()
         if bat_now.status == "Charging" then
             widgets.baticon:set_image(beautiful.widget_ac)
         else -- Discharging
