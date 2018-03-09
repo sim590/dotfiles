@@ -4,3 +4,5 @@
 
 # hard links
 zshrc
+
+*.pyo
