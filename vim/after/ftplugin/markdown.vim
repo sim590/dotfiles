@@ -1,6 +1,6 @@
-set matchpairs+=<:>
-set commentstring=<!--%s-->
-set comments=s:<!--,m:\ \ \ \ ,e:-->
+setlocal matchpairs+=<:>
+setlocal commentstring=<!--%s-->
+setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
 
 nmap <buffer> gx <Plug>Markdown_OpenUrlUnderCursor
 
