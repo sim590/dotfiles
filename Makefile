@@ -18,7 +18,7 @@ $(eval $(call MAKE_LINKS,$(CONFIG_PATH)/mpd/%,%))
 
 zshrc:
 	git submodule update --init
-	ln grml/etc/zsh/zshrc
+	ln -s grml/etc/zsh/zshrc
 
 subdirs:
 	@for dir in $(SUBDIRS); do \
