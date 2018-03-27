@@ -49,6 +49,16 @@ globalkeys = awful.util.table.join(
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
     awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 15") end),
     awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 15") end),
+    awful.key({  "Shift"  }, "XF86MonBrightnessUp", function ()
+        local c = "light -A 15"
+        awful.spawn(c)
+        amh.spawn(c, nil, false)
+    end),
+    awful.key({  "Shift"  }, "XF86MonBrightnessDown", function ()
+        local c = "light -U 15"
+        awful.spawn(c)
+        amh.spawn(c, nil, false)
+    end),
     awful.key({	modkey, "Shift" }, "s", function ()
         if not utils.pgrep(utils.redshift) then
             awful.spawn(utils.redshift)
