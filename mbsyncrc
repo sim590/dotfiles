@@ -92,14 +92,6 @@ Expunge Both
 SyncState *
 MaxMessages 1000
 
-Channel courrier-uqam-desaulniers-simon-spam
-Master :courrier-uqam-desaulniers-simon-remote:"Spam"
-Slave :courrier-uqam-desaulniers-simon-local:"Spam"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
 Channel courrier-uqam-desaulniers-simon-indesirable
 Master :courrier-uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
 Slave :courrier-uqam-desaulniers-simon-local:"Courrier Indesirable"
@@ -119,7 +111,6 @@ MaxMessages 1000
 Group courrier-uqam-desaulniers-simon
 Channel courrier-uqam-desaulniers-simon-inbox
 Channel courrier-uqam-desaulniers-simon-sent
-Channel courrier-uqam-desaulniers-simon-spam
 Channel courrier-uqam-desaulniers-simon-indesirable
 Channel courrier-uqam-desaulniers-simon-drafts
 
