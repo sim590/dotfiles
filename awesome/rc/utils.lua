@@ -191,6 +191,7 @@ return {
     i3lockfancy         = i3lockfancy,
     icon_exec           = icon_exec,
     icon_dir            = icon_dir,
+    modkey              = modkey,
     -- functions
     powerset            = powerset,
     async_dummy_cb      = async_dummy_cb,
