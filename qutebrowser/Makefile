@@ -1,4 +1,4 @@
-TARGETS    = config.py
+TARGETS    = config.py password_fill_rc
 DEST       = $(HOME)/.config/qutebrowser/
 DEST_LINKS = $(addprefix $(DEST)/,$(TARGETS))
 
