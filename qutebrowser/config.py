@@ -50,10 +50,13 @@ config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
 config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hint-url}')
 ## unbinding for preventing shadowing ;Yd and ;Ym
 config.unbind(';Y')
-config.bind('Yd',  'spawn youtube-dl {url}')
-config.bind(';Yd', 'hint links spawn youtube-dl {hint-url}')
-config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}')
-config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}')
+dld_msg = ';; message-info "Downloading %s from %s..."'
+config.bind('Yd',  'spawn youtube-dl {url}'+ dld_msg % ('video','{url}'))
+config.bind(';Yd', 'hint links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
+config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
+                   + dld_msg % ('audio','{hint}'))
+config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
+                   + dld_msg % ('audio','{hint-url}'))
 # start/stop totally private browsing
 config.bind('gp',  'spawn --userscript ~/bin/qutebrowser_bin/totally private')
 config.bind('gP',  'spawn --userscript ~/bin/qutebrowser_bin/totally public')
