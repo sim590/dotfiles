@@ -74,6 +74,7 @@ let g:programming_fts = [
       \ "python",
       \ "pyrex",
       \ "haskell",
+      \ "prolog",
       \ "lua",
       \ "php",
       \ "js",
