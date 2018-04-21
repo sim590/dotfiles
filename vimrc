@@ -127,7 +127,8 @@ let s:configs = [
       \ "pandoc.vim",
       \ "switch.vim",
       \ "neco-ghc.vim",
-      \ "syntastic.vim"
+      \ "syntastic.vim",
+      \ "lightline.vim"
       \ ]
 
 for s:plugin in s:configs
