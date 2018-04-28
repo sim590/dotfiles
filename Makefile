@@ -8,7 +8,8 @@ DOTFILES = gitconfig\
 					 mbsyncrc\
 					 zshrc\
 					 config/mpd/mpd.conf
-DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES))
+BIN_FILES =
+DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))
 
 .PHONY: all links subdirs clean
 all: links subdirs
@@ -20,6 +21,7 @@ $(1): $(2)
 	ln -s $$(CURDIR)/$$< $$@ ; true
 endef
 $(eval $(call MAKE_LINKS,$(HOME)/.%, %))
+$(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
 zshrc:
 	git submodule update --init
