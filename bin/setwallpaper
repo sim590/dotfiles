@@ -1,0 +1,38 @@
+#!/bin/bash
+#----------------------------------------------------------
+# File: setwallpaper    Author(s): Simon Désaulniers
+# Date: 2016-09-24
+#----------------------------------------------------------
+# This program creates a files
+# /usr/share/$username/background* which are used to
+# configure fehbg. Two benefits from doing this:
+# 1. Other applications can have access to my background
+#    without having access to my home.
+# 2. Other applications can be easily in sync with my
+#    desktop background. For e.g.: lightdm can use the same
+#    background I have for my desktop.
+#----------------------------------------------------------
+
+# TODO gérer les paths qui ne sont pas contenues sous $PWD.
+
+base_file_name="${1##*/}"
+src_img=$1
+# src_img=$(find "$PWD" -maxdepth 1 -name "$base_file_name")
+img_ext=$(echo ${base_file_name##*.} | tr '[:upper:]' '[:lower:]')
+
+# dest_dir=/usr/share/backgrounds/$username
+dest_dir=$HOME/Images/arrière-plans/actuel
+dest_img=${dest_dir}/actuel."${img_ext}"
+dest_link=${dest_dir}/actuel
+
+mkdir -p $dest_dir
+rm -rf "$dest_dir/actuel.*"
+ln -f "${src_img}" "$dest_img"
+ln -fs "$dest_img" $dest_link
+
+# update user's fehbg config
+echo "feh --bg-fill $dest_img" >${HOME}/.fehbg
+eval $(< ${HOME}/.fehbg)
+
+# vim:set et sw=4 ts=4 tw=120:
+

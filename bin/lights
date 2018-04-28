@@ -1,0 +1,19 @@
+#!/bin/bash
+#----------------------------------------------------------
+# File: lights    Author(s): Simon Désaulniers
+# Date: 2015-04-16
+#----------------------------------------------------------
+# Script that lets easily in one command change screen
+# saver preferences
+#----------------------------------------------------------
+
+if [[ $1 == "on" ]]; then
+    xset s off
+    xset -dpms
+elif [[ $1 == "off" ]]; then
+    xset s default
+    xset +dpms
+else
+    xset q |grep 'DPMS'
+    xset q | grep -A 2 'Screen Saver:'
+fi

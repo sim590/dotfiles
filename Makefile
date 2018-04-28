@@ -8,7 +8,11 @@ DOTFILES = gitconfig\
 					 mbsyncrc\
 					 zshrc\
 					 config/mpd/mpd.conf
-BIN_FILES =
+BIN_FILES = bin/lights\
+						bin/pinentry-rofi.rb\
+						bin/set_keyboard\
+						bin/setwallpaper\
+						bin/wmake
 DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))
 
 .PHONY: all links subdirs clean

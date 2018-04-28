@@ -1,0 +1,10 @@
+#!/bin/bash
+
+layout=ca
+variant=multix
+
+setxkbmap -display $DISPLAY -option ""
+setxkbmap -display $DISPLAY -option ctrl:nocaps -variant $variant $layout
+xmodmap -display $DISPLAY ${HOME}/.Xmodmap
+
+notify-send "Keyboard configuration" "set to $(setxkbmap -query | grep layout | gawk '{print $2}')-$(setxkbmap -query | grep variant | gawk '{print $2}')"

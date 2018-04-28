@@ -1,0 +1,66 @@
+#!/bin/bash
+
+program_name="${0##*/}" options='p:t:h' loptions='file-pattern:,timeout:,help'
+getopt_out=$(getopt --name $program_name --options $options --longoptions $loptions -- "$@")
+if (( $? != 0 )); then exit 1; fi
+
+#sets the positionnal parameters with getopt's output
+eval set -- "$getopt_out"
+
+# default args
+pattern_='*'
+timeout_=0     # time after which the make command should be killed. In that
+               # case, there was a fatal error which `yes` can't recover from.
+while [[ $1 != "--" ]]; do
+  case "$1" in
+    -t|--timeout)
+      timeout_="$2"
+      shift 2
+      ;;
+    -p|--file-pattern)
+      pattern_="$2"
+      shift 2
+      ;;
+    -h|--help)
+      cat 1>&2 <<EOF
+$program_name -- call make on file write events
+
+Waits for write events on disk to call a Makefile.
+
+SYNOPSYS
+    $program_name [OPTIONS] rule
+
+OPTIONS
+
+    -h|--help
+        Shows this help text.
+    -p|--file-pattern <pattern>
+        File pattern to use to reduce the files to consider triggering a call to
+        make.
+    -t|--timeout <seconds>
+        Wait <seconds> seconds bofre killing the make command (in case of desperate error).
+EOF
+            exit 0
+  esac
+done
+# shift away from the last optional parameter (--)
+shift
+
+rule_=$1
+targets=$(find . -not -path '*/\.*' -name "$pattern_")
+
+PDFVIEWER=mupdf # my pdf viewer
+
+while read f; do
+  updated_file=${f##*/}
+  targets_="${targets/${updated_file}/}"
+  if [[ "${targets[@]}" == "${targets_[@]}" ]]; then
+    continue
+  fi
+  [ -f Makefile ] || [ -f makefile ] && yes q | timeout ${timeout_} make $rule_ || continue
+  pkill -f -HUP ${PDFVIEWER}
+  sleep 0.5
+done < <(inotifywait -qmre close_write . --format "%w%f")
+
+# vim:set et sw=2 ts=2 tw=120:
+
