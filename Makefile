@@ -7,6 +7,7 @@ DOTFILES = gitconfig\
 					 Xmodmap\
 					 mbsyncrc\
 					 zshrc\
+					 gnupg/gpg-agent.conf\
 					 config/mpd/mpd.conf
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.rb\
