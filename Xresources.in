@@ -84,7 +84,7 @@ URxvt*color14: #4FF0EE
 ! URxvt*borderColor: colour
 
 ! Select the fonts to be used. This is a comma separated list of font names that are checked in order when
-URxvt*font: xft:DejaVuSansMono NF:size=12:antialias=true:hinting=true
+URxvt*font: xft:DejaVuSansMono NF:size=9:antialias=true:hinting=true
 URxvt.letterSpace: -1
 
 ! URxvt*boldFont: fontlist
