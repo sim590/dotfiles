@@ -1,10 +1,16 @@
 #!/bin/bash
 
-layout=ca
-variant=multix
+export DISPLAY=":0.0" XAUTHORITY=$HOME/.Xauthority
+layout_=ca
+variant_=multix
 
 setxkbmap -display $DISPLAY -option ""
-setxkbmap -display $DISPLAY -option ctrl:nocaps -variant $variant $layout
-xmodmap -display $DISPLAY ${HOME}/.Xmodmap
+setxkbmap -display $DISPLAY -option ctrl:nocaps -variant $variant_ $layout_
+xmodmap   -display $DISPLAY ${HOME}/.Xmodmap
 
-notify-send "Keyboard configuration" "set to $(setxkbmap -query | grep layout | gawk '{print $2}')-$(setxkbmap -query | grep variant | gawk '{print $2}')"
+l_="$(setxkbmap -query | grep layout | gawk '{print $2}')"
+v_="$(setxkbmap -query | grep variant | gawk '{print $2}')"
+notify-send "Keyboard configuration" "set to $l_-$v_"
+
+# vim: set ts=2 sw=2 tw=120 et :
+
