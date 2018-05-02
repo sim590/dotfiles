@@ -12,6 +12,7 @@ DOTFILES = gitconfig\
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.rb\
 						bin/setkeyboard\
+						bin/udev-setkeyboard\
 						bin/setwallpaper\
 						bin/wmake
 DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))

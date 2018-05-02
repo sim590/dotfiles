@@ -1,0 +1,16 @@
+#!/bin/bash
+
+lockfile_=/tmp/setkeyboard.lock
+
+setkeyboard() { $HOME/bin/setkeyboard; }
+unlock() { rm -f ${lockfile_}; }
+
+if [[ "$1" == "unlock" ]]; then
+  unlock
+else
+  lockfile -r 0 ${lockfile_} || exit 1
+  setkeyboard
+fi
+
+# vim: set ts=2 sw=2 tw=120 et :
+
