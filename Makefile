@@ -11,7 +11,7 @@ DOTFILES = gitconfig\
 					 config/mpd/mpd.conf
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.rb\
-						bin/set_keyboard\
+						bin/setkeyboard\
 						bin/setwallpaper\
 						bin/wmake
 DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))
