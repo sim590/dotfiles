@@ -67,12 +67,12 @@ globalkeys = awful.util.table.join(
         end
     end),
     awful.key({utils.modkey,	          }, "F1", function ()
-			-- go around the bug:
-			-- https://github.com/guotsuan/awesome-revelation/issues/29
-			if screen:count() == 1 then
-				revelation()
-			end
-		end),
+        -- go around the bug:
+        -- https://github.com/guotsuan/awesome-revelation/issues/29
+        if screen:count() == 1 then
+            revelation()
+        end
+    end),
     -- {{ Window control }}
     ---------------------------------------------------------------------
     --  Makes window floating with reasonable 700x475 pixels geometry  --
