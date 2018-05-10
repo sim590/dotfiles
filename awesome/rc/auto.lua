@@ -2,7 +2,7 @@ local awful = require("awful")
 local utils = require("rc.utils")
 
 -- {{{ Autostart applications
-utils.run_once("/home/simon/bin/set_keyboard")
+utils.run_once("/home/simon/bin/setkeyboard")
 utils.run_once("nm-applet")
 utils.run_once("system-config-printer-applet")
 utils.run_once("urxvtd")
