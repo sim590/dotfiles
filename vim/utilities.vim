@@ -87,6 +87,8 @@ function! s:AccurateColorscheme(colo_name)
 endfunction
 
 command! -nargs=1 -complete=color MyColorscheme call <SID>AccurateColorscheme(<q-args>)
+command! Bright MyColorscheme plasticine
+command! Dark MyColorscheme wombat256mod
 
 """""""""""""""""""""""""""""""""""""""""
 "  Handle unwanted characters in file   "
