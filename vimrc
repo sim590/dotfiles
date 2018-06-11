@@ -128,7 +128,8 @@ let s:configs = [
       \ "switch.vim",
       \ "neco-ghc.vim",
       \ "syntastic.vim",
-      \ "lightline.vim"
+      \ "lightline.vim",
+      \ "tabular.vim"
       \ ]
 
 for s:plugin in s:configs
