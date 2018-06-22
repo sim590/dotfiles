@@ -146,7 +146,7 @@ local function replicate_layout(tagid)
 end
 
 local function start_mail_calendar()
-    awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
+    awful.spawn("firefox" .. " " .. "https://keep.google.com/")
     gears.timer.start_new(1, function ()
         start_mail()
         awful.spawn(browser .. " " .. "':session-load agenda'")
