@@ -149,11 +149,7 @@ local function start_mail_calendar()
     awful.spawn(browser .. " " .. "--target window" .. " " .. "https://keep.google.com/")
     gears.timer.start_new(1, function ()
         start_mail()
-        -- starting calendar
-        awful.spawn(browser .. " " .. "--target window" .. " " .. "https://calendar.google.com/")
-        gears.timer.start_new(0.3, function ()
-            awful.spawn(browser .. " " .. "--target tab" .. " " ..  "https://www.moodle2.uqam.ca/coursv3/my/")
-        end)
+        awful.spawn(browser .. " " .. "':session-load agenda'")
     end)
     sidemenu:set_sidemenu_style(sidemenu.mail_calendar_style)
 end
