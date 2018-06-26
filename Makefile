@@ -20,7 +20,10 @@ DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILE
 .PHONY: all links subdirs clean
 all: links subdirs
 
-links: $(DEST_LINKS)
+help: ## Prints help for targets with comments
+	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+links: $(DEST_LINKS) ## Produce all symlinks on system
 
 define MAKE_LINKS
 $(1): $(2)

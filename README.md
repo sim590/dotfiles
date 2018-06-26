@@ -11,9 +11,13 @@ git submodule update --init
 
 ## Install
 
-The Makefiles assist you in installing this configuration. *The installation process actually creates symlinks in relevant directories for each program*. **Those symlinks replace your configuration files in your system.**
+The Makefiles assist you in installing this configuration. *The installation process actually creates symlinks in relevant directories for each program*.  **Those symlinks replace your configuration files in your system.** For the list of available rules that are expected to be called, you may use the following:
 
-Installing, you simply do:
+```
+$ make help
+```
+
+For installing, you simply do:
 
 ```sh
 make
