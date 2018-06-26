@@ -20,7 +20,7 @@ DEST_LINKS  = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILE
 .PHONY: all links subdirs clean
 all: links subdirs
 
-links: $(DEST_LINKS) subdirs
+links: $(DEST_LINKS)
 
 define MAKE_LINKS
 $(1): $(2)
