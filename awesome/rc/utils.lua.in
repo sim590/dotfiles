@@ -20,7 +20,7 @@ local terminal     = "urxvt"
 local terminal_cmd = terminal .. " -e "
 local editor       = os.getenv("EDITOR") or "vim"
 local editor_cmd   = terminal_cmd .. editor
-local mpd_remote   = "env MPD_HOST=/home/simon/.mpd/socket mpc"
+local mpd_remote   = "env MPD_HOST=M4_MPD_ADDRESS mpc"
 
 -- applications
 local browser      = "qutebrowser"

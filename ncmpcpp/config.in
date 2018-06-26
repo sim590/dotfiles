@@ -25,7 +25,7 @@
 #
 ##### connection settings #####
 #
-mpd_host        = q1w2e3r4@/home/simon/.mpd/socket
+mpd_host        = M4_MPD_ADDRESS
 #
 #mpd_port = 6600
 #
