@@ -64,14 +64,14 @@ state_file			"~/.mpd/state"
 # initialization. This setting is disabled by default and MPD is run as the
 # current user.
 #
-#user				"simon"
+#user				"M4_USER"
 #
 # This setting specifies the group that MPD will run as. If not specified
 # primary group of user specified with "user" setting will be used (if set).
 # This is useful if MPD needs to be a member of group such as "audio" to
 # have permission to use sound card.
 #
-#group				"simon"
+#group				"M4_USER"
 #
 # This setting sets the address for the daemon to listen on. Careful attention
 # should be paid if this is assigned to anything other then the default, any.
