@@ -28,6 +28,9 @@ c.spellcheck.languages = ["fr-FR", "en-CA"]
 #  KEY BINDINGS  #
 ##################
 
+mpv_1080p = "mpv --force-window --no-terminal --keep-open=yes --ytdl \
+                 --ytdl-format='ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9]+bestaudio/best'"
+
 # general
 config.bind('"', 'enter-mode set_mark')
 config.bind('0', 'scroll-to-perc -x 0')
@@ -45,7 +48,7 @@ config.bind('ss',  'session-save default')
 config.bind('ed',  'download-open')
 # videos (mpv, castnow, youtube-dl)
 config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/mpv')
-config.bind(';xv', 'hint links spawn mpv --force-window --no-terminal --keep-open=yes --ytdl {hint-url}')
+config.bind(';xv', "hint links spawn %s {hint-url}" % mpv_1080p)
 config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
 config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hint-url}')
 ## unbinding for preventing shadowing ;Yd and ;Ym
