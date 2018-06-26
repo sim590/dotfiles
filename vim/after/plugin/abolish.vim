@@ -4,3 +4,4 @@ if !exists(':Abolish')
 endif
 
 Abolish -cmdline psuh{,ed,ing,es} push{}
+Abolish -cmdline dasn dans
