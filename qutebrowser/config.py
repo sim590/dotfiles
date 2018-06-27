@@ -82,6 +82,9 @@ c.content.headers.accept_language = "fr-CA,fr-FR,fr"
                                          #  KEY BINDINGS  #
                                          ##################
 
+# Chains commands one after the other to a same key.
+bind_chained = lambda key, *commands: config.bind(key, ' ;; '.join(commands))
+
 # general
 config.bind('"', 'enter-mode set_mark')
 config.bind('0', 'scroll-to-perc -x 0')
