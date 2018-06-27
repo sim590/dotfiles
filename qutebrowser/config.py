@@ -115,8 +115,8 @@ config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
 config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
 # start/stop totally private browsing
-config.bind('gp',  'set content.proxy %s' % TOR_HOST)
-config.bind('gP',  'set content.proxy system')
+bind_chained('gp',  'set content.proxy %s' % TOR_HOST, 'message-info "Proxy set as %s"' % TOR_HOST)
+bind_chained('gP',  'set content.proxy system', 'message-info "Proxy set as system"')
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
 
