@@ -23,6 +23,7 @@ c.url.searchengines = {
 }
 
 c.spellcheck.languages = ["fr-FR", "en-CA"]
+c.content.headers.accept_language = "fr-CA,fr-FR,fr"
 
 ##################
 #  KEY BINDINGS  #
@@ -64,7 +65,7 @@ config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format m
 config.bind('gp',  'spawn --userscript ~/bin/qutebrowser_bin/totally private')
 config.bind('gP',  'spawn --userscript ~/bin/qutebrowser_bin/totally public')
 # password fill
-config.bind(';p',  'spawn --userscript ~/qutebrowser_bin/password_fill')
+config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
 
 # vim:set et sw=4 ts=4 tw=120:
 
