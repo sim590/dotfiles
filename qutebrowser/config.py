@@ -113,7 +113,7 @@ config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format m
                    + dld_msg % ('audio','{hint-url}'))
 # start/stop totally private browsing
 config.bind('gp',  'set content.proxy %s' % TOR_HOST)
-config.bind('gP',  'set content system')
+config.bind('gP',  'set content.proxy system')
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
 
