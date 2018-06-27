@@ -2,6 +2,11 @@
 #  MAIN CONFIGURATION  #
 ########################
 
+# TOR
+TOR_SOCKS_URL  = "socks://127.0.0.1"
+TOR_SOCKS_PORT = "9050"
+TOR_HOST = TOR_SOCKS_URL+":"+TOR_SOCKS_PORT
+
 c.session.default_name = "default"
 
 # search engines
@@ -62,8 +67,8 @@ config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
 config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
 # start/stop totally private browsing
-config.bind('gp',  'spawn --userscript ~/bin/qutebrowser_bin/totally private')
-config.bind('gP',  'spawn --userscript ~/bin/qutebrowser_bin/totally public')
+config.bind('gp',  'set content.proxy %s' % TOR_HOST)
+config.bind('gP',  'set content system')
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
 
