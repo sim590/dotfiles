@@ -82,16 +82,17 @@ let g:programming_fts = [
       \ "css",
       \ "cs",
       \ "java",
-      \ "sh"
-      \ ]
-let g:syntaxed_fts = g:programming_fts + [
+      \ "sh",
       \ "vim",
-      \ "tex",
-      \ "markdown",
-      \ "rst",
       \ "cmake",
       \ "make"
       \ ]
+let g:txtformating_fts = [
+      \ "tex",
+      \ "markdown",
+      \ "rst"
+      \ ]
+let g:syntaxed_fts = g:txtformating_fts + g:programming_fts
 
 " OTHER FILES ===================
 source ~/.vim/options.vim
