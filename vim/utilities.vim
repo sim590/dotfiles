@@ -100,7 +100,6 @@ fun! s:RemoveFalseSpaces()
   exec ":%s/\\%o240/ /ge"
   call setpos('.', l:pos)
 endf
-au! BufWritePre * call s:RemoveFalseSpaces()
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
@@ -121,8 +120,10 @@ command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
 
 augroup StrippingWhiteSpaces
   autocmd!
-  exec "au FileType ".join(g:syntaxed_fts, ',')
-        \ ." au BufWritePre * call s:StripTrailingWhiteSpaces()"
+  exec "au BufWritePre * "
+  exec "au FileType ".join(g:programming_fts, ',')." au BufWritePre * ".
+        \ "call s:RemoveFalseSpaces()|".
+        \ "call s:StripTrailingWhiteSpaces()"
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""
