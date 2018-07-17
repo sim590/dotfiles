@@ -120,9 +120,9 @@ command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
 
 augroup StrippingWhiteSpaces
   autocmd!
-  exec "au BufWritePre * "
-  exec "au FileType ".join(g:programming_fts, ',')." au BufWritePre * ".
-        \ "call s:RemoveFalseSpaces()|".
+  exec "au FileType ".join(g:programming_fts, ',').",tex "." au BufWritePre <buffer> ".
+        \ "call s:RemoveFalseSpaces()"
+  exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre <buffer> ".
         \ "call s:StripTrailingWhiteSpaces()"
 augroup END
 
