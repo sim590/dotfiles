@@ -113,7 +113,7 @@ dld_msg = ';; message-info "Downloading %s from %s..."'
 config.bind('Yd',  'spawn youtube-dl {url}'+ dld_msg % ('video','{url}'))
 config.bind(';Yd', 'hint links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
 config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
-                   + dld_msg % ('audio','{hint}'))
+                   + dld_msg % ('audio','{url}'))
 config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
 # start/stop totally private browsing
