@@ -47,7 +47,7 @@ done
 shift
 
 rule_=$1
-targets=$(find . -not -path '*/\.*' -name "$pattern_")
+targets=$(find . -not -path '*/\.*' -regex "$pattern_")
 
 PDFVIEWER=mupdf # my pdf viewer
 
