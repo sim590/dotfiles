@@ -47,11 +47,11 @@ done
 shift
 
 rule_=$1
-targets=$(find . -not -path '*/\.*' -regex "$pattern_")
 
 PDFVIEWER=mupdf # my pdf viewer
 
 while read f; do
+  targets=$(find . -not -path '*/\.*' -regex "$pattern_")
   updated_file=${f##*/}
   targets_="${targets/${updated_file}/}"
   if [[ "${targets[@]}" == "${targets_[@]}" ]]; then
