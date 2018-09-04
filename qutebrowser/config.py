@@ -95,7 +95,6 @@ config.bind('tt', 'set-cmd-text -s :tab-take')
 config.bind('tT', 'spawn --userscript ~/bin/qutebrowser_bin/qurlshare -g')
 config.unbind('<ctrl-q>', mode='normal')
 ## passthrough allow ctrl-v for pasting clipboard
-config.unbind('<ctrl-v>', mode='passthrough')
 config.bind('<ctrl-d>','leave-mode', mode='passthrough')
 config.bind(';iy', 'hint images yank')
 # sessions
