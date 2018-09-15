@@ -67,7 +67,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-let mapleader=","
+" mapleader is set to tabulation (<tab>)
+let mapleader="	"
 let g:programming_fts = [
       \ "c",
       \ "cpp",
