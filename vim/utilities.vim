@@ -130,8 +130,8 @@ augroup END
 "  Append modeline after last line in buffer   "
 """"""""""""""""""""""""""""""""""""""""""""""""
 fun! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = printf(" vim: set sts=%d ts=%d sw=%d tw=%d %set :",
+        \ &softtabstop, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   " also append a newline before and after the modeline
   call append(line("$"), ['', l:modeline, ''])
