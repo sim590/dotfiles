@@ -55,6 +55,7 @@ mpv_1080p = "mpv --force-window --no-terminal --keep-open=yes --ytdl \
                                       #  MAIN CONFIGURATION  #
                                       ########################
 
+c.auto_save.session = True
 c.session.default_name = "default"
 
 # search engines
