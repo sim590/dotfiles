@@ -61,7 +61,7 @@ endif
 Plug 'jamessan/vim-gnupg'
 Plug 'tomlion/vim-solidity'
 Plug 'eagletmt/neco-ghc'
-
+Plug 'lervag/vimtex'
 call plug#end()
 
 filetype plugin indent on
