@@ -100,6 +100,7 @@ config.bind('<ctrl-d>','leave-mode', mode='passthrough')
 config.bind(';iy', 'hint images yank')
 # sessions
 config.bind('sw',  'set-cmd-text -s :session-save --only-active-window')
+config.bind('sL',  'set-cmd-text -s :session-load')
 config.bind('ss',  'session-save default')
 # downloads
 config.bind('ed',  'download-open')
