@@ -27,6 +27,7 @@ awful.rules.rules = {
             "Hearthstone.exe",
         },
         class = {
+            "anbox",
             "blueman-manager", "Blueman-manager",
             "darktable", "Darktable",
             "libreoffice", "libreoffice-writer", "soffice", "Soffice",
