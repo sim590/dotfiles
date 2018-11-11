@@ -114,5 +114,63 @@ Channel courrier-uqam-desaulniers-simon-sent
 Channel courrier-uqam-desaulniers-simon-indesirable
 Channel courrier-uqam-desaulniers-simon-drafts
 
+###############################
+#  desaulniers.simon@uqam.ca  #
+###############################
+IMAPAccount uqam-desaulniers-simon
+Host gip.uqam.ca
+User desaulnierss
+PassCmd "gpg -q --decrypt ~/.mail/uqam.desaulniers.simon/pw.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore uqam-desaulniers-simon-remote
+Account uqam-desaulniers-simon
+
+MaildirStore uqam-desaulniers-simon-local
+# Path must exist
+Path ~/.mail/uqam.desaulniers.simon/
+Inbox ~/.mail/uqam.desaulniers.simon/INBOX
+
+Channel uqam-desaulniers-simon-inbox
+Master :uqam-desaulniers-simon-remote:
+Slave :uqam-desaulniers-simon-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel uqam-desaulniers-simon-sent
+Master :uqam-desaulniers-simon-remote:"&AMk-l&AOk-ments envoy&AOk-s"
+Slave :uqam-desaulniers-simon-local:"Sent"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel uqam-desaulniers-simon-indesirable
+Master :uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
+Slave :uqam-desaulniers-simon-local:"Courrier Indesirable"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Channel uqam-desaulniers-simon-drafts
+Master :uqam-desaulniers-simon-remote:"Brouillons"
+Slave :uqam-desaulniers-simon-local:"Drafts"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+Group uqam-desaulniers-simon
+Channel uqam-desaulniers-simon-inbox
+Channel uqam-desaulniers-simon-sent
+Channel uqam-desaulniers-simon-indesirable
+Channel uqam-desaulniers-simon-drafts
+
 # vim:set et sw=4 ts=4 tw=120:
 
