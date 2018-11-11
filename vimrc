@@ -69,6 +69,7 @@ syntax on
 
 " mapleader is set to tabulation (<tab>)
 let mapleader="	"
+let maplocalleader="\\"
 let g:programming_fts = [
       \ "c",
       \ "cpp",
