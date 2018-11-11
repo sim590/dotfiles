@@ -6,6 +6,6 @@ fun! TlistToggleMap()
     if &ft =~# 'qf\|mkd\|markdown'
         return
     endif
-    nmap <buffer> <F5> :TlistToggle<CR>
+    nmap <buffer> <leader>tL :TlistToggle<CR>
 endf
 au Filetype * call TlistToggleMap()
