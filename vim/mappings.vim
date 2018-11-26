@@ -86,5 +86,43 @@ nnoremap <silent> <leader>U :diffupdate<CR>
 vnoremap <silent> <leader>dp :diffput<CR>
 vnoremap <silent> <leader>do :diffget<CR>
 
+"""""""""""""""
+"  Termdebug  "
+"""""""""""""""
+let s:termdebug_augroup = "TERMDEBUG"
+fun! s:clear_terminalbuf_map(mode, lhs, opts, fts)
+  bufdo! if index(a:fts, &filetype) >= 0
+        \ | silent! execute a:mode . "unmap " . a:opts . " " . a:lhs
+        \ | endif
+endf
+fun! s:map_if_terminalbuf_ft(mode, lhs, rhs, opts, fts)
+  let l:pfts = join(a:fts, ',*.')
+  let l:pfts = '*.' . l:pfts
+  if &buftype == 'terminal'
+    let cmd = " au BufEnter ". l:pfts . " " . a:mode . "noremap " . a:opts . " " . a:lhs . " " . a:rhs
+    execute "augroup " . s:termdebug_augroup
+    execute l:cmd
+    augroup END
+    let args = "'".join([a:mode, a:lhs, a:opts], "','")."',"."['".join(a:fts, "','")."']"
+    execute "au BufWinLeave * if &buftype == 'terminal' | call <SID>clear_terminalbuf_map(".l:args.")"." | endif"
+  endif
+endf
+fun! s:advance_line()
+  let ln = line(".")
+  execute "call TermDebugSendCommand('advance ". l:ln ."')"
+endf
+
+" clear autocommands before creating them
+silent! execute "augroup! " . s:termdebug_augroup . "| augroup! END"
+let s:termdebug_fts = ['c', 'cpp']
+au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>b', ":Break<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>c', ":Clear<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']n', ":call TermDebugSendCommand('next')<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']s', ":call TermDebugSendCommand('step')<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']a', ":call <SID>advance_line()<CR>", '<buffer>', s:termdebug_fts)
+au BufWinLeave * if &buftype == 'terminal' | silent! execute "autocmd! " . s:termdebug_augroup | endif " clear map autocommands when quitting terminal window
+
 " vim:set et sw=2 ts=2 tw=100:
 
