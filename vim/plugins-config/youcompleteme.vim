@@ -1,4 +1,3 @@
-"TODO: bug mémoire très élevé...
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<c-n>']
