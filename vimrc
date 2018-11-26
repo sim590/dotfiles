@@ -96,16 +96,17 @@ let g:txtformating_fts = [
       \ ]
 let g:syntaxed_fts = g:txtformating_fts + g:programming_fts
 
-" OTHER FILES ===================
-source ~/.vim/options.vim
-source ~/.vim/abbreviations.vim
 source ~/.vim/utilities.vim
-source ~/.vim/mappings.vim
-" ===============================
 
 " COLORSCHEME ==========
 MyColorscheme wombat256mod
 " ======================
+
+" OTHER FILES ===================
+source ~/.vim/options.vim
+source ~/.vim/abbreviations.vim
+source ~/.vim/mappings.vim
+" ===============================
 
 " PLUGIN SETTINGS ==================================
 let s:settings_dir="~/.vim/plugins-config/"

@@ -26,6 +26,8 @@ set noshowmode
 set modeline
 set foldlevelstart=2
 
+packadd termdebug " Enables gdb debugging
+
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
     execute "set <xUp>=\e[1;*A"
