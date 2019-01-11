@@ -1,6 +1,4 @@
 local awful      = require("awful")
-local screen     = require("screen")
-local client     = require("client")
 local naughty    = require("naughty")
 local menubar    = require("menubar")
 local revelation = require("revelation")
