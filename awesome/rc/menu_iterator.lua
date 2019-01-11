@@ -1,3 +1,6 @@
+
+local unpack = unpack or table.unpack -- 5.1 Lua compatibility
+
 local awful = require("awful")
 local naughty = require("naughty")
 local utils = require("rc.utils")
