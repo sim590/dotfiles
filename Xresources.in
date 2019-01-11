@@ -288,7 +288,7 @@ URxvt*cursorBlink: true
  *  PERL EXTENSIONS  *
  *********************/
 
-URxvt.perl-ext: default,clipboard,matcher,font-size
+URxvt.perl-ext: default,matcher,font-size
 
 !Url matcher select ----------------------------
 URxvt.keysym.M-u: perl:matcher:select
