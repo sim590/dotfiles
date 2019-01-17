@@ -1,0 +1,14 @@
+
+[Unit]
+Description=Mailbox synchronization timer
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=5m
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target
+
+;  vim: set sts=4 ts=4 sw=4 tw=120 et :
+

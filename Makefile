@@ -8,7 +8,9 @@ DOTFILES = gitconfig\
 					 mbsyncrc\
 					 zshrc\
 					 gnupg/gpg-agent.conf\
-					 config/mpd/mpd.conf
+					 config/mpd/mpd.conf\
+					 config/systemd/user/mbsync.timer\
+					 config/systemd/user/mbsync.service
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.rb\
 						bin/setkeyboard\
