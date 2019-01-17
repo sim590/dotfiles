@@ -9,7 +9,7 @@ if [[ "$1" == "unlock" ]]; then
   unlock
 else
   lockfile -r 0 ${lockfile_} || exit 1
-  setkeyboard
+  { sleep 2 && setkeyboard; } & # Wait for Xorg to be notifed by udev
 fi
 
 # vim: set ts=2 sw=2 tw=120 et :
