@@ -21,7 +21,7 @@ $(eval $(call MAKE_LINKS,$(DEST_DIR)/%, %))
 $(eval $(call MAKE_LINKS,$(DEST_DIR)/autoload/%,vim-plug/%))
 
 clean:
-	rm -irf $(DEST_LINKS) $(VIMPLUG_DEST_LINK)
+	rm -ir $(DEST_LINKS) $(VIMPLUG_DEST_LINK) ; true
 
 # vim:set noet sts=0 sw=2 ts=2 tw=80:
 

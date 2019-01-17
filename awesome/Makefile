@@ -12,7 +12,7 @@ $(DEST):
 $(DEST)/%: %
 	ln -s $(CURDIR)/$< $@ ; true
 clean:
-	rm -irf $(DEST_LINKS)
+	rm -ir $(DEST_LINKS) ; true
 
 # vim:set noet sts=0 sw=2 ts=2 tw=80:
 

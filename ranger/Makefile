@@ -26,7 +26,7 @@ $(eval $(call MAKE_LINKS,devicons.py,devicons/devicons.py))
 $(eval $(call MAKE_LINKS,$(DEST_DIR)/%,%))
 
 clean:
-	rm -irf $(DEST_LINKS) $(DEVICONS_LINKS)
+	rm -ir $(DEST_LINKS) $(DEVICONS_LINKS) ; true
 
 # vim:set noet sts=0 sw=2 ts=2 tw=80:
 

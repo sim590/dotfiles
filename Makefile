@@ -52,7 +52,7 @@ clean-config: ## Clean configured files (result of m4 processing)
 	rm -f $(CONFIG_OUT)
 
 clean-links: ## Clean links on the system
-	rm -irf $(DEST_LINKS)
+	rm -ir $(DEST_LINKS) ; true
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done
