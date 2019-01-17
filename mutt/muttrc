@@ -8,6 +8,7 @@ source ~/.mutt/mailboxes
 
 # SOURCE PASSWORDS =======================================================
 source "gpg2 -dq /home/simon/.mutt/accounts/gmail.sim.desaulniers/pw.gpg|"
+source "gpg2 -dq /home/simon/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/pw.gpg|"
 # ========================================================================
 
 # DEFAULT MAILBOX ============
