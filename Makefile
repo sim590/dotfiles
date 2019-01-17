@@ -1,4 +1,4 @@
-SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger
+SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
 
 DOTFILES = gitconfig\
 					 vimrc\

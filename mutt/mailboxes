@@ -1,0 +1,7 @@
+mailboxes \
+              "+gmail.sim.desaulniers/INBOX" \
+              "+uqam.desaulniers.simon/INBOX" \
+              "+courrier.uqam.desaulniers.simon/INBOX"
+
+#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+

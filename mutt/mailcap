@@ -1,0 +1,51 @@
+# TEXT
+text/plain; vim %s ;
+
+##########
+#  HTML  #
+##########
+text/html; /home/simon/bin/mutt/bgrun qutebrowser %s ; test=/home/simon/bin/mutt/RunningX ; nametemplate=%s.html
+text/html; elinks -dump ; copiousoutput;
+
+##########
+#  PDFs  #
+##########
+application/pdf; /home/simon/bin/mutt/bgrun okular %s; test=/home/simon/bin/mutt/RunningX
+application/pdf; pdftotext %s -; copiousoutput
+
+############
+#  Office  #
+############
+## text document
+application/msword; /home/simon/bin/mutt/bgrun lowriter %s; test=/home/simon/bin/mutt/RunningX
+application/msword; /home/simon/bin/mutt/word2text %s; copiousoutput
+application/vnd.oasis.opendocument.text; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/vnd.oasis.opendocument.text; word2text %s; copiousoutput
+application/vnd.msword; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/vnd.msword; word2text %s; copiousoutput
+## spreadsheet
+application/excel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/excel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+application/msexcel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/msexcel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+application/vnd.ms-excel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/vnd.ms-excel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+application/x-excel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/x-excel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+application/x-msexcel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/x-msexcel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+application/ms-Excel; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/ms-Excel; /home/simon/bin/mutt/excel2text %s; copiousoutput
+## presentations
+application/vnd.ms-powerpoint; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/vnd.ms-powerpoint; /home/simon/bin/mutt/ppt2text %s; copiousoutput
+application/x-mspowerpoint; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/x-mspowerpoint; /home/simon/bin/mutt/ppt2text %s; copiousoutput
+application/ppt; /home/simon/bin/mutt/bgrun loffice %s; test=/home/simon/bin/mutt/RunningX
+application/ppt; /home/simon/bin/mutt/ppt2text %s; copiousoutput
+# IMAGES
+image/jpeg; /home/simon/bin/mutt/bgrun gpicview %s; test=/home/simon/bin/mutt/RunningX
+image/png; /home/simon/bin/mutt/bgrun gpicview %s; test=/home/simon/bin/mutt/RunningX
+
+#  vim: set sts=4 ts=4 sw=4 tw=120 et :
+

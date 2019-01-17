@@ -6,3 +6,9 @@
 zshrc
 
 *.pyo
+
+# mutt
+pw.gpg
+mutt/accounts/gmail.rostydela/
+mutt/accounts/savoirfairelinux.simon.desaulniers/
+

@@ -1,0 +1,58 @@
+# THEME =====================
+source ~/.mutt/colors/solarized.dark.muttrc
+source ~/.mutt/colors/vombatidae.muttrc
+# ===========================
+
+set folder = "~/.mail/"
+source ~/.mutt/mailboxes
+
+# SOURCE PASSWORDS =======================================================
+source "gpg2 -dq /home/simon/.mutt/accounts/gmail.sim.desaulniers/pw.gpg|"
+# ========================================================================
+
+# DEFAULT MAILBOX ============
+# > sim.desaulniers@gmail.com
+source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc
+# ============================
+
+# MAPPINGS ============
+source ~/.mutt/mappings
+# =====================
+
+# GPG =============
+source ~/.mutt/gpg
+# =================
+
+# GÉNÉRAL ====================================
+set editor = "vim"
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+set move = no
+set include
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+
+# imap behavior
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+set mailcap_path = ~/.mutt/mailcap
+# ============================================
+
+# load aliases
+set alias_file = ~/.mutt/aliases
+set sort_alias= alias
+set reverse_alias=yes
+source $alias_file
+
+#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+

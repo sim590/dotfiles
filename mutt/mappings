@@ -1,0 +1,32 @@
+# MISC ==========================
+bind editor <space> noop
+# ===============================
+
+# NAVIGATION ======================
+macro pager \Cp "<exit><search-opposite><display-message>"
+macro pager \Cn "<exit><search-next><display-message>"
+bind pager <return> next-undeleted
+bind pager <backspace> previous-undeleted
+bind pager j next-line
+bind pager k previous-line
+bind index,attach,browser gg first-entry
+bind pager gg top
+bind index,attach,browser G last-entry
+bind pager G bottom
+macro index,pager \Cf <next-page>
+macro index,pager \Cb <previous-page>
+bind index \Cn next-unread
+bind index \Cp previous-unread
+bind generic n search-next
+bind index,generic N search-opposite
+# =================================
+
+# MESSAGE
+bind index gf imap-fetch-mail
+bind index,pager \Cd delete-thread
+bind index,pager d delete-message
+bind index \Ce toggle-new
+bind pager \Cr group-reply
+
+#  vim: set sts=4 ts=4 sw=4 tw=120 et :
+

@@ -1,0 +1,8 @@
+
+macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager gs "<change-folder>=[Gmail]/Mail Sent<enter>" "Go to sent messages"
+macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+
+#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+
