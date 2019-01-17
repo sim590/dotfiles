@@ -30,7 +30,10 @@ configure: $(CONFIG_OUT) ## Configure all the files (strings substitutions)
 $(CONFIG_OUT): $(CONFIG_FILES)
 		m4 macros.m4 $@.in > $@
 
-links: $(DEST_LINKS) ## Produce all symlinks on system
+links: dirs $(DEST_LINKS) ## Produce all symlinks on system
+
+dirs:
+	mkdir -p $(dir $(DEST_LINKS))
 
 define MAKE_LINKS
 $(1): $(2)

@@ -9,9 +9,7 @@ all: links
 links: dirs $(DEST_LINKS) $(VIMPLUG_DEST_LINK)
 
 dirs:
-	@mkdir -p \
-		$(DEST_DIR) \
-		$(DEST_DIR)/autoload
+	mkdir -p $(dir $(DEST_LINKS))
 
 define MAKE_LINKS
 $(1): $(2)

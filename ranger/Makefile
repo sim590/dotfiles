@@ -15,7 +15,7 @@ all: links
 links: dirs $(DEVICONS_LINKS) $(DEST_LINKS)
 
 dirs:
-	@mkdir -p $(DEST_DIR)
+	mkdir -p $(dir $(DEST_LINKS))
 
 define MAKE_LINKS
 $(1): $(2)

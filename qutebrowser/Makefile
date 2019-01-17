@@ -5,10 +5,11 @@ DEST_LINKS = $(addprefix $(DEST)/,$(TARGETS))
 .PHONY: all links
 all: links
 
-links: $(DEST) $(DEST_LINKS)
+links: dirs $(DEST_LINKS)
 
-$(DEST):
-	mkdir -p $@
+dirs:
+	mkdir -p $(dir $(DEST_LINKS))
+
 $(DEST)/%: %
 	ln -s $(CURDIR)/$< $@ ; true
 clean:
