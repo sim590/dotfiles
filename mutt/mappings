@@ -1,14 +1,19 @@
+
+source ~/.mutt/accounts/accounts
+
 # MISC ==========================
 bind editor <space> noop
 # ===============================
 
 # NAVIGATION ======================
+macro index c "<change-vfolder>?" "Change to vfolder overview"
 macro pager \Cp "<exit><search-opposite><display-message>"
 macro pager \Cn "<exit><search-next><display-message>"
 bind pager <return> next-undeleted
 bind pager <backspace> previous-undeleted
 bind pager j next-line
 bind pager k previous-line
+bind pager,index,attach,browser g noop
 bind index,attach,browser gg first-entry
 bind pager gg top
 bind index,attach,browser G last-entry
@@ -28,5 +33,8 @@ bind index,pager d delete-message
 bind index \Ce toggle-new
 bind pager \Cr group-reply
 
-#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+macro index,pager S <vfolder-from-query>
+macro index,pager + <entire-thread>
+
+#  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 

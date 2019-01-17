@@ -1,4 +1,3 @@
-source ~/.mutt/accounts/accounts
 
 # mail directories
 set spoolfile = "+courrier.uqam.desaulniers.simon/INBOX"
@@ -22,5 +21,5 @@ macro index,pager gi "<change-folder>=courrier.uqam.desaulniers.simon/INBOX<ente
 macro index,pager gs "<change-folder>=courrier.uqam.desaulniers.simon/Sent<enter>" "Go to sent messages"
 macro index,pager gd "<change-folder>=courrier.uqam.desaulniers.simon/Drafts<enter>" "Go to drafts"
 
-#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+#  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 

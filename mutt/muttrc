@@ -3,6 +3,7 @@ source ~/.mutt/colors/solarized.dark.muttrc
 source ~/.mutt/colors/vombatidae.muttrc
 # ===========================
 
+set virtual_spoolfile = yes
 set folder = "~/.mail/"
 source ~/.mutt/mailboxes
 
@@ -12,14 +13,14 @@ source "gpg2 -dq /home/simon/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/p
 source "gpg2 -dq /home/simon/.mutt/accounts/uqam.ca.desaulniers.simon/pw.gpg|"
 # ========================================================================
 
+# MAPPINGS ============
+source ~/.mutt/mappings
+# =====================
+
 # DEFAULT MAILBOX ============
 # > sim.desaulniers@gmail.com
 source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc
 # ============================
-
-# MAPPINGS ============
-source ~/.mutt/mappings
-# =====================
 
 # GPG =============
 source ~/.mutt/gpg
@@ -57,5 +58,5 @@ set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
 
-#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+#  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 

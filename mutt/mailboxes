@@ -1,13 +1,15 @@
-mailboxes \
-              "+gmail.sim.desaulniers/INBOX" \
-              "+gmail.sim.desaulniers/[Gmail].Sent Mail" \
-              "+gmail.sim.desaulniers/[Gmail].Drafts" \
-              "+uqam.desaulniers.simon/INBOX" \
-              "+uqam.desaulniers.simon/Sent" \
-              "+uqam.desaulniers.simon/Drafts" \
-              "+courrier.uqam.desaulniers.simon/INBOX" \
-              "+courrier.uqam.desaulniers.simon/Sent" \
-              "+courrier.uqam.desaulniers.simon/Drafts"
+virtual-mailboxes \
+             "[gmail.sim.desaulniers] Discussions" "notmuch://?query=path:gmail.sim.desaulniers/** and (path:/Sent/ or path:/INBOX/)" \
+             "[gmail.sim.desaulniers] Brouillons" "notmuch://?query=path:gmail.sim.desaulniers/** and path:/Drafts/" \
+             "[gmail.sim.desaulniers] Indésirables" "notmuch://?query=path:gmail.sim.desaulniers/** and path:/Spam/" \
+             "[uqam.desaulniers.simon] Discussions" "notmuch://?query=path:uqam.desaulniers.simon/** and (path:/Sent/ or path:/INBOX/)" \
+             "[uqam.desaulniers.simon] Brouillons" "notmuch://?query=path:uqam.desaulniers.simon/** and path:/Drafts/" \
+             "[uqam.desaulniers.simon] Indésirables" "notmuch://?query=path:uqam.desaulniers.simon/** and path:/Indesirable/" \
+             "[courrier.uqam.desaulniers.simon] Discussions" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and (path:/Sent/ or path:/INBOX/)" \
+             "[courrier.uqam.desaulniers.simon] Brouillons" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Drafts/" \
+             "[courrier.uqam.desaulniers.simon] Indésirables" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Indesirable/" \
+             "Non-lus" "notmuch://?query=path:/INBOX/ and tag:unread" \
+             "Indésirables" "notmuch://?query=(path:/Spam/ or path:/Indesirable/) and tag:unread"
 
-#  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
+#  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 
