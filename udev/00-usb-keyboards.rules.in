@@ -1,3 +1,0 @@
-SUBSYSTEM=="usb", ACTION=="bind", ATTRS{product}=="USB Keyboard", RUN+="/bin/su -- M4_USER -c M4_HOME/bin/udev-setkeyboard"
-SUBSYSTEM=="input", ACTION=="remove", ENV{ID_MODEL}=="USB_Keyboard", RUN+="/bin/su -- M4_USER -c 'M4_HOME/bin/udev-setkeyboard unlock'"
-
