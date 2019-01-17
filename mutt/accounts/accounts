@@ -1,12 +1,21 @@
 
 folder-hook 'accounts/gmail.sim.desaulniers/' 'source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc'
-macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc<enter><change-folder>!<enter><shell-escape>~/bin/mutt/trigger-mbsync<enter>'
+macro index <f1> '<sync-mailbox><enter-command>\
+source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc<enter>\
+<change-folder>!<enter>\
+<shell-escape>~/bin/mutt/trigger-mbsync<enter>'
 
 folder-hook 'accounts/courrier.uqam.ca.desaulniers.simon/' 'source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc'
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc<enter><change-folder>!<enter><shell-escape>~/bin/mutt/trigger-mbsync<enter>'
+macro index <f2> '<sync-mailbox><enter-command>\
+source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc<enter>\
+<change-folder>!<enter>\
+<shell-escape>~/bin/mutt/trigger-mbsync<enter>'
 
 folder-hook 'accounts/uqam.ca.desaulniers.simon/' 'source ~/.mutt/accounts/uqam.ca.desaulniers.simon/info.muttrc'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/accounts/uqam.ca.desaulniers.simon/info.muttrc<enter><change-folder>!<enter><shell-escape>~/bin/mutt/trigger-mbsync<enter>'
+macro index <f3> '<sync-mailbox><enter-command>\
+source ~/.mutt/accounts/uqam.ca.desaulniers.simon/info.muttrc<enter>\
+<change-folder>!<enter>\
+<shell-escape>~/bin/mutt/trigger-mbsync<enter>'
 
 #  vim: set ft=muttrc sts=4 ts=4 sw=4 tw=120 et :
 
