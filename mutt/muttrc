@@ -35,6 +35,7 @@ set include
 set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 set auto_tag = yes
+set wait_key = no
 
 # imap behavior
 set mail_check = 120

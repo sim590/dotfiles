@@ -10,7 +10,8 @@ bin_TARGETS = bin/RunningX \
 							bin/bgrun \
 							bin/excel2text \
 							bin/ppt2text \
-							bin/word2text
+							bin/word2text \
+							bin/trigger-mbsync
 TARGETS = $(base_TARGETS) $(bin_TARGETS)
 DEST       = $(HOME)/.mutt
 DEST_LINKS = $(addprefix $(DEST)/,$(base_TARGETS)) \
