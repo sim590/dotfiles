@@ -25,7 +25,7 @@ set laststatus=2
 set noshowmode
 set modeline
 set foldlevelstart=2
-set bo=esc
+set bo=all
 
 packadd termdebug " Enables gdb debugging
 
