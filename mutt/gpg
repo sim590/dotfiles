@@ -2,3 +2,8 @@ source ~/.mutt/gpg.rc
 set pgp_use_gpg_agent
 set pgp_timeout = 3600
 set crypt_replyencrypt = yes
+set pgp_default_key = "0x824A8B97F97E4B08"
+set pgp_self_encrypt = yes
+
+#  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
+
