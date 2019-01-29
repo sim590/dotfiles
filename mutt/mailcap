@@ -1,5 +1,7 @@
 # TEXT
 text/plain; vim %s ;
+text/csv; vim %s ;
+text/markdown; vim %s ;
 
 ##########
 #  HTML  #
