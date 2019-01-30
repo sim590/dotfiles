@@ -10,7 +10,8 @@ DOTFILES = gitconfig\
 					 gnupg/gpg-agent.conf\
 					 config/mpd/mpd.conf\
 					 config/systemd/user/mbsync.timer\
-					 config/systemd/user/mbsync.service
+					 config/systemd/user/mbsync.service\
+					 config/systemd/user/redshift.service.d/override.conf
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
