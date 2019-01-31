@@ -28,7 +28,7 @@ local mpd_remote   = "env MPD_HOST=M4_MPD_ADDRESS mpc"
 -- applications
 local browser      = "qutebrowser"
 local scnd_browser = "chromium"
-local mail         = "mutt"
+local mail         = "neomutt"
 local mpdclient    = "ncmpcpp"
 local image_viewer = "gpicview"
 local pamixer      = home_dir .. "/bin/pamixer"
