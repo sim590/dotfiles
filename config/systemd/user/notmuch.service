@@ -1,0 +1,14 @@
+
+[Unit]
+Description=Notmuch mail indexing system
+After=mbsync.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notmuch new
+
+[Install]
+WantedBy=mbsync.service
+
+;  vim: set sts=4 ts=4 sw=4 tw=120 et :
+

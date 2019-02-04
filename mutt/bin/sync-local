@@ -1,6 +1,7 @@
 #!/bin/bash
 
-{ systemctl --user start mbsync ; notmuch new ; } 1>/dev/null 2>/dev/null &
+# This will start notmuch (if it's installed as a service with WantedBy=mbsync.service)
+{ systemctl --user start mbsync ; } 1>/dev/null 2>/dev/null &
 
 # vim: set sts=2 ts=2 sw=2 tw=120 et :
 
