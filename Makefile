@@ -12,7 +12,7 @@ DOTFILES = gitconfig\
 					 config/systemd/user/mbsync.timer\
 					 config/systemd/user/mbsync.service
 BIN_FILES = bin/lights\
-						bin/pinentry-rofi.rb\
+						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
 						bin/udev-setkeyboard\
 						bin/setwallpaper\
