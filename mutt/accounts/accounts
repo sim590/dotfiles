@@ -1,18 +1,15 @@
 
 macro index <f1> '<sync-mailbox><enter-command>\
 source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc<enter>\
-<change-vfolder>[gmail.sim.desaulniers] Discussions<enter>\
-<shell-escape>~/bin/mutt/sync-local<enter>'
+<change-vfolder>[gmail.sim.desaulniers] Discussions<enter>'
 
 macro index <f2> '<sync-mailbox><enter-command>\
 source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc<enter>\
-<change-vfolder>[courrier.uqam.desaulniers.simon] Discussions<enter>\
-<shell-escape>~/bin/mutt/sync-local<enter>'
+<change-vfolder>[courrier.uqam.desaulniers.simon] Discussions<enter>'
 
 macro index <f3> '<sync-mailbox><enter-command>\
 source ~/.mutt/accounts/uqam.ca.desaulniers.simon/info.muttrc<enter>\
-<change-vfolder>[uqam.desaulniers.simon] Discussions<enter>\
-<shell-escape>~/bin/mutt/sync-local<enter>'
+<change-vfolder>[uqam.desaulniers.simon] Discussions<enter>'
 
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 

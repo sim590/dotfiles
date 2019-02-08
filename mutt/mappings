@@ -36,5 +36,8 @@ bind pager \Cr group-reply
 macro index,pager S <vfolder-from-query>
 macro index,pager + <entire-thread>
 
+# TODO
+macro index \Ca '<sync-mailbox><shell-escape>~/bin/mutt/sync-local<enter>'
+
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 
