@@ -7,60 +7,58 @@
 -----------------------------------------------------------------------------
 
 conky.config = {
-	background = true,
-	update_interval = 1,
+	background             = true,
+	update_interval        = 1,
 
-	cpu_avg_samples = 1,
-	net_avg_samples = 2,
-	temperature_unit = 'celsius',
+	cpu_avg_samples        = 1,
+	net_avg_samples        = 2,
+	temperature_unit       = 'celsius',
 
-	double_buffer = true,
-	no_buffers = true,
-	text_buffer_size = 2048,
+	double_buffer          = true,
+	no_buffers             = true,
+	text_buffer_size       = 2048,
 
-	gap_x = 10,
-	gap_y = 50,
-	minimum_width = 300, minimum_height = 900,
-	maximum_width = 350, maximum_height = 950,
+	gap_x                  = 10,
+	gap_y                  = 50,
+	minimum_width          = 300, minimum_height = 900,
+	maximum_width          = 350, maximum_height = 950,
 
-	own_window = true,
-	own_window_type = 'override',
+	own_window             = true,
+	own_window_type        = 'override',
 	own_window_transparent = false,
-    own_window_argb_value = 0,
+    own_window_argb_value  = 0,
 	own_window_argb_visual = true,
-	own_window_class = 'conky-semi',
-	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+	own_window_class       = 'conky-semi',
+	own_window_hints       = 'undecorated,sticky,skip_taskbar,skip_pager,below',
 
-	border_inner_margin = 0,
-	border_outer_margin = 0,
-	alignment = 'top_right',
+	border_inner_margin    = 0,
+	border_outer_margin    = 0,
+	alignment              = 'top_right',
 
+	draw_shades            = false,
+	draw_outline           = false,
+	draw_borders           = false,
+	draw_graph_borders     = false,
 
-	draw_shades = false,
-	draw_outline = false,
-	draw_borders = false,
-	draw_graph_borders = false,
+	override_utf8_locale   = true,
+	use_xft                = true,
+	font                   = 'caviar dreams:size=11',
+	xftalpha               = 0.5,
+	uppercase              = false,
 
-	override_utf8_locale = true,
-	use_xft = true,
-	font = 'caviar dreams:size=11',
-	xftalpha = 0.5,
-	uppercase = false,
-
--- Defining colors
-	default_color = '#FFFFFF',
--- Shades of Gray
-	color1 = '#DDDDDD',
-	color2 = '#AAAAAA',
-	color3 = '#888888',
--- Orange
-	color4 = '#EF5A29',
--- Green
-	color5 = '#77B753',
--- Loading lua script for drawning rings
-	lua_load = '~/.conky/seamod_rings.lua',
-	lua_draw_hook_pre = 'main',
-
+    -- Defining colors
+    default_color          = '#FFFFFF',
+    -- Shades of Gray
+    color1                 = '#DDDDDD',
+    color2                 = '#AAAAAA',
+    color3                 = '#888888',
+    -- Orange
+    color4                 = '#EF5A29',
+    -- Green
+    color5                 = '#77B753',
+    -- Loading lua script for drawning rings
+    lua_load               = '~/.conky/seamod_rings.lua',
+    lua_draw_hook_pre      = 'main',
 };
 
 --${offset 15}${font Ubuntu:size=11:style=normal}${color1}${pre_exec lsb_release -d | cut -f 2} - $sysname $kernel
