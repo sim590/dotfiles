@@ -95,13 +95,12 @@ ${offset 105}${font Ubuntu:size=11:style=normal}${color3}${top_mem name 4}${alig
 ${voffset 12}
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Disk Read: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${diskio_read}
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Disk Write: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${diskio_write}
-${voffset -30}
+${voffset -45}
 ${offset 90}${font Ubuntu:size=11:style=bold}${color5}DISKS
 ${offset 120}${diskiograph 40,220 666666 666666}${voffset -30}
 ${voffset 20}
-${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /}
-${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /home}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /home}
-${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /media/files}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /media/files}
+${offset 70}${font Ubuntu:size=11:style=bold}${color3}/${offset 65}${font Ubuntu:size=10:style=bold}${color1}${alignr}Free: ${color3}${font Ubuntu:size=10:style=normal}${fs_free /} ${font Ubuntu:size=10:style=bold}${color1}${alignr}Used: ${color3}${font Ubuntu:size=10:style=normal}${fs_used /}
+${offset 70}${font Ubuntu:size=11:style=bold}${color3}/home${offset 20}${font Ubuntu:size=10:style=bold}${color1}${alignr}Free: ${color3}${font Ubuntu:size=10:style=normal}${fs_free /home} ${font Ubuntu:size=10:style=bold}${color1}${alignr}Used: ${color3}${font Ubuntu:size=10:style=normal}${fs_used /home}
 
 # Network data (my desktop have only LAN). ETHERNET ring is mostly useless but looks pretty, main info is in the graphs
 ${voffset 45}
