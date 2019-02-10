@@ -102,19 +102,19 @@ ${voffset 20}
 ${offset 70}${font Ubuntu:size=11:style=bold}${color3}/${offset 65}${font Ubuntu:size=10:style=bold}${color1}${alignr}Free: ${color3}${font Ubuntu:size=10:style=normal}${fs_free /} ${font Ubuntu:size=10:style=bold}${color1}${alignr}Used: ${color3}${font Ubuntu:size=10:style=normal}${fs_used /}
 ${offset 70}${font Ubuntu:size=11:style=bold}${color3}/home${offset 20}${font Ubuntu:size=10:style=bold}${color1}${alignr}Free: ${color3}${font Ubuntu:size=10:style=normal}${fs_free /home} ${font Ubuntu:size=10:style=bold}${color1}${alignr}Used: ${color3}${font Ubuntu:size=10:style=normal}${fs_used /home}
 
-# Network data (my desktop have only LAN). ETHERNET ring is mostly useless but looks pretty, main info is in the graphs
-${voffset 45}
-${offset 200}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}$color3${addr enp0s31f6}
-${offset 200}${font Ubuntu:size=10:style=bold}${color1}Ext IP: ${alignr}$color3${execi 600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
-${offset 190}${font Ubuntu:size=10:style=bold}${alignr}$color3${execi 600 wget -q -O /dev/stdout https://www.dnsleaktest.com/ | grep from | grep -o '<p>.*<img' | grep -o '>.*<' | grep -oEi '[a-zA-Z0-9 ,]+'}
+# WIFI Network data.
+${voffset 30}
+${offset 200}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}${color3}${addr wlp4s0}
+${offset 200}${font Ubuntu:size=10:style=bold}${color1}Ext IP: ${alignr}${color3}${execi 600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
+${offset 190}${font Ubuntu:size=10:style=bold}${alignr}${color3}${execi 600 wget -q -O /dev/stdout https://www.dnsleaktest.com/ | grep from | grep -o '<p>.*<img' | grep -o '>.*<' | grep -oEi '[a-zA-Z0-9 ,]+'}
 
 ${voffset -60}
-${offset 90}${font Ubuntu:size=11:style=bold}${color5}ETHERNET
+${offset 90}${font Ubuntu:size=11:style=bold}${color5}WIFI
 ${voffset 40}
-${offset 15}${color1}${font ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}$color2${upspeed enp0s31f6} / ${totalup enp0s31f6}
-${offset 15}${upspeedgraph enp0s31f6 40,320 4B1B0C FF5C2B 1280KiB -l}
-${offset 15}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}$color2${downspeed enp0s31f6} / ${totaldown enp0s31f6}
-${offset 15}${downspeedgraph enp0s31f6 40,320 324D23 77B753 1280KiB -l}
+${offset 15}${color1}${font ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}$color2${upspeed wlp4s0} / ${totalup wlp4s0}
+${offset 15}${upspeedgraph wlp4s0 40,320 4B1B0C FF5C2B 1280KiB -l}
+${offset 15}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}$color2${downspeed wlp4s0} / ${totaldown wlp4s0}
+${offset 15}${downspeedgraph wlp4s0 40,320 324D23 77B753 1280KiB -l}
 
 ${color4}${hr 2}
 ]];
