@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Conky -- System monitor (%I)
+After=display-manager.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/conky -c /home/simon/.conky/%i.lua
+Restart=always
+
+[Install]
+WantedBy=conky.target
+
+;  vim: set sts=4 ts=4 sw=4 tw=120 et :
+
