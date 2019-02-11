@@ -15,7 +15,7 @@ conky.config = {
 	text_buffer_size       = 2048,
 
 	gap_x                  = 150,
-	gap_y                  = 150,
+	gap_y                  = 100,
 	minimum_width          = 500,
     minimum_height         = 400,
 
