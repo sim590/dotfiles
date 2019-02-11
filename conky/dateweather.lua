@@ -107,7 +107,7 @@ ${font}${color}
 \
 ${font Poiret One:weight=Light:size=28}${color1}\
 ${voffset 30}\
-${alignc}${execi 300 LANG=${template9} LC_TIME=${template9} date +"%A, %B %d"}\
+${alignc}${execi 300 LANG=${template9} LC_TIME=${template9} date +"%A, %d %B"}\
 ${font}${color}
 \
 ${font Poiret One:size=18}${color2}\
