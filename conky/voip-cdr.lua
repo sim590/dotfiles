@@ -43,7 +43,7 @@ conky.config = {
 	uppercase              = false,
 
     -- Defining colors
-    default_color          = config.color,
+    default_color          = config.white,
     color1                 = config.grey1,
     color2                 = config.grey2,
     color3                 = config.grey3,
