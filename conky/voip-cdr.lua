@@ -17,7 +17,6 @@ conky.config = {
 	gap_x                  = 150,
 	gap_y                  = 50,
 	minimum_width          = 500,
-    minimum_height         = 500,
 
 	own_window             = true,
 	own_window_type        = 'override',
