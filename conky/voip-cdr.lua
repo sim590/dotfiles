@@ -2,9 +2,9 @@
 package.path =  '/home/simon/.conky/?.lua;' .. ";" .. package.path
 local config = require("config")
 
-local my_phone_number = io.popen("gpg -d ~/.conky/voipms-phone-number"):read("*l")
-local cache_path = "~/.cache/voipcdr.json"
-local voipms_path = "~/.conky/voipms"
+local my_phone_number = io.popen("gpg -d ~/.conky/voipms/voipms-phone-number"):read("*l")
+local cache_path      = "~/.cache/voipcdr.json"
+local voipms_path     = "~/.conky/voipms"
 
 conky.config = {
 	background             = true,
