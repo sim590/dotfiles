@@ -50,15 +50,12 @@ conky.config = {
 	uppercase              = false,
 
     -- Defining colors
-    default_color          = '#FFFFFF',
-    -- Shades of Gray
-    color1                 = '#DDDDDD',
-    color2                 = '#AAAAAA',
-    color3                 = '#888888',
-    -- Orange
-    color4                 = '#EF5A29',
-    -- Green
-    color5                 = '#77B753',
+    default_color          = config.color,
+    color1                 = config.grey1,
+    color2                 = config.grey2,
+    color3                 = config.grey3,
+    color4                 = config.orange,
+    color5                 = config.green,
     -- Loading lua script for drawning rings
     lua_load               = '~/.conky/seamod_rings.lua',
     lua_draw_hook_pre      = 'main',
