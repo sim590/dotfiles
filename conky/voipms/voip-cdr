@@ -7,7 +7,7 @@ date_from=$(date -d @$seconds_2weeks_earlier +"%F")
 date_to=$(date -d @$seconds_now +"%F")
 timezone='-5'
 username=sim.desaulniers@gmail.com
-password=$(pass personnel/web/voip.ms.api)
+password=$(gpg -d ~/.conky/voipms/voipms-api-key)
 
 CACHE_FILE=~/.cache/voipcdr.json
 
