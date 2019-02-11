@@ -14,6 +14,9 @@
 
 require 'cairo'
 
+package.path =  '/home/simon/.conky/?.lua;' .. ";" .. package.path
+local config = require("config")
+
 gauge = {
 {
     name='cpu',                    arg='cpu0',                  max_value=100,
@@ -247,7 +250,7 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    name='downspeedf',           arg='wlp4s0',                     max_value=100,
+    name='downspeedf',           arg=config.wlan_interface,     max_value=100,
     x=65,                          y=725,
     graph_radius=54,
     graph_thickness=7,
@@ -268,7 +271,7 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    name='upspeedf',           arg='wlp4s0',                     max_value=100,
+    name='upspeedf',           arg=config.wlan_interface,       max_value=100,
     x=65,                          y=725,
     graph_radius=42,
     graph_thickness=7,
