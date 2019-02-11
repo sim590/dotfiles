@@ -7,6 +7,7 @@ DOTFILES = gitconfig\
 					 Xmodmap\
 					 mbsyncrc\
 					 zshrc\
+					 conky\
 					 gnupg/gpg-agent.conf\
 					 config/mpd/mpd.conf\
 					 config/systemd/user/mbsync.timer\
