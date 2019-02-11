@@ -15,7 +15,7 @@ conky.config = {
 	text_buffer_size       = 2048,
 
 	gap_x                  = 150,
-	gap_y                  = 50,
+	gap_y                  = 350,
 	minimum_width          = 500,
 
 	own_window             = true,
@@ -60,7 +60,7 @@ function jq_voipms_string(index, field)
 end
 
 local calls = {}
-for i=0,math.min(9, number_of_calls()-1) do
+for i=0,math.min(2, number_of_calls()-1) do
     local date     = jq_voipms_string(i, "date")
     local callerid = jq_voipms_string(i, "callerid")
     table.insert(calls,
