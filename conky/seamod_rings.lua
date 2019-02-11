@@ -434,3 +434,5 @@ function conky_main()
 
 end
 
+-- vim: set sts=4 ts=4 sw=4 tw=120 et :
+
