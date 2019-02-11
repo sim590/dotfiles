@@ -1,3 +1,6 @@
+package.path =  '/home/simon/.conky/?.lua;' .. ";" .. package.path
+local config = require("config")
+
 local weather_dir   = "~/.conky/dateweather"
 local imgs_dir      = weather_dir .. "/imgs"
 local parse_weather = weather_dir .. "/parse_weather"
@@ -26,10 +29,10 @@ conky.config = {
     -------------------------------------
     --  Window Specifications
     -------------------------------------
-    gap_x=0,
-    gap_y=0,
+    gap_x=100,
+    gap_y=150,
 
-    alignment="bl",
+    alignment="tl",
 
     minimum_height=400,
     minimum_width=600,
@@ -56,12 +59,12 @@ conky.config = {
     -------------------------------------
     default_color='FFFFFF',
 
-    color0='FFFFFF', -- clock
-    color1='FFFFFF', -- date
-    color2='FFFFFF', -- current temperature
-    color3='FFFFFF', -- high tempratures
-    color4='FFFFFF', -- low tempratures
-    color5='FFFFFF', -- days
+    color0=config.white, -- clock
+    color1=config.grey3,  -- date
+    color2=config.green, -- current temperature
+    color3=config.grey1,  -- high tempratures
+    color4=config.grey3,  -- low tempratures
+    color5='FFFFFF',      -- days
 
     -------------------------------------
     --  Icon Sources

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+seconds_now=$(date +"%s")
+seconds_2weeks_earlier=$(($seconds_now-86400*15))
+
+date_from=$(date -d @$seconds_2weeks_earlier +"%F")
+date_to=$(date -d @$seconds_now +"%F")
+timezone='-5'
+username=sim.desaulniers@gmail.com
+password=$(pass personnel/web/voip.ms.api)
+
+CACHE_FILE=~/.cache/voipcdr.json
+
+jq_voipms() {
+  jq ".cdr[$1].$2" $CACHE_FILE | tr -d '"\\'
+}
+
+curl -s "https://voip.ms/api/v1/rest.php?\
+api_username=$username\
+&api_password=$password\
+&method=getCDR\
+&date_from=$date_from\
+&date_to=$date_to\
+&noanswer=1\
+&timezone=$timezone\
+&calltype=incoming" >$CACHE_FILE
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+
