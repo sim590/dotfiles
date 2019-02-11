@@ -7,6 +7,8 @@ local vision_cache_dir_path   = "~/.cache/conky-vision/"
 local weather_cache_path      = "~/.cache/conky-vision/weather.json"
 local forecast_cache_dir_path = "~/.cache/conky-vision/forecast"
 
+local api_key = io.popen("gpg -d ~/.conky/dateweather/openweathermap.api.key"):read("*l")
+
 conky.config = {
     -------------------------------------
     --  Generic Settings
@@ -73,7 +75,7 @@ conky.config = {
     -------------------------------------
     --  API Key
     -------------------------------------
-    template6="679f2aabf32fb7e3e854b5a3192152ce",
+    template6=api_key,
 
     -------------------------------------
     --  City ID
