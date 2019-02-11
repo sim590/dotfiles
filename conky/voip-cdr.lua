@@ -74,7 +74,7 @@ for i=0,math.min(9, number_of_calls()-1) do
 end
 
 conky.text = [[
-${color4}${font Ubuntu:size=16:style=normal}VOIP.ms ]]..my_phone_number..[[ ${hr 2}
+${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ ${hr 2}
 ${execi 30 ]]..voipms_path..[[/voip-cdr}
 ${color1}${font Ubuntu:size=11:style=normal}]] ..
 [[${voffset -10}]] ..
