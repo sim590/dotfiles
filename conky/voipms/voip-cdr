@@ -11,10 +11,6 @@ password=$(gpg -d ~/.conky/voipms/voipms-api-key)
 
 CACHE_FILE=~/.cache/voipcdr.json
 
-jq_voipms() {
-  jq ".cdr[$1].$2" $CACHE_FILE | tr -d '"\\'
-}
-
 curl -s "https://voip.ms/api/v1/rest.php?\
 api_username=$username\
 &api_password=$password\
