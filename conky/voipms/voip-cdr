@@ -11,7 +11,9 @@ password=$(gpg -d ~/.conky/voipms/voipms-api-key)
 
 CACHE_FILE=~/.cache/voipcdr.json
 
-curl -s "https://voip.ms/api/v1/rest.php?\
+check_internet_access() { curl -s www.google.com >/dev/null 2>/dev/null; }
+
+check_internet_access && curl -s "https://voip.ms/api/v1/rest.php?\
 api_username=$username\
 &api_password=$password\
 &method=getCDR\
