@@ -16,13 +16,12 @@ local markup = lain.util.markup
 widgets.mytextclock = awful.widget.textclock(" %a %d %b  %H:%M", 10)
 
 -- calendar
-lain.widgets.calendar.attach(widgets.mytextclock, { font = "Inconsolata", font_size = 11 })
-
+lain.widget.cal { attach_to = { widgets.mytextclock } }
 
 --{{ Battery Widget }} --
 -- TODO: check if displayed info is consistent with multiple batteries
 widgets.baticon = wibox.widget.imagebox(beautiful.widget_battery)
-widgets.batwidget = lain.widgets.bat({
+widgets.batwidget = lain.widget.bat({
     ac        = "AC",
     settings  = function()
         if bat_now.status == "Charging" then
@@ -46,7 +45,7 @@ widgets.batwidget = lain.widgets.bat({
 
 -- {{ Volume Widget }} --
 widgets.volicon = wibox.widget.imagebox(beautiful.widget_vol)
-widgets.volumewidget = lain.widgets.alsa({
+widgets.volumewidget = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
             widgets.volicon:set_image(beautiful.widget_vol_mute)
@@ -66,9 +65,9 @@ widgets.volumewidget = lain.widgets.alsa({
 -- {{ MPD Widget }} --
 widgets.mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 widgets.mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function()
-    awful.spawn_with_shell(utils.terminal_cmd .. utils.mpdclient)
+    awful.spawn.with_shell(utils.terminal_cmd .. utils.mpdclient)
 end)))
-widgets.mpdwidget = lain.widgets.mpd({
+widgets.mpdwidget = lain.widget.mpd {
     music_dir = utils.home_dir .. "/Musique",
     password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
     settings = function()
@@ -87,15 +86,15 @@ widgets.mpdwidget = lain.widgets.mpd({
 
         widget:set_markup(markup("#EA6F81", artist) .. title)
     end
-})
-widgets.mpdwidgetbg = wibox.container.background(widgets.mpdwidget, "#313131")
+}
+widgets.mpdwidgetbg = wibox.container.background(widgets.mpdwidget.widget, "#313131")
 
 --{{ Coretemp }} --
-widgets.tempwidget = lain.widgets.temp({
+widgets.tempwidget = lain.widget.temp {
     settings = function()
         widget:set_markup(markup.font(nil, " " .. coretemp_now .. "°C "))
     end
-})
+}
 
 return widgets
 
