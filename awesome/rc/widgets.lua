@@ -18,14 +18,6 @@ widgets.mytextclock = awful.widget.textclock(" %a %d %b  %H:%M", 10)
 -- calendar
 lain.widgets.calendar.attach(widgets.mytextclock, { font = "Inconsolata", font_size = 11 })
 
--- {{ Time and Date Widget }} --
-local tdwidget = wibox.widget.textbox()
-vicious.register(
-    tdwidget,
-    vicious.widgets.date,
-    '<span font="Inconsolata 11" color="#AAAAAA" background="#1F2428"> %A, %b %d %H:%M </span>',
-    20
-)
 
 --{{ Battery Widget }} --
 -- TODO: check if displayed info is consistent with multiple batteries
