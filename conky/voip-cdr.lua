@@ -17,6 +17,7 @@ conky.config = {
 	gap_x                  = 150,
 	gap_y                  = 350,
 	minimum_width          = 500,
+	minimum_height         = 200,
 
 	own_window             = true,
 	own_window_type        = 'override',
@@ -51,7 +52,7 @@ conky.config = {
 };
 
 function number_of_calls()
-    return tonumber(io.popen("jq '.cdr' "..cache_path.."|jq length"):read("*l"))
+    return tonumber(io.popen("jq '.cdr' "..cache_path.."|jq length"):read("*l")) or 0
 end
 
 function jq_voipms_string(index, field)
