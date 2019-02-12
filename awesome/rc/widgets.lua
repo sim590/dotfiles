@@ -67,9 +67,10 @@ widgets.mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 widgets.mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function()
     awful.spawn.with_shell(utils.terminal_cmd .. utils.mpdclient)
 end)))
+local mpdpass = io.popen("pass personnel/mpd"):read("*l")
 widgets.mpdwidget = lain.widget.mpd {
     music_dir = utils.home_dir .. "/Musique",
-    password = "q1w2e3r4", -- TODO use `pass` to get password from encrypted files.
+    password = mpdpass,
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
