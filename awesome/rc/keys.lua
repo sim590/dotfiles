@@ -3,6 +3,7 @@ local naughty    = require("naughty")
 local menubar    = require("menubar")
 local revelation = require("revelation")
 local gears      = require("gears")
+local lain       = require("lain")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
@@ -146,6 +147,12 @@ globalkeys = awful.util.table.join(
             end)
         end),
     awful.key({ utils.modkey, "Control", "Shift" }, "s", amh.synergy),
+    awful.key({ utils.modkey, "Control" }, "c", function ()
+        lain.util.menu_iterator.iterate(
+            utils.conky_menu, 4,
+            "/home/simon/.local/share/icons/hicolor/48x48/apps/conky.png"
+        )
+    end),
     -- }}}
     awful.key({ utils.modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),

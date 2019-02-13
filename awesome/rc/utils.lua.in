@@ -2,8 +2,9 @@
 local unpack = unpack or table.unpack -- 5.1 Lua compatibility
 
 local naughty = require("naughty")
-local awful = require("awful")
-local gears = require("gears")
+local awful   = require("awful")
+local gears   = require("gears")
+local lain    = require("lain")
 require("pl.stringx").import()
 
 -- Awesome Mutli-Host
@@ -166,6 +167,20 @@ local function myip()
     return ip
 end
 
+local conky_choices = { "dateweather", "sysmonitor", "voip-cdr" }
+local conky_menu = lain.util.menu_iterator.menu {
+    name          = "conky",
+    choices       = conky_choices,
+    extra_choices = { { "None", nil } },
+    selected_cb   = function (c)
+        os.execute("systemctl --user start conky@"..c..".service")
+    end,
+    rejected_cb   = function (c)
+        os.execute("systemctl --user stop conky@"..c..".service")
+    end,
+    combination   = "powerset"
+}
+
 return {
     -- classes
     sidemenu            = sidemenu,
@@ -191,6 +206,7 @@ return {
     icon_exec           = icon_exec,
     icon_dir            = icon_dir,
     modkey              = modkey,
+    conky_menu          = conky_menu,
     -- functions
     powerset            = powerset,
     async_dummy_cb      = async_dummy_cb,
