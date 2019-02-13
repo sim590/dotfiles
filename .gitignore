@@ -18,8 +18,9 @@ mutt/accounts/gmail.rostydela/
 mutt/accounts/savoirfairelinux.simon.desaulniers/
 
 # Generated files through m4
-ncmpcpp/config
-Xresources
 awesome/rc/utils.lua
 config/mpd/mpd.conf
+conky/sysmonitor.lua
+ncmpcpp/config
+Xresources
 
