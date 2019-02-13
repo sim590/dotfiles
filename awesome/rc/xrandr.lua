@@ -1,6 +1,7 @@
 --- Separating Multiple Monitor functions as a separeted module (taken from awesome wiki)
 
 local awful = require("awful")
+local lain  = require("lain")
 
 -- A path to a fancy icon
 local icon_path = "/usr/share/icons/gnome/48x48/devices/display.png"
@@ -87,8 +88,7 @@ local function menu()
 end
 
 local function xrandr()
-    local menu_iterator = require("rc.menu_iterator")
-    menu_iterator.iterate(menu(), 4, icon_path)
+    lain.util.menu_iterator.iterate(menu(), 4, icon_path)
 end
 
 return {
