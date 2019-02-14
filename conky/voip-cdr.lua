@@ -16,7 +16,7 @@ conky.config = {
 
     gap_x                  = 150,
     gap_y                  = 350,
-    minimum_width          = 500,
+    minimum_width          = 515,
     minimum_height         = 200,
 
     own_window             = true,
@@ -74,7 +74,8 @@ for i=0,math.min(2, number_of_calls()-1) do
 end
 
 conky.text = [[
-${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ [sans réponse] ${hr 2}
+${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ ${hr 2}
+${voffset -10}${color3}${font Ubuntu:size=11:style=bold}Appels manqués
 ${execi 30 ]]..voipms_path..[[/voip-cdr}
 ${color1}${font Ubuntu:size=11:style=normal}]] ..
 [[${voffset -10}]] ..
