@@ -15,7 +15,9 @@ check_internet_access() { curl -s www.google.com >/dev/null 2>/dev/null; }
 
 HOST=hive
 SOCKSPORT=12857
-pgrep -f "ssh -fNnD $SOCKSPORT $HOST" >/dev/null || ssh -fNnD $SOCKSPORT $HOST
+# Refresh socks proxy
+pkill -f "ssh -fNnD $SOCKSPORT $HOST" >/dev/null
+ssh -fNnD $SOCKSPORT $HOST
 # Use routing through SOCKS proxy at home since ip addresses are white listed on the account.
 check_internet_access && curl \
   --preproxy "socks://localhost:${SOCKSPORT}" \
