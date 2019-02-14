@@ -65,7 +65,7 @@ for i=0,math.min(2, number_of_calls()-1) do
     local date     = jq_voipms_string(i, "date")
     local callerid = jq_voipms_string(i, "callerid")
     table.insert(calls,
-        "${image "..voipms_path.."/phone.png -p 0,"..tostring(i*(32+19)+55).." -s 32x32}"
+        "${image "..voipms_path.."/missed-call.png -p 0,"..tostring(i*(32+19)+55).." -s 32x32}"
         .. "${voffset 5}"
         .. "${offset 42}${font Ubuntu:size=18:style=normal}${color1}" .. callerid
         .. "\n${voffset -10}"
@@ -74,7 +74,7 @@ for i=0,math.min(2, number_of_calls()-1) do
 end
 
 conky.text = [[
-${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ ${hr 2}
+${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ [sans réponse] ${hr 2}
 ${execi 30 ]]..voipms_path..[[/voip-cdr}
 ${color1}${font Ubuntu:size=11:style=normal}]] ..
 [[${voffset -10}]] ..
