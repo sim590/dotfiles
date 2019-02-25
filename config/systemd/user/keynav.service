@@ -1,0 +1,14 @@
+
+[Unit]
+Description=Keynav
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/keynav
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+;  vim: set sts=4 ts=4 sw=4 tw=120 et :
+
