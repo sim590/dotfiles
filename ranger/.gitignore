@@ -1,2 +1,3 @@
 __init__.py
 plugins/devicons*.py
+devicons.py

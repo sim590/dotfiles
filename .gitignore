@@ -12,15 +12,6 @@ zshrc
 __pycache__
 *.pyo
 
-# mutt
-pw.gpg
-mutt/accounts/gmail.rostydela/
-mutt/accounts/savoirfairelinux.simon.desaulniers/
-
 # Generated files through m4
-awesome/rc/utils.lua
-config/mpd/mpd.conf
-conky/sysmonitor.lua
-ncmpcpp/config
 Xresources
 
