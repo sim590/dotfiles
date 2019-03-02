@@ -16,8 +16,6 @@ nnoremap <leader>mt :tabmove +1<CR>
 nnoremap <leader>mT :tabmove -1<CR>
 " Close a tab
 nnoremap gC :tabclose<CR>
-" quickly open a file
-nnoremap <leader>tf yiW:tabedit <C-R>0<CR>
 " move block of text
 vnoremap < <gv
 vnoremap > >gv
