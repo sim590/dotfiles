@@ -1,0 +1,83 @@
+#!/bin/bash
+
+program_name="sesame-ouvre-toi" options='hvf' loptions='help,version,ferme' version=0.1
+getopt_out=$(getopt --name $program_name --options $options --longoptions $loptions -- "$@")
+if (( $? != 0 )); then exit 1; fi
+
+#sets the positionnal parameters with getopt's output
+eval set -- "$getopt_out"
+
+print_help() {
+cat <<EOF
+${program_name} -- Ouvre/ferme mes disques
+
+SYNOPSIS
+  $program_name [OPTIONS]
+
+OPTIONS
+  -h|--help
+    Shows this help text.
+  -v|--version
+    Show the version information of the program.
+  -f|--ferme
+    Ferme les disques.
+EOF
+}
+
+fermer=
+while [[ $1 != "--" ]]; do
+  case "$1" in
+    -h|--help)
+      print_help
+      exit 0
+      ;;
+    -v|--version)
+      echo "${program_name} v${version}"
+      exit 0
+      ;;
+    -f|--ferme)
+      fermer=true
+      shift 1
+      ;;
+  esac
+done
+# shift away from the last optional parameter (--)
+shift
+
+PARTITION_UUIDS=(\
+  # coffrefort (WD MyBook)
+  9107cf0c-abcf-4c21-a1f2-aa2e6608f5ca\
+  # grandevitesse (UltraSpeed)
+  2ffb04a2-b927-459f-a8da-56447fde8892\
+)
+DECRYPTED_VOLUME_UUIDS=(\
+  # coffrefort (WD MyBook)
+  482d2705-0351-4e98-b98e-5b29e6d1cb7c\
+  # grandevitesse (UltraSpeed)
+  36f5d6f5-f3b2-465f-ae93-80ba998142cc\
+)
+
+mount_volumes() {
+  partition_uuid="$1"
+  decrypted_volume_uuid="$2"
+  sudo cryptsetup open --type luks "/dev/disk/by-uuid/$partition_uuid" "$decrypted_volume_uuid"
+  udisksctl mount -b "/dev/disk/by-uuid/$decrypted_volume_uuid"
+}
+
+unmount_volumes() {
+  partition_uuid="$1"
+  decrypted_volume_uuid="$2"
+  udisksctl unmount -b "/dev/disk/by-uuid/$decrypted_volume_uuid"
+  sudo cryptsetup close "$decrypted_volume_uuid"
+}
+
+for (( i = 0; i < "${#PARTITION_UUIDS[@]}"; i++ )); do
+  if [[ "$fermer" ]]; then
+    unmount_volumes "${PARTITION_UUIDS[i]}" "${DECRYPTED_VOLUME_UUIDS[i]}"
+  else
+    mount_volumes "${PARTITION_UUIDS[i]}" "${DECRYPTED_VOLUME_UUIDS[i]}"
+  fi
+done
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+

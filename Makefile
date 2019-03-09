@@ -22,7 +22,8 @@ BIN_FILES = bin/lights\
 						bin/setkeyboard\
 						bin/udev-setkeyboard\
 						bin/setwallpaper\
-						bin/wmake
+						bin/wmake\
+						bin/sesame-ouvre-toi
 DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))
 CONFIG_FILES = $(shell git ls-tree --full-tree -r @ | grep -e 'blob.*[a-zA-Z]\+\.in' | gawk '{print $$4}')
 CONFIG_OUT   = $(CONFIG_FILES:.in=)
