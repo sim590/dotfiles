@@ -74,6 +74,8 @@ unmount_volumes() {
 for (( i = 0; i < "${#PARTITION_UUIDS[@]}"; i++ )); do
   if [[ "$fermer" ]]; then
     unmount_volumes "${PARTITION_UUIDS[i]}" "${DECRYPTED_VOLUME_UUIDS[i]}"
+    echo "Syncrhonisation des disques..."
+    sync
   else
     mount_volumes "${PARTITION_UUIDS[i]}" "${DECRYPTED_VOLUME_UUIDS[i]}"
   fi
