@@ -8,7 +8,7 @@ local voipms_path     = "~/.conky/voipms"
 
 conky.config = {
     background             = true,
-    update_interval        = 1,
+    update_interval        = 30,
 
     double_buffer          = true,
     no_buffers             = true,
@@ -76,7 +76,7 @@ end
 conky.text = [[
 ${color4}${font Ubuntu:size=16:style=bold}VOIP.ms ${font Ubuntu:size=16:style=normal}]]..my_phone_number..[[ ${hr 2}
 ${voffset -10}${color3}${font Ubuntu:size=11:style=bold}Appels manqués
-${execi 30 ]]..voipms_path..[[/voip-cdr}
+${exec ]]..voipms_path..[[/voip-cdr}
 ${color1}${font Ubuntu:size=11:style=normal}]] ..
 [[${voffset -10}]] ..
 table.concat(calls) .. [[
