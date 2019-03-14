@@ -1,6 +1,6 @@
 [Unit]
 Description=Conky -- System monitor
-Requires=default.target
+Requires=default.target conky@sysmonitor.service conky@dateweather.service conky@voip-cdr.service
 After=default.target
 AllowIsolate=yes
 
