@@ -80,6 +80,12 @@ c.spellcheck.languages = ["fr-FR", "en-CA"]
 c.content.headers.accept_language = "fr-CA,fr-FR,fr"
 c.content.canvas_reading = False
 
+for urlpattern in (
+        '*://google.(ca\|com)/maps/',
+        '*://translate.google.(ca\|com)',
+        '*://facebook.(ca\|com)'):
+    config.set('input.insert_mode.leave_on_load', False, urlpattern)
+
                                          ##################
                                          #  KEY BINDINGS  #
                                          ##################
