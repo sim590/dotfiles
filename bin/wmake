@@ -8,7 +8,7 @@ if (( $? != 0 )); then exit 1; fi
 eval set -- "$getopt_out"
 
 # default args
-pattern_='*'
+pattern_='.*'
 timeout_=0     # time after which the make command should be killed. In that
                # case, there was a fatal error which `yes` can't recover from.
 while [[ $1 != "--" ]]; do
@@ -51,7 +51,7 @@ rule_=$1
 PDFVIEWER=mupdf # my pdf viewer
 
 while read f; do
-  targets=$(find . -not -path '*/\.*' -regex "$pattern_")
+  targets=$(find . -not -path '*/.*' -regex "$pattern_")
   updated_file=${f##*/}
   targets_="${targets/${updated_file}/}"
   if [[ "${targets[@]}" == "${targets_[@]}" ]]; then
