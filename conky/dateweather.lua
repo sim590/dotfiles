@@ -25,6 +25,9 @@ conky.config = {
     draw_shades=false,
     draw_outline=false,
     draw_borders=false,
+    -- FIXME: ajouter la ligne suivante ou non corrige ou pas l'affichage dans
+    -- le bon écran. Y'a un bug où le conky s'affiche dans le mauvais écran...
+    xinerama_head = 2,
 
     -------------------------------------
     --  Window Specifications

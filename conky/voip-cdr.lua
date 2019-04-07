@@ -18,6 +18,9 @@ conky.config = {
     gap_y                  = 350,
     minimum_width          = 515,
     minimum_height         = 200,
+    -- FIXME: ajouter la ligne suivante ou non corrige ou pas l'affichage dans
+    -- le bon écran. Y'a un bug où le conky s'affiche dans le mauvais écran...
+    xinerama_head = 2,
 
     own_window             = true,
     own_window_type        = 'override',
