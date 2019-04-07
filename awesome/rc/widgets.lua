@@ -44,52 +44,6 @@ widgets.batwidget = lain.widget.bat({
     end
 })
 
--- {{ Volume Widget }} --
-widgets.volicon = wibox.widget.imagebox(beautiful.widget_vol)
-widgets.volumewidget = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            widgets.volicon:set_image(beautiful.widget_vol_mute)
-        elseif tonumber(volume_now.level) == 0 then
-            widgets.volicon:set_image(beautiful.widget_vol_no)
-        elseif tonumber(volume_now.level) <= 50 then
-            widgets.volicon:set_image(beautiful.widget_vol_low)
-        else
-            widgets.volicon:set_image(beautiful.widget_vol)
-        end
-
-        widget:set_text(" " .. volume_now.level .. "% ")
-    end,
-    timeout = 0.5
-})
-
--- {{ MPD Widget }} --
-widgets.mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-widgets.mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function()
-    awful.spawn.with_shell(utils.terminal_cmd .. utils.mpdclient)
-end)))
-local mpdpass = io.popen("pass personnel/mpd"):read("*l")
-widgets.mpdwidget = lain.widget.mpd {
-    music_dir = utils.home_dir .. "/Musique",
-    password = mpdpass,
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-            widgets.mpdicon:set_image(beautiful.widget_music_on)
-        elseif mpd_now.state == "pause" then
-            artist = " mpd "
-            title  = "paused "
-        else
-            artist = ""
-            title  = ""
-            widgets.mpdicon:set_image(beautiful.widget_music)
-        end
-
-        widget:set_markup(markup("#EA6F81", artist) .. title)
-    end
-}
-widgets.mpdwidgetbg = wibox.container.background(widgets.mpdwidget.widget, "#313131")
 
 --{{ Coretemp }} --
 widgets.tempwidget = lain.widget.temp {
