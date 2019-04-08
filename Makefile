@@ -10,6 +10,7 @@ DOTFILES = gitconfig\
 					 conky\
 					 gnupg/gpg-agent.conf\
 					 config/mpd/mpd.conf\
+					 config/mpv/input.conf\
 					 config/systemd/user/mbsync.timer\
 					 config/systemd/user/mbsync.service\
 					 config/systemd/user/notmuch.service\
