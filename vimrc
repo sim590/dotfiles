@@ -63,6 +63,7 @@ Plug 'tomlion/vim-solidity'
 Plug 'eagletmt/neco-ghc'
 Plug 'lervag/vimtex'
 Plug 'dpelle/vim-LanguageTool'
+Plug 'aymericbeaumet/symlink.vim'
 call plug#end()
 
 filetype plugin indent on
