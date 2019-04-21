@@ -62,6 +62,7 @@ Plug 'jamessan/vim-gnupg'
 Plug 'tomlion/vim-solidity'
 Plug 'eagletmt/neco-ghc'
 Plug 'lervag/vimtex'
+Plug 'dpelle/vim-LanguageTool'
 call plug#end()
 
 filetype plugin indent on
@@ -134,7 +135,8 @@ let s:configs = [
       \ "syntastic.vim",
       \ "lightline.vim",
       \ "tabular.vim",
-      \ "vimtex.vim"
+      \ "vimtex.vim",
+      \ "languagetool.vim"
       \ ]
 
 for s:plugin in s:configs
