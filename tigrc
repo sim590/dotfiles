@@ -226,3 +226,8 @@ bind generic    -           move-page-up
 bind generic    g           move-first-line
 bind generic    G           move-last-line
 bind main       G           move-last-line
+
+bind generic <C-h> !@sh -c "git rev-parse %(commit) | tr -d '\n' | xclip -selection c"
+
+#  vim: set sts=4 ts=4 sw=4 tw=120 et :
+
