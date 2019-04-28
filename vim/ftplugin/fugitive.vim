@@ -1,3 +1,4 @@
+nnoremap <buffer> go :Git checkout<space>
 
 nnoremap <buffer> gp :Gpush origin<CR>
 nnoremap <buffer> gP :Gpush origin -f
