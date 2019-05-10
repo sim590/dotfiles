@@ -22,3 +22,6 @@
 [submodule "ranger/devicons"]
 	path = ranger/devicons
 	url = https://github.com/alexanderjeurissen/ranger_devicons/
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug

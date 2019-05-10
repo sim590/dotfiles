@@ -8,6 +8,7 @@ DOTFILES = gitconfig\
 					 Xmodmap\
 					 mbsyncrc\
 					 zshrc\
+					 zplug\
 					 conky\
 					 keynavrc\
 					 gnupg/gpg-agent.conf\
