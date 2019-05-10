@@ -2,6 +2,7 @@ setlocal textwidth=80
 
 " Save the gitcommit window current message.
 fun! s:save_commit_msg()
+  let l:bcursor = getcurpos()
   call cursor(1, 0)
   let l:coml = search('^#')
   if l:coml == 0
@@ -12,6 +13,7 @@ fun! s:save_commit_msg()
   mark '
   call cursor(1, 0)
   normal "cy''
+  call setpos('.', l:bcursor)
 endf
 
 " Save the git commit message before writing the buffer. That way, if PGP
