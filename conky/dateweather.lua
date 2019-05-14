@@ -94,7 +94,7 @@ conky.config = {
     --  Locale (e.g. "es_ES.UTF-8")
     --  Leave empty for default
     -------------------------------------
-    template9="fr_CA.UTF-8"
+    template9="eo.UTF-8"
 }
 
 conky.text = [[
