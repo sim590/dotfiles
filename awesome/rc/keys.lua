@@ -59,10 +59,13 @@ globalkeys = awful.util.table.join(
         amh.spawn(c, nil, false)
     end),
     awful.key({	utils.modkey, "Shift" }, "s", function ()
-        if not utils.pgrep(utils.redshift) then
-            awful.spawn(utils.redshift)
+        if not utils.systemctl("is-active", "redshift") then
+            if utils.pgrep("redshift") then
+                utils.pkill("redshift")
+            end
+            utils.systemctl("start", "redshift")
         else
-            utils.pkill(utils.redshift)
+            utils.systemctl("stop", "redshift")
         end
     end),
     awful.key({utils.modkey,	          }, "F1", function ()

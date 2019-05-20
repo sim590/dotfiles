@@ -99,6 +99,12 @@ local function pkill(cmd)
     return os_exec_rv(ret)
 end
 
+-- start/stop systemctl service
+local function systemctl(action, unit)
+    local ret = os.execute("systemctl --no-pager --user " .. action .. " " .. unit .. " >/dev/null")
+    return os_exec_rv(ret)
+end
+
 -- Runs a command only if the program is not already running
 local function run_once(cmd)
     if not pgrep(cmd) then awful.spawn.with_shell("(" .. cmd .. ")") end
@@ -213,6 +219,7 @@ return {
     os_exec_rv          = os_exec_rv,
     pgrep               = pgrep,
     pkill               = pkill,
+    systemctl           = systemctl,
     run_once            = run_once,
     start_mail          = start_mail,
     replicate_layout    = replicate_layout,
