@@ -109,9 +109,9 @@ ${offset 70}${font Ubuntu:size=11:style=bold}${color3}/home${offset 20}${font Ub
 -- WIFI Network data.
 [[
 ${voffset 45}
-${offset 200}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}${color3}${addr ]] .. config.wlan_interface .. [[}
-${offset 200}${font Ubuntu:size=10:style=bold}${color1}Ext IP: ${alignr}${color3}${execi 600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
-${offset 190}${font Ubuntu:size=10:style=bold}${alignr}${color3}${execi 600 wget -q -O /dev/stdout https://www.dnsleaktest.com/ | grep from | grep -o '<p>.*<img' | grep -o '>.*<' | grep -oEi '[a-zA-Z0-9 ,]+'}
+${offset 140}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}${color3}${addr ]] .. config.wlan_interface .. [[}
+${offset 140}${font Ubuntu:size=10:style=bold}${color1}Ext IP: ${alignr}${color3}${execi 600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
+${offset 140}${font Ubuntu:size=10:style=bold}${color1}Loc: ${alignr}${color3}${execi 600 wget -q -O /dev/stdout https://www.dnsleaktest.com/ | grep -Po '<p>\s*from \K.*?(?=<img)'}
 
 ${voffset -60}
 ${offset 90}${font Ubuntu:size=11:style=bold}${color5}WIFI
