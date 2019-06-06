@@ -2,7 +2,10 @@
 
 lockfile_=/tmp/setkeyboard.lock
 
-setkeyboard() { $HOME/bin/setkeyboard; }
+setkeyboard() {
+  export DISPLAY=":0.0" XAUTHORITY=$HOME/.Xauthority
+  $HOME/bin/setkeyboard;
+}
 unlock() { rm -f ${lockfile_}; }
 
 if [[ "$1" == "unlock" ]]; then
