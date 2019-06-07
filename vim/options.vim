@@ -1,3 +1,4 @@
+set undofile
 set formatoptions=tcroql
 set autochdir
 set encoding=utf-8
