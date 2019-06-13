@@ -112,46 +112,6 @@ ${font Poiret One:weight=Light:size=28}${color1}\
 ${voffset 30}\
 ${alignc}${execi 300 LANG=${template9} LC_TIME=${template9} date +"%A, %d %B"}\
 ${font}${color}
-\
-${font Poiret One:size=18}${color2}\
-${voffset 36}\
-${goto 60}${execi 300 jq .main.temp ]] .. weather_cache_path .. [[ | awk '{print int($1+0.5)}' # round num}°\
-${font}${color}\
-\
-${font Poiret One:size=12}${color3}\
-${goto 164}${execi 300 ]] .. parse_weather .. [[ 'max' '.main.temp' '1'}°\
-${goto 272}${execi 300 ]] .. parse_weather .. [[ 'max' '.main.temp' '2'}°\
-${goto 378}${execi 300 ]] .. parse_weather .. [[ 'max' '.main.temp' '3'}°\
-${goto 484}${execi 300 ]] .. parse_weather .. [[ 'max' '.main.temp' '4'}°\
-${font}${color}\
-\
-${font Poiret One:size=12}${color4}\
-${voffset 52}\
-${goto 218}${execi 300 ]] .. parse_weather .. [[ 'min' '.main.temp' '1'}°\
-${goto 324}${execi 300 ]] .. parse_weather .. [[ 'min' '.main.temp' '2'}°\
-${goto 430}${execi 300 ]] .. parse_weather .. [[ 'min' '.main.temp' '3'}°\
-${goto 536}${execi 300 ]] .. parse_weather .. [[ 'min' '.main.temp' '4'}°\
-${font}${color}
-\
-${font Poiret One:size=14}${color5}\
-${voffset 20}\
-${goto 76}${execi 300 LANG=${template9} LC_TIME=${template9} date +%^a}\
-${goto 182}${execi 300 LANG=${template9} LC_TIME=${template9} date -d +1day +%^a}\
-${goto 288}${execi 300 LANG=${template9} LC_TIME=${template9} date -d +2days +%^a}\
-${goto 394}${execi 300 LANG=${template9} LC_TIME=${template9} date -d +3days +%^a}\
-${goto 500}${execi 300 LANG=${template9} LC_TIME=${template9} date -d +4days +%^a}\
-${font}${color}
-\
-${execi 300 cp -f ${template0}/$(jq .weather[0].id ]] .. weather_cache_path .. [[).png ]] ..
-    vision_cache_dir_path .. [[/current.png}${image ]] .. vision_cache_dir_path .. [[/current.png -p 72,266 -s 32x32}\
-${execi 300 cp -f ${template1}/$(]] .. parse_weather .. [[ 'first' '.weather[0].id' '1').png ]] ..
-    forecast_cache_dir_path .. [[-1.png}${image ]] .. forecast_cache_dir_path .. [[-1.png -p 178,266 -s 32x32}\
-${execi 300 cp -f ${template2}/$(]] .. parse_weather .. [[ 'first' '.weather[0].id' '2').png ]] ..
-    forecast_cache_dir_path .. [[-2.png}${image ]] .. forecast_cache_dir_path .. [[-2.png -p 284,266 -s 32x32}\
-${execi 300 cp -f ${template3}/$(]] .. parse_weather .. [[ 'first' '.weather[0].id' '3').png ]] ..
-    forecast_cache_dir_path .. [[-3.png}${image ]] .. forecast_cache_dir_path .. [[-3.png -p 390,266 -s 32x32}\
-${execi 300 cp -f ${template4}/$(]] .. parse_weather .. [[ 'first' '.weather[0].id' '4').png ]] ..
-    forecast_cache_dir_path .. [[-4.png}${image ]] .. forecast_cache_dir_path .. [[-4.png -p 496,266 -s 32x32}\
 ]]
 
 -- vim: set sts=4 ts=4 sw=4 tw=120 et :
