@@ -13,6 +13,7 @@ CACHE_FILE=~/.cache/voipcdr.json
 
 check_internet_access() { curl -s www.google.com >/dev/null 2>/dev/null; }
 
+# TODO: inclure les appels non répondus, mais "reçu" sur le client...
 HOST=hive
 SOCKSPORT=12857
 # Refresh socks proxy
@@ -28,6 +29,8 @@ api_username=$username\
 &date_from=$date_from\
 &date_to=$date_to\
 &noanswer=1\
+&busy=1\
+&failed=1\
 &timezone=$timezone\
 &calltype=incoming" >$CACHE_FILE
 
