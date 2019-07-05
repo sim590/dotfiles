@@ -46,15 +46,15 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({			  }, "Print", function () awful.spawn("gnome-screenshot -i") end),
     awful.key({			  }, "XF86TouchpadToggle", function () awful.spawn("/home/simon/bin/toggle-touchpad") end),
-    awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 15") end),
-    awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 15") end),
+    awful.key({	          }, "XF86MonBrightnessUp", function () awful.spawn("light -A 5") end),
+    awful.key({	          }, "XF86MonBrightnessDown", function () awful.spawn("light -U 5") end),
     awful.key({  "Shift"  }, "XF86MonBrightnessUp", function ()
-        local c = "light -A 15"
+        local c = "light -A 5"
         awful.spawn(c)
         amh.spawn(c, nil, false)
     end),
     awful.key({  "Shift"  }, "XF86MonBrightnessDown", function ()
-        local c = "light -U 15"
+        local c = "light -U 5"
         awful.spawn(c)
         amh.spawn(c, nil, false)
     end),
