@@ -37,6 +37,9 @@ set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 set auto_tag = yes
 set wait_key = no
+# FIXME: Ne marche pas vraiment. Trouver l'option pour arriver au but décrit ci-après.
+set beep_new = no # pour éviter les fausses notifications en continue (chaque
+                  # mise à jour de notmuch) ... :(
 
 # imap behavior
 set mail_check = 120
