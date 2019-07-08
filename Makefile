@@ -3,6 +3,7 @@ SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
 DOTFILES = gitconfig\
 					 vimrc\
 					 Xresources\
+					 taskrc\
 					 tigrc\
 					 Xmodmap\
 					 mbsyncrc\
