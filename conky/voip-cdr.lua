@@ -8,7 +8,7 @@ local voipms_path     = "~/.conky/voipms"
 
 conky.config = {
     background             = true,
-    update_interval        = 30,
+    update_interval        = 10,
 
     double_buffer          = true,
     no_buffers             = true,
