@@ -47,7 +47,7 @@ Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
 Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
-" vim-radical & dependencies --- "TODO: Check pourquoi ça load pas??
+" vim-radical & dependencies ---
 Plug 'glts/vim-radical'
 Plug 'google/vim-maktaba'
 Plug 'glts/vim-magnum'
