@@ -114,7 +114,6 @@ endf
 silent! execute "augroup! " . s:termdebug_augroup . "| augroup! END"
 let s:termdebug_fts = ['c', 'cpp']
 au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
-au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>b', ":Break<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>c', ":Clear<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']n', ":call TermDebugSendCommand('next')<CR>", '<buffer>', s:termdebug_fts)
