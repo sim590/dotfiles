@@ -9,6 +9,7 @@ DOTFILES = gitconfig\
 					 mbsyncrc\
 					 zshrc\
 					 conky\
+					 keynavrc\
 					 gnupg/gpg-agent.conf\
 					 config/mpd/mpd.conf\
 					 config/mpv/input.conf\
