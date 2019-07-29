@@ -1,6 +1,6 @@
 # Vim
-*.swo
-*.swp
+*.sw[o|p]
+*.un~
 
 # Git
 *.orig
