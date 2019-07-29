@@ -40,7 +40,7 @@ Plug 'tpope/vim-eunuch', { 'frozen': 1 }
 Plug 'tpope/vim-eunuch', 'RmSwp-command'
 "----------------------------------------
 Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --clang-completer --cs-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --clang-completer --cs-completer --go-completer' }
 Plug 'rdnetto/YCM-Generator', 'stable'
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
@@ -64,6 +64,7 @@ Plug 'eagletmt/neco-ghc'
 Plug 'lervag/vimtex'
 Plug 'dpelle/vim-LanguageTool'
 Plug 'aymericbeaumet/symlink.vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
 filetype plugin indent on
@@ -77,6 +78,7 @@ let g:programming_fts = [
       \ "cpp",
       \ "python",
       \ "pyrex",
+      \ "go",
       \ "haskell",
       \ "prolog",
       \ "lua",
