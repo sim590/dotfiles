@@ -65,6 +65,7 @@ Plug 'lervag/vimtex'
 Plug 'dpelle/vim-LanguageTool'
 Plug 'aymericbeaumet/symlink.vim'
 Plug 'fatih/vim-go'
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 
 filetype plugin indent on
