@@ -83,6 +83,7 @@ c.content.canvas_reading = False
 for urlpattern in (
         '*://www.google.com/maps/*',
         '*://translate.google.com',
+        '*://hoogle.haskell.org',
         '*://facebook.com'):
     opt = 'input.insert_mode.leave_on_load'
     config.set(opt, False, urlpattern)
