@@ -48,6 +48,8 @@ semicolon warp
 1 warp,click 1
 2 warp,click 2
 3 warp,click 3
+4 warp,click 4
+5 warp,click 5
 
 # Zoom to the current window
 # t windowzoom # Par défaut
