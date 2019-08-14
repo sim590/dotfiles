@@ -65,7 +65,13 @@ Plug 'lervag/vimtex'
 Plug 'dpelle/vim-LanguageTool'
 Plug 'aymericbeaumet/symlink.vim'
 Plug 'fatih/vim-go'
+" Haskell ------------------------------
 Plug 'neovimhaskell/haskell-vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+" --------------------------------------
 call plug#end()
 
 filetype plugin indent on
@@ -132,6 +138,7 @@ let s:configs = [
       \ "ctrlp.vim",
       \ "markdown.vim",
       \ "youcompleteme.vim",
+      \ "LanguageClient-neovim.vim",
       \ "auto-save.vim",
       \ "pandoc.vim",
       \ "switch.vim",
