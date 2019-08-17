@@ -8,8 +8,8 @@ source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc<enter>\
 <change-vfolder>[courrier.uqam.desaulniers.simon] Discussions<enter>'
 
 macro index <f3> '<sync-mailbox><enter-command>\
-source ~/.mutt/accounts/uqam.ca.desaulniers.simon/info.muttrc<enter>\
-<change-vfolder>[uqam.desaulniers.simon] Discussions<enter>'
+source ~/.mutt/accounts/umontreal.ca.simon.desaulniers/info.muttrc<enter>\
+<change-vfolder>[umontreal.simon.desaulniers] Discussions<enter>'
 
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 

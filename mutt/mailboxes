@@ -2,9 +2,9 @@ virtual-mailboxes \
              "[gmail.sim.desaulniers] Discussions" "notmuch://?query=path:gmail.sim.desaulniers/** and (path:/Sent/ or path:/INBOX/)" \
              "[gmail.sim.desaulniers] Brouillons" "notmuch://?query=path:gmail.sim.desaulniers/** and path:/Drafts/" \
              "[gmail.sim.desaulniers] Indésirables" "notmuch://?query=path:gmail.sim.desaulniers/** and path:/Spam/" \
-             "[uqam.desaulniers.simon] Discussions" "notmuch://?query=path:uqam.desaulniers.simon/** and (path:/Sent/ or path:/INBOX/)" \
-             "[uqam.desaulniers.simon] Brouillons" "notmuch://?query=path:uqam.desaulniers.simon/** and path:/Drafts/" \
-             "[uqam.desaulniers.simon] Indésirables" "notmuch://?query=path:uqam.desaulniers.simon/** and path:/Indesirable/" \
+             "[umontreal.simon.desaulniers] Discussions" "notmuch://?query=path:umontreal.simon.desaulniers/** and (path:/Sent/ or path:/INBOX/)" \
+             "[umontreal.simon.desaulniers] Brouillons" "notmuch://?query=path:umontreal.simon.desaulniers/** and path:/Drafts/" \
+             "[umontreal.simon.desaulniers] Indésirables" "notmuch://?query=path:umontreal.simon.desaulniers/** and path:/Indesirable/" \
              "[courrier.uqam.desaulniers.simon] Discussions" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and (path:/Sent/ or path:/INBOX/)" \
              "[courrier.uqam.desaulniers.simon] Brouillons" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Drafts/" \
              "[courrier.uqam.desaulniers.simon] Indésirables" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Indesirable/" \
