@@ -13,6 +13,7 @@
     loll      = log --decorate --graph --oneline --all
     st        = status -s
     co        = checkout
+    cp        = cherry-pick
     br        = branch
     mernff    = merge --no-ff
     punff     = pull --no-ff
