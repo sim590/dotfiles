@@ -1,6 +1,6 @@
 let g:snips_author = 'Simon Désaulniers'
 let g:snips_author_mail = 'sim.desaulniers@gmail.com'
-let g:snips_author_mail_pro = 'simon.desaulniers@savoirfairelinux.com'
+let g:snips_author_mail_udem = 'simon.desaulniers@umontreal.ca'
 
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
