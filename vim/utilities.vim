@@ -1,5 +1,5 @@
 " Start a urxvt in the current working directory
-command! Shell !urxvt -cd "$PWD" &
+command! Shell call job_start('urxvt', {'in_io': 'null', 'out_io': 'null', 'err_io': 'null'})
 " Diff between the file and it's swap file
 command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
 
