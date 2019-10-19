@@ -57,7 +57,7 @@ while read f; do
   if [[ "${targets[@]}" == "${targets_[@]}" ]]; then
     continue
   fi
-  [ -f Makefile ] || [ -f makefile ] && yes q | timeout ${timeout_} make $makeargs || continue
+  [ -f Makefile ] || [ -f makefile ] && yes X | timeout ${timeout_} make $makeargs || continue
   pkill -f -HUP ${PDFVIEWER}
   sleep 0.5
 done < <(inotifywait -qmre close_write . --format "%w%f")
