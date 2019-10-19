@@ -147,7 +147,8 @@ let s:configs = [
       \ "lightline.vim",
       \ "tabular.vim",
       \ "vimtex.vim",
-      \ "languagetool.vim"
+      \ "languagetool.vim",
+      \ "haskell-conceal.vim"
       \ ]
 
 for s:plugin in s:configs
