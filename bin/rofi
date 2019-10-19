@@ -1,0 +1,12 @@
+
+#!/bin/bash
+
+SCRIPT_PATH=/usr/bin
+
+# wait for i3lock-fancy before calling script. We don't want to kill the screen lock
+tail --pid=$(pgrep i3lock-fancy) -f /dev/null </dev/null
+$SCRIPT_PATH/rofi "$@"
+
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+
