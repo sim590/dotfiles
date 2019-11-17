@@ -84,6 +84,7 @@ for urlpattern in (
         '*://www.google.com/maps/*',
         '*://translate.google.com',
         '*://hoogle.haskell.org',
+        '*://www.laparlure.com',
         '*://facebook.com'):
     opt = 'input.insert_mode.leave_on_load'
     config.set(opt, False, urlpattern)
