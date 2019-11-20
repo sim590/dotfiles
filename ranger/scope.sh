@@ -96,6 +96,12 @@ handle_image() {
 
         # Image
         image/*)
+            # Il semble y avoir un bug avec DJVU. Le code ci-après prend 100%
+            # d'utilisation du CPU et ne termine pas.
+            ext="${FILE_PATH##*.}"
+            if [[ "${ext,,}" == "djvu" ]]; then
+              exit 1
+            fi
             local orientation
             orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
             # If orientation data is present and the image actually
