@@ -12,6 +12,7 @@ DOTFILES = gitconfig\
 					 conky\
 					 keynavrc\
 					 gnupg/gpg-agent.conf\
+					 config/zathura/zathurarc\
 					 config/mpd/mpd.conf\
 					 config/mpv/input.conf\
 					 config/systemd/user/mbsync.timer\
