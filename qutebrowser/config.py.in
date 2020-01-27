@@ -38,9 +38,9 @@
 
 
 
-config.source('base.py')
-config.source('keys.py')
-config.source('privacy.py')
+config.source('M4_HOME/.config/qutebrowser/base.py')
+config.source('M4_HOME/.config/qutebrowser/keys.py')
+config.source('M4_HOME/.config/qutebrowser/privacy.py')
 
 #  vim: set sts=4 ts=4 sw=4 tw=100 et :
 
