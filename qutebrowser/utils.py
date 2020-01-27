@@ -38,9 +38,10 @@
 
 
 
-config.source('base.py')
-config.source('keys.py')
-config.source('privacy.py')
 
-#  vim: set sts=4 ts=4 sw=4 tw=100 et :
+# Chains commands one after the other to a same key.
+def bind_chained(config, key, *commands):
+    config.bind(key, ' ;; '.join(commands))
+
+#  vim: set sts=4 ts=8 sw=4 tw=120 et :
 

@@ -38,9 +38,18 @@
 
 
 
-config.source('base.py')
-config.source('keys.py')
-config.source('privacy.py')
+import utils
 
-#  vim: set sts=4 ts=4 sw=4 tw=100 et :
+c.content.canvas_reading = False
+
+# TOR
+TOR_SOCKS_URL  = "socks://127.0.0.1"
+TOR_SOCKS_PORT = "9050"
+TOR_HOST = TOR_SOCKS_URL+":"+TOR_SOCKS_PORT
+
+# start/stop totally private browsing
+utils.bind_chained(config, 'gp',  'set content.proxy %s' % TOR_HOST, 'message-info "Proxy set as %s"' % TOR_HOST)
+utils.bind_chained(config, 'gP',  'set content.proxy system', 'message-info "Proxy set as system"')
+
+#  vim: set sts=4 ts=8 sw=4 tw=100 et :
 
