@@ -66,15 +66,5 @@ c.url.searchengines = {
 c.spellcheck.languages = ["fr-FR", "en-CA"]
 c.content.headers.accept_language = "fr-CA,fr-FR,fr"
 
-for urlpattern in (
-        '*://www.google.com/maps/*',
-        '*://translate.google.com',
-        '*://hoogle.haskell.org',
-        '*://www.laparlure.com',
-        '*://facebook.com'):
-    opt = 'input.insert_mode.leave_on_load'
-    config.set(opt, False, urlpattern)
-    config.set(opt, False, urlpattern.replace('.com', '.ca'))
-
 # vim:set et sw=4 ts=4 tw=100:
 
