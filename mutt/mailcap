@@ -49,5 +49,7 @@ application/ppt; /home/simon/bin/mutt/ppt2text %s; copiousoutput
 image/jpeg; /home/simon/bin/mutt/bgrun gpicview %s; test=/home/simon/bin/mutt/RunningX
 image/png; /home/simon/bin/mutt/bgrun gpicview %s; test=/home/simon/bin/mutt/RunningX
 
+text/calendar; mutt-ics; copiousoutput
+
 #  vim: set sts=4 ts=4 sw=4 tw=120 et :
 
