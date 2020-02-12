@@ -35,10 +35,7 @@ Plug 'sim590/vim-listtrans'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
-" tpop/vim-eunuch -----------------------
-Plug 'tpope/vim-eunuch', { 'frozen': 1 }
-Plug 'tpope/vim-eunuch', 'RmSwp-command'
-"----------------------------------------
+Plug 'tpope/vim-eunuch'
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --clang-completer --cs-completer' }
 Plug 'rdnetto/YCM-Generator', 'stable'
