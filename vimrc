@@ -69,6 +69,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': './install.sh'
     \ }
 " --------------------------------------
+Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
 filetype plugin indent on
