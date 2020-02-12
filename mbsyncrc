@@ -43,7 +43,7 @@ SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-drafts
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Drafts"
+Master :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
 Slave :gmail-sim-desaulniers-local:"[Gmail].Drafts"
 Create Both
 Expunge Both
