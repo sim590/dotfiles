@@ -2,7 +2,7 @@
 fun! MyQTInit()
   call QTInit()
   let l:subs = {
-        \ 'CURRENT TASKS' : 'TÂCHES COURANTE',
+        \ 'CURRENT TASKS' : 'TÂCHES COURANTES',
         \ 'My first task' : 'Ma première tâche',
         \ 'COMPLETED TASKS' : 'TÂCHES COMPLÉTÉES'
         \ }
