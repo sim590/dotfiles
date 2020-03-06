@@ -1,6 +1,7 @@
 define(M4_USER, simon)dnl
 define(M4_HOME, /home/M4_USER)dnl
-define(M4_MPD_ADDRESS, M4_HOME/.mpd/socket)dnl
+define(M4_MPD_ADDRESS, 127.0.0.1)dnl
+define(M4_MPD_PORT, 6600)dnl
 dnl
 dnl Ensuring backticks (`) and apostrophe (') are not expanded in code
 changequote(<<!,!>>)dnl

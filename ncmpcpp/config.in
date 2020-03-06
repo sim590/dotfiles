@@ -25,9 +25,9 @@
 #
 ##### connection settings #####
 #
-mpd_host        = M4_MPD_ADDRESS
+mpd_host = M4_MPD_ADDRESS
 #
-#mpd_port = 6600
+mpd_port = M4_MPD_PORT
 #
 #mpd_connection_timeout = 5
 #
