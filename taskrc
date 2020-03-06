@@ -31,3 +31,4 @@ include /usr/share/taskwarrior/dark-gray-blue-256.theme
 
 context.travail=+udem or +travail or +doctorat +diro
 context.étude=+udem or +doctorat +diro
+context.épicerie=+épicerie
