@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-# run messenger in temporary configuration setting enabling canvas reading so
-# that it doesn't prevent messenger to function for audio/video calls.
+# run in temporary configuration setting disabling canvas reading and enabling
+# private browsing right away for better privacy.
 qutebrowser \
             -TC /home/simon/.config/qutebrowser/config.py \
             -s content.private_browsing true \
