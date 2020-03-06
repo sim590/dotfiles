@@ -40,8 +40,6 @@
 
 import utils
 
-c.content.canvas_reading = False
-
 # TOR
 TOR_SOCKS_URL  = "socks://127.0.0.1"
 TOR_SOCKS_PORT = "9050"
