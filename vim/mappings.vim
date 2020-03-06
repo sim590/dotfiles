@@ -115,10 +115,11 @@ silent! execute "augroup! " . s:termdebug_augroup . "| augroup! END"
 let s:termdebug_fts = ['c', 'cpp']
 au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>b', ":Break<CR>", '<buffer>', s:termdebug_fts)
-au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>c', ":Clear<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>cl', ":Clear<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']n', ":call TermDebugSendCommand('next')<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']s', ":call TermDebugSendCommand('step')<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']a', ":call <SID>advance_line()<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>cc', ":call TermDebugSendCommand('continue')<CR>", '<buffer>', s:termdebug_fts)
 au BufWinLeave * if &buftype == 'terminal' | silent! execute "autocmd! " . s:termdebug_augroup | endif " clear map autocommands when quitting terminal window
 
 " vim:set et sw=2 ts=2 tw=100:
