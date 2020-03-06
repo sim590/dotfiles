@@ -10,6 +10,7 @@ local vision_cache_dir_path   = "~/.cache/conky-vision/"
 local weather_cache_path      = "~/.cache/conky-vision/weather.json"
 local forecast_cache_dir_path = "~/.cache/conky-vision/forecast"
 
+-- TODO: lire depuis un fichier en clair
 local api_key = io.popen("gpg -d ~/.conky/dateweather/openweathermap.api.key"):read("*l")
 
 conky.config = {
