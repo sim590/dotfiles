@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# run messenger in temporary configuration setting enabling canvas reading so
+# that it doesn't prevent messenger to function for audio/video calls.
+qutebrowser \
+            -TC /home/simon/.config/qutebrowser/config.py \
+            -s content.private_browsing true \
+            -s content.canvas_reading false
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+
