@@ -97,9 +97,8 @@ fun! s:map_if_terminalbuf_ft(mode, lhs, rhs, opts, fts)
   let l:pfts = join(a:fts, ',*.')
   let l:pfts = '*.' . l:pfts
   if &buftype == 'terminal'
-    let cmd = " au BufEnter ". l:pfts . " " . a:mode . "noremap " . a:opts . " " . a:lhs . " " . a:rhs
     execute "augroup " . s:termdebug_augroup
-    execute l:cmd
+    execute " au BufEnter ". l:pfts . " " . a:mode . "noremap " . a:opts . " " . a:lhs . " " . a:rhs
     augroup END
     let args = "'".join([a:mode, a:lhs, a:opts], "','")."',"."['".join(a:fts, "','")."']"
     execute "au BufWinLeave * if &buftype == 'terminal' | call <SID>clear_terminalbuf_map(".l:args.")"." | endif"
