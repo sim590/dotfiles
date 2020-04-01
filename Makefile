@@ -21,7 +21,8 @@ DOTFILES = gitconfig\
 					 config/systemd/user/redshift.service.d/override.conf\
 					 config/systemd/user/conky@.service\
 					 config/systemd/user/conky.target\
-					 config/systemd/user/keynav.service
+					 config/systemd/user/keynav.service\
+					 config/systemd/user/ipfs.service
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
