@@ -40,6 +40,11 @@
 
 
 # general
+config.unbind('<ctrl-x>')
+config.unbind('<ctrl-a>')
+config.bind('g-', 'navigate decrement')
+config.bind('g+', 'navigate increment')
+
 config.bind('"', 'enter-mode set_mark')
 config.bind('0', 'scroll-to-perc -x 0')
 config.bind('tg', 'set-cmd-text -s :tab-give')
