@@ -11,9 +11,9 @@ nnoremap <silent> <C-w>x <C-W>x<C-W>j
 " add tab
 nnoremap gn :tabnew<CR>
 " Move the tab to the right
-nnoremap <leader>mt :tabmove +1<CR>
+nnoremap gr :tabmove +1<CR>
 " Move the tab to the
-nnoremap <leader>mT :tabmove -1<CR>
+nnoremap gl :tabmove -1<CR>
 " Close a tab
 nnoremap gC :tabclose<CR>
 " move block of text
