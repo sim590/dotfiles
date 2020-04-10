@@ -20,7 +20,6 @@ Plug 'searchfold.vim'
 Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'ack.vim'
 Plug 'taglist.vim'
@@ -70,6 +69,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 " --------------------------------------
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -133,7 +134,7 @@ let s:configs = [
       \ "jedi-vim.vim",
       \ "quicktask.vim",
       \ "listtrans.vim",
-      \ "ctrlp.vim",
+      \ "fzf.vim",
       \ "markdown.vim",
       \ "youcompleteme.vim",
       \ "LanguageClient-neovim.vim",
@@ -141,7 +142,6 @@ let s:configs = [
       \ "pandoc.vim",
       \ "switch.vim",
       \ "neco-ghc.vim",
-      \ "syntastic.vim",
       \ "lightline.vim",
       \ "tabular.vim",
       \ "vimtex.vim",
