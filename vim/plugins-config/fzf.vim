@@ -15,7 +15,6 @@ endf
 
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {
-        \ 'source' : 'find .',
         \ 'options': [
             \ '--layout=reverse',
             \ '--info=inline',
