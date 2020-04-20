@@ -30,6 +30,7 @@ DOTFILES = gitconfig\
 					 zplug\
 					 conky\
 					 keynavrc\
+					 fzf_env\
 					 gnupg/gpg-agent.conf
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.scm\

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+FZF_BINDARGS=(
+    'f1:execute(less -f {})'
+    'alt-a:toggle-all'
+    'alt-c:deselect-all'
+    'ctrl-x:execute(vim {+})'
+    'ctrl-y:execute-silent(echo {} | xsel -b)+abort'
+    'ctrl-p:toggle-preview'
+    'pgup:preview-page-up'
+    'pgdn:preview-page-down'
+)
+printf -v FZF_BINDARGS "%s," "${FZF_BINDARGS[@]}"
+FZF_BINDARGS="${FZF_BINDARGS%,}"
+FZF_BINDARGS="${FZF_BINDARGS//, /,}"
+
+export FZF_PREVIEW_ARGS="batcat --style=numbers --color=always {} | head -500"
+export FZF_DEFAULT_COMMAND="find ."
+export FZF_DEFAULT_OPTS="--bind '${FZF_BINDARGS}'"
+export FZF_ALT_C_COMMAND="find . -type d"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+# vim: set ft=sh sts=2 ts=2 sw=2 tw=120 et :
+
