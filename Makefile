@@ -1,17 +1,6 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
 
-DOTFILES = gitconfig\
-					 vimrc\
-					 Xresources\
-					 taskrc\
-					 tigrc\
-					 Xmodmap\
-					 mbsyncrc\
-					 zshrc\
-					 zplug\
-					 conky\
-					 keynavrc\
-					 gnupg/gpg-agent.conf\
+XDG_CONFIG_CONTENT = \
 					 config/zathura/zathurarc\
 					 config/mpd/mpd.conf\
 					 config/mpv/input.conf\
@@ -23,6 +12,18 @@ DOTFILES = gitconfig\
 					 config/systemd/user/conky.target\
 					 config/systemd/user/keynav.service\
 					 config/systemd/user/ipfs.service
+DOTFILES = gitconfig\
+					 vimrc\
+					 Xresources\
+					 taskrc\
+					 tigrc\
+					 Xmodmap\
+					 mbsyncrc\
+					 zshrc\
+					 zplug\
+					 conky\
+					 keynavrc\
+					 gnupg/gpg-agent.conf
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
@@ -32,7 +33,13 @@ BIN_FILES = bin/lights\
 						bin/rofi\
 						bin/pqutebrowser\
 						bin/sesame-ouvre-toi
-DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES)) $(addprefix $(HOME)/,$(BIN_FILES))
+XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
+DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
+BIN_DEST_LINKS			  = $(addprefix $(HOME)/,$(BIN_FILES))
+DEST_LINKS            = ${ZSH_DEST_LINKS} \
+												${XDG_CONFIG_DEST_LINKS} \
+												${DOTFILES_DEST_LINKS} \
+												${BIN_DEST_LINKS}
 CONFIG_FILES = $(shell git ls-tree --full-tree -r @ | grep -e 'blob.*[a-zA-Z]\+\.in' | gawk '{print $$4}')
 CONFIG_OUT   = $(CONFIG_FILES:.in=)
 
