@@ -3,6 +3,16 @@ function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
+" Find the files that are not ignored by git if we're in a repository.
+fun s:project_files_without_gitignore_files()
+    let l:groot = s:find_git_root()
+    if empty(l:groot)
+        execute 'Files'
+    else
+        execute 'GFiles --cached --others --exclude-standard'
+    endif
+endf
+
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {
         \ 'source' : 'find .',
@@ -21,9 +31,13 @@ command! -bang -nargs=* PRg
     \ { 'dir': s:find_git_root() },
   \ <bang>0)
 
+" Find files from the root of the project (where .git is located) if there's
+" any. This commands serve a different purpose than :GFiles or
+" project_files_without_gitignore_files as it doesn't ban gitignored files.
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-nnoremap <leader>gf :ProjectFiles<CR>
+nnoremap <leader>gf :call <SID>project_files_without_gitignore_files()<CR>
+nnoremap <leader>gF :ProjectFiles<CR>
 nnoremap <leader>gb :Buffers<CR>
 nnoremap <leader>gw :Windows<CR>
 nnoremap <leader>gh :History<CR>
