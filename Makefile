@@ -77,8 +77,8 @@ $(eval $(call MAKE_LINKS,$(HOME)/.%, zsh/%))
 $(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
 zshrc:
-	git submodule update --init grml
-	ln -s grml/etc/zsh/zshrc
+	git submodule update --init zsh/grml
+	ln -s zsh/grml/etc/zsh/zshrc
 
 subdirs:
 	@for dir in $(SUBDIRS); do \
