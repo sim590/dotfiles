@@ -1,5 +1,12 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
 
+ZSH_CONFIG = \
+						 zsh/zshrc.debian \
+						 zsh/zshrc.env \
+						 zsh/zshrc.local \
+						 zsh/zshrc.fzf \
+						 zsh/zshrc.wine \
+						 zsh/zshrc.alias
 XDG_CONFIG_CONTENT = \
 					 config/zathura/zathurarc\
 					 config/mpd/mpd.conf\
@@ -33,6 +40,7 @@ BIN_FILES = bin/lights\
 						bin/rofi\
 						bin/pqutebrowser\
 						bin/sesame-ouvre-toi
+ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
 DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
 BIN_DEST_LINKS			  = $(addprefix $(HOME)/,$(BIN_FILES))
@@ -65,6 +73,7 @@ $(1): $(2)
 	ln -s $$(CURDIR)/$$< $$@ ; true
 endef
 $(eval $(call MAKE_LINKS,$(HOME)/.%, %))
+$(eval $(call MAKE_LINKS,$(HOME)/.%, zsh/%))
 $(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
 zshrc:

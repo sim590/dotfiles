@@ -1,0 +1,93 @@
+#!/usr/bin/env zsh
+
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+source $HOME/.fzf_env
+
+_fzf_complete_pass() {
+  ARGS="$@"
+  _fzf_complete '' "$@" < <(
+    command find ~/.password-store/ -name "*.gpg" | sed -r 's,(.*)\.password-store/(.*)\.gpg,\2,'
+  )
+}
+
+list_aptitude_packages() {
+    if   [[ $@ =~ 'apt install'* ]] \
+      || [[ $@ =~ 'apt show'*    ]] \
+      || [[ $@ =~ 'apt search'*  ]]; then
+    command apt list --verbose
+    elif [[ $@ =~ 'apt remove'*    ]] \
+      || [[ $@ =~ 'apt reinstall'* ]] \
+      || [[ $@ =~ 'apt purge'*     ]] ; then
+    command apt list --verbose --installed
+  fi
+}
+
+# TODO: prendre en charge apt-get, apt-cache. apt() pourrait appeler chacune de ces fonctions.
+_fzf_complete_apt() {
+  IFS=' ' read -A ARGS <<< $@
+  prg="${ARGS[1]}"
+  setopt extendedglob
+  if [[ "$prg" =~ "apt" ]]; then
+    if   [[ $@ =~ 'apt install'*   ]] \
+      || [[ $@ =~ 'apt show'*    ]] \
+      || [[ $@ =~ 'apt search'*  ]] \
+      || [[ $@ =~ 'apt remove'*    ]] \
+      || [[ $@ =~ 'apt reinstall'* ]] \
+      || [[ $@ =~ 'apt purge'*     ]] ; then
+      _fzf_complete '--multi' "$@" < <(
+        list_aptitude_packages $ARGS 2>/dev/null | \
+        command tail --lines +2 | \
+        command sed '/^ *$/d' | \
+        command sed 'N;s/\n */^/;p' | \
+        command column -t -s '^'
+      )
+    fi
+  fi
+}
+_fzf_complete_apt_post() {
+  cut --delimiter '/' --fields 1 | \
+  xargs --max-args 1 --no-run-if-empty printf "%q "
+}
+
+_fzf_complete_ssh() {
+  _fzf_complete '+m' "$@" < <(
+    setopt localoptions nonomatch
+    command cat <(cat ~/.ssh/config ~/.ssh/config.d/* /etc/ssh/ssh_config 2> /dev/null | command grep -i '^\s*host\(name\)\? ' | awk '{for (i = 2; i <= NF; i++) print $1 " " $i}' | command grep -v '[*?]') \
+        <(command grep -oE '^[[a-z0-9.,:-]+' ~/.ssh/known_hosts | tr ',' '\n' | tr -d '[' | awk '{ print $1 " " $1 }') \
+        <(command grep -v '^\s*\(#\|$\)' /etc/hosts | command grep -Fv '0.0.0.0') |
+        awk '{if (length($2) > 0) {print $2}}' | sort -u
+    command avahi-browse -atlr | grep -o '\<\S\+\.local' | sort -u
+  )
+}
+
+_fzf_complete_git() {
+  ARGS="$@"
+  local branches
+  branches=$(git branch -vv --all | sed 's/^ *\(\*\)/ /')
+  if [[ $ARGS == 'git co'* ]]; then
+      # _fzf_complete --multi --reverse -- "$@" < <(
+      _fzf_complete '--multi --reverse' "$@" < <(
+          echo $branches
+      )
+  else
+      eval "zle ${fzf_default_completion:-expand-or-complete}"
+  fi
+}
+_fzf_complete_git_post() {
+    awk '{print $1}'
+}
+
+fzf-history-widget-accept() {
+  fzf-history-widget
+  zle accept-line
+}
+
+zle     -N     fzf-history-widget-accept
+bindkey '^X^R' fzf-history-widget-accept
+
+alias fzfp="fzf --preview $FZF_PREVIEW_ARGS"
+
+#  vim: set sts=2 ts=2 sw=2 tw=120 et :
+

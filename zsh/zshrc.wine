@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+alias wine32str="env WINEPREFIX=$HOME/.wine32/ WINEARCH=win32"
+alias wine32="${wine32str} wine"
+alias wine32cfg="${wine32str} winecfg"
+
+#  vim: set sts=4 ts=4 sw=4 tw=120 et :
+

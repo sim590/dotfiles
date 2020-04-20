@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+alias tig='tig --all'
+alias top='htop'
+alias shere='urxvt -cd $PWD & disown'
+alias gdbtty="tty; tail -f /dev/null"
+alias shrug="<<<  '¯\_(ツ)_/¯'"
+alias mutt="neomutt"
+
+#  vim: set sts=2 ts=2 sw=2 tw=120 et :
+

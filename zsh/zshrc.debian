@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+alias update-my-alternatives='update-alternatives --altdir ~/.local/etc/alternatives --admindir ~/.local/var/lib/alternatives'
+
+# debian packaging
+alias lintian='lintian -IEcv --pedantic --color auto'
+alias patchedit="patchedit -f -o"
+alias bts="bts --mutt"
+
+export \
+    DEBEMAIL="$MAIL" \
+    DEBFULLNAME="$MYNAME"
+
+#  vim: set sts=2 ts=2 sw=2 tw=120 et :
+
