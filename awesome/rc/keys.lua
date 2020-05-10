@@ -143,7 +143,7 @@ globalkeys = awful.util.table.join(
                 end)
             end)
         end),
-    awful.key({ utils.modkey, "Control", "Shift" }, "s", amh.synergy),
+    awful.key({ utils.modkey, "Control", "Shift" }, "s", amh.barrier),
     awful.key({ utils.modkey, "Control" }, "c", function ()
         lain.util.menu_iterator.iterate(
             utils.conky_menu, 4,
