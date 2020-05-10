@@ -41,6 +41,7 @@ BIN_FILES = bin/lights\
 						bin/wmake\
 						bin/rofi\
 						bin/pqutebrowser\
+						bin/sleepvim\
 						bin/sesame-ouvre-toi
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
