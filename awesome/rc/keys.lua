@@ -122,11 +122,11 @@ globalkeys = awful.util.table.join(
         local url = io.popen("xsel -ob"):read('*l')
         amh.mpv(url)
     end),
-    awful.key({ utils.modkey,         }, "z", function () awful.spawn(utils.browser) end),
-    awful.key({ utils.modkey, "Shift" }, "z", function () awful.spawn.with_shell(utils.scnd_browser) end),
-    awful.key({ utils.modkey, "Shift" }, "t", function () awful.spawn(utils.terminal_cmd .. 'htop') end),
-    awful.key({ utils.modkey,         }, "a", function () awful.spawn(utils.terminal_cmd .. 'ranger') end),
-    awful.key({ utils.modkey,         }, "i", utils.start_mail),
+    awful.key({ utils.modkey,           }, "z", function () awful.spawn(utils.browser) end),
+    awful.key({ utils.modkey, "Shift"   }, "z", function () awful.spawn.with_shell(utils.scnd_browser) end),
+    awful.key({ utils.modkey, "Shift"   }, "t", function () awful.spawn(utils.terminal_cmd .. 'htop') end),
+    awful.key({ utils.modkey,           }, "a", function () awful.spawn(utils.terminal_cmd .. 'ranger') end),
+    awful.key({ utils.modkey,           }, "i", utils.start_mail),
     awful.key({ utils.modkey, "Control" }, "i", function ()
         local t = awful.screen.focused().selected_tag
         utils.sidemenu:set_sidemenu_style(
@@ -135,10 +135,11 @@ globalkeys = awful.util.table.join(
             or  (t.index == 3 and utils.sidemenu.mail_calendar_style or {})
         )
     end),
-    awful.key({ utils.modkey, "Shift" }, "i", utils.start_mail_calendar),
-    awful.key({ utils.modkey,         }, "e", function () awful.spawn(utils.editor_cmd) end),
-    awful.key({ utils.modkey,         }, "d", function () awful.spawn(utils.terminal_cmd .. utils.mpdclient) end),
-    awful.key({ utils.modkey, "Shift" }, "d",
+    awful.key({ utils.modkey, "Shift"   }, "i", utils.start_mail_calendar),
+    awful.key({ utils.modkey,           }, "e", function () awful.spawn(utils.editor_cmd) end),
+    awful.key({ utils.modkey, "Control" }, "d", function () awful.spawn(utils.terminal_cmd .. utils.vmixer) end),
+    awful.key({ utils.modkey,           }, "d", function () awful.spawn(utils.terminal_cmd .. utils.mpdclient) end),
+    awful.key({ utils.modkey, "Shift"   }, "d",
         function ()
             awful.spawn.with_shell(utils.terminal_cmd .. utils.vmixer)
             gears.timer.start_new(0.1, function ()
