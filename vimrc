@@ -43,9 +43,9 @@ Plug 'TaskList.vim'
 Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
 " vim-radical & dependencies ---
-Plug 'glts/vim-radical'
 Plug 'google/vim-maktaba'
 Plug 'glts/vim-magnum'
+Plug 'glts/vim-radical'
 " ------------------------------
 Plug 'vim-auto-save', 'noautocmd'
 Plug 'vim-pandoc/vim-pandoc'
