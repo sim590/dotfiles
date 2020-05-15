@@ -44,7 +44,10 @@ config.unbind('<ctrl-x>')
 config.unbind('<ctrl-a>')
 config.bind('g-', 'navigate decrement')
 config.bind('g+', 'navigate increment')
+
+# Rapid links
 config.unbind(';r')
+config.bind(';ra', ':hint --rapid all tab-bg')
 config.bind(';rr', ':hint --rapid links tab-bg')
 config.bind(';rd', ':hint --rapid links download')
 
