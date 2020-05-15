@@ -120,28 +120,40 @@ end
 -- {{ sidemenu
 
 local sidemenu = {
-    default_style = {
-        master_width_factor = 0.3,
+    [0] = { -- default_style
+        master_width_factor = 0.5,
         master_count        = 1,
         layout              = awful.layout.suit.tile.right
     },
-    mail_calendar_style = {
-        master_width_factor = 0.3,
-        master_count = 1,
-        layout = awful.layout.suit.tile.left
-    },
-    browser_news_style = {
+    [2] = { -- browser_news_style
         master_width_factor = 0.2,
         master_count = 1,
         layout = awful.layout.suit.tile.right
+    },
+    [3] = { -- mail_calendar_style
+        master_width_factor = 0.3,
+        master_count = 1,
+        layout = awful.layout.suit.tile.left
     }
 }
 
-function sidemenu:set_sidemenu_style(args)
-    local t = awful.screen.focused().selected_tag
-    t.master_width_factor = args and args.master_width_factor or sidemenu.default_style.master_width_factor
-    t.master_count        = args and args.master_count        or sidemenu.default_style.master_count
-    awful.layout.set(args and args.layout or sidemenu.default_style.layout)
+function sidemenu:set_sidemenu_style(tag)
+    local c = sidemenu[tag.index]
+    tag.master_width_factor = c and c.master_width_factor or sidemenu[0].master_width_factor
+    tag.master_count        = c and c.master_count or sidemenu[0].master_count
+    awful.layout.set(args and args.layout or sidemenu[0].layout)
+end
+
+function sidemenu:toggle(tag)
+    local c = sidemenu[tag.index]
+    if c and c.master_width_factor ~= tag.master_width_factor then
+        tag.master_width_factor = c.master_width_factor
+        tag.master_count = c.master_count
+    else
+        tag.master_width_factor = sidemenu[0].master_width_factor
+        tag.master_count = sidemenu[0].master_count
+    end
+    awful.layout.set(args and args.layout or sidemenu[0].layout)
 end
 
 -- }}
