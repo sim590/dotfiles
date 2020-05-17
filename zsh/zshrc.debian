@@ -8,6 +8,7 @@ alias patchedit="patchedit -f -o"
 alias bts="bts --mutt"
 
 export \
+    QUILT_PATCHES="debian/patches" \
     DEBEMAIL="$MAIL" \
     DEBFULLNAME="$MYNAME"
 
