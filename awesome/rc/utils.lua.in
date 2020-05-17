@@ -235,7 +235,6 @@ return {
     run_once            = run_once,
     start_mail          = start_mail,
     replicate_layout    = replicate_layout,
-    set_sidemenu_style  = set_sidemenu_style,
     start_mail_calendar = start_mail_calendar,
     myip                = myip,
     remote_spawn        = amh.util.remote_spawn
