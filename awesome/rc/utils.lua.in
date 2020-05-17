@@ -117,9 +117,9 @@ local function start_mail()
     gears.timer.start_new(2, awful.spawn("pkill -SIGUSR1 offlineimap"))
 end
 
--- {{ sidemenu
+-- {{ layout_presets
 
-local sidemenu = {
+local layout_presets = {
     [0] = { -- default_style
         master_width_factor = 0.5,
         master_count        = 1,
@@ -137,23 +137,23 @@ local sidemenu = {
     }
 }
 
-function sidemenu:set_sidemenu_style(tag)
-    local c = sidemenu[tag.index]
-    tag.master_width_factor = c and c.master_width_factor or sidemenu[0].master_width_factor
-    tag.master_count        = c and c.master_count or sidemenu[0].master_count
-    awful.layout.set(args and args.layout or sidemenu[0].layout)
+function layout_presets:set_layout_preset(tag)
+    local c = layout_presets[tag.index]
+    tag.master_width_factor = c and c.master_width_factor or layout_presets[0].master_width_factor
+    tag.master_count        = c and c.master_count or layout_presets[0].master_count
+    awful.layout.set(args and args.layout or layout_presets[0].layout)
 end
 
-function sidemenu:toggle(tag)
-    local c = sidemenu[tag.index]
+function layout_presets:toggle(tag)
+    local c = layout_presets[tag.index]
     if c and c.master_width_factor ~= tag.master_width_factor then
         tag.master_width_factor = c.master_width_factor
         tag.master_count = c.master_count
     else
-        tag.master_width_factor = sidemenu[0].master_width_factor
-        tag.master_count = sidemenu[0].master_count
+        tag.master_width_factor = layout_presets[0].master_width_factor
+        tag.master_count = layout_presets[0].master_count
     end
-    awful.layout.set(args and args.layout or sidemenu[0].layout)
+    awful.layout.set(args and args.layout or layout_presets[0].layout)
 end
 
 -- }}
@@ -173,7 +173,7 @@ local function start_mail_calendar()
         start_mail()
         awful.spawn(browser .. " " .. "':session-load agenda'")
     end)
-    sidemenu:set_sidemenu_style(sidemenu.mail_calendar_style)
+    layout_presets:set_layout_preset(layout_presets.mail_calendar_style)
 end
 
 -- Returns the first valid ip address
@@ -201,7 +201,7 @@ local conky_menu = lain.util.menu_iterator.menu {
 
 return {
     -- classes
-    sidemenu            = sidemenu,
+    layout_presets            = layout_presets,
     -- variables
     home_dir            = home_dir,
     config_dir          = config_dir,
