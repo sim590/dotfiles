@@ -1,17 +1,18 @@
 #!/bin/bash
+# package: lockfile-progs
 
-lockfile_=/tmp/setkeyboard.lock
+lockfile_=/tmp/setkeyboard
 
 setkeyboard() {
   export DISPLAY=":0.0" XAUTHORITY=$HOME/.Xauthority
   $HOME/bin/setkeyboard;
 }
-unlock() { rm -f ${lockfile_}; }
+unlock() { lockfile-remove ${lockfile_}; }
 
 if [[ "$1" == "unlock" ]]; then
   unlock
 else
-  lockfile -r 0 ${lockfile_} || exit 1
+  lockfile-create -r 0 ${lockfile_} || exit 1
   { sleep 2 && setkeyboard; } & # Wait for Xorg to be notifed by udev
 fi
 
