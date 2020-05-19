@@ -1,7 +1,12 @@
+!Français
 keycode  26 = e E e E oe OE
 keycode  30 = u U u U ubreve Ubreve
 keycode  38 = a A a A ae AE
+
+!Informatique
 keycode  46 = l L l L 0x5c 0x5c
+
+!Espagnol
 keycode  57 = n N n N ntilde ntilde
 keycode  31 = i I i I iacute iacute
 keycode  32 = o O o O oacute Oacute
