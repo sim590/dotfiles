@@ -51,6 +51,7 @@ ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
+set edit_headers
 alternative_order text/calendar text/plain text/html *
 auto_view text/html
 auto_view text/calendar
