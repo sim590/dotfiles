@@ -76,7 +76,10 @@ Plug 'will133/vim-dirdiff'
 Plug 'kevinoid/vim-jsonc'
 Plug 'hari-rangarajan/CCTree'
 Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'Konfekt/vim-mutt-aliases'
 call plug#end()
+
+let g:muttaliases_file = '/home/simon/.mutt/aliases'
 
 filetype plugin indent on
 syntax on
