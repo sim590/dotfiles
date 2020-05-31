@@ -6,6 +6,7 @@ alias update-my-alternatives='update-alternatives --altdir ~/.local/etc/alternat
 alias lintian='lintian -IEcv --pedantic --color auto'
 alias patchedit="patchedit -f -o"
 alias bts="bts --mutt"
+alias aup="sudo zsh -c 'apt update && apt upgrade'"
 
 export \
     QUILT_PATCHES="debian/patches" \
