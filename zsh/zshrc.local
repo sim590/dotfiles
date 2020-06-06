@@ -4,9 +4,6 @@ export KEYTIMEOUT=1
 
 source ~/.zplug/init.zsh
 
-zplug "kutsan/zsh-system-clipboard";
-source "$HOME/.zplug/repos/kutsan/zsh-system-clipboard/zsh-system-clipboard.zsh"
-
 # First loading my environment variables.
 source ~/.zshrc.env
 
