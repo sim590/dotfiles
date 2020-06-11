@@ -32,10 +32,9 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 nnoremap <leader>yp :YaumlPdf<CR>
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
 
-" copy file name to clipboard
-nmap <leader>cs :let @+=expand("%")<CR>:echo @+<CR>
-" copy absolute file name to clipboard
-nmap <leader>cl :let @+=expand("%:p")<CR>:echo @+<CR>
+nnoremap <leader>cf :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:t")))<CR>
+nnoremap <leader>cp :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:p")))<CR>
+nnoremap <leader>cd :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:p:h")))<CR>
 
 " quickly open file using xdg-open
 nnoremap <leader>o :!xdg-open &<left>

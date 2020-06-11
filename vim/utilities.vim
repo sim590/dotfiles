@@ -3,6 +3,24 @@ command! Shell call job_start('urxvt', {'in_io': 'null', 'out_io': 'null', 'err_
 " Diff between the file and it's swap file
 command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
 
+fun! ConvertPathToHostSystemFormat(path)
+  if exists('$WSLENV')
+    return wsl#format_path(a:path, 'w')
+  else
+    return a:path
+  endif
+endf
+
+" copy argument to clipboard with support for WSL
+fun! CopyToClipboard(what)
+  if exists('$WSLENV')
+    call system('clip.exe', a:what)
+  else
+    setreg('+', a:what)
+  endif
+  echo a:what
+endf
+
 """""""""""""""""""""""
 "  DuckDuckGo search  "
 """""""""""""""""""""""
