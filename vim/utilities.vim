@@ -112,10 +112,17 @@ command! Dark MyColorscheme wombat256mod
 "  Handle unwanted characters in file   "
 """""""""""""""""""""""""""""""""""""""""
 
+let s:search_replace_range = 1000
+
+fun s:search_replace_minmax()
+  return [max([1, getline('.')-s:search_replace_range/2]), min([getline('$'), getline('.')+s:search_replace_range/2])]
+endf
+
 " replace false spaces by spaces
 fun! s:RemoveFalseSpaces()
+  let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
-  exec ":%s/\\%o240/ /ge"
+  exec ":.-" . l:minl . ",.+" . l:maxl . ";s/\\%o240/ /ge"
   call setpos('.', l:pos)
 endf
 
@@ -130,6 +137,7 @@ autocmd BufReadPost *
 """""""""""""""""""""""""""""""""
 " get rid of trailing white spaces
 fun! s:StripTrailingWhiteSpaces()
+  let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
   exec ":%s/\\s\\+$//e"
   call setpos('.', l:pos)
