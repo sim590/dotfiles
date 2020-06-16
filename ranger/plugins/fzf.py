@@ -1,12 +1,13 @@
+
 import os
 import subprocess
 
 import ranger.api.commands as ranger
 
 
-class fzf(ranger.Command):
+class fzf_(ranger.Command):
     """
-    :fzf_select
+    :fzf_
 
     Find a file using fzf.
 
@@ -30,3 +31,17 @@ class fzf(ranger.Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
+class fzf(ranger.Command):
+    def execute(self):
+        fzf = self.fm.execute_command("fzf", stdout=subprocess.PIPE)
+        stdout, _ = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+#  vim: set sts=4 ts=8 sw=4 tw=120 et :
+
