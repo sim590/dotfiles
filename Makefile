@@ -43,6 +43,7 @@ DOTFILES = gitconfig\
 					 gnupg/gpg-agent.conf\
 					 xkb/symbols/ca-multix-sim590
 BIN_FILES = bin/lights\
+						bin/get-clip\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
 						bin/udev-setkeyboard\
