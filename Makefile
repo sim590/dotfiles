@@ -33,6 +33,7 @@ DOTFILES = gitconfig\
 					 fzf_env\
 					 gnupg/gpg-agent.conf
 BIN_FILES = bin/lights\
+						bin/get-clip\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\
 						bin/udev-setkeyboard\
