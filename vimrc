@@ -7,7 +7,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'preocanin/greenwint'
 Plug 'prognostic/plasticine'
 "====================================
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'itchyny/lightline.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 "snippets --------------------
