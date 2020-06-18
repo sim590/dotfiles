@@ -9,7 +9,6 @@ nnoremap <C-l> <C-W>l
 " Move the window buffer down
 nnoremap <silent> <C-w>x <C-W>x<C-W>j
 " add tab
-nnoremap gn :tabnew<CR>
 " Move the tab to the right
 nnoremap gr :tabmove +1<CR>
 " Move the tab to the
