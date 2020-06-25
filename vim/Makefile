@@ -1,7 +1,7 @@
-TARGETS    = options.vim utilities.vim mappings.vim after plugins-config syntax ftplugin ftdetect
+TARGETS    = options.vim utilities.vim mappings.vim autoload after plugins-config syntax ftplugin ftdetect
 DEST_DIR   = $(HOME)/.vim
 DEST_LINKS = $(addprefix $(DEST_DIR)/,$(TARGETS))
-VIMPLUG_DEST_LINK = $(DEST_DIR)/autoload/plug.vim
+VIMPLUG_DEST_LINK = autoload/plug.vim
 
 .PHONY: all links
 all: links
@@ -16,7 +16,7 @@ $(1): $(2)
 	ln -s $$(CURDIR)/$$< $$@ ; true
 endef
 $(eval $(call MAKE_LINKS,$(DEST_DIR)/%, %))
-$(eval $(call MAKE_LINKS,$(DEST_DIR)/autoload/%,vim-plug/%))
+$(eval $(call MAKE_LINKS,autoload/plug.vim,vim-plug/plug.vim))
 
 clean:
 	rm -ir $(DEST_LINKS) $(VIMPLUG_DEST_LINK) ; true
