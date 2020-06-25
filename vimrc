@@ -77,6 +77,7 @@ Plug 'inkarkat/vim-ingo-library'
 " ------------------------------------------
 Plug 'romainl/vim-qf'
 Plug 'will133/vim-dirdiff'
+Plug 'PProvost/vim-ps1'
 call plug#end()
 
 filetype plugin indent on
