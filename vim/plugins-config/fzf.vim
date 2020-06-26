@@ -10,7 +10,7 @@ function! s:project_dir()
   elseif !empty(l:groot)
     return l:groot
   else
-    return $PWD
+    return getcwd()
   endif
 endf
 

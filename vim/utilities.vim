@@ -16,7 +16,7 @@ fun! CopyToClipboard(what)
   if exists('$WSLENV')
     call system('clip.exe', a:what)
   else
-    setreg('+', a:what)
+    call setreg('+', a:what)
   endif
   echo a:what
 endf
