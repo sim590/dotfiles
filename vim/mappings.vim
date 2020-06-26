@@ -31,6 +31,9 @@ nnoremap <silent> <leader>l :%s/\s\+$//e \| let @/=""<CR><C-O>
 " append modeline at the end of file
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
+" Navigating on tags on Cmder (Windows)
+nnoremap <silent> g[ :tag <c-r><c-w><cr>
+
 """""""""""""""""""""
 "  Shell, programs  "
 """""""""""""""""""""
