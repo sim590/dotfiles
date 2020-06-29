@@ -51,6 +51,7 @@ nnoremap <leader>gF :ProjectFiles<CR>
 nnoremap <leader>gb :Buffers<CR>
 nnoremap <leader>gw :Windows<CR>
 nnoremap <leader>gh :History<CR>
+nnoremap <silent> g{ :PRg <c-r><c-w><cr>
 
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
