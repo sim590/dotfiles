@@ -84,6 +84,10 @@ fzf-history-widget-accept() {
   zle accept-line
 }
 
+rfzf() {
+  rg --column --line-number --no-heading --color=always --smart-case "$@" | fzf -m --ansi | grep -Po '^\S+?(?=:)' | sort -u
+}
+
 zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
 
