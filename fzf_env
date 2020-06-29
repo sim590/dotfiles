@@ -7,8 +7,10 @@ FZF_BINDARGS=(
     'ctrl-x:execute(vim {+})'
     'ctrl-y:execute-silent(echo {} | xsel -b)+abort'
     'ctrl-p:toggle-preview'
-    'pgup:preview-page-up'
-    'pgdn:preview-page-down'
+    'pgup:half-page-up'
+    'pgdn:half-page-down'
+    'shift-up:preview-page-up'
+    'shift-down:preview-page-down'
 )
 printf -v FZF_BINDARGS "%s," "${FZF_BINDARGS[@]}"
 FZF_BINDARGS="${FZF_BINDARGS%,}"
