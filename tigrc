@@ -250,8 +250,8 @@ bind generic    G           move-last-line
 bind main       G           move-last-line
 
 # Misc
-bind main <C-c> !@sh -c "git rev-parse %(commit) | tr -d '\\n' | xclip -selection c"
-bind tree <C-c> !@sh -c "echo %(file) | xclip -selection c"
+bind main <C-c> !@sh -c "git rev-parse %(commit) | tr -d '\\n' | clip.exe"
+bind tree <C-c> !@sh -c "echo %(file) | clip.exe"
 
 #  vim: set sts=4 ts=4 sw=4 tw=120 et :
 
