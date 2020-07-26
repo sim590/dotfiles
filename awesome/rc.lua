@@ -114,6 +114,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 -- Menubar configuration
 menubar.utils.terminal = utils.terminal -- Set the terminal for applications that require it
+menubar.utils.wm_name = "GNOME"
 -- }}}
 
 -- Keyboard map indicator and switcher
