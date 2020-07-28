@@ -22,5 +22,7 @@ if [[ "$(umask)" = "0000" ]]; then
   umask 0022
 fi
 
+sudo mount -a
+
 #  vim: set sts=2 ts=2 sw=2 tw=120 et :
 
