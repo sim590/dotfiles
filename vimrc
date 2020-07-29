@@ -40,7 +40,6 @@ Plug 'rdnetto/YCM-Generator', 'stable'
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
-Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
 " vim-radical & dependencies ---
 Plug 'google/vim-maktaba'
