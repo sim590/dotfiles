@@ -85,7 +85,7 @@ fzf-history-widget-accept() {
 }
 
 rfzf() {
-  rg --column --line-number --no-heading --color=always --smart-case "$@" | fzf -m --ansi | grep -Po '^\S+?(?=:)' | sort -u
+  rg --column --line-number --no-heading --color=always --smart-case --no-ignore "$@" | fzf -m --ansi | grep -Po '^\S+?(?=:)' | sort -u
 }
 
 zle     -N     fzf-history-widget-accept
