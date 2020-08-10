@@ -1,5 +1,6 @@
-let g:snips_author = 'Simon Désaulniers'
-let g:snips_author_mail = 'sim.desaulniers@gmail.com'
+let g:snips_author           = 'Simon Désaulniers'
+let g:snips_author_mail      = 'sim.desaulniers@gmail.com'
+let g:snips_author_mail_MS   = 'sdesaulniers@morneaushepell.com'
 let g:snips_author_mail_udem = 'simon.desaulniers@umontreal.ca'
 
 let g:snipMate = {}
