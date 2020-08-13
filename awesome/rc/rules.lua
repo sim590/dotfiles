@@ -25,8 +25,11 @@ awful.rules.rules = {
             "copyq",  -- Includes session name in class.
             "Battle.net.exe",
             "Hearthstone.exe",
+            "PlayOnLinux"
         },
         class = {
+            "Mainwindow.py", -- PlayOnLinux
+            "mainwindow.py",
             "Kodi",
             "anbox",
             "blueman-manager", "Blueman-manager",
