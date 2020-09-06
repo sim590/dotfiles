@@ -1,9 +1,10 @@
 
-source ~/.mutt/accounts/accounts
-
 # MISC ==========================
 bind editor <space> noop
+bind index . noop
 # ===============================
+
+source ~/.mutt/accounts/accounts
 
 # NAVIGATION ======================
 macro index c "<change-vfolder>?" "Change to vfolder overview"

@@ -3,6 +3,15 @@ macro index <f1> '<sync-mailbox><enter-command>\
 source ~/.mutt/accounts/gmail.sim.desaulniers/info.muttrc<enter>\
 <change-vfolder>[gmail.sim.desaulniers] Discussions<enter>'
 
+set my_gmail_sort = "<enter-command>set<space>confirmappend=no<space>delete=yes<enter>\
+T~Cdebian-devel@lists.debian.org<enter><tag-prefix-cond><save-message>=gmail.sim.desaulniers/debian-devel<enter><end-cond>\
+T~sBug<space>~s<space>ITP:<enter><tag-prefix-cond><save-message>=gmail.sim.desaulniers/debian-devel<enter><end-cond>\
+T~sBug<space>~s<space>RFP:<enter><tag-prefix-cond><save-message>=gmail.sim.desaulniers/debian-devel<enter><end-cond>\
+T~C<space>mls@ietf.org<enter><tag-prefix-cond><save-message>=gmail.sim.desaulniers/mls-working-group<enter><end-cond>\
+<sync-mailbox><enter-command>set<space>confirmappend=yes<space>delete=ask-yes<enter>"
+macro index .c $my_gmail_sort
+folder-hook "INBOX" push $my_gmail_sort
+
 macro index <f2> '<sync-mailbox><enter-command>\
 source ~/.mutt/accounts/courrier.uqam.ca.desaulniers.simon/info.muttrc<enter>\
 <change-vfolder>[courrier.uqam.desaulniers.simon] Discussions<enter>'
