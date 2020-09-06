@@ -9,6 +9,8 @@ virtual-mailboxes \
              "[courrier.uqam.desaulniers.simon] Brouillons" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Drafts/" \
              "[courrier.uqam.desaulniers.simon] Indésirables" "notmuch://?query=path:courrier.uqam.desaulniers.simon/** and path:/Indesirable/" \
              "Non-lus" "notmuch://?query=path:/INBOX/ and tag:unread" \
+             "Debian-Devel" "notmuch://?query=path:gmail.sim.desaulniers/debian-devel/**" \
+             "mls-working-group" "notmuch://?query=path:gmail.sim.desaulniers/mls-working-group/**" \
              "Indésirables" "notmuch://?query=(path:/Spam/ or path:/Indesirable/) and tag:unread"
 
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
