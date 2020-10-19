@@ -46,8 +46,9 @@ command! -bang -nargs=* PRg
 " project_files_without_gitignore_files as it doesn't ban gitignored files.
 command! ProjectFiles execute 'Files' s:project_dir()
 
-nnoremap <leader>gf :call <SID>project_files_without_gitignore_files()<CR>
-nnoremap <leader>gF :ProjectFiles<CR>
+nnoremap <leader>gf :Files<CR>
+nnoremap <leader>gp :call <SID>project_files_without_gitignore_files()<CR>
+nnoremap <leader>gP :ProjectFiles<CR>
 nnoremap <leader>gb :Buffers<CR>
 nnoremap <leader>gw :Windows<CR>
 nnoremap <leader>gh :History<CR>
