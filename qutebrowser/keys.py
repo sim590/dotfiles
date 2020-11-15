@@ -58,13 +58,16 @@ config.bind('tG', 'spawn --userscript ~/bin/qutebrowser_bin/qurlshare {url}')
 config.bind('tt', 'set-cmd-text -s :tab-take')
 config.bind('tT', 'spawn --userscript ~/bin/qutebrowser_bin/qurlshare -g')
 config.unbind('<ctrl-q>', mode='normal')
+
 ## passthrough allow ctrl-v for pasting clipboard
 config.bind('<ctrl-d>','leave-mode', mode='passthrough')
 config.bind(';iy', 'hint images yank')
+
 # sessions
 config.bind('sw',  'set-cmd-text -s :session-save --only-active-window')
 config.bind('sL',  'set-cmd-text -s :session-load')
 config.bind('ss',  'session-save default')
+
 # downloads
 config.bind('ed',  'download-open')
 # videos (mpv, castnow, yt-dlp)
@@ -73,6 +76,7 @@ config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/mpv')
 config.bind(';xv', "hint links spawn mpv %s {hint-url}" % MPV_FLAGS)
 config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
 config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hint-url}')
+
 ## unbinding for preventing shadowing ;Yd and ;Ym
 config.unbind(';Y')
 dld_msg = ';; message-info "Downloading %s from %s..."'
@@ -85,8 +89,9 @@ config.bind(';Ym', 'hint links spawn yt-dlp --extract-audio --audio-format mp3 {
                    + dld_msg % ('audio','{hint-url}'))
 config.bind(';rym', 'hint --rapid links spawn yt-dlp --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
+
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
 
-#  vim: set sts=4 ts=8 sw=4 tw=100 et :
+#  vim: set sts=4 ts=8 sw=4 tw=120 et :
 
