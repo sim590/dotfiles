@@ -27,7 +27,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'plasticboy/vim-markdown'
 Plug 'DrawIt'
-Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-unimpaired'
 Plug 'atweiden/vim-dragvisuals'
 Plug 'sim590/vim-listtrans'
@@ -128,7 +127,6 @@ source ~/.vim/mappings.vim
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = [
       \ "taglist.vim",
-      \ "rsi.vim",
       \ "pyclewn.vim",
       \ "vim-multi-cursor.vim",
       \ "ack.vim",
