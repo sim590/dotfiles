@@ -78,6 +78,10 @@ Plug 'hari-rangarajan/CCTree'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'Konfekt/vim-mutt-aliases'
 Plug 'bfrg/vim-cpp-modern'
+" vim-AdvancedDiffOptions ------------------
+Plug 'inkarkat/vim-AdvancedDiffOptions'
+Plug 'inkarkat/vim-ingo-library'
+" ------------------------------------------
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
