@@ -71,6 +71,10 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" vim-AdvancedDiffOptions ------------------
+Plug 'inkarkat/vim-AdvancedDiffOptions'
+Plug 'inkarkat/vim-ingo-library'
+" ------------------------------------------
 call plug#end()
 
 filetype plugin indent on
