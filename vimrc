@@ -75,6 +75,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'inkarkat/vim-AdvancedDiffOptions'
 Plug 'inkarkat/vim-ingo-library'
 " ------------------------------------------
+Plug 'romainl/vim-qf'
 call plug#end()
 
 filetype plugin indent on
