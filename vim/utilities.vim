@@ -122,7 +122,7 @@ fun s:search_replace_minmax()
 endf
 
 " replace false spaces by spaces
-fun! s:RemoveFalseSpaces()
+fun! RemoveFalseSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
   exec ":" . l:minl . "," . l:maxl . "s/\\%o240/ /ge"
@@ -139,7 +139,7 @@ autocmd BufReadPost *
 "  Strip Trailing white spaces  "
 """""""""""""""""""""""""""""""""
 " get rid of trailing white spaces
-fun! s:StripTrailingWhiteSpaces()
+fun! StripTrailingWhiteSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
   exec ":" . l:minl . "," . l:maxl . "s/\\s\\+$//e"
@@ -150,9 +150,9 @@ command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
 augroup StrippingWhiteSpaces
   autocmd!
   exec "au FileType ".join(g:programming_fts, ',').",tex "." au BufWritePre <buffer> ".
-        \ "call s:RemoveFalseSpaces()"
+        \ "call RemoveFalseSpaces()"
   exec "au FileType ".join(g:syntaxed_fts, ',')." au BufWritePre <buffer> ".
-        \ "call s:StripTrailingWhiteSpaces()"
+        \ "call StripTrailingWhiteSpaces()"
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""
