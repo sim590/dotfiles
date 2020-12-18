@@ -1,5 +1,6 @@
 define(M4_USER, simon)dnl
 define(M4_HOME, /home/M4_USER)dnl
+define(M4_HOST, leviathan)dnl
 define(M4_MPD_ADDRESS, 127.0.0.1)dnl
 define(M4_MPD_PORT, 6600)dnl
 define(M4_FULLNAME, Simon Désaulniers)dnl
