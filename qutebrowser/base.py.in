@@ -43,7 +43,7 @@
                                            ##############
 
 c.auto_save.session = True
-c.session.default_name = "default"
+c.session.default_name = "M4_HOST"
 
 # search engines
 c.url.searchengines = {
