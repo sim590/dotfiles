@@ -125,15 +125,20 @@ local layout_presets = {
         master_count        = 1,
         layout              = awful.layout.suit.tile.right
     },
-    [2] = { -- browser_news_style
+    [2] = { -- browser news style
         master_width_factor = 0.2,
         master_count = 1,
         layout = awful.layout.suit.tile.right
     },
-    [3] = { -- mail_calendar_style
+    [3] = { -- mail calendar style
         master_width_factor = 0.3,
         master_count = 1,
         layout = awful.layout.suit.tile.left
+    },
+    [4] = { -- steam + steam contacts
+        master_width_factor = 0.8,
+        master_count = 1,
+        layout = awful.layout.suit.tile.right
     }
 }
 
