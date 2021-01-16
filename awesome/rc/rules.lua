@@ -68,6 +68,24 @@ awful.rules.rules = {
         }, properties = { floating = true }
     },
 
+    -- BattleNet ------------------------------------
+    {
+        rule_any = { class = { "battle.net.exe", "battle.net.exe" } },
+        properties = {
+            tag = screen[1].tags[5]
+        }
+    },
+    -------------------------------------------------
+
+    -- Steam ----------------------------------------
+    {
+        rule_any = { class = { "steam", "Steam" } },
+        properties = {
+            tag = screen[1].tags[4]
+        }
+    },
+    -------------------------------------------------
+
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
         }, properties = { titlebars_enabled = false }
