@@ -301,9 +301,15 @@ URxvt.url-launcher: /usr/bin/qutebrowser
 !-----------------------------------------------
 
 !Font changing on the fly -------------------
-URxvt.keysym.C-equal: perl:font-size:increase
-URxvt.keysym.C-minus: perl:font-size:decrease
-URxvt.keysym.C-0: perl:font-size:reset
+!Archlinux:
+!https://aur.archlinux.org/packages/urxvt-resize-font-git/
+!https://github.com/simmel/urxvt-resize-font
+URxvt.keysym.C-0:     resize-font:reset
+!Le reste des  est par défaut... mais on est les
+!configure par défaut pour être sûr.
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-plus:  resize-font:bigger
+URxvt.keysym.C-equal: resize-font:reset
 !--------------------------------------------
 
 URxvt.keysym.Control-Up:     \033[1;5A
