@@ -68,7 +68,7 @@ config.bind('ss',  'session-save default')
 # downloads
 config.bind('ed',  'download-open')
 # videos (mpv, castnow, youtube-dl)
-MPV_FLAGS="--force-window --no-terminal --keep-open=yes --ytdl --script-opts=ytdl_hook-ytdl_path=yt-dlp --ytdl-format='ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9]+bestaudio/best'"
+MPV_FLAGS="--force-window --no-terminal --keep-open=yes --ytdl --script-opts=ytdl_hook-ytdl_path=yt-dlp"
 config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/mpv')
 config.bind(';xv', "hint links spawn mpv %s {hint-url}" % MPV_FLAGS)
 config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
