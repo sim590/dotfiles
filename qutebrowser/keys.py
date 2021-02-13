@@ -71,9 +71,7 @@ config.bind('ed',  'download-open')
 config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/mpv')
 
 config.bind(';xv', "hint links spawn %s {hint-url}"
-             % "mpv --force-window --no-terminal --keep-open=yes --ytdl "
-               "--ytdl-format="
-               "'ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9]+bestaudio/best'")
+             % "mpv --force-window --no-terminal --keep-open=yes --ytdl")
 config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
 config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hint-url}')
 ## unbinding for preventing shadowing ;Yd and ;Ym
