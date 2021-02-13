@@ -11,5 +11,9 @@ l_="$(setxkbmap -query | grep layout | gawk '{print $2}')"
 v_="$(setxkbmap -query | grep variant | gawk '{print $2}')"
 notify-send "Keyboard configuration" "set to $l_-$v_"
 
+# contournement (https://github.com/debauchee/barrier/issues/207#issuecomment-542744072) pour les touches qui restent
+# collées avec barrier/synergy
+xdotool keyup Shift_L Shift_R Control_L Control_R Alt_L Alt_R Super_L Super_R Hyper_L Hyper_R Caps_Lock 204 205 206 207
+
 # vim: set ts=2 sw=2 tw=120 et :
 
