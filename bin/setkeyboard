@@ -4,7 +4,7 @@ layout_=ca
 variant_=multix
 
 setxkbmap -display $DISPLAY -option ""
-setxkbmap -display $DISPLAY -option ctrl:nocaps -variant $variant_ $layout_
+setxkbmap -display $DISPLAY -option ctrl:nocaps -option numpad:mac -variant $variant_ $layout_
 xmodmap   -display $DISPLAY ${HOME}/.Xmodmap
 
 l_="$(setxkbmap -query | grep layout | gawk '{print $2}')"
