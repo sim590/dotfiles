@@ -82,6 +82,7 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'inkarkat/vim-AdvancedDiffOptions'
 Plug 'inkarkat/vim-ingo-library'
 " ------------------------------------------
+Plug 'will133/vim-dirdiff'
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
