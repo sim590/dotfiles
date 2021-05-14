@@ -79,6 +79,7 @@ Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'Konfekt/vim-mutt-aliases'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'PProvost/vim-ps1'
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
@@ -132,30 +133,31 @@ source ~/.vim/mappings.vim
 " PLUGIN SETTINGS ==================================
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = [
-      \ "taglist.vim",
-      \ "pyclewn.vim",
-      \ "vim-multi-cursor.vim",
-      \ "ack.vim",
-      \ "fugitive.vim",
-      \ "snipMate.vim",
-      \ "ultisnips.vim",
-      \ "pi_netrw.vim",
-      \ "dragvisuals.vim",
-      \ "jedi-vim.vim",
-      \ "quicktask.vim",
-      \ "listtrans.vim",
-      \ "fzf.vim",
-      \ "markdown.vim",
-      \ "coc.vim",
-      \ "auto-save.vim",
-      \ "pandoc.vim",
-      \ "switch.vim",
-      \ "neco-ghc.vim",
-      \ "lightline.vim",
-      \ "tabular.vim",
-      \ "vimtex.vim",
-      \ "languagetool.vim",
-      \ "haskell-conceal.vim"
+      \ "taglist.vim"
+      \ , "pyclewn.vim"
+      \ , "vim-multi-cursor.vim"
+      \ , "ack.vim"
+      \ , "fugitive.vim"
+      \ , "snipMate.vim"
+      \ , "ultisnips.vim"
+      \ , "pi_netrw.vim"
+      \ , "dragvisuals.vim"
+      \ , "jedi-vim.vim"
+      \ , "quicktask.vim"
+      \ , "listtrans.vim"
+      \ , "fzf.vim"
+      \ , "markdown.vim"
+      \ , "coc.vim"
+      \ , "auto-save.vim"
+      \ , "pandoc.vim"
+      \ , "switch.vim"
+      \ , "neco-ghc.vim"
+      \ , "lightline.vim"
+      \ , "tabular.vim"
+      \ , "vimtex.vim"
+      \ , "languagetool.vim"
+      \ , "haskell-conceal.vim"
+      \ , "omnisharp.vim"
       \ ]
 
 for s:plugin in s:configs
