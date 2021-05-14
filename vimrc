@@ -78,6 +78,7 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'romainl/vim-qf'
 Plug 'will133/vim-dirdiff'
 Plug 'PProvost/vim-ps1'
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
 filetype plugin indent on
@@ -129,32 +130,33 @@ source ~/.vim/mappings.vim
 " PLUGIN SETTINGS ==================================
 let s:settings_dir="~/.vim/plugins-config/"
 let s:configs = [
-      \ "taglist.vim",
-      \ "rsi.vim",
-      \ "pyclewn.vim",
-      \ "vim-multi-cursor.vim",
-      \ "ack.vim",
-      \ "fugitive.vim",
-      \ "snipMate.vim",
-      \ "ultisnips.vim",
-      \ "pi_netrw.vim",
-      \ "dragvisuals.vim",
-      \ "jedi-vim.vim",
-      \ "quicktask.vim",
-      \ "listtrans.vim",
-      \ "fzf.vim",
-      \ "markdown.vim",
-      \ "youcompleteme.vim",
-      \ "LanguageClient-neovim.vim",
-      \ "auto-save.vim",
-      \ "pandoc.vim",
-      \ "switch.vim",
-      \ "neco-ghc.vim",
-      \ "lightline.vim",
-      \ "tabular.vim",
-      \ "vimtex.vim",
-      \ "languagetool.vim",
-      \ "haskell-conceal.vim"
+      \ "taglist.vim"
+      \ , "rsi.vim"
+      \ , "pyclewn.vim"
+      \ , "vim-multi-cursor.vim"
+      \ , "ack.vim"
+      \ , "fugitive.vim"
+      \ , "snipMate.vim"
+      \ , "ultisnips.vim"
+      \ , "pi_netrw.vim"
+      \ , "dragvisuals.vim"
+      \ , "jedi-vim.vim"
+      \ , "quicktask.vim"
+      \ , "listtrans.vim"
+      \ , "fzf.vim"
+      \ , "markdown.vim"
+      \ , "youcompleteme.vim"
+      \ , "LanguageClient-neovim.vim"
+      \ , "auto-save.vim"
+      \ , "pandoc.vim"
+      \ , "switch.vim"
+      \ , "neco-ghc.vim"
+      \ , "lightline.vim"
+      \ , "tabular.vim"
+      \ , "vimtex.vim"
+      \ , "languagetool.vim"
+      \ , "haskell-conceal.vim"
+      \ , "omnisharp.vim"
       \ ]
 
 for s:plugin in s:configs
