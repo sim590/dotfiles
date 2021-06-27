@@ -190,7 +190,7 @@ local function myip()
     return ip
 end
 
-local conky_choices = { "dateweather", "sysmonitor", "voip-cdr" }
+local conky_choices = { "sysmonitor", "task-progress", "git-status", "voip-cdr" }
 local conky_menu = lain.util.menu_iterator.menu {
     name          = "conky",
     choices       = conky_choices,
