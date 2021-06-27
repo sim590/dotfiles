@@ -29,6 +29,11 @@ include /usr/share/doc/task/rc/dark-gray-blue-256.theme
 #include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
+color.overdue=rgb100
+color.due.today=red
+color.due=yellow
+color.active=rgb035
+
 context.travail=+udem or +travail or +doctorat +diro
 context.étude=+udem or +doctorat +diro
 context.épicerie=+épicerie
