@@ -6,6 +6,8 @@ BIN_FILES = \
 			bin/conky-diskio.sh \
 			bin/conky-task-progress.sh \
 			bin/conky-directory-usage.sh \
+			bin/conky-status-all.sh \
+			bin/conky-git-status.sh \
 			bin/conky-bg-space-to-fg.sh
 BIN_DEST_LINKS = $(addprefix $(HOME)/,$(BIN_FILES))
 DEST_LINKS     = ${BIN_DEST_LINKS}
