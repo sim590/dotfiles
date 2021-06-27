@@ -17,9 +17,9 @@ FZF_BINDARGS="${FZF_BINDARGS%,}"
 FZF_BINDARGS="${FZF_BINDARGS//, /,}"
 
 export FZF_PREVIEW_ARGS="batcat --style=numbers --color=always {} | head -500"
-export FZF_DEFAULT_COMMAND="fd -H ."
+export FZF_DEFAULT_COMMAND="fd -IH ."
 export FZF_DEFAULT_OPTS="--bind '${FZF_BINDARGS}'"
-export FZF_ALT_C_COMMAND="fd -H --type d"
+export FZF_ALT_C_COMMAND="fd -IH --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # vim: set ft=sh sts=2 ts=2 sw=2 tw=120 et :
