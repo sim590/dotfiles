@@ -1,7 +1,11 @@
 .PHONY: all links dirs prepare decompress-imgs
 
 BIN_FILES = \
+			bin/conky-biggest-files.sh \
+			bin/conky-disk-usage.sh \
+			bin/conky-diskio.sh \
 			bin/conky-task-progress.sh \
+			bin/conky-directory-usage.sh \
 			bin/conky-bg-space-to-fg.sh
 BIN_DEST_LINKS = $(addprefix $(HOME)/,$(BIN_FILES))
 DEST_LINKS     = ${BIN_DEST_LINKS}
