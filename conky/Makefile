@@ -1,6 +1,21 @@
-.PHONY: prepare decompress-imgs
+.PHONY: all links dirs prepare decompress-imgs
 
-all: prepare
+BIN_FILES =
+BIN_DEST_LINKS = $(addprefix $(HOME)/,$(BIN_FILES))
+DEST_LINKS     = ${BIN_DEST_LINKS}
+
+all: prepare links
+
+links: dirs $(DEST_LINKS)
+
+dirs:
+	mkdir -p $(dir $(DEST_LINKS))
+
+define MAKE_LINKS
+$(1): $(2)
+	ln -s $$(CURDIR)/$$< $$@ ; true
+endef
+$(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
 prepare: decompress-imgs
 
