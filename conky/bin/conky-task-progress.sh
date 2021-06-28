@@ -10,7 +10,7 @@ project_list() {
   # Simon Désaulniers 2021-06-26
   # changé pour éviter d'avoir l'entête et le peid du rapport
   # task all rc.report.all.{labels,columns}:project rc.verbose:nothing 2>/dev/null | sort -u
-  task all rc.report.all.{labels,columns}:project rc.verbose:nothing 2>/dev/null | head -n -2 | sed -n '4,$p' | sort -u
+  task all rc.report.all.{labels,columns}:project -DELETED rc.verbose:nothing 2>/dev/null | head -n -2 | sed -n '4,$p' | sort -u
 }
 
 project_completed() {
@@ -54,7 +54,6 @@ main() {
   FILTER_PROJECTS=(
     "<none>"
   )
-  FILTER_ABANDONED=false
   FILTER_NOT_STARTED=false
   FILTER_COMPLETED=true
   FILTER_ONE_TASK_PROJECTS=true
@@ -64,12 +63,6 @@ main() {
     apply_sort() { sort -k1 -gr; }
   else
     apply_sort() { cat; }
-  fi
-
-  if ${FILTER_ABANDONED}; then
-    filter_abandoned() { grep -v '0 0'; }
-  else
-    filter_abandoned() { cat; }
   fi
 
   if ${FILTER_COMPLETED}; then
@@ -96,7 +89,7 @@ main() {
   }
 
   apply_filters() {
-    filter_projects | filter_completed | filter_abandoned | filter_not_started
+    filter_projects | filter_completed | filter_not_started
   }
 
   iterate_projects | apply_filters | apply_sort | head -n${LIMIT} | echo_for_conky
