@@ -18,7 +18,8 @@ XDG_CONFIG_CONTENT = \
 					 config/systemd/user/conky@.service\
 					 config/systemd/user/conky.target\
 					 config/systemd/user/keynav.service\
-					 config/systemd/user/ipfs.service
+					 config/systemd/user/ipfs.service\
+					 config/environment.d/path.conf
 DOTFILES = gitconfig\
 					 vimrc\
 					 Xresources\
