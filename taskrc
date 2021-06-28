@@ -34,7 +34,7 @@ color.due.today=red
 color.due=yellow
 color.active=rgb035
 
-context.travail=+udem or +travail or +doctorat +diro
+context.travail=+travail or +morneaushepell
 context.étude=+udem or +doctorat +diro
 context.épicerie=+épicerie
 
