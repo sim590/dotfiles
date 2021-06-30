@@ -52,7 +52,7 @@ ${font Aerial:style=Bold:pixelsize=12}EN COURS ${hr 2}${font}
 ${texecpi 5 flock /home/simon/.task task limit:10 rc.defaultwidth:100 rc._forcecolor:on rc.verbose:affected,blank doing | ansito - | sed -r 's/([^ ])#/\1\\#/g'}
 
 ${font Aerial:style=Bold:pixelsize=12}À FAIRE ${hr 2}${font}
-${texecpi 5 flock /home/simon/.task task limit:10 rc.defaultwidth:100 rc._forcecolor:on rc.verbose:affected,blank '(scheduled:someday' or 'due.before:someday)' todo | ansito - | sed -r 's/([^ ])#/\1\\#/g' }
+${texecpi 5 flock /home/simon/.task task limit:10 rc.defaultwidth:100 rc._forcecolor:on rc.verbose:affected,blank todo | ansito - | sed -r 's/([^ ])#/\1\\#/g' }
 
 ${font Aerial:style=Bold:pixelsize=12}BURNDOWN ${hr 2}${font}
 
