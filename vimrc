@@ -61,10 +61,9 @@ Plug 'aymericbeaumet/symlink.vim'
 Plug 'fatih/vim-go'
 " Haskell ------------------------------
 Plug 'neovimhaskell/haskell-vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+Plug 'neoclide/coc.nvim', {
+      \ 'branch' : 'release'
+      \ }
 " --------------------------------------
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
@@ -141,7 +140,6 @@ let s:configs = [
       \ "fzf.vim",
       \ "markdown.vim",
       \ "youcompleteme.vim",
-      \ "LanguageClient-neovim.vim",
       \ "auto-save.vim",
       \ "pandoc.vim",
       \ "switch.vim",
