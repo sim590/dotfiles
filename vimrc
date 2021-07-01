@@ -140,6 +140,7 @@ let s:configs = [
       \ "fzf.vim",
       \ "markdown.vim",
       \ "youcompleteme.vim",
+      \ "coc.vim",
       \ "auto-save.vim",
       \ "pandoc.vim",
       \ "switch.vim",
