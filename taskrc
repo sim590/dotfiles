@@ -29,10 +29,10 @@ include /usr/share/doc/task/rc/dark-gray-blue-256.theme
 #include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
-color.overdue=rgb100
-color.due.today=red
-color.due=yellow
-color.active=rgb035
+color.overdue=red
+color.due.today=yellow
+color.due=rgb035
+color.active=rgb040
 
 context.travail=+travail or +morneaushepell
 context.étude=+udem or +doctorat +diro
