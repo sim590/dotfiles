@@ -70,7 +70,7 @@ fun s:set_mappings()
   nmap <buffer> <silent> gd <Plug>(coc-definition)
   nmap <buffer> <silent> gy <Plug>(coc-type-definition)
   nmap <buffer> <silent> gi <Plug>(coc-implementation)
-  nmap <buffer> <silent> gr <Plug>(coc-references)
+  nmap <buffer> <silent> gR <Plug>(coc-references)
 
   " Use K to show documentation in preview window.
   nnoremap <buffer> <silent> K :call <SID>show_documentation()<CR>
