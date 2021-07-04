@@ -56,7 +56,7 @@ ${texecpi 5 flock /home/simon/.task task limit:10 rc.defaultwidth:100 rc._forcec
 
 ${font Aerial:style=Bold:pixelsize=12}BURNDOWN ${hr 2}${font}
 
-${font FreeMono:style=Bold:size=10}${texecpi 120 flock /home/simon/.task task rc._forcecolor:on burndown.monthly | tail -n+2 | head -n-2 | conky-bg-space-to-fg.sh | ansito - | sed -r 's/([^ ])#/\1\\#/g'}${font}
+${font FreeMono:style=Bold:size=10}${texecpi 120 flock /home/simon/.task task rc._forcecolor:on -WAITING burndown.monthly | tail -n+2 | head -n-2 | conky-bg-space-to-fg.sh | ansito - | sed -r 's/([^ ])#/\1\\#/g'}${font}
 
 ${font Aerial:style=Bold:pixelsize=12}ÉTAT DES PROJETS ${hr 2}${font}
 ${font DejaVu Sans:size=11}${texecpi 180 flock /home/simon/.task conky-task-progress.sh}${font}
