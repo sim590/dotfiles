@@ -37,6 +37,8 @@ color.active=rgb035
 context.travail=+travail or +morneaushepell
 context.étude=+udem or +doctorat +diro
 context.épicerie=+épicerie
+context.informatique=+informatique or +dev or +debian or +haskell or +système or +wsl
+context.publique=-perso -travail -morneaushepell -job -professionnel -achat -udem -doctorat -diro -uqam -memoire
 
 # Custom priority values
 uda.priority.values=H,M,,L
