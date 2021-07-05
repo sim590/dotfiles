@@ -9,7 +9,7 @@ require("pl.stringx").import()
 
 -- Awesome Mutli-Host
 local amh = require("amh")
-amh.hosts        = { "hydralisk.local", "ultralisk.local" }
+amh.hosts        = { "hydralisk.local", "haxorz.local" }
 amh.synergy_icon = "/home/simon/.local/share/icons/hicolor/48x48/apps/synergy.png"
 
 -- {{{ Variable definitions
