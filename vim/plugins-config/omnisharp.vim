@@ -1,4 +1,5 @@
 
+let g:OmniSharp_highlighting         = 0
 let g:OmniSharp_translate_cygwin_wsl = 1
 let g:OmniSharp_popup_position = 'peek'
 if has('nvim')
