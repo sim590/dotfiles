@@ -35,8 +35,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-eunuch'
-Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --clang-completer --cs-completer' }
-Plug 'rdnetto/YCM-Generator', 'stable'
+" Plug 'Valloric/YouCompleteMe', { 'do' : './install.py --clang-completer --cs-completer' }
+" Plug 'rdnetto/YCM-Generator', 'stable'
 Plug 'Xe/lolcode.vim'
 Plug 'aaronbieber/vim-quicktask'
 Plug 'TaskList.vim'
