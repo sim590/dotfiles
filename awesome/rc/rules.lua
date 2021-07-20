@@ -82,6 +82,21 @@ awful.rules.rules = {
     },
     -------------------------------------------------
 
+    -- Games ---------------------------------------
+    {
+        rule_any = {
+            class = {
+                "steam_app_252490"                -- Rust
+                , "csgo_linux64" , "csgo_linux64" -- CS:GO
+                , "steam_app_232090"              -- Killing Floor 2
+                , "steam_app_1172620"             -- Sea of Thieves
+            }
+        },
+        properties = { floating = true },
+        callback = function (c) c:move_to_tag(awful.screen.focused().tags[5]) end
+    },
+    ------------------------------------------------
+
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
         }, properties = { titlebars_enabled = false }
