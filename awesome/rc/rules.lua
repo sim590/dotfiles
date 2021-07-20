@@ -1,5 +1,5 @@
-local awful = require("awful")
-local beautiful = require("beautiful")
+local awful      = require("awful")
+local beautiful  = require("beautiful")
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -71,18 +71,14 @@ awful.rules.rules = {
     -- BattleNet ------------------------------------
     {
         rule_any = { class = { "battle.net.exe", "battle.net.exe" } },
-        properties = {
-            tag = screen[1].tags[5]
-        }
+        callback = function (c) c:move_to_tag(awful.screen.focused().tags[5]) end
     },
     -------------------------------------------------
 
     -- Steam ----------------------------------------
     {
         rule_any = { class = { "steam", "Steam" } },
-        properties = {
-            tag = screen[1].tags[4]
-        }
+        callback = function (c) c:move_to_tag(awful.screen.focused().tags[4]) end
     },
     -------------------------------------------------
 
