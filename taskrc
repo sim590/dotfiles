@@ -48,7 +48,7 @@ report.todo.description=À faire
 report.todo.columns=id,project,tags,due,description
 report.todo.labels=ID,Projet,Étiquettes,Dû,Description
 report.todo.sort=priority-,urgency-,project+,id+
-report.todo.filter=status:pending -ACTIVE -WAITING -BLOCKED (scheduled:someday or due.before:someday) description.hasnt:"(GH)"
+report.todo.filter=status:pending -ACTIVE -WAITING -BLOCKED (scheduled:someday or scheduled.before:today+1week or due.before:someday) description.hasnt:"(GH)"
 
 report.doing.description=En cours
 report.doing.columns=id,project,tags,description
