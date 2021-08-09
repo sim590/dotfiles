@@ -31,9 +31,11 @@ command! -bang -nargs=* PRg
     \ { 'dir': s:project_dir() },
   \ <bang>0)
 
-" Find files from the root of the project (where .git is located) if there's
-" any. This commands serve a different purpose than :GFiles or
-" project_files_without_gitignore_files as it doesn't ban gitignored files.
+" Find files from the root of the project (where .git is located) if there's any. This commands
+" serve a different purpose than :GFiles or project_files_without_gitignore_files as it let
+" $FZF_DEFAULT_COMMAND take care of including (or not) ignored files.
+" NOTE: GFiles excludes ignored files, but not files that are ignored AND staged/commited. However,
+" `fdfind` will ignore files matching patterns in .gitignore file.
 command! ProjectFiles execute 'Files' s:project_dir()
 
 nnoremap <leader>gf :Files<CR>
