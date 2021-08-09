@@ -24,17 +24,6 @@ fun s:project_files_without_gitignore_files()
     endif
 endf
 
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {
-        \ 'source' : 'fdfind -H -I .',
-        \ 'options': [
-            \ '--layout=reverse',
-            \ '--info=inline',
-            \ '--preview',
-            \ '~/.vim/plugged/fzf.vim/bin/preview.sh {}'
-        \ ]
-    \ }, <bang>0)
-
 command! -bang -nargs=* PRg
   \ call fzf#vim#grep(
     \ "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
