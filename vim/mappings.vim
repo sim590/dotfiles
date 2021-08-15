@@ -1,3 +1,9 @@
+"""""""""""""
+"  general  "
+"""""""""""""
+" Going around the Vim+urxvt drawing issue when spawning window. Hitting backspace will now solve
+" the drawing issues. This also applies to weird cmder/WSL terminal redrawing issues.
+nnoremap <backspace> <esc>:!<cr><cr>
 """"""""""""""""""""""""""""""""""""
 "  Editing & Navigation & Windows  "
 """"""""""""""""""""""""""""""""""""
