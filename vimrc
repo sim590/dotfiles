@@ -74,6 +74,7 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'romainl/vim-qf'
 Plug 'will133/vim-dirdiff'
 Plug 'kevinoid/vim-jsonc'
+Plug 'hari-rangarajan/CCTree'
 call plug#end()
 
 filetype plugin indent on
