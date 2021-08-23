@@ -15,6 +15,7 @@ XDG_CONFIG_CONTENT = \
 					 config/systemd/user/mbsync.timer\
 					 config/systemd/user/mbsync.service\
 					 config/systemd/user/notmuch.service\
+					 config/systemd/user/pulseaudio.service.d/override.conf\
 					 config/systemd/user/redshift.service.d/override.conf\
 					 config/systemd/user/conky@.service\
 					 config/systemd/user/conky.target\
