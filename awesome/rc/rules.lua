@@ -90,6 +90,7 @@ awful.rules.rules = {
                 , "csgo_linux64" , "csgo_linux64" -- CS:GO
                 , "steam_app_232090"              -- Killing Floor 2
                 , "steam_app_1172620"             -- Sea of Thieves
+                , "steam_app_6120"                -- Shank
             }
         },
         properties = { floating = true },
