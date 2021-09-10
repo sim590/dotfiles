@@ -21,7 +21,8 @@ XDG_CONFIG_CONTENT = \
 					 config/systemd/user/keynav.service\
 					 config/systemd/user/ipfs.service\
 					 config/environment.d/path.conf\
-					 config/imv/config
+					 config/imv/config\
+					 config/swayr/config.toml
 DOTFILES = gitconfig\
 					 vimrc\
 					 Xresources\
