@@ -1,0 +1,2 @@
+[binds]
+w = exec ~/bin/setwallpaper "$imv_current_file"
