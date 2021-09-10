@@ -30,9 +30,14 @@ rm -rf "$dest_dir/actuel.*"
 ln -f "${src_img}" "$dest_img"
 ln -fs "$dest_img" $dest_link
 
-# update user's fehbg config
-echo "feh --bg-fill $dest_img" >${HOME}/.fehbg
-eval $(< ${HOME}/.fehbg)
+
+if [[ $XDG_SESSION_TYPE =~ "x11" ]]; then
+    # update user's fehbg config
+    echo "feh --bg-fill $dest_img" >${HOME}/.fehbg
+    eval $(< ${HOME}/.fehbg)
+elif [[ $XDG_SESSION_TYPE =~ "wayland" ]] && pidof sway >/dev/null; then
+    swaymsg output '*' bg /home/simon/Images/arrière-plans/actuel/actuel fill
+fi
 
 # vim:set et sw=4 ts=4 tw=120:
 
