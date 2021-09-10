@@ -1,6 +1,7 @@
 
 let s:handled_languages = [
       \ "haskell"
+      \ , "c", "cpp"
       \ ]
 
 function! s:show_documentation()
