@@ -1,4 +1,4 @@
-TARGETS    = options.vim utilities.vim mappings.vim autoload after plugins-config syntax ftplugin ftdetect
+TARGETS    = options.vim utilities.vim mappings.vim autoload after plugins-config syntax ftplugin ftdetect coc-settings.json
 DEST_DIR   = $(HOME)/.vim
 DEST_LINKS = $(addprefix $(DEST_DIR)/,$(TARGETS))
 VIMPLUG_DEST_LINK = autoload/plug.vim

@@ -1,0 +1,24 @@
+{
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+  },
+  // Pour l'instant, je désactive la CocList pour la "localisation". Par exemple avec gR (pour aller chercher les
+  // références), je préfère avoir la fenêtre quickfix.
+  //
+  // NOTE: Possible que je préfère retourner à l'ancienne config si jamais je ne veux pas obstruer l'utilisation de
+  // la fenêtre quickfix lorsque je recherche des références. À voir..
+  "coc.preferences.useQuickfixForLocations": true
+}
+
+// vim: set sts=2 ts=2 sw=2 tw=120 et :
+
