@@ -1,0 +1,13 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    // Voir https://www.charvolant.org/doug/xkb/html/img3.png pour les étiquettes de touche.
+	include "ca(multix)"
+	name[Group1] = "Français (CA, multix avec configs particulières (sim590))";
+	key <AE01> { [ 1, exclam, plusminus, exclamdown   ] };
+	key <AE06> { [ 6, question, notsign, questiondown ] };
+	key <AC01> { [ a, A, ae, AE                       ] };
+	key <AD03> { [ e, E, oe, OE                       ] };
+	key <AD07> { [ u, U, ubreve, Ubreve               ] };
+	key <AB06> { [ n, N, ntilde, Ntilde               ] };
+	key <AC09> { [ l, L, backslash                    ] };
+};

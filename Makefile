@@ -39,7 +39,8 @@ DOTFILES = gitconfig\
 					 conky\
 					 keynavrc\
 					 fzf_env\
-					 gnupg/gpg-agent.conf
+					 gnupg/gpg-agent.conf\
+					 xkb/symbols/ca-multix-sim590
 BIN_FILES = bin/lights\
 						bin/pinentry-rofi.scm\
 						bin/setkeyboard\

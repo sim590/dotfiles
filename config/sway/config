@@ -58,8 +58,7 @@ output DP-2 resolution 2560x1440 position 0,0
 #   }
 #
 input "1241:293:USB_Keyboard" {
-    xkb_layout ca
-    xkb_variant multix
+    xkb_layout ca-multix-sim590
     xkb_options ctrl:nocaps,numpad:mac
 }
 #
