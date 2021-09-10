@@ -23,7 +23,10 @@ XDG_CONFIG_CONTENT = \
 					 config/environment.d/path.conf\
 					 config/imv/config\
 					 config/swayr/config.toml\
-					 config/wofi/style.css
+					 config/wofi/style.css\
+					 config/sway/config\
+					 config/sway/config.d/keys.conf\
+					 config/sway/config.d/swaysome.conf
 DOTFILES = gitconfig\
 					 vimrc\
 					 Xresources\
