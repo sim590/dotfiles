@@ -13,12 +13,15 @@ endf
 
 " copy argument to clipboard with support for WSL
 fun! CopyToClipboard(what)
+  let l:what_string = string(a:what)
   if exists('$WSLENV')
-    call system('clip.exe', a:what)
+    call system('clip.exe', l:what_string)
+  elseif $XDG_SESSION_TYPE == "wayland"
+    call system("wl-copy", l:what_string)
   else
-    call setreg('+', a:what)
+    call setreg('+', l:what_string)
   endif
-  echo a:what
+  echomsg a:what
 endf
 
 """""""""""""""""""""""

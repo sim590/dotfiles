@@ -75,6 +75,7 @@ Plug 'romainl/vim-qf'
 Plug 'will133/vim-dirdiff'
 Plug 'kevinoid/vim-jsonc'
 Plug 'hari-rangarajan/CCTree'
+Plug 'jasonccox/vim-wayland-clipboard'
 call plug#end()
 
 filetype plugin indent on
