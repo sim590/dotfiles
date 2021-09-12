@@ -1,2 +1,3 @@
 [binds]
 w = exec ~/bin/setwallpaper "$imv_current_file"
+<Ctrl+d> = exec rm "$imv_current_file"; close
