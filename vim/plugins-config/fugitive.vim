@@ -6,7 +6,7 @@ fun s:DiffAgainstDiffReference()
   echo 'Diff against ' . g:FUGITIVE_DIFF_REFERENCE
 endf
 
-nnoremap <leader>gs :cd.<CR>:Gstatus<CR>
+nnoremap <leader>gs :cd.<CR>:Git<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
 nnoremap <leader>gD :Gdiffsplit<CR>
 
