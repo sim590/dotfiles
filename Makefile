@@ -25,8 +25,7 @@ XDG_CONFIG_CONTENT = \
 					 config/swayr/config.toml\
 					 config/wofi/style.css\
 					 config/sway/config\
-					 config/sway/config.d/keys.conf\
-					 config/sway/config.d/swaysome.conf\
+					 $(wildcard config/sway/config.d/*) \
 					 config/swaylock/config
 DOTFILES = gitconfig\
 					 vimrc\
