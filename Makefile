@@ -61,7 +61,7 @@ help: ## Prints help for targets with comments
 configure: $(CONFIG_OUT) ## Configure all the files (strings substitutions)
 
 $(CONFIG_OUT): $(CONFIG_FILES)
-		m4 macros.m4 $@.in > $@
+		m4 $(foreach def,$(M4_DEFINE),-D$(def)) macros.m4 $@.in > $@
 		chmod $(if $(findstring bin/,$@),755,644) $@
 
 links: dirs $(DEST_LINKS) ## Produce all symlinks on system
