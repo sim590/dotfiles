@@ -4,6 +4,7 @@ define(M4_MPD_ADDRESS, 127.0.0.1)dnl
 define(M4_MPD_PORT, 6600)dnl
 define(M4_FULLNAME, Simon Désaulniers)dnl
 define(M4_MAILADDRESS, sim.desaulniers@gmail.com)dnl
+define(M4_QTB_SOFTWARE_RENDERING, none)dnl
 dnl
 dnl Ensuring backticks (`) and apostrophe (') are not expanded in code
 changequote(<<!,!>>)dnl

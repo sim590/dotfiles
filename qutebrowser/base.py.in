@@ -42,6 +42,8 @@
                                            #  SETTINGS  #
                                            ##############
 
+c.qt.force_software_rendering = 'M4_QTB_SOFTWARE_RENDERING'
+
 c.auto_save.session = True
 c.session.default_name = "M4_HOST"
 
