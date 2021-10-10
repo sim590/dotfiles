@@ -1,8 +1,8 @@
 
 nnoremap <buffer> go :Git checkout<space>
 
-nnoremap <buffer> gp :Gpush<CR>
-nnoremap <buffer> gP :Gpush -f
+nnoremap <buffer> gp :Git push<CR>
+nnoremap <buffer> gP :Git push -f
 
 nnoremap <buffer> gb :Git branch -u<space>
 nnoremap <buffer> cu :Git branch -u master<CR>
