@@ -12,6 +12,10 @@ source ~/.zshrc.debian
 source ~/.zshrc.fzf
 source ~/.zshrc.wine
 
+function iconv-latin1 () { iconv -f iso-8859-1 -t utf-8 - }
+function iconv-utf8 () { iconv -f utf-8 -t iso-8859-1 - }
+function iconv-gittfs () { iconv-latin1 | iconv-utf8 }
+
 # disable c-s stop signal key binding to let readline use forward-history-search
 # stty stop ""
 stty -ixon <$TTY >$TTY
