@@ -122,7 +122,7 @@ endf
 fun! s:RemoveFalseSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
-  exec ":.-" . l:minl . ",.+" . l:maxl . ";s/\\%o240/ /ge"
+  exec ":.-" . l:minl . ",.+" . l:maxl . "s/\\%o240/ /ge"
   call setpos('.', l:pos)
 endf
 
@@ -139,7 +139,7 @@ autocmd BufReadPost *
 fun! s:StripTrailingWhiteSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
-  exec ":%s/\\s\\+$//e"
+  exec ":.-" . l:minl . ",.+" . l:maxl . "s/\\s\\+$//e"
   call setpos('.', l:pos)
 endf
 command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
