@@ -20,8 +20,6 @@ function iconv-gittfs () { iconv-latin1 | iconv-utf8 }
 # stty stop ""
 stty -ixon <$TTY >$TTY
 
-sudo mount -a
-
 if [[ "$(umask)" = "0000" ]]; then 
   umask 0022
 fi
