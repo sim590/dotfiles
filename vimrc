@@ -65,7 +65,7 @@ Plug 'neoclide/coc.nvim', {
 " --------------------------------------
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " vim-AdvancedDiffOptions ------------------
 Plug 'inkarkat/vim-AdvancedDiffOptions'
