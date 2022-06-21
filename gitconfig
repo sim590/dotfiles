@@ -9,6 +9,7 @@
 [color]
     ui        = true
 [alias]
+    vbase     = !git for-each-ref refs/remotes/origin/* --format='%(refname)' | sed -n '/\\(master\\|V[0-9]\\.[0-9]\\+\\(-[IR][0-9]\\+\\)\\?\\)$/p' | xargs -I{} bash -c 'echo $(git rev-list --count "$0..HEAD"), $0' {} | sort -nk 1 -t, | head -n1 | cut -f2 -d, | sed 's,refs/remotes/,,'
     lol       = log --decorate --graph --oneline
     loll      = log --decorate --graph --oneline --all
     st        = status -s
@@ -26,6 +27,7 @@
 [merge]
     tool      = vimdiff
 [rerere]
-    enabled    = true
+    enabled   = true
 
 # vim:filetype=gitconfig:
+
