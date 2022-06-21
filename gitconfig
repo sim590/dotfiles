@@ -25,6 +25,7 @@
     date      = iso-local
 [merge]
     tool      = vimdiff
-
+[rerere]
+    enabled    = true
 
 # vim:filetype=gitconfig:
