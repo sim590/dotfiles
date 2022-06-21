@@ -1,6 +1,7 @@
 SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
 
 ZSH_CONFIG = \
+						 zsh/zshrc.autostart \
 						 zsh/zshrc.debian \
 						 zsh/zshrc.env \
 						 zsh/zshrc.local \
