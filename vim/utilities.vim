@@ -4,7 +4,7 @@ command! Shell call job_start('urxvt', {'in_io': 'null', 'out_io': 'null', 'err_
 command! DiffSwp vert new | set bt=nofile | r ++edit # | 0d_  | diffthis | wincmd p | diffthis
 
 fun! ConvertPathToHostSystemFormat(path)
-  if exists('$WSLENV')
+  if exists('$WSLENV') && match(a:path, '^/mnt/[a-zA-Z]/') != -1
     return wsl#format_path(a:path, 'w')
   else
     return a:path
