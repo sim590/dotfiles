@@ -6,6 +6,7 @@ ZSH_CONFIG = \
 						 zsh/zshrc.local \
 						 zsh/zshrc.fzf \
 						 zsh/zshrc.wine \
+						 zsh/zshrc.wine \
 						 zsh/zshrc.alias
 XDG_CONFIG_CONTENT = \
 					 config/zathura/zathurarc\
@@ -82,6 +83,8 @@ zshrc:
 	rm -rf ~/.oh-my-zsh
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 	echo "source $$HOME/.zshrc.local" >> $$HOME/.zshrc
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+	@echo "Theme powerlevel10k has been installed. It needs to be enabled and configured. See ZSH_THEME variable in ~/.zshrc..."
 
 subdirs:
 	@for dir in $(SUBDIRS); do \

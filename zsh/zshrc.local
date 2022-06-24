@@ -2,17 +2,6 @@
 bindkey -v "^X^E" edit-command-line
 export KEYTIMEOUT=1
 
-# Vim mode
-# --
-function zle-line-init zle-keymap-select {
-    # VIM_PROMPT="%{$fg_bold[yellow]%} --% NORMAL --%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --} $EPS1"
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-# --
-
 source ~/.zplug/init.zsh
 
 zplug "kutsan/zsh-system-clipboard";
@@ -28,7 +17,7 @@ source ~/.zshrc.wine
 
 # disable c-s stop signal key binding to let readline use forward-history-search
 # stty stop ""
-stty -ixon
+stty -ixon <$TTY >$TTY
 
 #  vim: set sts=2 ts=2 sw=2 tw=120 et :
 
