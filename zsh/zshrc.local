@@ -1,7 +1,4 @@
 
-# prompt style
-prompt adam2
-
 bindkey -v "^X^E" edit-command-line
 export KEYTIMEOUT=1
 

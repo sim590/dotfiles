@@ -79,8 +79,9 @@ $(eval $(call MAKE_LINKS,$(HOME)/.%, zsh/%))
 $(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
 zshrc:
-	git submodule update --init zsh/grml
-	ln -s zsh/grml/etc/zsh/zshrc
+	rm -rf ~/.oh-my-zsh
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
+	echo "source $$HOME/.zshrc.local" >> $$HOME/.zshrc
 
 subdirs:
 	@for dir in $(SUBDIRS); do \
