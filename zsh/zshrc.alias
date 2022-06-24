@@ -6,6 +6,7 @@ alias shere='urxvt -cd $PWD & disown'
 alias gdbtty="tty; tail -f /dev/null"
 alias shrug="<<<  '¯\_(ツ)_/¯'"
 alias mutt="neomutt"
+alias bat="batcat"
 
 #  vim: set sts=2 ts=2 sw=2 tw=120 et :
 
