@@ -78,9 +78,12 @@ config.unbind(';Y')
 dld_msg = ';; message-info "Downloading %s from %s..."'
 config.bind('Yd',  'spawn youtube-dl {url}'+ dld_msg % ('video','{url}'))
 config.bind(';Yd', 'hint links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
+config.bind(';ryd', 'hint --rapid links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
 config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
                    + dld_msg % ('audio','{url}'))
 config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
+                   + dld_msg % ('audio','{hint-url}'))
+config.bind(';rym', 'hint --rapid links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
