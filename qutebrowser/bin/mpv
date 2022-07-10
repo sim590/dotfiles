@@ -2,7 +2,7 @@
 
 PATH_TO_QUTEB_MPV_SCRIPT=$HOME/prog/qutebrowser/misc/userscripts/view_in_mpv
 
-env MPV_FLAGS='--force-window --no-terminal --keep-open=yes --ytdl --script-opts=ytdl_hook-ytdl_path=yt-dlp' $PATH_TO_QUTEB_MPV_SCRIPT
+env MPV_FLAGS='--force-window --no-terminal --keep-open=yes --ytdl --script-opts=ytdl_hook-ytdl_path=yt-dlp --ytdl-format=ytdl-format=bestvideo[height<=?1440][fps<=?60][vcodec!=?vp9]+bestaudio/best' $PATH_TO_QUTEB_MPV_SCRIPT
 
 # vim: set sts=2 ts=2 sw=2 tw=120 et :
 
