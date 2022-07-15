@@ -1,4 +1,9 @@
 
+" Solution de contournement~[2] pour omnisharp qui ne marche pas dans WSL2~[1].
+" [1]: https://github.com/OmniSharp/omnisharp-vim/issues/706
+" [2]: https://github.com/OmniSharp/omnisharp-vim/issues/706#issuecomment-882047918
+let g:OmniSharp_server_path = "/mnt/c/Users/sdesaulniers/prog/omnisharp-wsl2-workaround/bin/Debug/net6.0/win-x64/omnisharp-wsl2-workaround.exe"
+
 let g:OmniSharp_highlighting         = 0
 let g:OmniSharp_translate_cygwin_wsl = 1
 let g:OmniSharp_loglevel             = 'debug'
