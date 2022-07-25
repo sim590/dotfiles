@@ -20,6 +20,8 @@
     samend    = commit --amend --no-edit
     whatsnew  = fetch --dry-run
     show      = show --show-signature
+[log]
+    date      = iso-local
 [merge]
     tool      = vimdiff
 
