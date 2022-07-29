@@ -29,6 +29,7 @@ set foldlevelstart=2
 set bo=all
 
 packadd termdebug " Enables gdb debugging
+packadd matchit
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
