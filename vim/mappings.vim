@@ -37,7 +37,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 nnoremap <leader>yp :YaumlPdf<CR>
 vnoremap gs "+y:DuckDuckgoSearch <C-R>"
 
-nnoremap <leader>cl :call CopyToClipboard(ConvertPathToHostSystemFormat(line('.')))<CR>
+nnoremap <leader>cl :call CopyToClipboard(string(line('.')))<CR>
 nnoremap <leader>cf :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:t")))<CR>
 nnoremap <leader>cp :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:p")))<CR>
 nnoremap <leader>cd :call CopyToClipboard(ConvertPathToHostSystemFormat(expand("%:p:h")))<CR>
