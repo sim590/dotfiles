@@ -14,6 +14,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "-----------------------------
+Plug 'cedarbaum/fugitive-azure-devops.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'searchfold.vim'
