@@ -165,5 +165,9 @@ for s:plugin in s:configs
 endfor
 " ==================================================
 
+" In WSL, fix netrw to open URLs
+" https://superuser.com/questions/1314581/open-url-with-vim-in-ubuntu-wsl-windows-subsystem-for-linux
+let g:netrw_browsex_viewer="cmd.exe /C start"
+
 " vim:set et sw=2 ts=2 tw=100:
 
