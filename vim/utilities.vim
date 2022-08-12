@@ -115,14 +115,14 @@ command! Dark MyColorscheme wombat256mod
 let s:search_replace_range = 1000
 
 fun s:search_replace_minmax()
-  return [max([1, getline('.')-s:search_replace_range/2]), min([getline('$'), getline('.')+s:search_replace_range/2])]
+  return [max([1, line('.')-s:search_replace_range/2]), min([line('$'), line('.')+s:search_replace_range/2])]
 endf
 
 " replace false spaces by spaces
 fun! s:RemoveFalseSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
-  exec ":.-" . l:minl . ",.+" . l:maxl . "s/\\%o240/ /ge"
+  exec ":" . l:minl . "," . l:maxl . "s/\\%o240/ /ge"
   call setpos('.', l:pos)
 endf
 
@@ -139,7 +139,7 @@ autocmd BufReadPost *
 fun! s:StripTrailingWhiteSpaces()
   let [l:minl, l:maxl] = s:search_replace_minmax()
   let l:pos = getpos('.')
-  exec ":.-" . l:minl . ",.+" . l:maxl . "s/\\s\\+$//e"
+  exec ":" . l:minl . "," . l:maxl . "s/\\s\\+$//e"
   call setpos('.', l:pos)
 endf
 command! StripTrailingWhiteSpaces call s:StripTrailingWhiteSpaces()
