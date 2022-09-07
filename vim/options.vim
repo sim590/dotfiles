@@ -27,6 +27,7 @@ set noshowmode
 set modeline
 set foldlevelstart=2
 set bo=all
+set cscopequickfix=s+,c+,d+,i+,t+,e+,a+
 
 packadd termdebug " Enables gdb debugging
 packadd matchit
