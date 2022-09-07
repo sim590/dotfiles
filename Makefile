@@ -79,12 +79,14 @@ $(eval $(call MAKE_LINKS,$(HOME)/.%, %))
 $(eval $(call MAKE_LINKS,$(HOME)/.%, zsh/%))
 $(eval $(call MAKE_LINKS,$(HOME)/bin/%, bin/%))
 
-zshrc:
+$(HOME)/.oh-my-zsh:
 	rm -rf ~/.oh-my-zsh
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
 	echo "source $$HOME/.zshrc.local" >> $$HOME/.zshrc
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $${ZSH_CUSTOM:-$(HOME)/.oh-my-zsh/custom}/themes/powerlevel10k
 	@echo "Theme powerlevel10k has been installed. It needs to be enabled and configured. See ZSH_THEME variable in ~/.zshrc..."
+
+zshrc: $(HOME)/.oh-my-zsh
 
 subdirs:
 	@for dir in $(SUBDIRS); do \
