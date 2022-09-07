@@ -104,7 +104,7 @@ set show-notes                  = yes           # When non-bool passed as `--sho
 # Misc
 set refresh-mode      = periodic # Enum: manual, auto, after-command, periodic
 set refresh-interval  = 2        # Interval in seconds between refreshes
-set ignore-case       = no       # Ignore case when searching?
+set ignore-case       = smart-case  # Ignore case when searching?
 set wrap-search       = yes      # Wrap around to top/bottom of view when searching
 set focus-child       = yes      # Move focus to child view when opened?
 set horizontal-scroll = 50%      # Number of columns to scroll as % of width
