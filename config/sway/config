@@ -68,7 +68,7 @@ input "5426:132:Razer_Razer_DeathAdder_V2" {
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-client.focused 000000ff ff0000ff 000000ff
+client.focused 000000ff 9e2b2bff 000000ff
 default_border pixel 2
 gaps inner 3
 gaps outer 3
