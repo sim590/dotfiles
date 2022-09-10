@@ -67,7 +67,7 @@ config.bind('sL',  'set-cmd-text -s :session-load')
 config.bind('ss',  'session-save default')
 # downloads
 config.bind('ed',  'download-open')
-# videos (mpv, castnow, youtube-dl)
+# videos (mpv, castnow, yt-dlp)
 MPV_FLAGS="--force-window --no-terminal --keep-open=yes --ytdl --script-opts=ytdl_hook-ytdl_path=yt-dlp"
 config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/mpv')
 config.bind(';xv', "hint links spawn mpv %s {hint-url}" % MPV_FLAGS)
@@ -76,14 +76,14 @@ config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hi
 ## unbinding for preventing shadowing ;Yd and ;Ym
 config.unbind(';Y')
 dld_msg = ';; message-info "Downloading %s from %s..."'
-config.bind('Yd',  'spawn youtube-dl {url}'+ dld_msg % ('video','{url}'))
-config.bind(';Yd', 'hint links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
-config.bind(';ryd', 'hint --rapid links spawn youtube-dl {hint-url}'+ dld_msg % ('video','{hint-url}'))
-config.bind('Ym',  'spawn youtube-dl --extract-audio --audio-format mp3 {url}'
+config.bind('Yd',  'spawn yt-dlp {url}'+ dld_msg % ('video','{url}'))
+config.bind(';Yd', 'hint links spawn yt-dlp {hint-url}'+ dld_msg % ('video','{hint-url}'))
+config.bind(';ryd', 'hint --rapid links spawn yt-dlp {hint-url}'+ dld_msg % ('video','{hint-url}'))
+config.bind('Ym',  'spawn yt-dlp --extract-audio --audio-format mp3 {url}'
                    + dld_msg % ('audio','{url}'))
-config.bind(';Ym', 'hint links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
+config.bind(';Ym', 'hint links spawn yt-dlp --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
-config.bind(';rym', 'hint --rapid links spawn youtube-dl --extract-audio --audio-format mp3 {hint-url}'
+config.bind(';rym', 'hint --rapid links spawn yt-dlp --extract-audio --audio-format mp3 {hint-url}'
                    + dld_msg % ('audio','{hint-url}'))
 # password fill
 config.bind(';p',  'spawn --userscript ~/bin/qutebrowser_bin/password_fill')
