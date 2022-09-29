@@ -28,6 +28,7 @@ set modeline
 set foldlevelstart=2
 set bo=all
 set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+set cscoperelative
 
 packadd termdebug " Enables gdb debugging
 packadd matchit
