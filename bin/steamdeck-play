@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+program_name="steamdeck-play" options='hvt' loptions='help,version,toggle' version=0.1
+getopt_out=$(getopt --name $program_name --options $options --longoptions $loptions -- "$@")
+if (( $? != 0 )); then exit 1; fi
+
+#sets the positionnal parameters with getopt's output
+eval set -- "$getopt_out"
+
+print_help() {
+cat <<EOF
+${program_name} -- play a video on the Steam Deck
+
+SYNOPSIS
+  $program_name [OPTIONS] URL
+
+OPTIONS
+  -h|--help
+    Shows this help text.
+  -v|--version
+    Show the version information of the program.
+  -t|--toggle
+    Toggle playback.
+EOF
+}
+
+send_mpv_command() {
+  ssh deck@steamdeck.local "echo '{ \"command\": $@ }' | socat - /tmp/mpv.socket"
+}
+
+toggle=false
+
+while [[ $1 != "--" ]]; do
+  case "$1" in
+    -h|--help)
+      print_help
+      exit 0
+      ;;
+    -v|--version)
+      echo "${program_name} v${version}"
+      exit 0
+      ;;
+    -t|--toggle)
+      toggle=true
+      shift
+      ;;
+  esac
+done
+# shift away from the last optional parameter (--)
+shift
+
+URL=$1
+input_command_value=
+
+if [[ "$toggle" == "true" ]]; then
+  send_mpv_command "[\"cycle\", \"pause\"]"
+else
+  send_mpv_command "[\"loadfile\", \"$URL\"]"
+  send_mpv_command "[\"set_property\", \"pause\", \"no\"]"
+fi
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+

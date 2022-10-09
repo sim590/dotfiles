@@ -53,7 +53,8 @@ BIN_FILES = bin/lights\
 						bin/rofi\
 						bin/pqutebrowser\
 						bin/sleepvim\
-						bin/sesame-ouvre-toi
+						bin/sesame-ouvre-toi\
+						bin/steamdeck-play
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
 DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
