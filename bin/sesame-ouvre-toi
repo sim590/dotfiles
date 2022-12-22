@@ -62,6 +62,7 @@ mount_volumes() {
   decrypted_volume_uuid="$2"
   sudo cryptsetup open --type luks "/dev/disk/by-uuid/$partition_uuid" "$decrypted_volume_uuid"
   udisksctl mount -b "/dev/disk/by-uuid/$decrypted_volume_uuid"
+  sudo chmod 755 /run/media/$USER
 }
 
 unmount_volumes() {
