@@ -17,7 +17,7 @@ fun! CopyToClipboard(what)
   if exists('$WSLENV')
     call system('clip.exe', l:what_string)
   elseif $XDG_SESSION_TYPE == "wayland"
-    call system("wl-copy", l:what_string)
+    call system("wl-copy" "--type" "text/plain", l:what_string)
   else
     call setreg('+', l:what_string)
   endif
