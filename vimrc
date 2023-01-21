@@ -144,7 +144,6 @@ let s:configs = [
       \ "ultisnips.vim",
       \ "pi_netrw.vim",
       \ "dragvisuals.vim",
-      \ "jedi-vim.vim",
       \ "quicktask.vim",
       \ "listtrans.vim",
       \ "fzf.vim",
