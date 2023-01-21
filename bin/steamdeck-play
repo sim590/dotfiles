@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-program_name="steamdeck-play" options='hvt' loptions='help,version,toggle' version=0.1
+program_name="steamdeck-play" options='hvat' loptions='help,version,append,toggle' version=0.1
 getopt_out=$(getopt --name $program_name --options $options --longoptions $loptions -- "$@")
 if (( $? != 0 )); then exit 1; fi
 
@@ -19,6 +19,8 @@ OPTIONS
     Shows this help text.
   -v|--version
     Show the version information of the program.
+  -a|--append
+    Append a video URL to the playlist.
   -t|--toggle
     Toggle playback.
 EOF
@@ -29,6 +31,7 @@ send_mpv_command() {
 }
 
 toggle=false
+append=false
 
 while [[ $1 != "--" ]]; do
   case "$1" in
@@ -44,6 +47,10 @@ while [[ $1 != "--" ]]; do
       toggle=true
       shift
       ;;
+    -a|--append)
+      append=true
+      shift
+      ;;
   esac
 done
 # shift away from the last optional parameter (--)
@@ -55,7 +62,11 @@ input_command_value=
 if [[ "$toggle" == "true" ]]; then
   send_mpv_command "[\"cycle\", \"pause\"]"
 else
-  send_mpv_command "[\"loadfile\", \"$URL\"]"
+  if [[ "$append" == "true" ]]; then
+    send_mpv_command "[\"loadfile\", \"$URL\", \"append\"]"
+  else
+    send_mpv_command "[\"loadfile\", \"$URL\"]"
+  fi
   send_mpv_command "[\"set_property\", \"pause\", \"no\"]"
 fi
 
