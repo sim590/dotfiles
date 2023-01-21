@@ -67,6 +67,7 @@ else
   else
     send_mpv_command "[\"loadfile\", \"$URL\"]"
   fi
+  send_mpv_command "[\"loadfile\", \"/home/deck/Images/Icônes/mpv1.png\", \"append\"]"
   send_mpv_command "[\"set_property\", \"pause\", \"no\"]"
 fi
 
