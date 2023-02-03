@@ -167,7 +167,7 @@ endfor
 
 " In WSL, fix netrw to open URLs
 " https://superuser.com/questions/1314581/open-url-with-vim-in-ubuntu-wsl-windows-subsystem-for-linux
-let g:netrw_browsex_viewer="cmd.exe /C start"
+let g:netrw_browsex_viewer="wslview -E powershell"
 
 " vim:set et sw=2 ts=2 tw=100:
 
