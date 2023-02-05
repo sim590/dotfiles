@@ -1,4 +1,5 @@
 [binds]
 w = exec ~/bin/setwallpaper "$imv_current_file"
 <Ctrl+d> = exec rm "$imv_current_file"; close
-<Ctrl+c> = exec echo "$imv_current_file" | sed -z "s/\n//g" | wl-copy
+<Ctrl+p> = exec echo "$imv_current_file" | sed -z "s/\n//g" | wl-copy
+<Ctrl+f> = exec echo "$imv_current_file" | sed 's,^.*/,,g' | sed -z "s/\n//g" | wl-copy
