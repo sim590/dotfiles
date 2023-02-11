@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+PATH_TO_QUTEB_MPV_SCRIPT=$HOME/prog/qutebrowser/misc/userscripts/view_in_mpv
+
+env USE_YTDLP_FOR_DOWNLOAD=yes MPV_FLAGS="--force-window --no-terminal --keep-open=yes" $PATH_TO_QUTEB_MPV_SCRIPT
+
+# vim: set sts=2 ts=2 sw=2 tw=120 et :
+

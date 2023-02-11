@@ -6,7 +6,8 @@ TARGETS    = \
 						 utils.py \
 						 password_fill_rc
 
-BIN_FILES      = bin/mpv
+BIN_FILES      = bin/view_in_mpv \
+								 bin/mpv_hint
 BIN_DEST       = $(HOME)/bin/qutebrowser_bin
 BIN_DEST_LINKS = $(addprefix $(HOME)/bin/qutebrowser_bin/,$(patsubst bin/%,%,$(BIN_FILES)))
 DEST           = $(HOME)/.config/qutebrowser/
