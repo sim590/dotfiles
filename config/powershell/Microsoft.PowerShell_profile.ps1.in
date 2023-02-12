@@ -1,0 +1,26 @@
+Set-PSReadlineOption -EditMode vi
+
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+
+oh-my-posh init pwsh --config /usr/share/oh-my-posh/themes/craver.omp.json | Invoke-Expression
+
+# Manpage en couleur
+$Env:LESS_TERMCAP_mb = $(printf "\e[1;32m")
+$Env:LESS_TERMCAP_md = $(printf "\e[1;32m")
+$Env:LESS_TERMCAP_me = $(printf "\e[0m")
+$Env:LESS_TERMCAP_se = $(printf "\e[0m")
+$Env:LESS_TERMCAP_so = $(printf "\e[01;33m")
+$Env:LESS_TERMCAP_ue = $(printf "\e[0m")
+$Env:LESS_TERMCAP_us = $(printf "\e[1;4;31m")
+
+#Variables à moi
+$Env:MYNAME        = "M4_FULLNAME" #TODO
+$Env:MAIL          = "M4_MAILADDRESS" #TODO
+$Env:EDITOR        = "vim"
+$Env:BROWSER       = "qutebrowser"
+$Env:TMPDIR        = "/tmp"
+$Env:PYTHONSTARTUP = "$Env:HOME/.pythonrc"
+$Env:MPD_HOST      = "M4_MPD_ADDRESS"
+$Env:HISTSIZE      = 2048
+$Env:TERMCMD       = 'alacritty'
+
