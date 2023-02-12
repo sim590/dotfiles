@@ -29,6 +29,7 @@ XDG_CONFIG_CONTENT = \
 					 config/swaylock/config\
 					 config/terminator/config
 DOTFILES = gitconfig\
+					 alacritty.yml\
 					 vimrc\
 					 Xresources\
 					 taskrc\
