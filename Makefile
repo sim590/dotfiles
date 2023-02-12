@@ -62,7 +62,7 @@ DEST_LINKS            = ${ZSH_DEST_LINKS} \
 												${XDG_CONFIG_DEST_LINKS} \
 												${DOTFILES_DEST_LINKS} \
 												${BIN_DEST_LINKS}
-CONFIG_FILES = $(shell git ls-tree --full-tree -r @ | grep -e 'blob.*[a-zA-Z]\+\.in' | gawk '{print $$4}')
+CONFIG_FILES = $(shell git ls-tree --full-tree -r @ | grep -e 'blob.*\.in$$' | gawk '{print $$4}')
 CONFIG_OUT   = $(CONFIG_FILES:.in=)
 
 .PHONY: all links subdirs clean
