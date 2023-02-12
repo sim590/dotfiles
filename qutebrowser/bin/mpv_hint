@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-video_title=$(yt-dlp --get-title "$1")
-yt-dlp -o - "$1" | mpv --force-window --no-terminal --keep-open=yes --title="${video_title}" -
-

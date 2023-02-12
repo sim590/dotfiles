@@ -2,7 +2,15 @@
 
 PATH_TO_QUTEB_MPV_SCRIPT=$HOME/prog/qutebrowser/misc/userscripts/view_in_mpv
 
-env USE_YTDLP_FOR_DOWNLOAD=yes MPV_FLAGS="--force-window --no-terminal --keep-open=yes" $PATH_TO_QUTEB_MPV_SCRIPT
+scriptdir=$(dirname $(readlink -f $0))
+
+source $scriptdir/get_ytdlp_mpv_vars "$QUTE_URL"
+
+init_ytdlp_mpv
+
+$PATH_TO_QUTEB_MPV_SCRIPT
+
+close_ytdlp_mpv
 
 # vim: set sts=2 ts=2 sw=2 tw=120 et :
 

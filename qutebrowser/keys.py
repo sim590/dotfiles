@@ -69,7 +69,7 @@ config.bind('ss',  'session-save default')
 config.bind('ed',  'download-open')
 # videos (mpv, castnow, yt-dlp)
 config.bind('xv',  'spawn --userscript ~/bin/qutebrowser_bin/view_in_mpv')
-config.bind(';xv', "hint links spawn ~/bin/qutebrowser_bin/mpv_hint {hint-url}")
+config.bind(';xv', "hint links spawn ~/bin/qutebrowser_bin/ytdlp-mpv {hint-url}")
 config.bind('xc',  'spawn --userscript ~/bin/qutebrowser_bin/cast {url}')
 config.bind(';xc', 'hint links spawn --userscript ~/bin/qutebrowser_bin/cast {hint-url}')
 ## unbinding for preventing shadowing ;Yd and ;Ym

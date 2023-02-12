@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+URL="$1"
+URL_HOSTNAME=$(echo $URL | sed 's,^.*https\?://\([^/]\+\)/.*,\1,')
+
+ytdlp_hosts_list=(
+  "youtube.com"
+  "www.youtube.com"
+)
+
+USE_YTDLP_FOR_DOWNLOAD=no
+if [[ "${ytdlp_hosts_list[@]}" =~ "$URL_HOSTNAME" ]]; then
+  USE_YTDLP_FOR_DOWNLOAD=yes
+fi
+
+audio_ytdlp_pid=
+tmpdir=
+function init_ytdlp_mpv() {
+  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
+    tmpdir=$(mktemp -d)
+    yt-dlp -f 'bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio &
+    audio_ytdlp_pid=$!
+  fi
+
+  MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=2G"
+  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
+    MPV_FLAGS="$MPV_FLAGS --audio-file=$tmpdir/ytdlp_audio"
+  else
+    MPV_FLAGS="$MPV_FLAGS --ytdl-format=bestvideo*[height<=?1440]+bestaudio/best"
+  fi
+
+  YT_DLP_FLAGS="--downloader=http --format=bestvideo*[height<=?1440]"
+
+  export USE_YTDLP_FOR_DOWNLOAD YT_DLP_FLAGS MPV_FLAGS
+}
+
+function close_ytdlp_mpv() {
+  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
+    kill $audio_ytdlp_pid
+    rm -rf $tmpdir
+  fi
+  export USE_YTDLP_FOR_DOWNLOAD= YT_DLP_FLAGS= MPV_FLAGS=
+}
+
