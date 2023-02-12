@@ -1,3 +1,4 @@
+
 Set-PSReadlineOption -EditMode vi
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
@@ -14,8 +15,8 @@ $Env:LESS_TERMCAP_ue = $(printf "\e[0m")
 $Env:LESS_TERMCAP_us = $(printf "\e[1;4;31m")
 
 #Variables à moi
-$Env:MYNAME        = "M4_FULLNAME" #TODO
-$Env:MAIL          = "M4_MAILADDRESS" #TODO
+$Env:MYNAME        = "M4_FULLNAME"
+$Env:MAIL          = "M4_MAILADDRESS"
 $Env:EDITOR        = "vim"
 $Env:BROWSER       = "qutebrowser"
 $Env:TMPDIR        = "/tmp"
