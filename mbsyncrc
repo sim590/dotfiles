@@ -4,7 +4,7 @@
 IMAPAccount gmail-sim-desaulniers
 Host imap.gmail.com
 User sim.desaulniers@gmail.com
-PassCmd "gpg -q --decrypt ~/.mail/gmail.sim.desaulniers/pw.gpg"
+PassCmd "gpg -q --decrypt ~/.mail/gmail.sim.desaulniers/gmail-app-password.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
