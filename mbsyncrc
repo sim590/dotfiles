@@ -18,8 +18,8 @@ Path ~/.mail/gmail.sim.desaulniers/
 Inbox ~/.mail/gmail.sim.desaulniers/INBOX
 
 Channel gmail-sim-desaulniers-inbox
-Master :gmail-sim-desaulniers-remote:
-Slave :gmail-sim-desaulniers-local:
+Far :gmail-sim-desaulniers-remote:
+Near :gmail-sim-desaulniers-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
@@ -27,24 +27,24 @@ SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-sent
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
+Near :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-spam
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Spam"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
+Near :gmail-sim-desaulniers-local:"[Gmail].Spam"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-drafts
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Drafts"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
+Near :gmail-sim-desaulniers-local:"[Gmail].Drafts"
 Create Both
 Expunge Both
 SyncState *
@@ -76,8 +76,8 @@ Path ~/.mail/courrier.uqam.desaulniers.simon/
 Inbox ~/.mail/courrier.uqam.desaulniers.simon/INBOX
 
 Channel courrier-uqam-desaulniers-simon-inbox
-Master :courrier-uqam-desaulniers-simon-remote:
-Slave :courrier-uqam-desaulniers-simon-local:
+Far :courrier-uqam-desaulniers-simon-remote:
+Near :courrier-uqam-desaulniers-simon-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
@@ -85,24 +85,24 @@ SyncState *
 MaxMessages 1000
 
 Channel courrier-uqam-desaulniers-simon-sent
-Master :courrier-uqam-desaulniers-simon-remote:"Sent"
-Slave :courrier-uqam-desaulniers-simon-local:"Sent"
+Far :courrier-uqam-desaulniers-simon-remote:"Sent"
+Near :courrier-uqam-desaulniers-simon-local:"Sent"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel courrier-uqam-desaulniers-simon-indesirable
-Master :courrier-uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
-Slave :courrier-uqam-desaulniers-simon-local:"Courrier Indesirable"
+Far :courrier-uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
+Near :courrier-uqam-desaulniers-simon-local:"Courrier Indesirable"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel courrier-uqam-desaulniers-simon-drafts
-Master :courrier-uqam-desaulniers-simon-remote:"Drafts"
-Slave :courrier-uqam-desaulniers-simon-local:"Drafts"
+Far :courrier-uqam-desaulniers-simon-remote:"Drafts"
+Near :courrier-uqam-desaulniers-simon-local:"Drafts"
 Create Both
 Expunge Both
 SyncState *
@@ -134,8 +134,8 @@ Path ~/.mail/uqam.desaulniers.simon/
 Inbox ~/.mail/uqam.desaulniers.simon/INBOX
 
 Channel uqam-desaulniers-simon-inbox
-Master :uqam-desaulniers-simon-remote:
-Slave :uqam-desaulniers-simon-local:
+Far :uqam-desaulniers-simon-remote:
+Near :uqam-desaulniers-simon-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
@@ -143,24 +143,24 @@ SyncState *
 MaxMessages 1000
 
 Channel uqam-desaulniers-simon-sent
-Master :uqam-desaulniers-simon-remote:"&AMk-l&AOk-ments envoy&AOk-s"
-Slave :uqam-desaulniers-simon-local:"Sent"
+Far :uqam-desaulniers-simon-remote:"&AMk-l&AOk-ments envoy&AOk-s"
+Near :uqam-desaulniers-simon-local:"Sent"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel uqam-desaulniers-simon-indesirable
-Master :uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
-Slave :uqam-desaulniers-simon-local:"Courrier Indesirable"
+Far :uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
+Near :uqam-desaulniers-simon-local:"Courrier Indesirable"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel uqam-desaulniers-simon-drafts
-Master :uqam-desaulniers-simon-remote:"Brouillons"
-Slave :uqam-desaulniers-simon-local:"Drafts"
+Far :uqam-desaulniers-simon-remote:"Brouillons"
+Near :uqam-desaulniers-simon-local:"Drafts"
 Create Both
 Expunge Both
 SyncState *
@@ -193,8 +193,8 @@ Path ~/.mail/umontreal.simon.desaulniers/
 Inbox ~/.mail/umontreal.simon.desaulniers/INBOX
 
 Channel umontreal-simon-desaulniers-inbox
-Master :umontreal-simon-desaulniers-remote:
-Slave :umontreal-simon-desaulniers-local:
+Far :umontreal-simon-desaulniers-remote:
+Near :umontreal-simon-desaulniers-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
@@ -202,24 +202,24 @@ SyncState *
 MaxMessages 1000
 
 Channel umontreal-simon-desaulniers-sent
-Master :umontreal-simon-desaulniers-remote:"&AMk-l&AOk-ments envoy&AOk-s"
-Slave :umontreal-simon-desaulniers-local:"Sent"
+Far :umontreal-simon-desaulniers-remote:"&AMk-l&AOk-ments envoy&AOk-s"
+Near :umontreal-simon-desaulniers-local:"Sent"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel umontreal-simon-desaulniers-indesirable
-Master :umontreal-simon-desaulniers-remote:"Courrier ind&AOk-sirable"
-Slave :umontreal-simon-desaulniers-local:"Courrier Indesirable"
+Far :umontreal-simon-desaulniers-remote:"Courrier ind&AOk-sirable"
+Near :umontreal-simon-desaulniers-local:"Courrier Indesirable"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel umontreal-simon-desaulniers-drafts
-Master :umontreal-simon-desaulniers-remote:"Brouillons"
-Slave :umontreal-simon-desaulniers-local:"Drafts"
+Far :umontreal-simon-desaulniers-remote:"Brouillons"
+Near :umontreal-simon-desaulniers-local:"Drafts"
 Create Both
 Expunge Both
 SyncState *
