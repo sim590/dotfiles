@@ -7,7 +7,7 @@ TARGETS    = \
 						 password_fill_rc
 
 BIN_FILES      = bin/view_in_mpv \
-								 bin/mpv_hint
+								 bin/ytdlp-mpv
 BIN_DEST       = $(HOME)/bin/qutebrowser_bin
 BIN_DEST_LINKS = $(addprefix $(HOME)/bin/qutebrowser_bin/,$(patsubst bin/%,%,$(BIN_FILES)))
 DEST           = $(HOME)/.config/qutebrowser/
