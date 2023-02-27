@@ -20,6 +20,7 @@ function init_ytdlp_mpv() {
     tmpdir=$(mktemp -d)
     yt-dlp -f 'bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio &
     audio_ytdlp_pid=$!
+    sleep 1.5
   fi
 
   MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=2G"
