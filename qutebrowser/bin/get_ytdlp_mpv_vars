@@ -18,7 +18,7 @@ tmpdir=
 function init_ytdlp_mpv() {
   if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
     tmpdir=$(mktemp -d)
-    yt-dlp -f 'bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio
+    yt-dlp -f 'bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio &
     audio_ytdlp_pid=$!
   fi
 
