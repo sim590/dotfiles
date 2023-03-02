@@ -80,6 +80,7 @@ Plug 'Konfekt/vim-mutt-aliases'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'PProvost/vim-ps1'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
