@@ -77,6 +77,7 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'hari-rangarajan/CCTree'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'Konfekt/vim-mutt-aliases'
+Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
