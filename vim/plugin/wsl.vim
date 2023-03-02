@@ -16,7 +16,7 @@ endif
 fun! s:set_w_reg_from_win_clip(bang)
   let g:wsl#powershell_clip_silent = a:bang
   if executable(g:wsl_powershell)
-    call job_start([g:wsl_powershell, 'Get-Clipboard'], {
+    let s:clipboard_job = job_start([g:wsl_powershell, 'Get-Clipboard'], {
             \ 'out_cb'   : 'wsl#powershell_clipboard_handler',
             \ 'close_cb' : 'wsl#powershell_clipboard_closing_handler'
           \ })
