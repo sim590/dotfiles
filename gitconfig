@@ -20,6 +20,7 @@
     samend    = commit --amend --no-edit
     whatsnew  = fetch --dry-run
     show      = show --show-signature
+    diffno    = diff --name-only
 [log]
     date      = iso-local
 [merge]
