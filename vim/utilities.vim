@@ -15,7 +15,7 @@ endf
 fun! CopyToClipboard(what)
   let l:what_string = string(a:what)
   if exists('$WSLENV')
-    call system('clip.exe', l:what_string)
+    call system('clip.exe', a:what)
   elseif $XDG_SESSION_TYPE == "wayland"
     call system("wl-copy" "--type" "text/plain", l:what_string)
   else
