@@ -247,3 +247,5 @@ exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*.conf
+
+exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
