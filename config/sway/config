@@ -57,6 +57,10 @@ output DP-2 resolution 2560x1440 position 0,0
 #       middle_emulation enabled
 #   }
 #
+input "3897:1559:Heng_Yu_Technology_RGB_POK3R" {
+    xkb_layout ca-multix-sim590
+    xkb_options ctrl:nocaps,numpad:mac
+}
 input "1241:321:USB_Keyboard" {
     xkb_layout ca-multix-sim590
     xkb_options ctrl:nocaps,numpad:mac
