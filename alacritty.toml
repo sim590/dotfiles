@@ -1,0 +1,9 @@
+[font.normal]
+family = "DejaVuSansMNerdFont"
+
+[shell]
+program = "/usr/bin/zsh"
+
+[window]
+dynamic_title = true
+opacity = 0.9
