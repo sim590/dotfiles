@@ -8,7 +8,7 @@ source $scriptdir/get_ytdlp_mpv_vars "$QUTE_URL"
 
 init_ytdlp_mpv
 
-$PATH_TO_QUTEB_MPV_SCRIPT
+(cd $tmpdir && $PATH_TO_QUTEB_MPV_SCRIPT)
 
 close_ytdlp_mpv
 

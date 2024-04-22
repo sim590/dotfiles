@@ -11,7 +11,8 @@ init_ytdlp_mpv
 IFS=" " read -r -a mpv_command <<< "mpv $MPV_FLAGS"
 if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
   IFS=" " read -r -a ytdlp_video_command <<< "yt-dlp $YT_DLP_FLAGS"
-  "${ytdlp_video_command[@]}" -o - "$URL" | "${mpv_command[@]}" --title="$(yt-dlp --get-title "$URL") - mpv" -
+  # tmpdir from get_ytdlp_mpv_vars
+  ( cd $tmpdir && "${ytdlp_video_command[@]}" -o - "$URL" ) | "${mpv_command[@]}" --title="$(yt-dlp --get-title "$URL") - mpv" -
 else
   "${mpv_command[@]}" "$URL"
 fi
