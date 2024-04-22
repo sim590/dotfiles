@@ -30,7 +30,7 @@ function init_ytdlp_mpv() {
     MPV_FLAGS="$MPV_FLAGS --ytdl-format=bestvideo*[height<=?1440]+bestaudio/best"
   fi
 
-  YT_DLP_FLAGS="--downloader=http --format=bestvideo*[height<=?1440]"
+  YT_DLP_FLAGS="-N 8 --downloader=http --format=bestvideo*[height<=?1440]"
 
   export USE_YTDLP_FOR_DOWNLOAD YT_DLP_FLAGS MPV_FLAGS
 }
