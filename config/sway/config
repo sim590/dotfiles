@@ -71,7 +71,7 @@ input "1241:293:USB_Keyboard" {
     xkb_options ctrl:nocaps,numpad:mac
 }
 input "5426:132:Razer_Razer_DeathAdder_V2" {
-    pointer_accel 1.0 # set mouse sensitivity (between -1 and 1)
+    pointer_accel 0 # set mouse sensitivity (between -1 and 1)
 }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
