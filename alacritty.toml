@@ -7,3 +7,9 @@ program = "/usr/bin/zsh"
 [window]
 dynamic_title = true
 opacity = 0.9
+
+[keyboard]
+bindings = [
+    {key = "ArrowUp", mods = "Shift", action = "ScrollLineUp" },
+    {key = "ArrowDown", mods = "Shift", action = "ScrollLineDown" }
+]
