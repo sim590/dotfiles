@@ -1,7 +1,7 @@
 [font.normal]
 family = "DejaVuSansMNerdFont"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/zsh"
 
 [window]
