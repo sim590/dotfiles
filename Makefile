@@ -22,6 +22,7 @@ XDG_CONFIG_CONTENT = \
 					 config/systemd/user/keynav.service\
 					 config/systemd/user/ipfs.service\
 					 config/environment.d/path.conf\
+					 config/environment.d/xkb.conf\
 					 config/imv/config\
 					 config/swayr/config.toml\
 					 config/wofi/style.css\
