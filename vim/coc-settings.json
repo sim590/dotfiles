@@ -17,7 +17,8 @@
   //
   // NOTE: Possible que je préfère retourner à l'ancienne config si jamais je ne veux pas obstruer l'utilisation de
   // la fenêtre quickfix lorsque je recherche des références. À voir..
-  "coc.preferences.useQuickfixForLocations": true
+  "coc.preferences.useQuickfixForLocations": true,
+  "inlayHint.enable": false
 }
 
 // vim: set sts=2 ts=2 sw=2 tw=120 et :
