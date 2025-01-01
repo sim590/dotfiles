@@ -17,7 +17,11 @@ fun! s:AddFirstOccurencePatterns()
     endfor
   endif
 endf
-au! VimEnter * call s:AddFirstOccurencePatterns()
+augroup TabularPatterns
+  autocmd!
+  au VimEnter * call s:AddFirstOccurencePatterns()
+  au VimEnter * AddTabularPattern! cabal_fields /^\s*\([^: ]\+:\|\s*\)\s*\zs\ze\s\S[^:]\+$/l0r1
+augroup END
 
 nmap <leader>gt :GTabularize<space>
 
