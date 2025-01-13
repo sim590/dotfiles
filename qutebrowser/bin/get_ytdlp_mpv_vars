@@ -18,12 +18,12 @@ tmpdir=
 function init_ytdlp_mpv() {
   if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
     tmpdir=$(mktemp -d)
-    ( cd $tmpdir && yt-dlp --downloader=aria2c -f 'bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio ) &
+    ( cd $tmpdir && yt-dlp --downloader=aria2c -f 'bestaudio[language=fr],bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio ) &
     audio_ytdlp_pid=$!
     sleep 2
   fi
 
-  MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=2G"
+  MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=12G"
   if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
     MPV_FLAGS="$MPV_FLAGS --audio-file=$tmpdir/ytdlp_audio"
   else
