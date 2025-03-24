@@ -120,6 +120,8 @@ let s:termdebug_fts = ['c', 'cpp']
 au TerminalOpen * call s:map_if_terminalbuf_ft('v', '<leader>e', ":Evaluate<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>b', ":Break<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', '<leader>cl', ":Clear<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', '[f', ":call TermDebugSendCommand('up')<CR>", '<buffer>', s:termdebug_fts)
+au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']f', ":call TermDebugSendCommand('down')<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']n', ":call TermDebugSendCommand('next')<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']s', ":call TermDebugSendCommand('step')<CR>", '<buffer>', s:termdebug_fts)
 au TerminalOpen * call s:map_if_terminalbuf_ft('n', ']a', ":call <SID>advance_line()<CR>", '<buffer>', s:termdebug_fts)
