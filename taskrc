@@ -35,7 +35,6 @@ color.due=rgb035
 color.active=rgb040
 
 context.travail=+travail or +morneaushepell
-context.étude=+udem or +doctorat +diro
 context.épicerie=+épicerie
 context.informatique=+informatique or +dev or +debian or +haskell or +système or +wsl
 context.publique=-perso -travail -morneaushepell -job -professionnel -achat -udem -doctorat -diro -uqam -memoire
