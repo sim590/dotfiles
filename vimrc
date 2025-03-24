@@ -17,7 +17,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'searchfold.vim'
-Plug 'godlygeek/tabular' "Must load before vim-markdown (see :h vim-markdown)
+Plug 'godlygeek/tabular', { 'commit' : '84057252a01e96909cd1a9f0b1395f5d9f61be1e' } "Must load before vim-markdown (see :h vim-markdown)
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'AndrewRadev/switch.vim'
