@@ -1,6 +1,4 @@
 [core]
-    # workaround this: https://github.com/ranger/ranger/issues/214 in debian
-  pager     = less
   quotepath = off
 [user]
   name      = Simon Désaulniers
