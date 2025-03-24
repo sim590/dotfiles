@@ -1,9 +1,9 @@
 [core]
+  editor    = vim
   quotepath = off
 [user]
   name      = Simon Désaulniers
   email     = sim.desaulniers@gmail.com
-  editor    = vim
 [color]
   ui        = true
 [alias]
