@@ -1,6 +1,6 @@
 
 let s:handled_languages = [
-      \ "haskell"
+      \ "haskell", "chaskell"
       \ , "c", "cpp"
       \ , "python"
       \ ]
