@@ -9,7 +9,10 @@
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp", "--debug", "-l", "/tmp/hls.log"],
       "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-      "filetypes": ["haskell", "lhaskell"]
+      "filetypes": ["haskell", "lhaskell"],
+      "settings": {
+        "haskell.plugin.ghcide-completions.config.autoExtendOn" : false
+      }
     }
   },
   // Pour l'instant, je désactive la CocList pour la "localisation". Par exemple avec gR (pour aller chercher les
