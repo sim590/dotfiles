@@ -1,30 +1,35 @@
 [core]
     # workaround this: https://github.com/ranger/ranger/issues/214 in debian
-    pager     = less
-    quotepath = off
+  pager     = less
+  quotepath = off
 [user]
-    name      = Simon Désaulniers
-    email     = sim.desaulniers@gmail.com
-    editor    = vim
+  name      = Simon Désaulniers
+  email     = sim.desaulniers@gmail.com
+  editor    = vim
 [color]
-    ui        = true
+  ui        = true
 [alias]
-    lol       = log --decorate --graph --oneline
-    loll      = log --decorate --graph --oneline --all
-    st        = status -s
-    co        = checkout
-    cp        = cherry-pick
-    br        = branch
-    mernff    = merge --no-ff
-    punff     = pull --no-ff
-    samend    = commit --amend --no-edit
-    whatsnew  = fetch --dry-run
-    show      = show --show-signature
-    diffno    = diff --name-only
+  lol       = log --decorate --graph --oneline
+  loll      = log --decorate --graph --oneline --all
+  st        = status -s
+  co        = checkout
+  cp        = cherry-pick
+  br        = branch
+  mernff    = merge --no-ff
+  punff     = pull --no-ff
+  samend    = commit --amend --no-edit
+  whatsnew  = fetch --dry-run
+  show      = show --show-signature
+  diffno    = diff --name-only
 [log]
-    date      = iso-local
+  date      = iso-local
 [merge]
-    tool      = vimdiff
+  tool      = vimdiff
+[filter "lfs"]
+  clean       = git-lfs clean -- %f
+  smudge      = git-lfs smudge -- %f
+  process     = git-lfs filter-process
+  required    = true
 
 
 # vim:filetype=gitconfig:
