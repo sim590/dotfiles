@@ -78,6 +78,7 @@ Plug 'hari-rangarajan/CCTree'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'Konfekt/vim-mutt-aliases'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
@@ -153,7 +154,8 @@ let s:configs = [
       \ "tabular.vim",
       \ "vimtex.vim",
       \ "languagetool.vim",
-      \ "haskell-conceal.vim"
+      \ "haskell-conceal.vim",
+      \ "markdown-preview.vim",
       \ ]
 
 for s:plugin in s:configs
