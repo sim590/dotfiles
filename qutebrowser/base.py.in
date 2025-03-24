@@ -71,6 +71,7 @@ c.spellcheck.languages = ["fr-FR", "en-CA"]
 c.content.headers.accept_language = "fr-CA,fr-FR,fr"
 
 c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = "dark"
 
 # vim:set et sw=4 ts=4 tw=100:
