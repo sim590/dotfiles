@@ -1,4 +1,7 @@
 
+resize 12
+setlocal winfixheight
+
 nnoremap <buffer> go :Git checkout<space>
 
 nnoremap <buffer> gp :Git push<CR>
