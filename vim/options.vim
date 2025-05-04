@@ -19,6 +19,7 @@ set softtabstop=4
 set expandtab
 set smarttab
 set backspace=2
+set cursorline
 set cursorcolumn
 set number
 set relativenumber
