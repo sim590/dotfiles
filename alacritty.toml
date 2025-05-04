@@ -1,5 +1,3 @@
-[font]
-size = 7
 
 [font.normal]
 family = "DejaVuSansMonoNerdFont"
@@ -16,3 +14,4 @@ bindings = [
     {key = "ArrowUp", mods = "Shift", action = "ScrollLineUp" },
     {key = "ArrowDown", mods = "Shift", action = "ScrollLineDown" }
 ]
+
