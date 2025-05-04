@@ -253,5 +253,25 @@ bind main       G           move-last-line
 bind main <C-c> !@sh -c "git rev-parse %(commit) | tr -d '\\n' | xclip -selection c"
 bind tree <C-c> !@sh -c "echo %(file) | xclip -selection c"
 
+# presque-wombat256
+color default white color235
+color id color173 default bold
+color diff.commit color173 default bold
+color date color242 default
+color author color113 default
+color "Refs: " color170 default
+color "Author: " color113 default
+color "AuthorDate: " color229 default
+color "Commit: " color44 default
+color "CommitDate: " color229 default
+color title-focus white color233 bold
+color cursor black color185
+color status white color235
+color search-result black color146
+color main-head color39 default bold
+color main-ref color31 default
+color directory color39 default
+color mode color173 default
+
 #  vim: set sts=4 ts=4 sw=4 tw=120 et :
 
