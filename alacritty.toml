@@ -1,6 +1,9 @@
 [font]
 size = 7
 
+[font.normal]
+family = "DejaVuSansMonoNerdFont"
+
 [terminal.shell]
 program = "/usr/bin/zsh"
 
