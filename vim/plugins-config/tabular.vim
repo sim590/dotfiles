@@ -19,5 +19,7 @@ fun! s:AddFirstOccurencePatterns()
 endf
 au! VimEnter * call s:AddFirstOccurencePatterns()
 
+nmap <leader>gt :GTabularize<space>
+
 " vim: set ts=2 sw=2 tw=100 et :
 
