@@ -33,8 +33,8 @@ if !has('nvim')
   set cscoperelative
 endif
 
-packadd termdebug " Enables gdb debugging
-packadd matchit
+packadd! termdebug " Enables gdb debugging
+packadd! matchit
 
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
