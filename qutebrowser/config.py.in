@@ -38,6 +38,7 @@
 
 config.load_autoconfig(False)
 
+config.source('M4_HOME/.config/qutebrowser/theme.py')
 config.source('M4_HOME/.config/qutebrowser/base.py')
 config.source('M4_HOME/.config/qutebrowser/keys.py')
 config.source('M4_HOME/.config/qutebrowser/privacy.py')
