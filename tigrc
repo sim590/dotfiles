@@ -102,20 +102,20 @@ set show-notes                  = yes           # When non-bool passed as `--sho
 # set mailmap                   = yes           # Use .mailmap to show canonical name and email address
 
 # Misc
-set refresh-mode      = periodic # Enum: manual, auto, after-command, periodic
-set refresh-interval  = 2        # Interval in seconds between refreshes
-set ignore-case       = smart-case  # Ignore case when searching?
-set wrap-search       = yes      # Wrap around to top/bottom of view when searching
-set focus-child       = yes      # Move focus to child view when opened?
-set horizontal-scroll = 50%      # Number of columns to scroll as % of width
-set split-view-height = 67%      # Height of the bottom view for horizontal splits
-set vertical-split    = auto     # Enum: horizontal, vertical, auto; Use auto to
-                                 # switch to horizontal split when width allows it
-set split-view-width   = 50%     # Width of right-most view for vertical splits
-set editor-line-number = yes     # Automatically pass line number to editor? Used
-                                 # for opening file at specific line e.g. from a diff
-set mouse              = no      # Enable mouse support?
-set mouse-scroll       = 3       # Number of lines to scroll via the mouse
+set refresh-mode      = auto       # Enum: manual, auto, after-command, periodic
+set refresh-interval  = 2          # Interval in seconds between refreshes
+set ignore-case       = smart-case # Ignore case when searching?
+set wrap-search       = yes        # Wrap around to top/bottom of view when searching
+set focus-child       = yes        # Move focus to child view when opened?
+set horizontal-scroll = 50%        # Number of columns to scroll as % of width
+set split-view-height = 67%        # Height of the bottom view for horizontal splits
+set vertical-split    = auto       # Enum: horizontal, vertical, auto; Use auto to
+                                   # switch to horizontal split when width allows it
+set split-view-width   = 50%       # Width of right-most view for vertical splits
+set editor-line-number = yes       # Automatically pass line number to editor? Used
+                                   # for opening file at specific line e.g. from a diff
+set mouse              = no        # Enable mouse support?
+set mouse-scroll       = 3         # Number of lines to scroll via the mouse
 
 # User-defined commands
 # ---------------------
