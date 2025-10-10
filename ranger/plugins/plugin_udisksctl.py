@@ -18,7 +18,7 @@ LIST_MOUNTS_KEY = '<alt>N'
 old_hook_init = ranger.api.hook_init
 def hook_init(fm):
     try:
-        fm.execute_console("map {key} shell -p lsblk".format(key=LIST_MOUNTS_KEY))
+        fm.execute_console("map {key} shell -p lsblk -f".format(key=LIST_MOUNTS_KEY))
         for disk in "abcdefgh":
             fm.execute_console("map {key}{0} chain shell udisksctl mount -b /dev/sd{1}".format(disk.upper(), disk, key=MOUNT_KEY))
             fm.execute_console("map {key}{0} chain chain shell udisksctl unmount -b /dev/sd{1}".format(disk.upper(), disk, key=UMOUNT_KEY))
