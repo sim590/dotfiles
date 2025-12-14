@@ -9,6 +9,8 @@ ZSH_CONFIG = \
 						 zsh/zshrc.wine \
 						 zsh/zshrc.alias
 XDG_CONFIG_CONTENT = \
+					 config/nushell/config.nu\
+					 config/nushell/autoload\
 					 config/zathura/zathurarc\
 					 config/mpd/mpd.conf\
 					 config/mpv/input.conf\
