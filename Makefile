@@ -12,6 +12,9 @@ XDG_CONFIG_CONTENT = \
 					 config/zathura/zathurarc\
 					 config/mpd/mpd.conf\
 					 config/mpv/input.conf\
+					 config/gtk-2.0/settings.ini\
+					 config/gtk-3.0/settings.ini\
+					 config/gtk-4.0/settings.ini\
 					 config/systemd/user/mbsync.timer\
 					 config/systemd/user/mbsync.service\
 					 config/systemd/user/notmuch.service\
