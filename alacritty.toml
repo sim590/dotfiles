@@ -2,7 +2,7 @@
 family = "DejaVuSansMNerdFont"
 
 [terminal.shell]
-program = "/usr/bin/zsh"
+program = "/usr/bin/nu"
 
 [window]
 dynamic_title = true
