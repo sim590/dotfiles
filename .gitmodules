@@ -25,3 +25,6 @@
 [submodule "zplug"]
 	path = zplug
 	url = https://github.com/zplug/zplug
+[submodule "config/nushell/plugins/nu_plugin_secret"]
+	path = config/nushell/plugins/nu_plugin_secret
+	url = https://github.com/nushell-works/nu_plugin_secret
