@@ -1,16 +1,43 @@
 #!/usr/bin/env bash
 
+args="$@"
+
 PATH_TO_QUTEB_MPV_SCRIPT=$HOME/prog/qutebrowser/misc/userscripts/view_in_mpv
 
 scriptdir=$(dirname $(readlink -f $0))
 
-source $scriptdir/get_ytdlp_mpv_vars "$QUTE_URL"
+program_name=$0 options='fu:' loptions='fast,url'
+getopt_out=$(getopt --name $program_name --options $options --longoptions $loptions -- "$@")
+if (( $? != 0 )); then exit 1; fi
+
+#sets the positionnal parameters with getopt's output
+eval set -- "$getopt_out"
+
+URL="$QUTE_URL"
+while [[ $1 != "--" ]]; do
+  case "$1" in
+  -u|--url)
+    URL=$2
+    shift 2
+    ;;
+  -f|--fast)
+    USE_YTDLP_FOR_DOWNLOAD=${USE_YTDLP_FOR_DOWNLOAD:-"yes"}
+    shift
+    ;;
+  *)
+    echo "option inconnue '$1'"
+    exit 2
+    ;;
+  esac
+done
+# shift away from the last optional parameter (--)
+shift
+
+source $scriptdir/get_ytdlp_mpv_vars "$URL"
 
 init_ytdlp_mpv
 
-(cd $tmpdir && $PATH_TO_QUTEB_MPV_SCRIPT)
-
-close_ytdlp_mpv
+$PATH_TO_QUTEB_MPV_SCRIPT "${args[@]}"
 
 # vim: set sts=2 ts=2 sw=2 tw=120 et :
 

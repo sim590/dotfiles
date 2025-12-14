@@ -13,33 +13,17 @@ if [[ "${ytdlp_hosts_list[@]}" =~ "$URL_HOSTNAME" ]]; then
   USE_YTDLP_FOR_DOWNLOAD=yes
 fi
 
-audio_ytdlp_pid=
-tmpdir=
 function init_ytdlp_mpv() {
-  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
-    tmpdir=$(mktemp -d)
-    ( cd $tmpdir && yt-dlp --downloader=aria2c -f 'bestaudio[language=fr],bestaudio' -o - "$URL" >$tmpdir/ytdlp_audio ) &
-    audio_ytdlp_pid=$!
-    sleep 2
+  MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=12G --demuxer-donate-buffer=no"
+  if ! [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
+    MPV_FLAGS="$MPV_FLAGS --ytdl --ytdl-format=bestvideo*[height<=?1440]+bestaudio/best"
   fi
 
-  MPV_FLAGS="--force-window --no-terminal --keep-open=yes --demuxer-max-back-bytes=12G"
-  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
-    MPV_FLAGS="$MPV_FLAGS --audio-file=$tmpdir/ytdlp_audio"
-  else
-    MPV_FLAGS="$MPV_FLAGS --ytdl-format=bestvideo*[height<=?1440]+bestaudio/best"
-  fi
-
-  YT_DLP_FLAGS="-N 8 --downloader=http --format=bestvideo*[height<=?1440]"
+  EXTRACTOR_FLAG="--extractor-arg youtube:player_client=web_safari"
+  COOKIES_FLAG="--cookies-from-browser chromium:~/.local/share/qutebrowser"
+  YT_DLP_FLAGS="$COOKIES_FLAG $EXTRACTOR_FLAG -N 8 --downloader=http --format=bestvideo*[height<=?1440]"
+  YT_DLP_AUDIO_FLAGS="$COOKIES_FLAG $EXTRACTOR_FLAG --downloader=aria2c -f 'bestaudio[language=fr],bestaudio'"
 
   export USE_YTDLP_FOR_DOWNLOAD YT_DLP_FLAGS MPV_FLAGS
-}
-
-function close_ytdlp_mpv() {
-  if [[ $USE_YTDLP_FOR_DOWNLOAD = "yes" ]]; then
-    kill $audio_ytdlp_pid
-    rm -rf $tmpdir
-  fi
-  export USE_YTDLP_FOR_DOWNLOAD= YT_DLP_FLAGS= MPV_FLAGS=
 }
 
