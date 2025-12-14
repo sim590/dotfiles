@@ -108,7 +108,8 @@ let g:programming_fts = [
       \ "sh",
       \ "vim",
       \ "cmake",
-      \ "make"
+      \ "make",
+      \ "nu"
       \ ]
 let g:txtformating_fts = [
       \ "tex",
