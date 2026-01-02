@@ -28,3 +28,6 @@
 [submodule "config/nushell/plugins/nu_plugin_secret"]
 	path = config/nushell/plugins/nu_plugin_secret
 	url = https://github.com/nushell-works/nu_plugin_secret
+[submodule "config/nushell/nupm"]
+	path = config/nushell/modules/nupm
+	url = https://github.com/nushell/nupm

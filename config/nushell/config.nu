@@ -28,3 +28,5 @@ source $"($nu.cache-dir)/carapace.nu"
 
 oh-my-posh init nu --config /usr/share/oh-my-posh/themes/craver.omp.json
 
+use $"($nu.config-path | path dirname)/modules/nupm/nupm"
+
