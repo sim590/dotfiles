@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Surveillance du mode plein écran pour activer/désactiver le mode « jeu »
+# de mako. Quand une fenêtre est en plein écran, les notifications sont
+# redirigées vers le moniteur secondaire.
+
+PIDFILE="${XDG_RUNTIME_DIR}/mako-mode-jeu.pid"
+
+# Vérifier si une instance roule déjà
+if [[ -f "$PIDFILE" ]]; then
+    old_pid=$(cat "$PIDFILE")
+    if kill -0 "$old_pid" 2>/dev/null; then
+        echo "mako-mode-jeu roule déjà (PID $old_pid). On quitte." >&2
+        exit 0
+    fi
+fi
+
+# Écrire notre PID
+echo $$ > "$PIDFILE"
+
+# Nettoyer à la sortie
+trap 'rm -f "$PIDFILE"; makoctl mode -r jeu 2>/dev/null' EXIT
+
+# Vérifie si une vraie fenêtre (pas un conteneur sway) est en plein écran
+est_plein_ecran() {
+    local count
+    count=$(swaymsg -t get_tree -r | jq '[recurse(.nodes[], .floating_nodes[]) | select(.pid != null and .fullscreen_mode > 0)] | length')
+    [[ "$count" -gt 0 ]]
+}
+
+mode_actif=false
+
+# Vérifier l'état initial
+if est_plein_ecran; then
+    makoctl mode -a jeu
+    mode_actif=true
+    echo "$(date +%H:%M:%S) Mode jeu activé (état initial)"
+fi
+
+echo "Surveillance du mode plein écran démarrée..."
+
+swaymsg -t subscribe -m '["window"]' | while read -r window_json; do
+    window_event=$(echo "$window_json" | jq -r '.change')
+
+    if [[ "$window_event" = "fullscreen_mode" ]]; then
+        if est_plein_ecran; then
+            if [[ "$mode_actif" = false ]]; then
+                makoctl mode -a jeu
+                mode_actif=true
+                echo "$(date +%H:%M:%S) Mode jeu activé"
+            fi
+        else
+            if [[ "$mode_actif" = true ]]; then
+                makoctl mode -r jeu
+                mode_actif=false
+                echo "$(date +%H:%M:%S) Mode jeu désactivé"
+            fi
+        fi
+    fi
+done
