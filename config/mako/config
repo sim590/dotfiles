@@ -1,0 +1,6 @@
+[desktop-entry=mpdris2]
+default-timeout=5000
+
+# En mode jeu (plein écran), tout va sur DP-2
+[mode=jeu]
+output=DP-2

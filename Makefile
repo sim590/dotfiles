@@ -31,6 +31,7 @@ XDG_CONFIG_CONTENT = \
 					 config/environment.d/xkb.conf\
 					 config/environment.d/vulkan.conf\
 					 config/imv/config\
+					 config/mako/config\
 					 config/swayr/config.toml\
 					 config/wofi/style.css\
 					 config/sway/config\
@@ -61,7 +62,8 @@ BIN_FILES = bin/lights\
 						bin/wmake\
 						bin/rofi\
 						bin/pqutebrowser\
-						bin/sesame-ouvre-toi
+						bin/sesame-ouvre-toi\
+						bin/mako-mode-jeu
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
 DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
