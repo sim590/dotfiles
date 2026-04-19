@@ -30,6 +30,7 @@ XDG_CONFIG_CONTENT = \
 					 config/environment.d/path.conf\
 					 config/environment.d/xkb.conf\
 					 config/environment.d/vulkan.conf\
+					 config/environment.d/vkd3d.conf\
 					 config/imv/config\
 					 config/mako/config\
 					 config/swayr/config.toml\
