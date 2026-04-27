@@ -164,7 +164,7 @@ bind refs   b       !git checkout -b "%(prompt [checkout -b] Nom de la branche: 
 bind refs   B       ?git checkout -B "%(prompt [checkout -B] Nom de la branche: )" %(refname)
 bind refs   <C-r>   ?git branch -m %(branch) "%(prompt [branch -m] Nom de la branche: )"
 bind refs   <C-f>   ?git fetch %(remote) %(branch)
-bind refs   <C-c>   !@sh -c "git rev-parse --abbrev-ref %(refname) | tr -d '\\n' | clip.exe"
+bind refs   <C-c>   !@sh -c "git rev-parse --abbrev-ref %(refname) | tr -d '\\n' | wl-copy"
 bind refs   <C-h>   :set rev-args = 
 bind refs   <C-@>   :set rev-args = master %(refname)
 bind refs   <Space> :set rev-args = master %(revargs) %(refname)
