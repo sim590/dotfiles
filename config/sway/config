@@ -31,8 +31,13 @@ output * bg /home/simon/Images/arrière-plans/actuel/actuel fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output 'LG Electronics LG ULTRAGEAR 403NTEP2C244' resolution 2560x1440 adaptive_sync on position 0,0
-output 'HP Inc. HP P224 CNK9381561' resolution 1920x1080
+output 'LG Electronics LG ULTRAGEAR 201NTQDPC404' resolution 2560x1440@164.956Hz position 0,0
+# output 'LG Electronics LG ULTRAGEAR 201NTDVPC866' resolution 2560x1440 adaptive_sync on position 0,0
+# output 'LG Electronics LG ULTRAGEAR 403NTEP2C244' resolution 2560x1440@120.017Hz adaptive_sync on position 0,0
+# output 'LG Electronics LG ULTRAGEAR 403NTEP2C244' resolution 2560x1440@99.946Hz adaptive_sync on position 0,0
+# output 'LG Electronics LG ULTRAGEAR 403NTEP2C244' resolution 2560x1440@59.951Hz adaptive_sync on position 0,0
+output 'LG Electronics LG ULTRAGEAR 201NTDVPC866' resolution 2560x1440@59.951Hz
+# output 'HP Inc. HP P224 CNK9381561' resolution 1920x1080
 
 exec_always /home/simon/bin/sway/vrr_fullscreen.sh
 
