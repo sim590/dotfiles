@@ -1,0 +1,34 @@
+#!/bin/sh
+# Détecte la branche principale du dépôt (main, master, etc.)
+# et génère ~/.tigrc.dynamic avant de lancer tig.
+
+default_branch() {
+    ref=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null)
+    if [ -n "$ref" ]; then
+        echo "${ref#origin/}"
+        return
+    fi
+    for branch in main master; do
+        if git rev-parse --verify --quiet "$branch" >/dev/null 2>&1; then
+            echo "$branch"
+            return
+        fi
+    done
+}
+
+BRANCH=$(default_branch)
+DYNAMIC="$HOME/.tigrc.dynamic"
+
+if [ -n "$BRANCH" ]; then
+    cat > "$DYNAMIC" <<EOF
+bind refs   <C-@>   :set rev-args = $BRANCH %(refname)
+bind refs   <Space> :set rev-args = $BRANCH %(revargs) %(refname)
+EOF
+else
+    cat > "$DYNAMIC" <<EOF
+bind refs   <C-@>   :set rev-args = %(refname)
+bind refs   <Space> :set rev-args = %(revargs) %(refname)
+EOF
+fi
+
+exec /usr/bin/tig "$@"
