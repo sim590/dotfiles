@@ -1,0 +1,9 @@
+#!/bin/bash
+# Bascule le focus entre fenêtres tuilées et flottantes (équivalent de
+# « focus mode_toggle » dans Sway/i3).
+floating=$(hyprctl activewindow -j | jq '.floating')
+if [ "$floating" = "true" ]; then
+    hyprctl dispatch cyclenext tiled
+else
+    hyprctl dispatch cyclenext floating
+fi

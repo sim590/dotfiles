@@ -32,6 +32,11 @@ XDG_CONFIG_CONTENT = \
 					 config/mako/config\
 					 config/swayr/config.toml\
 					 config/wofi/style.css\
+					 config/wofi/style.scss\
+					 config/hypr/hyprland.conf\
+					 config/hypr/hyprlock.conf\
+					 config/hypr/hyprpaper.conf\
+					 $(wildcard config/hypr/config.d/*) \
 					 config/sway/config\
 					 $(wildcard config/sway/config.d/*) \
 					 config/swaylock/config\
@@ -61,7 +66,10 @@ BIN_FILES = bin/lights\
 						bin/rofi\
 						bin/pqutebrowser\
 						bin/sesame-ouvre-toi\
-						bin/mako-mode-jeu
+						bin/mako-mode-jeu\
+						bin/hypr-focus-mode-toggle\
+						bin/hypr-window-switcher\
+						bin/tig
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
 DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
@@ -76,8 +84,8 @@ CONFIG_OUT   = $(CONFIG_FILES:.in=)
 .PHONY: all links subdirs clean
 all: configure links subdirs
 
-help: ## Prints help for targets with comments
-	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+# help: ## Prints help for targets with comments
+# 	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 configure: $(CONFIG_OUT) ## Configure all the files (strings substitutions)
 
