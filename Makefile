@@ -1,4 +1,4 @@
-SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt
+SUBDIRS = awesome qutebrowser vim ncmpcpp beets ranger mutt config/sway
 
 ZSH_CONFIG = \
 						 zsh/zshrc.debian \
