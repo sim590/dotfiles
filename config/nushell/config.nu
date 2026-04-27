@@ -21,6 +21,8 @@ $env.EDITOR             = "vim"
 $env.config.show_banner = false
 $env.config.edit_mode   = 'vi'
 
+$env.config.history.file_format = "sqlite"
+
 # Thème
 $env.LS_COLORS = (vivid generate molokai)
 
