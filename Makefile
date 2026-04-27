@@ -37,6 +37,8 @@ XDG_CONFIG_CONTENT = \
 					 config/hypr/hyprland.conf\
 					 config/hypr/hyprlock.conf\
 					 config/hypr/hyprpaper.conf\
+					 config/hypr/xdph.conf\
+					 config/hypr/xdph-picker.nu\
 					 $(wildcard config/hypr/config.d/*) \
 					 config/sway/config\
 					 $(wildcard config/sway/config.d/*) \
