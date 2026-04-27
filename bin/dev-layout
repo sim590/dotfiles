@@ -1,0 +1,144 @@
+#!/usr/bin/env nu
+
+# Ouvre une disposition de développement complète à partir de Ranger.
+#
+# Onglet 1 : ranger/tig (splitv)  |  nushell
+# Onglet 2 : vim  |  opencode
+#
+# Supporte Sway et Hyprland (avec hy3).
+#
+# Usage : dev-layout <répertoire>
+
+# --- Sway -----------------------------------------------------------
+
+# Attend qu'une nouvelle fenêtre apparaisse via l'IPC de Sway.
+def sway-attendre-fenetre [] {
+    loop {
+        let evt = (swaymsg -t subscribe '["window"]' | from json)
+        if $evt.change == "new" {
+            break
+        }
+    }
+}
+
+# Ouvre une fenêtre alacritty et attend sa création (Sway).
+def sway-ouvrir-alacritty [
+    repertoire: path
+    commandes_alacritty: list<string> = []
+] {
+    let cmd = (["alacritty" "--working-directory" ($repertoire | to text)]
+        | append $commandes_alacritty
+        | str join " ")
+    swaymsg exec $cmd
+    sway-attendre-fenetre
+}
+
+def sway-disposition [repertoire: path] {
+    # Marquer ranger pour pouvoir y revenir
+    swaymsg mark _dev_ranger
+
+    # Mettre le conteneur en mode onglet
+    swaymsg layout tabbed
+
+    # --- Onglet 2 (on le crée en premier pour simplifier la navigation) ---
+
+    # Ouvrir vim — crée automatiquement l'onglet 2
+    sway-ouvrir-alacritty $repertoire ["-e" "vim"]
+
+    # Ouvrir opencode à côté de vim dans le même onglet
+    swaymsg splith
+    sway-ouvrir-alacritty $repertoire ["-e" "opencode"]
+
+    # --- Onglet 1 (on revient à ranger pour construire le reste) ---
+
+    # Revenir à ranger via la marque
+    swaymsg '[con_mark="_dev_ranger"]' focus
+
+    # Ouvrir nushell à droite de ranger
+    swaymsg splith
+    sway-ouvrir-alacritty $repertoire
+
+    # Revenir à ranger pour ajouter tig en dessous
+    swaymsg '[con_mark="_dev_ranger"]' focus
+    swaymsg splitv
+    sway-ouvrir-alacritty $repertoire ["-e" "tig" "-w"]
+
+    # Nettoyer la marque
+    swaymsg unmark _dev_ranger
+}
+
+# --- Hyprland (hy3) -------------------------------------------------
+
+# Attend qu'une nouvelle fenêtre apparaisse via le socket Hyprland.
+# Retourne l'adresse de la fenêtre créée.
+def hypr-attendre-fenetre [] {
+    let socket = $"($env.XDG_RUNTIME_DIR)/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/.socket2.sock"
+    # socat lit les événements ligne par ligne ; on cherche openwindow
+    socat -u $"UNIX-CONNECT:($socket)" STDOUT
+        | lines
+        | each {|line|
+            if ($line | str starts-with "openwindow>>") {
+                # Format : openwindow>>ADDR,WORKSPACE,CLASS,TITLE
+                let addr = ($line | str replace "openwindow>>" "" | split row "," | get 0)
+                return $"0x($addr)"
+            }
+        }
+        | first
+}
+
+# Ouvre une fenêtre alacritty et attend sa création (Hyprland).
+# Retourne l'adresse de la fenêtre.
+def hypr-ouvrir-alacritty [
+    repertoire: path
+    commandes_alacritty: list<string> = []
+] {
+    let cmd = (["alacritty" "--working-directory" ($repertoire | to text)]
+        | append $commandes_alacritty
+        | str join " ")
+    hyprctl dispatch exec $cmd
+    hypr-attendre-fenetre
+}
+
+def hypr-disposition [repertoire: path] {
+    # Sauvegarder l'adresse de la fenêtre ranger actuelle
+    let ranger_addr = (hyprctl activewindow -j | from json | get address)
+
+    # Mettre le conteneur en mode onglet via hy3
+    hyprctl dispatch hy3:changegroup tab
+
+    # --- Onglet 2 ---
+
+    # Ouvrir vim — crée automatiquement l'onglet 2
+    let vim_addr = (hypr-ouvrir-alacritty $repertoire ["-e" "vim"])
+
+    # Diviser horizontalement et ouvrir opencode à côté
+    hyprctl dispatch hy3:makegroup h
+    hypr-ouvrir-alacritty $repertoire ["-e" "opencode"]
+
+    # --- Onglet 1 ---
+
+    # Revenir à ranger
+    hyprctl dispatch focuswindow $"address:($ranger_addr)"
+
+    # Diviser horizontalement pour nushell
+    hyprctl dispatch hy3:makegroup h
+    hypr-ouvrir-alacritty $repertoire
+
+    # Revenir à ranger et diviser verticalement pour tig
+    hyprctl dispatch focuswindow $"address:($ranger_addr)"
+    hyprctl dispatch hy3:makegroup v
+    hypr-ouvrir-alacritty $repertoire ["-e" "tig" "-w"]
+}
+
+# --- Point d'entrée -------------------------------------------------
+
+def main [repertoire: path] {
+    if ($env | get -i HYPRLAND_INSTANCE_SIGNATURE | is-not-empty) {
+        hypr-disposition $repertoire
+    } else if ($env | get -i SWAYSOCK | is-not-empty) {
+        sway-disposition $repertoire
+    } else {
+        print -e "Aucun compositeur supporté détecté."
+        exit 1
+    }
+}

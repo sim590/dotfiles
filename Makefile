@@ -72,6 +72,7 @@ BIN_FILES = bin/lights\
 						bin/mako-mode-jeu\
 						bin/hypr-focus-mode-toggle\
 						bin/hypr-window-switcher\
+						bin/dev-layout\
 						bin/tig
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
