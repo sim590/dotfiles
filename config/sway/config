@@ -34,6 +34,8 @@ output * bg /home/simon/Images/arrière-plans/actuel/actuel fill
 output 'LG Electronics LG ULTRAGEAR 403NTEP2C244' resolution 2560x1440 adaptive_sync on position 0,0
 output 'HP Inc. HP P224 CNK9381561' resolution 1920x1080
 
+exec_always /home/simon/bin/sway/vrr_fullscreen.sh
+
 exec_always /home/simon/bin/mako-mode-jeu
 
 ### Idle configuration
