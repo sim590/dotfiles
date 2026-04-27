@@ -63,6 +63,10 @@ def sway-disposition [repertoire: path] {
     swaymsg splitv
     sway-ouvrir-alacritty $repertoire ["-e" "tig" "-w"]
 
+    # Redimensionner ranger à 28% de la hauteur
+    swaymsg '[con_mark="_dev_ranger"]' focus
+    swaymsg resize set height 28 ppt
+
     # Nettoyer la marque
     swaymsg unmark _dev_ranger
 }
@@ -128,6 +132,17 @@ def hypr-disposition [repertoire: path] {
     hyprctl dispatch focuswindow $"address:($ranger_addr)"
     hyprctl dispatch hy3:makegroup v
     hypr-ouvrir-alacritty $repertoire ["-e" "tig" "-w"]
+
+    # Redimensionner ranger à 28% de la hauteur
+    hyprctl dispatch focuswindow $"address:($ranger_addr)"
+    let info = (hyprctl activewindow -j | from json)
+    let hauteur_actuelle = $info.size.1
+    # ranger et tig se partagent l'espace vertical à 50/50 par défaut,
+    # faque la hauteur totale est le double de la fenêtre actuelle.
+    let hauteur_totale = ($hauteur_actuelle * 2)
+    let hauteur_cible = (($hauteur_totale * 0.28) | math round | into int)
+    let delta = $hauteur_cible - $hauteur_actuelle
+    hyprctl dispatch resizeactive $"0 ($delta)"
 }
 
 # --- Point d'entrée -------------------------------------------------
