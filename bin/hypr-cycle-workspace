@@ -25,8 +25,15 @@ fi
 current_idx=$(echo "$occupied" | jq --argjson id "$active_id" 'to_entries | .[] | select(.value == $id) | .key')
 
 if [ -z "$current_idx" ]; then
-    # L'espace actif est vide — aller au premier espace occupé
-    target=$(echo "$occupied" | jq '.[0]')
+    # L'espace actif est vide — aller au plus proche dans la direction demandée
+    if [ "$direction" = "next" ]; then
+        target=$(echo "$occupied" | jq --argjson id "$active_id" \
+            '[.[] | select(. > $id)] | if length > 0 then .[0] else empty end')
+    else
+        target=$(echo "$occupied" | jq --argjson id "$active_id" \
+            '[.[] | select(. < $id)] | if length > 0 then .[-1] else empty end')
+    fi
+    [ -z "$target" ] && exit 0
 else
     if [ "$direction" = "next" ]; then
         next_idx=$(( current_idx + 1 ))
