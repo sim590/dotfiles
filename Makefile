@@ -44,7 +44,9 @@ XDG_CONFIG_CONTENT = \
 					 config/sway/config\
 					 $(wildcard config/sway/config.d/*) \
 					 config/swaylock/config\
-					 config/terminator/config
+					 config/terminator/config\
+					 config/waybar/config.jsonc\
+					 config/waybar/style.css
 DOTFILES = gitconfig\
 					 alacritty.toml\
 					 vimrc\
