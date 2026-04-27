@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Navigue vers l'espace de travail occupé suivant ou précédent sur le
+# moniteur courant. Saute les espaces vides.
+#
+# Usage : hypr-cycle-workspace next|prev
+
+direction="$1"
+
+# Récupérer le moniteur et l'espace actif
+active_json=$(hyprctl activeworkspace -j)
+active_id=$(echo "$active_json" | jq '.id')
+active_monitor=$(echo "$active_json" | jq -r '.monitor')
+
+# Lister les espaces occupés sur ce moniteur, triés par ID
+occupied=$(hyprctl workspaces -j | jq -r --arg mon "$active_monitor" \
+    '[.[] | select(.monitor == $mon and .windows > 0) | .id] | sort')
+
+count=$(echo "$occupied" | jq 'length')
+if [ "$count" -le 1 ]; then
+    exit 0
+fi
+
+# Trouver l'index de l'espace actif
+current_idx=$(echo "$occupied" | jq --argjson id "$active_id" 'to_entries | .[] | select(.value == $id) | .key')
+
+if [ -z "$current_idx" ]; then
+    # L'espace actif est vide — aller au premier espace occupé
+    target=$(echo "$occupied" | jq '.[0]')
+else
+    if [ "$direction" = "next" ]; then
+        next_idx=$(( current_idx + 1 ))
+        if [ "$next_idx" -ge "$count" ]; then
+            exit 0  # pas de bouclage
+        fi
+        target=$(echo "$occupied" | jq ".[$next_idx]")
+    else
+        prev_idx=$(( current_idx - 1 ))
+        if [ "$prev_idx" -lt 0 ]; then
+            exit 0  # pas de bouclage
+        fi
+        target=$(echo "$occupied" | jq ".[$prev_idx]")
+    fi
+fi
+
+hyprctl dispatch workspace "$target"
