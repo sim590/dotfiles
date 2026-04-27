@@ -80,6 +80,7 @@ Plug 'Konfekt/vim-mutt-aliases'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'rickhowe/spotdiff.vim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 let g:muttaliases_file = '/home/simon/.mutt/aliases'
@@ -159,6 +160,7 @@ let s:configs = [
       \ "haskell-conceal.vim",
       \ "markdown-preview.vim",
       \ "spotdiff.vim",
+      \ "copilot.vim",
       \ ]
 
 for s:plugin in s:configs
