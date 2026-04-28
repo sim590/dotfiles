@@ -17,14 +17,15 @@ occupied=$(hyprctl workspaces -j | jq -r --arg mon "$active_monitor" \
     '[.[] | select(.monitor == $mon and .windows > 0) | .id] | sort')
 
 count=$(echo "$occupied" | jq 'length')
-if [ "$count" -le 1 ]; then
-    exit 0
-fi
 
 # Trouver l'index de l'espace actif
 current_idx=$(echo "$occupied" | jq --argjson id "$active_id" 'to_entries | .[] | select(.value == $id) | .key')
 
 if [ -z "$current_idx" ]; then
+    # L'espace actif est vide — il faut au moins un espace occupé
+    if [ "$count" -lt 1 ]; then
+        exit 0
+    fi
     # L'espace actif est vide — aller au plus proche dans la direction demandée
     if [ "$direction" = "next" ]; then
         target=$(echo "$occupied" | jq --argjson id "$active_id" \
