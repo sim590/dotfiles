@@ -36,8 +36,12 @@ if [[ $XDG_SESSION_TYPE =~ "x11" ]]; then
     echo "feh --bg-fill $dest_img" >${HOME}/.fehbg
     eval $(< ${HOME}/.fehbg)
 elif [[ $XDG_SESSION_TYPE =~ "wayland" ]] && pidof Hyprland >/dev/null; then
-    # Mettre à jour hyprpaper.conf avec le bon chemin
-    cat > "${HOME}/.config/hypr/hyprpaper.conf" <<EOF
+    if pgrep -x wayle >/dev/null 2>&1 && wayle wallpaper info >/dev/null 2>&1; then
+        # Wayle gère le fond d'écran
+        wayle wallpaper set "${dest_img}"
+    else
+        # Mettre à jour hyprpaper.conf avec le bon chemin
+        cat > "${HOME}/.config/hypr/hyprpaper.conf" <<EOF
 splash = false
 
 wallpaper {
@@ -45,7 +49,8 @@ wallpaper {
     path = ${dest_img}
 }
 EOF
-    systemctl --user restart hyprpaper
+        systemctl --user restart hyprpaper
+    fi
 elif [[ $XDG_SESSION_TYPE =~ "wayland" ]] && pidof sway >/dev/null; then
     swaymsg output '*' bg /home/simon/Images/arrière-plans/actuel/actuel fill
 fi
