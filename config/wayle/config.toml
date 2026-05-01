@@ -6,6 +6,12 @@ background-opacity = 60
 [osd]
 enabled = false
 
+[wallpaper]
+# cycling-enabled = true
+cycling-directory = "/home/simon/Images/arrière-plans"
+cycling-mode = "shuffle"
+cycling-interval-mins = 60
+
 [styling.palette]
 bg = "#282828"
 surface = "#3c3836"
