@@ -1,0 +1,4 @@
+#!/bin/sh
+mpc toggleoutput 2
+STATE=$(mpc outputs | awk '/pulse audio/ {print ($NF == "enabled") ? "active" : "non active"}')
+notify-send "MPD sortie locale" "Sortie locale : $STATE" --expire-time=2000

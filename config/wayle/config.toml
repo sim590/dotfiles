@@ -28,7 +28,7 @@ blue = "#8ec07c"
 monitor = "*"
 left = ["dashboard", "hyprland-workspaces"]
 center = ["clock"]
-right = ["cava", "ram", "cpu", "volume", "microphone", "systray"]
+right = ["media", "cava", "volume", "microphone", "systray"]
 
 [modules.hyprland-workspaces]
 show-special = false

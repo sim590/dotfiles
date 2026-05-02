@@ -80,7 +80,8 @@ BIN_FILES = bin/lights\
 						bin/hypr-window-switcher\
 						bin/dev-layout\
 						bin/hypr-cycle-workspace\
-						bin/tig
+						bin/tig\
+						bin/mpd-toggle-local
 ZSH_DEST_LINKS        = $(addprefix $(HOME)/.,$(subst zsh/,,${ZSH_CONFIG}))
 XDG_CONFIG_DEST_LINKS = $(addprefix $(HOME)/.,${XDG_CONFIG_CONTENT})
 DOTFILES_DEST_LINKS   = $(addprefix $(HOME)/.,$(DOTFILES))
