@@ -4,7 +4,7 @@
 IMAPAccount gmail-sim-desaulniers
 Host imap.gmail.com
 User sim.desaulniers@gmail.com
-PassCmd "gpg -q --decrypt ~/.mail/gmail.sim.desaulniers/pw.gpg"
+PassCmd "gpg -q --decrypt ~/.mail/gmail.sim.desaulniers/gmail-app-password.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -18,8 +18,8 @@ Path ~/.mail/gmail.sim.desaulniers/
 Inbox ~/.mail/gmail.sim.desaulniers/INBOX
 
 Channel gmail-sim-desaulniers-inbox
-Master :gmail-sim-desaulniers-remote:
-Slave :gmail-sim-desaulniers-local:
+Far :gmail-sim-desaulniers-remote:
+Near :gmail-sim-desaulniers-local:
 Patterns "INBOX"
 Create Both
 Expunge Both
@@ -27,24 +27,24 @@ SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-sent
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
+Near :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-spam
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Spam"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
+Near :gmail-sim-desaulniers-local:"[Gmail].Spam"
 Create Both
 Expunge Both
 SyncState *
 MaxMessages 1000
 
 Channel gmail-sim-desaulniers-drafts
-Master :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
-Slave :gmail-sim-desaulniers-local:"[Gmail].Drafts"
+Far :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
+Near :gmail-sim-desaulniers-local:"[Gmail].Drafts"
 Create Both
 Expunge Both
 SyncState *
@@ -55,181 +55,6 @@ Channel gmail-sim-desaulniers-inbox
 Channel gmail-sim-desaulniers-sent
 Channel gmail-sim-desaulniers-spam
 Channel gmail-sim-desaulniers-drafts
-
-########################################
-#  desaulniers.simon@courrier.uqam.ca  #
-########################################
-IMAPAccount courrier-uqam-desaulniers-simon
-Host outlook.office365.com
-User ag991016@ens.uqam.ca
-PassCmd "gpg -q --decrypt ~/.mail/courrier.uqam.desaulniers.simon/pw.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore courrier-uqam-desaulniers-simon-remote
-Account courrier-uqam-desaulniers-simon
-
-MaildirStore courrier-uqam-desaulniers-simon-local
-# Path must exist
-Path ~/.mail/courrier.uqam.desaulniers.simon/
-Inbox ~/.mail/courrier.uqam.desaulniers.simon/INBOX
-
-Channel courrier-uqam-desaulniers-simon-inbox
-Master :courrier-uqam-desaulniers-simon-remote:
-Slave :courrier-uqam-desaulniers-simon-local:
-Patterns "INBOX"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel courrier-uqam-desaulniers-simon-sent
-Master :courrier-uqam-desaulniers-simon-remote:"Sent"
-Slave :courrier-uqam-desaulniers-simon-local:"Sent"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel courrier-uqam-desaulniers-simon-indesirable
-Master :courrier-uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
-Slave :courrier-uqam-desaulniers-simon-local:"Courrier Indesirable"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel courrier-uqam-desaulniers-simon-drafts
-Master :courrier-uqam-desaulniers-simon-remote:"Drafts"
-Slave :courrier-uqam-desaulniers-simon-local:"Drafts"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Group courrier-uqam-desaulniers-simon
-Channel courrier-uqam-desaulniers-simon-inbox
-Channel courrier-uqam-desaulniers-simon-sent
-Channel courrier-uqam-desaulniers-simon-indesirable
-Channel courrier-uqam-desaulniers-simon-drafts
-
-###############################
-#  desaulniers.simon@uqam.ca  #
-###############################
-IMAPAccount uqam-desaulniers-simon
-Host gip.uqam.ca
-User desaulnierss
-PassCmd "gpg -q --decrypt ~/.mail/uqam.desaulniers.simon/pw.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore uqam-desaulniers-simon-remote
-Account uqam-desaulniers-simon
-
-MaildirStore uqam-desaulniers-simon-local
-# Path must exist
-Path ~/.mail/uqam.desaulniers.simon/
-Inbox ~/.mail/uqam.desaulniers.simon/INBOX
-
-Channel uqam-desaulniers-simon-inbox
-Master :uqam-desaulniers-simon-remote:
-Slave :uqam-desaulniers-simon-local:
-Patterns "INBOX"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel uqam-desaulniers-simon-sent
-Master :uqam-desaulniers-simon-remote:"&AMk-l&AOk-ments envoy&AOk-s"
-Slave :uqam-desaulniers-simon-local:"Sent"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel uqam-desaulniers-simon-indesirable
-Master :uqam-desaulniers-simon-remote:"Courrier ind&AOk-sirable"
-Slave :uqam-desaulniers-simon-local:"Courrier Indesirable"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel uqam-desaulniers-simon-drafts
-Master :uqam-desaulniers-simon-remote:"Brouillons"
-Slave :uqam-desaulniers-simon-local:"Drafts"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Group uqam-desaulniers-simon
-Channel uqam-desaulniers-simon-inbox
-Channel uqam-desaulniers-simon-sent
-Channel uqam-desaulniers-simon-indesirable
-Channel uqam-desaulniers-simon-drafts
-
-####################################
-#  simon.desaulniers@umontreal.ca  #
-####################################
-
-IMAPAccount umontreal-simon-desaulniers
-Host outlook.office365.com
-User simon.desaulniers@umontreal.ca
-PassCmd "gpg -q --decrypt ~/.mail/umontreal.simon.desaulniers/pw.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore umontreal-simon-desaulniers-remote
-Account umontreal-simon-desaulniers
-
-MaildirStore umontreal-simon-desaulniers-local
-# Path must exist
-Path ~/.mail/umontreal.simon.desaulniers/
-Inbox ~/.mail/umontreal.simon.desaulniers/INBOX
-
-Channel umontreal-simon-desaulniers-inbox
-Master :umontreal-simon-desaulniers-remote:
-Slave :umontreal-simon-desaulniers-local:
-Patterns "INBOX"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel umontreal-simon-desaulniers-sent
-Master :umontreal-simon-desaulniers-remote:"&AMk-l&AOk-ments envoy&AOk-s"
-Slave :umontreal-simon-desaulniers-local:"Sent"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel umontreal-simon-desaulniers-indesirable
-Master :umontreal-simon-desaulniers-remote:"Courrier ind&AOk-sirable"
-Slave :umontreal-simon-desaulniers-local:"Courrier Indesirable"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Channel umontreal-simon-desaulniers-drafts
-Master :umontreal-simon-desaulniers-remote:"Brouillons"
-Slave :umontreal-simon-desaulniers-local:"Drafts"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 1000
-
-Group umontreal-simon-desaulniers
-Channel umontreal-simon-desaulniers-inbox
-Channel umontreal-simon-desaulniers-sent
-Channel umontreal-simon-desaulniers-indesirable
-Channel umontreal-simon-desaulniers-drafts
 
 # vim:set et sw=4 ts=4 tw=120:
 
