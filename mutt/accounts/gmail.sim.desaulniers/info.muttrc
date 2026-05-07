@@ -16,9 +16,9 @@ set pgp_sign_as    = "F97E4B08"
 set crypt_autosign = no
 
 macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
-macro index,pager gi "<change-folder>=gmail.sim.desaulniers/INBOX<enter>" "Go to inbox"
-macro index,pager gs "<change-folder>=gmail.sim.desaulniers/[Gmail].Sent Mail<enter>" "Go to sent messages"
-macro index,pager gd "<change-folder>=gmail.sim.desaulniers/[Gmail].Drafts<enter>" "Go to drafts"
+macro index,pager gi "<change-folder>notmuch:///home/simon/.mail?query=path:gmail.sim.desaulniers/** and (path:/Sent/ or path:/INBOX/)<enter>" "Go to inbox"
+macro index,pager gs "<change-folder>notmuch:///home/simon/.mail?query=path:gmail.sim.desaulniers/** and path:/Sent/<enter>" "Go to sent messages"
+macro index,pager gd "<change-folder>notmuch://?query=path:gmail.sim.desaulniers/** and path:/Drafts/<enter>" "Go to drafts"
 
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 
