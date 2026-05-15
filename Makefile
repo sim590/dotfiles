@@ -46,7 +46,8 @@ XDG_CONFIG_CONTENT = \
 					 config/terminator/config\
 					 config/waybar/config.jsonc\
 					 config/waybar/style.css\
-					 config/wayle/config.toml
+					 config/wayle/config.toml\
+				 config/pipewire/pipewire.conf.d/10-quantum.conf
 DOTFILES = gitconfig\
 					 alacritty.toml\
 					 vimrc\
