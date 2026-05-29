@@ -1,5 +1,5 @@
 directory: ~/Musique
-plugins: fetchart lastgenre fromfilename info
+plugins: fetchart lastgenre fromfilename info musicbrainz
 
 import:
     incremental: yes
