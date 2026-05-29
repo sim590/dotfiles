@@ -1,3 +1,4 @@
+set shell=/bin/bash
 set undofile
 set formatoptions=tcroql
 set autochdir
@@ -32,6 +33,7 @@ if !has('nvim')
   set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
   set cscoperelative
 endif
+set title
 
 packadd! termdebug " Enables gdb debugging
 packadd! matchit
