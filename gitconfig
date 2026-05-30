@@ -1,38 +1,40 @@
 [core]
   # workaround this: https://github.com/ranger/ranger/issues/214 in debian
-  editor    = vim
-  quotepath = off
+  editor          = vim
+  quotepath       = off
 [user]
-  name      = Simon Désaulniers
-  email     = sim.desaulniers@gmail.com
+  name            = Simon Désaulniers
+  email           = sim.desaulniers@gmail.com
 [color]
-  ui        = true
+  ui              = true
 [alias]
-  lol       = log --decorate --graph --oneline
-  loll      = log --decorate --graph --oneline --all
-  st        = status -s
-  co        = checkout
-  cp        = cherry-pick
-  br        = branch
-  mernff    = merge --no-ff
-  punff     = pull --no-ff
-  samend    = commit --amend --no-edit
-  whatsnew  = fetch --dry-run
-  show      = show --show-signature
-  diffno    = diff --name-only
+  lol             = log --decorate --graph --oneline
+  loll            = log --decorate --graph --oneline --all
+  st              = status -s
+  co              = checkout
+  cp              = cherry-pick
+  br              = branch
+  mernff          = merge --no-ff
+  punff           = pull --no-ff
+  samend          = commit --amend --no-edit
+  whatsnew        = fetch --dry-run
+  show            = show --show-signature
+  diffno          = diff --name-only
 [log]
-  date      = iso-local
+  date            = iso-local
 [merge]
-  tool      = vimdiff
+  tool            = vimdiff
+[push]
+	autoSetupRemote = true
 [filter "lfs"]
-  clean     = git-lfs clean -- %f
-  smudge    = git-lfs smudge -- %f
-  process   = git-lfs filter-process
-  required  = true
+  clean           = git-lfs clean -- %f
+  smudge          = git-lfs smudge -- %f
+  process         = git-lfs filter-process
+  required        = true
 [credential "https://github.com"]
-  helper    = !/usr/bin/gh auth git-credential
+  helper          = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-  helper    = !/usr/bin/gh auth git-credential
+  helper          = !/usr/bin/gh auth git-credential
 
 
 # vim:filetype=gitconfig:
