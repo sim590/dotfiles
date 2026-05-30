@@ -37,6 +37,7 @@ XDG_CONFIG_CONTENT = \
 					 config/swayr/config.toml\
 					 config/wofi/style.css\
 					 config/wofi/style.scss\
+					 config/hypr/hyprland.lua\
 					 config/hypr/hyprland.conf\
 					 config/hypr/hyprlock.conf\
 					 config/hypr/hyprpaper.conf\
