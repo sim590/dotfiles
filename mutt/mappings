@@ -32,6 +32,7 @@ bind index,pager \Cd delete-thread
 bind index,pager d delete-message
 bind index \Ce toggle-new
 bind pager \Cr group-reply
+macro index \Cl "<limit>(~O | ~N)<enter>" "Montrer les nouveaux ou vieux messages"
 
 macro index,pager S <vfolder-from-query>
 macro index,pager + <entire-thread>
