@@ -1,0 +1,13 @@
+[Unit]
+Description=GnuPG agent (mbsync)
+After=default.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/gpg-agent --homedir %h/.gnupg-mbsync --daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+
+; vim: set sts=4 ts=4 sw=4 tw=120 et ft=systemd :
