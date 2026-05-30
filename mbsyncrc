@@ -24,7 +24,8 @@ Patterns "INBOX"
 Create Both
 Expunge Both
 SyncState *
-MaxMessages 1000
+MaxMessages 3000
+ExpireUnread yes
 
 Channel gmail-sim-desaulniers-sent
 Far :gmail-sim-desaulniers-remote:"[Gmail]/Sent Mail"
@@ -32,7 +33,7 @@ Near :gmail-sim-desaulniers-local:"[Gmail].Sent Mail"
 Create Both
 Expunge Both
 SyncState *
-MaxMessages 1000
+MaxMessages 3000
 
 Channel gmail-sim-desaulniers-spam
 Far :gmail-sim-desaulniers-remote:"[Gmail]/Spam"
@@ -40,7 +41,7 @@ Near :gmail-sim-desaulniers-local:"[Gmail].Spam"
 Create Both
 Expunge Both
 SyncState *
-MaxMessages 1000
+MaxMessages 3000
 
 Channel gmail-sim-desaulniers-drafts
 Far :gmail-sim-desaulniers-remote:"[Gmail]/Brouillons"
@@ -48,7 +49,7 @@ Near :gmail-sim-desaulniers-local:"[Gmail].Drafts"
 Create Both
 Expunge Both
 SyncState *
-MaxMessages 1000
+MaxMessages 3000
 
 Group gmail-sim-desaulniers
 Channel gmail-sim-desaulniers-inbox
