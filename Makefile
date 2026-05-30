@@ -21,6 +21,7 @@ XDG_CONFIG_CONTENT = \
 					 config/systemd/user/mbsync.timer\
 					 config/systemd/user/mbsync.service\
 					 config/systemd/user/notmuch.service\
+					 config/systemd/user/gpg-agent-mbsync.service\
 					 config/systemd/user/redshift.service.d/override.conf\
 					 config/systemd/user/hyprpaper.service.d/override.conf\
 					 config/systemd/user/conky@.service\
