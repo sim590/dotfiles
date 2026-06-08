@@ -28,7 +28,7 @@ $env.LS_COLORS = (vivid generate molokai)
 
 source $"($nu.cache-dir)/carapace.nu"
 
-oh-my-posh init nu --config /usr/share/oh-my-posh/themes/craver.omp.json
+oh-my-posh init nu --config $"($nu.config-path | path dirname)/craver.omp.json"
 
 use $"($nu.config-path | path dirname)/modules/nupm/nupm"
 
