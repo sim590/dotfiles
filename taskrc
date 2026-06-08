@@ -50,6 +50,16 @@ color.project.none=gray10
 # Récurrence
 color.recurring=rgb013
 
+# Interface taskwarrior-tui (doré #e0b870 ≈ rgb431)
+uda.taskwarrior-tui.style.context.active=black on rgb431
+uda.taskwarrior-tui.style.report-menu.active=black on rgb431
+uda.taskwarrior-tui.style.calendar.title=on gray4
+uda.taskwarrior-tui.style.report.selection=gray4 on rgb232
+uda.taskwarrior-tui.style.title=rgb431
+uda.taskwarrior-tui.style.title.border=gray8
+uda.taskwarrior-tui.style.navbar=gray4 on rgb431
+uda.taskwarrior-tui.style.command=gray4 on rgb431
+
 # Précédence : blocking ressort devant projet/tags
 rule.precedence.color=deleted,completed,active,overdue,due.today,blocking,keyword.,tag.,project.,scheduled,due,blocked,recurring,tagged,uda.
 
