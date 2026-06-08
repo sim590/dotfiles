@@ -59,5 +59,8 @@ set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
 
+# enable window title update
+set ts_enabled
+
 #  vim: set ft=neomuttrc sts=4 ts=4 sw=4 tw=120 et :
 
