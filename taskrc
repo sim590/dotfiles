@@ -29,10 +29,29 @@ include /usr/share/taskwarrior/dark-gray-blue-256.theme
 #include /usr/share/taskwarrior/solarized-light-256.theme
 #include /usr/share/taskwarrior/no-color.theme
 
-color.overdue=red
+# Échéances
+color.overdue=bold red
 color.due.today=yellow
 color.due=rgb035
+
+# Composantes à forte urgence
 color.active=rgb040
+color.blocking=bold rgb510
+color.blocked=gray14
+
+# Priorités (subtiles)
+color.uda.priority.H=rgb035
+color.uda.priority.M=rgb024
+color.uda.priority.L=gray14
+
+# Projet
+color.project.none=gray10
+
+# Récurrence
+color.recurring=rgb013
+
+# Précédence : blocking ressort devant projet/tags
+rule.precedence.color=deleted,completed,active,overdue,due.today,blocking,keyword.,tag.,project.,scheduled,due,blocked,recurring,tagged,uda.
 
 context.travail=+travail or +morneaushepell
 context.épicerie=+épicerie
