@@ -72,32 +72,61 @@ local function cycle_occupied_workspace(direction)
     end
 end
 
---- Bascule le focus entre la fenêtre tuilée et la fenêtre flottante.
---- Mémorise la dernière fenêtre de chaque type pour alterner entre
---- exactement deux fenêtres (et non cycler à travers toutes).
+--- Bascule le focus entre la fenêtre tuilée et la fenêtre flottante
+--- dans l'espace de travail courant. Mémorise la dernière fenêtre de
+--- chaque type par espace de travail pour alterner entre exactement deux
+--- fenêtres. Valide que la fenêtre mémorisée existe encore dans le bon
+--- mode et le bon espace avant de l'utiliser.
 --- Remplace le script ~/bin/hypr-focus-mode-toggle (incompatible avec hyprctl 0.55+).
-local last_tiled_addr   = nil
-local last_floating_addr = nil
+local last_tiled   = {}  -- clé = workspace id, valeur = adresse
+local last_floating = {}
 
 local function focus_mode_toggle()
     local win = hl.get_active_window()
-    if not win then return end
+    if not win or not win.workspace then return end
+    local ws_id = win.workspace.id
+
+    -- Vérifie qu'une fenêtre mémorisée existe encore, est dans le bon espace
+    -- et dans le bon mode (tuilée/flottante).
+    local ws_windows = hl.get_workspace_windows(ws_id)
+    if not ws_windows then return end
+
+    local function valid_target(addr, expect_floating)
+        if not addr then return false end
+        for _, w in ipairs(ws_windows) do
+            if w.address == addr and w.floating == expect_floating and w.visible then
+                return true
+            end
+        end
+        return false
+    end
+
+    -- Trouve la première fenêtre visible du type demandé dans l'espace courant.
+    -- Exclut les fenêtres dans un onglet hy3 inactif (visible = false).
+    local function find_any(expect_floating)
+        for _, w in ipairs(ws_windows) do
+            if w.floating == expect_floating and w.address ~= win.address and w.visible then
+                return w.address
+            end
+        end
+        return nil
+    end
 
     if win.floating then
-        -- On est sur une flottante — mémoriser et aller vers la dernière tuilée
-        last_floating_addr = win.address
-        if last_tiled_addr then
-            hl.dispatch(hl.dsp.focus({ window = "address:" .. last_tiled_addr }))
+        last_floating[ws_id] = win.address
+        if valid_target(last_tiled[ws_id], false) then
+            hl.dispatch(hl.dsp.focus({ window = "address:" .. last_tiled[ws_id] }))
         else
-            hl.dispatch(hl.dsp.window.cycle_next({ only_tiled = true }))
+            local addr = find_any(false)
+            if addr then hl.dispatch(hl.dsp.focus({ window = "address:" .. addr })) end
         end
     else
-        -- On est sur une tuilée — mémoriser et aller vers la dernière flottante
-        last_tiled_addr = win.address
-        if last_floating_addr then
-            hl.dispatch(hl.dsp.focus({ window = "address:" .. last_floating_addr }))
+        last_tiled[ws_id] = win.address
+        if valid_target(last_floating[ws_id], true) then
+            hl.dispatch(hl.dsp.focus({ window = "address:" .. last_floating[ws_id] }))
         else
-            hl.dispatch(hl.dsp.window.cycle_next({ only_floating = true }))
+            local addr = find_any(true)
+            if addr then hl.dispatch(hl.dsp.focus({ window = "address:" .. addr })) end
         end
     end
 end
