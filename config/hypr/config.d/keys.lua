@@ -88,13 +88,15 @@ local function window_switcher()
         -- Échapper les guillemets simples dans le titre
         local title = w.title:gsub("'", "'\\''")
         local class = w.class:gsub("'", "'\\''")
-        table.insert(lines, string.format("%s [%s] %s: %s", w.address, ws_name, class, title))
+        local s = string.format("%s [%s] %s: %s", w.address, ws_name, class, title)
+        table.insert(lines, s)
     end
-    local input = table.concat(lines, "\n"):gsub('"', '\\"')
+    local input = table.concat(lines, "\n")
 
-    -- Lancer rofi dans un sous-processus pour ne pas bloquer le compositeur
+    -- Lancer rofi dans un sous-processus avec un heredoc pour éviter
+    -- tout problème d'échappement shell dans les titres de fenêtres.
     local script = string.format(
-        'selected=$(echo "%s" | /usr/bin/rofi -dmenu -i -p "Fenêtre"); '
+        'selected=$(/usr/bin/rofi -dmenu -i -p "Fenêtre" << \'EOF\'\n%s\nEOF\n); '
         .. '[ -n "$selected" ] && addr=$(echo "$selected" | awk \'{print $1}\') && '
         .. 'hyprctl dispatch "hl.dsp.focus({window=\\"address:$addr\\"})"',
         input
