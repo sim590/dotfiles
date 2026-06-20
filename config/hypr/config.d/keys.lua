@@ -302,7 +302,7 @@ hl.bind(mainMod .. " + SHIFT + d",        hl.dsp.exec_cmd(
 hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("hyprlock & systemctl suspend"))
 
 -- Gammastep
-hl.bind(mainMod .. " + SHIFT + s", hl.dsp.exec_cmd("pkill gammastep || gammastep -O 2800"))
+hl.bind(mainMod .. " + SHIFT + s", hl.dsp.exec_cmd("pkill hyprsunset || hyprsunset -t 2800"))
 
 -- Focus mode toggle (tuilé ↔ flottant)
 hl.bind(mainMod .. " + space", hy3("toggle_focus_layer"))
