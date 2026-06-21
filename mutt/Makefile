@@ -11,7 +11,8 @@ bin_TARGETS = bin/RunningX \
 							bin/excel2text \
 							bin/ppt2text \
 							bin/word2text \
-							bin/sync-local
+							bin/sync-local \
+							bin/html-view
 TARGETS = $(base_TARGETS) $(bin_TARGETS)
 DEST       = $(HOME)/.mutt
 DEST_LINKS = $(addprefix $(DEST)/,$(base_TARGETS)) \

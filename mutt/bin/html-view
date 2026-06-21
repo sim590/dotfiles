@@ -1,0 +1,571 @@
+#!/usr/bin/env python3
+"""
+Lit un message brut (RFC 5322) depuis stdin, extrait la partie HTML,
+intègre les images (cid:, Content-Location ET distantes https?://)
+en data: URIs, puis ouvre le résultat dans le navigateur par défaut.
+
+Le HTML produit est complètement auto-suffisant — aucune requête
+réseau n'est nécessaire pour l'affichage.
+
+Usage: pipe le message complet depuis neomutt:
+  <pipe-message>~/bin/mutt/html-view<enter>
+
+Debug:  MUTT_HTML_DEBUG=1 <pipe-message>~/bin/mutt/html-view<enter>
+"""
+
+import sys
+import os
+import re
+import ssl
+import socket
+import shlex
+import shutil
+import base64
+import tempfile
+import subprocess
+import urllib.request
+import urllib.error
+import webbrowser
+from email import policy
+from email.parser import BytesParser
+
+DEBUG = os.environ.get('MUTT_HTML_DEBUG', '0') != '0'
+MAX_REMOTE_SIZE = 5 * 1024 * 1024   # 5 Mo max par image distante
+FETCH_TIMEOUT = 3                    # secondes (réduit pour hors-ligne)
+CONNECTIVITY_CHECK_TIMEOUT = 2       # secondes
+SKIP_EXTENSIONS = (
+    '.css', '.js', '.html', '.htm', '.xml',
+    '.woff', '.woff2', '.ttf', '.eot', '.otf',
+)
+
+IMG_EXT_TO_MIME = {
+    '.png':  'image/png',
+    '.gif':  'image/gif',
+    '.jpg':  'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.webp': 'image/webp',
+    '.svg':  'image/svg+xml',
+    '.ico':  'image/x-icon',
+    '.bmp':  'image/bmp',
+    '.tiff': 'image/tiff',
+    '.tif':  'image/tiff',
+}
+
+
+def dbg(*args):
+    if DEBUG:
+        print('html-view:', *args, file=sys.stderr)
+
+
+def _strip_brackets(val):
+    if not val:
+        return ''
+    v = val.strip()
+    if v.startswith('<') and v.endswith('>'):
+        v = v[1:-1]
+    return v.strip()
+
+
+def _lower(val):
+    return val.lower() if val else ''
+
+
+# ── MIME part indexing ──────────────────────────────────────────────
+
+def build_part_index(msg):
+    """Indexe les pièces MIME par Content-ID, Content-Location et filename."""
+    index = {}
+
+    def walk(part):
+        if part.is_multipart():
+            for sub in part.get_payload():
+                walk(sub)
+            return
+        ct = _lower(part.get_content_type())
+        if ct.startswith('text/') and ct != 'text/html':
+            return
+        if ct == 'text/html':
+            return
+
+        cid_raw = part.get('Content-ID', '')
+        if cid_raw:
+            cid = _lower(_strip_brackets(cid_raw))
+            index[cid] = part
+            dbg(f'  indexed cid="{cid}" ({ct})')
+
+        cl_raw = part.get('Content-Location', '')
+        if cl_raw:
+            cl = _strip_brackets(cl_raw).lower().replace('\\', '/')
+            if cl:
+                index[cl] = part
+                dbg(f'  indexed content-location="{cl}" ({ct})')
+
+        filename = part.get_filename()
+        if filename:
+            fname = filename.lower()
+            if fname not in index:
+                index[fname] = part
+                dbg(f'  indexed filename="{fname}" ({ct})')
+
+    walk(msg)
+    dbg(f'  total parts indexed: {len(index)}')
+    return index
+
+
+def part_to_data_uri(part):
+    payload = part.get_payload(decode=True)
+    if payload is None:
+        return None
+    ct = part.get_content_type()
+    b64 = base64.b64encode(payload).decode('ascii')
+    return f'data:{ct};base64,{b64}'
+
+
+def resolve_reference(ref, part_index):
+    dbg(f'  resolving ref="{ref}"')
+    if ref in part_index:
+        dbg('    -> exact match')
+        return part_index[ref]
+    for key, part in part_index.items():
+        if key in ref and '@' not in ref:
+            dbg(f'    -> partial match via "{key}"')
+            return part
+    if '@' in ref:
+        local = ref.split('@')[0]
+        if local in part_index:
+            dbg('    -> local-only cid match')
+            return part_index[local]
+    for key, part in part_index.items():
+        if key.endswith(ref):
+            dbg(f'    -> suffix match via "{key}"')
+            return part
+        if ref.endswith(key):
+            dbg(f'    -> ref ends with key "{key}"')
+            return part
+    return None
+
+
+# ── Image reference discovery ───────────────────────────────────────
+
+def find_all_refs(html_content):
+    """Trouve toutes les références d'images intégrées (cid:, rel)."""
+    refs = []
+
+    # srcset
+    for m in re.finditer(r"""srcset\s*=\s*["']([^"']+)["']""",
+                         html_content, re.IGNORECASE):
+        for cm in re.finditer(r'cid:([^\s,]+)', m.group(1), re.IGNORECASE):
+            r = cm.group(1).strip().lower()
+            if r:
+                refs.append(r); dbg(f'  found cid ref in srcset: "{r}"')
+
+    # src / background / poster / href  (pas srcset)
+    for m in re.finditer(
+            r"""(?:src|background|poster|href)\s*=\s*["']cid:([^"'\s>?#]+)["']""",
+            html_content, re.IGNORECASE):
+        r = m.group(1).strip().lower()
+        if r:
+            refs.append(r); dbg(f'  found cid ref in attr: "{r}"')
+
+    # url(cid:xxx)
+    for m in re.finditer(
+            r"""url\(\s*["']?cid:([^"'\s>?#)]+)["']?\s*\)""",
+            html_content, re.IGNORECASE):
+        r = m.group(1).strip().lower()
+        if r:
+            refs.append(r); dbg(f'  found cid ref in CSS: "{r}"')
+
+    # URLs relatives
+    for m in re.finditer(
+            r"""(?:src|background|poster)\s*=\s*["']((?!(?:https?|data|cid):)[^"'\s]+)["']""",
+            html_content, re.IGNORECASE):
+        r = m.group(1).strip().lower()
+        if r and not r.startswith('http') and not r.startswith('//'):
+            refs.append(r); dbg(f'  found relative ref in attr: "{r}"')
+
+    for m in re.finditer(
+            r"""url\(\s*["']?((?!(?:https?|data|cid):)[^"'\s)]+)["']?\s*\)""",
+            html_content, re.IGNORECASE):
+        r = m.group(1).strip().lower()
+        if r and not r.startswith('http') and not r.startswith('//'):
+            refs.append(r); dbg(f'  found relative ref in CSS: "{r}"')
+
+    return refs
+
+
+# ── Embed MIME images ───────────────────────────────────────────────
+
+def embed_mime_images(html_content, part_index):
+    refs = find_all_refs(html_content)
+    if not refs:
+        return html_content
+
+    ref_to_uri = {}
+    unmatched = set()
+    for ref in set(refs):
+        part = resolve_reference(ref, part_index)
+        if part is not None:
+            uri = part_to_data_uri(part)
+            if uri:
+                ref_to_uri[ref] = uri
+                dbg(f'  resolved "{ref}"')
+            else:
+                unmatched.add(ref)
+        else:
+            unmatched.add(ref)
+
+    if unmatched:
+        print(f'html-view: {len(unmatched)} image(s) MIME non résolue(s) :',
+              ', '.join(sorted(unmatched)), file=sys.stderr)
+
+    if not ref_to_uri:
+        return html_content
+
+    # Pattern 1: src / background / poster avec cid:
+    html_content = re.sub(
+        r"""(?P<attr>src|background|poster)\s*=\s*["']cid:(?P<ref>[^"'\s>?#]+)["']""",
+        lambda m: (
+            f'{m.group("attr")}="{ref_to_uri[m.group("ref").strip().lower()]}"'
+            if m.group("ref").strip().lower() in ref_to_uri else m.group(0)
+        ),
+        html_content, flags=re.IGNORECASE,
+    )
+
+    # Pattern 2: srcset
+    def _replace_srcset(m):
+        def _sub(cm):
+            r = cm.group(1).strip().lower()
+            return ref_to_uri.get(r, cm.group(0))
+        new = re.sub(r'cid:([^\s,]+)', _sub, m.group(1), flags=re.IGNORECASE)
+        return f'srcset="{new}"'
+
+    html_content = re.sub(
+        r"""srcset\s*=\s*["']([^"']+)["']""",
+        _replace_srcset, html_content, flags=re.IGNORECASE,
+    )
+
+    # Pattern 3: url(cid:xxx)
+    def _css_cid_sub(m):
+        r = m.group(1).strip().lower()
+        if r in ref_to_uri:
+            return f'url({ref_to_uri[r]})'
+        return m.group(0)
+    html_content = re.sub(
+        r"""url\(\s*["']?cid:([^"'\s>?#)]+)["']?\s*\)""",
+        _css_cid_sub, html_content, flags=re.IGNORECASE,
+    )
+
+    # Pattern 4: URLs relatives
+    def _rel_sub(m):
+        r = m.group(2).strip().lower()
+        if r in ref_to_uri:
+            return f'{m.group(1)}{ref_to_uri[r]}{m.group(3)}'
+        return m.group(0)
+    html_content = re.sub(
+        r"""((?:src|background|poster|srcset)\s*=\s*["'])((?!(?:https?|data|cid|/)://)[^"'\s]+)(["'])""",
+        _rel_sub, html_content, flags=re.IGNORECASE,
+    )
+
+    # Pattern 5: url(relpath)
+    def _css_rel_sub(m):
+        r = m.group(1).strip().lower()
+        if r in ref_to_uri:
+            return f'url({ref_to_uri[r]})'
+        return m.group(0)
+    html_content = re.sub(
+        r"""url\(\s*["']?((?!(?:https?|data|cid|/)://)[^"'\s)]+)["']?\s*\)""",
+        _css_rel_sub, html_content, flags=re.IGNORECASE,
+    )
+
+    return html_content
+
+
+# ── Embed remote images (https?://) ─────────────────────────────────
+
+def _guess_mime(url, fallback='image/png'):
+    """Devine le type MIME à partir de l'extension du fichier."""
+    url_low = url.lower().split('?')[0]  # sans query string
+    for ext, mime in IMG_EXT_TO_MIME.items():
+        if url_low.endswith(ext):
+            return mime
+    return fallback
+
+
+def _should_skip_url(url):
+    url_low = url.lower().split('?')[0]
+    return any(url_low.endswith(ext) for ext in SKIP_EXTENSIONS)
+
+
+def _has_connectivity():
+    """Vérification éclair de la connectivité réseau."""
+    try:
+        sock = socket.create_connection(
+            ('8.8.8.8', 53),
+            timeout=CONNECTIVITY_CHECK_TIMEOUT,
+        )
+        sock.close()
+        return True
+    except OSError:
+        return False
+
+
+def fetch_remote_images(html_content):
+    """Télécharge les images distantes et les intègre en data: URIs."""
+    remote_urls = set()
+
+    # src / background / poster
+    for m in re.finditer(
+            r"""(?:src|background|poster)\s*=\s*["'](https?://[^"'\s>]+)["']""",
+            html_content, re.IGNORECASE):
+        url = m.group(1)
+        if not _should_skip_url(url):
+            remote_urls.add(url)
+
+    # srcset
+    for m in re.finditer(
+            r"""srcset\s*=\s*["']([^"']+)["']""",
+            html_content, re.IGNORECASE):
+        for um in re.finditer(r'(https?://[^\s,]+)', m.group(1), re.IGNORECASE):
+            url = um.group(1)
+            if not _should_skip_url(url):
+                remote_urls.add(url)
+
+    # url(https?://...) dans CSS
+    for m in re.finditer(
+            r"""url\(\s*["']?(https?://[^"'\s)]+)["']?\s*\)""",
+            html_content, re.IGNORECASE):
+        url = m.group(1)
+        if not _should_skip_url(url):
+            remote_urls.add(url)
+
+    if not remote_urls:
+        dbg('  no remote image URLs found')
+        return html_content
+
+    if not _has_connectivity():
+        print(f'html-view: hors-ligne, {len(remote_urls)} image(s) distante(s) ignorée(s)',
+              file=sys.stderr)
+        return html_content
+
+    dbg(f'  found {len(remote_urls)} remote URL(s), downloading...')
+
+    url_to_data = {}
+    ctx = ssl.create_default_context()
+    opener = urllib.request.build_opener()
+    opener.addheaders = [('User-Agent', 'Mutt-HTML-View/1.0')]
+    network_failed = False
+
+    for url in remote_urls:
+        if network_failed:
+            dbg(f'  skipping {url} (previous network failure)')
+            continue
+        try:
+            req = urllib.request.Request(url)
+            with opener.open(req, timeout=FETCH_TIMEOUT) as resp:
+                data = resp.read(MAX_REMOTE_SIZE + 1)
+                if len(data) > MAX_REMOTE_SIZE:
+                    dbg(f'  WARN: skipping {url} (>{MAX_REMOTE_SIZE} bytes)')
+                    continue
+                ct = resp.headers.get('Content-Type', '').split(';')[0].strip()
+                if not ct or ct == 'application/octet-stream':
+                    ct = _guess_mime(url)
+                b64 = base64.b64encode(data).decode('ascii')
+                url_to_data[url] = f'data:{ct};base64,{b64}'
+                dbg(f'  downloaded {url} ({len(data)} bytes, {ct})')
+        except (urllib.error.URLError, socket.timeout, OSError) as e:
+            network_failed = True
+            dbg(f'  WARN: network failure on {url}: {e}')
+        except Exception as e:
+            dbg(f'  WARN: failed {url}: {e}')
+
+    if not url_to_data:
+        dbg('  no remote images downloaded')
+        return html_content
+
+    # Remplacer les URLs par leur data: URI.
+    # On fait un replace() simple: les URLs distantes dans le HTML
+    # proviennent uniquement de contextes d'image (src/background/etc.),
+    # donc pas de risque de modifier un <a href>.
+    for url, data_uri in url_to_data.items():
+        html_content = html_content.replace(url, data_uri)
+
+    return html_content
+
+
+# ── HTML extraction ─────────────────────────────────────────────────
+
+def extract_best_html(msg):
+    def walk_alternative(part):
+        html = text = None
+        if part.is_multipart():
+            for sub in part.get_payload():
+                ct = _lower(sub.get_content_type())
+                if ct == 'text/html':
+                    html = sub
+                elif ct == 'text/plain':
+                    text = sub
+        return html or text
+
+    def walk(part):
+        if not part.is_multipart():
+            if _lower(part.get_content_type()) == 'text/html':
+                return part
+            return None
+        if _lower(part.get_content_subtype()) == 'alternative':
+            choice = walk_alternative(part)
+            if choice is not None:
+                return choice
+        for sub in part.get_payload():
+            result = walk(sub)
+            if result is not None:
+                return result
+        return None
+
+    html_part = walk(msg)
+    if html_part is None:
+        return None
+    payload = html_part.get_payload(decode=True)
+    if payload is None:
+        return None
+    charset = html_part.get_content_charset() or 'utf-8'
+    try:
+        return payload.decode(charset, errors='replace')
+    except (LookupError, UnicodeDecodeError):
+        return payload.decode('utf-8', errors='replace')
+
+
+# ── Main ────────────────────────────────────────────────────────────
+
+def main():
+    raw = sys.stdin.buffer.read()
+    if not raw.strip():
+        sys.exit(1)
+
+    msg = BytesParser(policy=policy.default).parsebytes(raw)
+
+    html_content = extract_best_html(msg)
+    if html_content is None:
+        dbg('aucune pièce text/html trouvée dans le message')
+        sys.exit(1)
+
+    dbg('--- indexing MIME parts ---')
+    part_index = build_part_index(msg)
+
+    dbg('--- embedding MIME images ---')
+    html_content = embed_mime_images(html_content, part_index)
+
+    dbg('--- downloading remote images ---')
+    html_content = fetch_remote_images(html_content)
+
+    tmpdir = tempfile.mkdtemp(prefix='mutt-html-', dir='/tmp')
+    html_path = os.path.join(tmpdir, 'message.html')
+    with open(html_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    _open_in_browser(html_path)
+
+
+def _open_in_browser(html_path):
+    """Ouvre le fichier HTML avec le navigateur par défaut.
+    Évite xdg-open qui délègue à xdg-mime — ce dernier détecte
+    parfois text/plain dans /tmp et ouvre Vim au lieu du navigateur."""
+
+    cmd = _find_browser()
+    if cmd:
+        subprocess.Popen(
+            cmd + [html_path],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        return
+
+    # Dernier recours
+    webbrowser.open_new_tab('file://' + html_path)
+
+
+def _find_browser():
+    """Trouve la commande du navigateur par défaut.
+    Retourne une liste [exe, ...] ou None."""
+
+    # 1. $BROWSER (la norme Unix)
+    browser_str = os.environ.get('BROWSER', '')
+    if browser_str:
+        return browser_str.split()
+
+    # 2. xdg-settings → fichier .desktop → Exec=
+    cmd = _browser_from_xdg()
+    if cmd:
+        return cmd
+
+    # 3. Navigateurs connus (fallback rapide)
+    for name in (
+        'qutebrowser', 'firefox', 'chromium-browser',
+        'chromium', 'google-chrome', 'vivaldi', 'brave-browser',
+    ):
+        path = shutil.which(name)
+        if path:
+            return [path]
+
+    return None
+
+
+def _browser_from_xdg():
+    """Interroge xdg-settings pour obtenir le navigateur par défaut,
+    lit le fichier .desktop et extrait le binaire à lancer."""
+    try:
+        result = subprocess.run(
+            ['xdg-settings', 'get', 'default-web-browser'],
+            capture_output=True, text=True, timeout=3,
+        )
+        desktop = result.stdout.strip()
+        if not desktop or not desktop.endswith('.desktop'):
+            return None
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+
+    # Chercher le fichier .desktop
+    data_dirs = os.environ.get('XDG_DATA_DIRS', '/usr/local/share:/usr/share')
+    data_home = os.environ.get('XDG_DATA_HOME', os.path.expanduser('~/.local/share'))
+    for base in [data_home] + [d for d in data_dirs.split(':') if d]:
+        path = os.path.join(base, 'applications', desktop)
+        if os.path.isfile(path):
+            binary = _parse_desktop_binary(path)
+            if binary:
+                return [binary]
+    return None
+
+
+def _parse_desktop_binary(desktop_path):
+    """Extrait le nom du binaire de la ligne Exec= d'un fichier .desktop.
+    Retourne le chemin absolu du binaire, ou None."""
+    try:
+        with open(desktop_path, 'r', encoding='utf-8') as f:
+            in_section = False
+            for line in f:
+                line = line.strip()
+                if line == '[Desktop Entry]':
+                    in_section = True
+                    continue
+                if line.startswith('[') and line.endswith(']'):
+                    break
+                if not in_section:
+                    continue
+                if line.startswith('Exec='):
+                    exec_val = line[5:]
+                    # Retirer les placeholders freedesktop: %f %F %u %U etc.
+                    exec_val = re.sub(r'\s*%[fFuUdDnNickvm]', '', exec_val).strip()
+                    parts = shlex.split(exec_val)
+                    if not parts:
+                        return None
+                    binary = parts[0]
+                    if binary.startswith('/') and os.path.isfile(binary):
+                        return binary
+                    path = shutil.which(binary)
+                    return path
+    except (OSError, ValueError):
+        pass
+    return None
+
+
+if __name__ == '__main__':
+    main()
