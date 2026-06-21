@@ -36,6 +36,7 @@ macro index \Cl "<limit>(~O | ~N)<enter>" "Montrer les nouveaux ou vieux message
 
 macro index,pager S <vfolder-from-query>
 macro index,pager + <entire-thread>
+macro index,pager H "<pipe-message>~/bin/mutt/html-view<enter>" "Voir le courriel HTML avec images"
 
 macro index \Ca '<sync-mailbox><shell-escape>~/bin/mutt/sync-local<enter>'
 
