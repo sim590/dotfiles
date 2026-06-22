@@ -49,6 +49,9 @@ XDG_CONFIG_CONTENT = \
 					 $(wildcard config/sway/config.d/*) \
 					 config/swaylock/config\
 					 config/terminator/config\
+					 config/yazi/yazi.toml\
+					 config/yazi/keymap.toml\
+					 config/yazi/package.toml\
 					 config/waybar/config.jsonc\
 					 config/waybar/style.css\
 					 config/wayle/config.toml\
