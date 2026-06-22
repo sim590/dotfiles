@@ -1,0 +1,15 @@
+
+[opener]
+edit = [
+  { run = "vim %s", block = true, for = "unix" },
+]
+
+view_image = [
+  { run = 'imv -n "$1" "$(dirname "$1")"', desc = "Ouvrir une image", for = "unix" }
+]
+
+[open]
+prepend_rules = [
+  { mime = "image/*", use = [ "view_image" ] },
+]
+
