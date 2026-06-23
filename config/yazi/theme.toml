@@ -2,9 +2,6 @@
 [flavor]
 dark = "monokai"
 
-[app]
-overall = { bg = "#2D2A2E" }
-
 [mgr]
 find_keyword = { fg = "#FFD866", bold = true, italic = true, underline = true }
 
