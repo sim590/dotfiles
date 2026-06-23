@@ -1,0 +1,35 @@
+
+[flavor]
+dark = "monokai"
+
+[mgr]
+find_keyword = { fg = "#FFD866", bold = true, italic = true, underline = true }
+
+[mode]
+select_main = { fg = "#2D2A2E", bg = "#A9DC76", bold = true }
+select_alt = { fg = "#A9DC76", bg = "#403E41" }
+
+[filetype]
+rules = [
+  { mime = "image/*",                                                                                     fg = "#FFD866"              },
+  { mime = "{video}/*",                                                                                   fg = "#AB9DF2"              },
+  { mime = "{audio}/*",                                                                                   fg = "#AB9DF2"              },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#FF6188"              },
+  { mime = "application/{pdf,doc,rtf}",                                                                   fg = "#78DCE8"              },
+  { mime = "inode/empty",                                                                                 fg = "#FF6188"              },
+  { url = "**/Desktop/",                                                                                  fg = "#78DCE8"              },
+  { url = "**/Downloads/",                                                                                fg = "#A9DC76"              },
+  { url = "**/Documents/",                                                                                fg = "#A9DC76"              },
+  { url = "**/Music/",                                                                                    fg = "#AB9DF2"              },
+  { url = "**/Pictures/",                                                                                 fg = "#FFD866"              },
+  { url = "**/Videos/",                                                                                   fg = "#AB9DF2"              },
+  { url = "**/Screenshots/",                                                                              fg = "#FFD866"              },
+  { url = "**/Bureau/",                                                                                   fg = "#78DCE8"              },
+  { url = "**/Téléchargements/",                                                                          fg = "#A9DC76"              },
+  { url = "**/Musique/",                                                                                  fg = "#AB9DF2"              },
+  { url = "**/Images/",                                                                                   fg = "#FFD866"              },
+  { url = "**/Vidéos/",                                                                                   fg = "#AB9DF2"              },
+  { url = "**/Captures d'écran/",                                                                         fg = "#FFD866"              },
+  { url = "*/",                                                                                           fg = "#A9DC76", bold = true },
+]
+
