@@ -105,4 +105,28 @@ prepend_keymap = [
   desc = "Ouvrir un terminal dans le répertoire courant",
   for  = "unix"
  },
+ {
+  on   = [ "b", "s" ],
+  run  = "shell --block 'beet import -s %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+  desc = "beet import -s",
+  for  = "unix"
+ },
+ {
+  on   = [ "b", "S" ],
+  run  = "shell --block 'beet import -Is %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+  desc = "beet import -Is",
+  for  = "unix"
+ },
+ {
+  on   = [ "b", "i" ],
+  run  = "shell --block 'beet import %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+  desc = "beet import",
+  for  = "unix"
+ },
+ {
+  on   = [ "b", "I" ],
+  run  = "shell --block 'beet import -I %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+  desc = "beet import -I",
+  for  = "unix"
+ },
 ]
