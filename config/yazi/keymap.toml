@@ -67,6 +67,11 @@ prepend_keymap = [
    desc = "Retirer l'élément du presse-papiers"
  },
  {
+  on   = [ "g", "p" ],
+  run  = "shell --block 'ya emit cd \"$(wl-paste)\"'",
+  desc = "Aller à la racine du système de fichiers"
+ },
+ {
   on   = [ "g", "r" ],
   run  = "cd /",
   desc = "Aller à la racine du système de fichiers"
