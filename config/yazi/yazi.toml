@@ -5,7 +5,11 @@ edit = [
 ]
 
 view_image = [
-  { run = 'imv -n "$1" "$(dirname "$1")"', desc = "Ouvrir une image", for = "unix" }
+  { run = 'imv -n "$1" "$(dirname "$1")"', desc = "imv", for = "unix" }
+]
+
+view_video = [
+  { run = 'mpv "$1"', desc = "mpv", for = "unix" }
 ]
 
 inkscape = [
@@ -15,6 +19,7 @@ inkscape = [
 [open]
 prepend_rules = [
   { url = "*.svg",    use = [ "inkscape" ]   } ,
+  { mime = "video/*", use = [ "view_video" ] } ,
   { mime = "image/*", use = [ "view_image" ] } ,
 ]
 
