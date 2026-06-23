@@ -7,7 +7,7 @@ prepend_keymap = [
  },
  {
    on   = [ "F" ],
-   run  = "filter",
+   run  = "filter --smart",
    desc = "Filtrer les éléments du dossier courant"
  },
  {
