@@ -99,4 +99,10 @@ prepend_keymap = [
   desc = "Ouvrir un terminal dans le répertoire courant",
   for  = "unix"
  },
+ {
+  on   = [ "<c-e>" ],
+  run  = "shell --orphan \"alacritty --working-directory '%d' -e vim '%h'\"",
+  desc = "Ouvrir un terminal dans le répertoire courant",
+  for  = "unix"
+ },
 ]
