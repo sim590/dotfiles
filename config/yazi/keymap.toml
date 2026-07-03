@@ -95,13 +95,13 @@ prepend_keymap = [
  },
  {
   on   = [ "<c-t>" ],
-  run  = "shell --orphan \"alacritty --working-directory %d\"",
+  run  = 'shell --orphan "alacritty --working-directory \"$PWD\""',
   desc = "Ouvrir un terminal dans le répertoire courant",
   for  = "unix"
  },
  {
   on   = [ "<c-e>" ],
-  run  = "shell --orphan \"alacritty --working-directory '%d' -e vim '%h'\"",
+  run  = "shell --orphan \"alacritty --working-directory %d -e vim %h\"",
   desc = "Ouvrir un terminal dans le répertoire courant",
   for  = "unix"
  },
