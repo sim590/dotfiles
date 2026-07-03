@@ -88,7 +88,7 @@ prepend_keymap = [
  },
  {
   on   = [ "<a-t>" ],
-  run  = [ "shell --orphan \"hypr-layout --terminal alacritty --cwd '%d' 't(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))' && ya emit quit \""
+  run  = [ 'shell --orphan "hypr-layout --terminal alacritty --cwd \"$PWD\" \"t(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))\" && ya emit quit"'
          ],
   desc = "Ouvrir un espace de travail complet avec yazi, tig, vim et Opencode",
   for  = "unix"
