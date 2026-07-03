@@ -18,8 +18,10 @@ inkscape = [
 
 [open]
 prepend_rules = [
-  { url = "*.svg",    use = [ "inkscape" ]   } ,
+  { url = "*.svg",     use = [ "inkscape" ]   },
+  { url = "*.mp3",     use = [ "play_media" ] },
+  { mime = "audio/*",  use = [ "play_media" ] },
   { mime = "video/*",  use = [ "play_media" ] },
-  { mime = "image/*", use = [ "view_image" ] } ,
+  { mime = "image/*",  use = [ "view_image" ] },
 ]
 
