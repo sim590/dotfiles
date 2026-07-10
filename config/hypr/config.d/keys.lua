@@ -308,7 +308,7 @@ hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd(
 -- APPLICATIONS
 -- ========================
 
-hl.bind(mainMod .. " + a",                hl.dsp.exec_cmd("alacritty -e ranger"))
+hl.bind(mainMod .. " + a",                hl.dsp.exec_cmd("alacritty -e yazi"))
 hl.bind(mainMod .. " + e",                hl.dsp.exec_cmd("alacritty -e bash -c 'sleep 0.05; vim'"))
 hl.bind(mainMod .. " + CTRL + d",         hl.dsp.exec_cmd("alacritty -e pulsemixer"))
 hl.bind(mainMod .. " + d",                hl.dsp.exec_cmd("alacritty -e ncmpcpp"))
