@@ -427,11 +427,61 @@ def extract_best_html(msg):
     payload = html_part.get_payload(decode=True)
     if payload is None:
         return None
-    charset = html_part.get_content_charset() or 'utf-8'
+    return _decode_payload(payload, html_part.get_content_charset())
+
+
+def _decode_payload(payload, declared_charset):
+    """Décode le contenu avec l'encodage déclaré.
+    Essaie UTF-8 en premier, car certains clients déclarent
+    iso-8859-1 mais envoient du UTF-8."""
+    # 1. UTF-8 d'abord (rattrape les charset mal déclarés)
     try:
-        return payload.decode(charset, errors='replace')
-    except (LookupError, UnicodeDecodeError):
-        return payload.decode('utf-8', errors='replace')
+        return payload.decode('utf-8')
+    except UnicodeDecodeError:
+        pass
+
+    # 2. Charset déclaré
+    if declared_charset:
+        try:
+            return payload.decode(declared_charset, errors='replace')
+        except (LookupError, UnicodeDecodeError):
+            pass
+
+    # 3. UTF-8 avec caractères de remplacement
+    return payload.decode('utf-8', errors='replace')
+
+
+def _ensure_meta_charset(html_content):
+    """Ajoute ou corrige la balise <meta charset> pour forcer UTF-8."""
+    # Remplacer un <meta charset existant (vieux ou erroné)
+    if re.search(r'<meta\s+charset\s*=', html_content, re.IGNORECASE):
+        html_content = re.sub(
+            r'<meta\s+charset\s*=\s*["\'][^"\']*["\']',
+            '<meta charset="utf-8"',
+            html_content,
+            flags=re.IGNORECASE,
+        )
+    # Remplacer <meta http-equiv="Content-Type" ... charset=...
+    elif re.search(
+        r'<meta\s+http-equiv\s*=\s*["\']Content-Type["\']',
+        html_content, re.IGNORECASE,
+    ):
+        html_content = re.sub(
+            r'<meta\s+http-equiv\s*=\s*["\']Content-Type["\']\s+content\s*=\s*["\'][^"\']*["\']',
+            '<meta charset="utf-8"',
+            html_content,
+            flags=re.IGNORECASE,
+        )
+    # Sinon, l'ajouter après <head> ou au début
+    else:
+        meta_tag = '<meta charset="utf-8">\n'
+        if '<head>' in html_content:
+            html_content = html_content.replace('<head>', '<head>\n' + meta_tag, 1)
+        elif '<html>' in html_content:
+            html_content = html_content.replace('<html>', '<html>\n<head>' + meta_tag + '</head>', 1)
+        else:
+            html_content = meta_tag + html_content
+    return html_content
 
 
 # ── Main ────────────────────────────────────────────────────────────
@@ -447,6 +497,8 @@ def main():
     if html_content is None:
         dbg('aucune pièce text/html trouvée dans le message')
         sys.exit(1)
+
+    html_content = _ensure_meta_charset(html_content)
 
     dbg('--- indexing MIME parts ---')
     part_index = build_part_index(msg)
