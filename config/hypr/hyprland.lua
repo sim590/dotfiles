@@ -33,7 +33,7 @@ hl.on("hyprland.start", function()
     -- version stable.
     hl.exec_cmd("hyprctl plugin load /var/cache/hyprpm/simon/hy3/hy3.so")
     hl.exec_cmd("wayle panel start")
-    hl.exec_cmd("hyprshell run")
+    hl.exec_cmd("HYPRSHELL_EXPERIMENTAL=1 hyprshell run")
     hl.exec_cmd("easyeffects --gapplication-service")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 end)
