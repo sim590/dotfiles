@@ -50,12 +50,13 @@ XDG_CONFIG_CONTENT = \
 					 config/swaylock/config\
 					 config/terminator/config\
 					 config/yazi/yazi.toml\
+					 config/yazi/theme.toml\
 					 config/yazi/keymap.toml\
 					 config/yazi/package.toml\
 					 config/waybar/config.jsonc\
 					 config/waybar/style.css\
 					 config/wayle/config.toml\
-				 config/pipewire/pipewire.conf.d/10-quantum.conf
+					 config/pipewire/pipewire.conf.d/10-quantum.conf
 DOTFILES = gitconfig\
 					 alacritty.toml\
 					 vimrc\
