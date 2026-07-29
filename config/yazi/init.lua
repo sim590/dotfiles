@@ -1,4 +1,9 @@
 
+require("git"):setup {
+	-- Order of status signs showing in the linemode
+	order = 1500,
+}
+
 Status:children_add(function()
     local free_space_command = "df -BG . | tail -n1 | awk '{printf $(NF-2)}'"
     local free_space_str     = io.popen(free_space_command):read('*a')
