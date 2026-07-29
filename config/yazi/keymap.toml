@@ -102,6 +102,31 @@ prepend_keymap = [
   desc = "Monter un périphérique de stockage"
  },
  {
+   on   = [ "c", "a", "a" ],
+   run  = "plugin compress",
+   desc = "Archive selected files"
+ },
+ {
+   on   = [ "c", "a", "p" ],
+   run  = "plugin compress -p",
+   desc = "Archive selected files (password)"
+ },
+ {
+   on   = [ "c", "a", "h" ],
+   run  = "plugin compress -ph",
+   desc = "Archive selected files (password+header)"
+ },
+ {
+   on   = [ "c", "a", "l" ],
+   run  = "plugin compress -l",
+   desc = "Archive selected files (compression level)"
+ },
+ {
+   on   = [ "c", "a", "u" ],
+   run  = "plugin compress -phl",
+   desc = "Archive selected files (password+header+level)"
+ },
+ {
   on   = [ "<a-t>" ],
   run  = [ 'shell --orphan "hypr-layout --terminal alacritty --cwd \"$PWD\" \"t(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))\" && ya emit quit"'
          ],
