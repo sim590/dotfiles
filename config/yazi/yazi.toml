@@ -12,12 +12,17 @@ play_media = [
   { run = 'mpv --keep-open --force-window -- "$1"', desc = "mpv", for = "unix" }
 ]
 
+okular = [
+  { run = 'okular "$1"', block = false, orphan = true, desc = "Okular", for = "unix" }
+]
+
 inkscape = [
   { run = 'inkscape "$1"', block = false, orphan = true, desc = "Inkscape", for = "unix" }
 ]
 
 [open]
 prepend_rules = [
+  { url = "*.pdf",     use = [ "okular" ]   },
   { url = "*.svg",     use = [ "inkscape" ]   },
   { url = "*.mp3",     use = [ "play_media" ] },
   { mime = "audio/*",  use = [ "play_media" ] },
