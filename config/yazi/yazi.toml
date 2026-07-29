@@ -25,3 +25,17 @@ prepend_rules = [
   { mime = "image/*",  use = [ "view_image" ] },
 ]
 
+[plugin]
+prepend_fetchers = [
+  {
+    url   = "*",
+    run   = "git",
+    group = "git"
+  },
+  {
+    url   = "*/",
+    run   = "git",
+    group = "git"
+  },
+]
+
