@@ -97,6 +97,11 @@ prepend_keymap = [
   desc = "Aller au dossier /var"
  },
  {
+  on   = [ "M" ],
+  run  = "plugin mount",
+  desc = "Monter un périphérique de stockage"
+ },
+ {
   on   = [ "<a-t>" ],
   run  = [ 'shell --orphan "hypr-layout --terminal alacritty --cwd \"$PWD\" \"t(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))\" && ya emit quit"'
          ],
