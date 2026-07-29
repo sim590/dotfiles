@@ -1,5 +1,8 @@
-[plugin]
-deps = []
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "bb758e2"
+hash = "15e5b67a241172cbb86b8fbf9e63692"
+
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
 rev = "4c63ed3"
