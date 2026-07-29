@@ -72,6 +72,11 @@ prepend_keymap = [
    desc = "Coller (--force) l'élément du presse-papiers dans le dossier courant"
  },
  {
+   on   = [ "p", "h" ],
+   run  = "hardlink",
+   desc = "Créer un lien dur dans le dossier courant vers l'élément du presse-papier"
+ },
+ {
    on   = [ "u", "d" ],
    run  = "unyank",
    desc = "Retirer l'élément du presse-papiers"
