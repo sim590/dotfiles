@@ -21,6 +21,16 @@ prepend_keymap = [
    desc = "Couper l'élément sélectionné et le placer dans le presse-papiers"
  },
  {
+   on = [ "I" ],
+   run = "plugin toggle-pane min-preview",
+   desc = "Activer/désactiver le panneau de prévisualisation"
+ },
+ {
+   on = [ "i" ],
+   run = "plugin toggle-pane max-preview",
+   desc = "Maximise le panneau de prévisualisation"
+ },
+ {
    on   = [ "y" ],
    run  = "noop",
  },
