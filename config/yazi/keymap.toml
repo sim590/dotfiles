@@ -69,7 +69,33 @@ prepend_keymap = [
   {
     on   = [ "u", "d" ],
     run  = "unyank",
-    desc = "Retirer l'élément du presse-papiers"
+   desc = "Retirer l'élément du presse-papiers"
+ },
+# -- Sudo - Presse-papiers ------------------------------------------
+  {
+    on   = [ "R", "p", "p" ],
+    run  = "plugin sudo -- paste",
+    desc = "Coller avec sudo"
+  },
+  {
+    on   = [ "R", "p", "o" ],
+    run  = "plugin sudo -- paste --force",
+    desc = "Coller (--force) avec sudo"
+  },
+  {
+    on   = [ "R", "p", "h" ],
+    run  = "plugin sudo -- hardlink",
+    desc = "Lien dur avec sudo"
+  },
+  {
+    on   = [ "R", "p", "l" ],
+    run  = "plugin sudo -- link",
+    desc = "Lien symbolique avec sudo"
+  },
+  {
+    on   = [ "R", "p", "r" ],
+    run  = "plugin sudo -- link --relative",
+    desc = "Lien symbolique relatif avec sudo"
   },
 # -- Suppression ----------------------------------------------------
   {
@@ -84,7 +110,33 @@ prepend_keymap = [
   {
     on   = [ "d", "T" ],
     run  = "remove",
-    desc = "Déplacer l'élément sélectionné vers la corbeille"
+   desc = "Déplacer l'élément sélectionné vers la corbeille"
+ },
+  {
+    on   = [ "R", "d" ],
+    run  = "plugin sudo -- remove",
+    desc = "Corbeille avec sudo"
+  },
+  {
+    on   = [ "R", "D" ],
+    run  = "plugin sudo -- remove --permanently",
+    desc = "Supprimer définitivement avec sudo"
+  },
+# -- Sudo -----------------------------------------------------------
+  {
+    on   = [ "R", "r" ],
+    run  = "plugin sudo -- rename",
+    desc = "Renommer avec sudo"
+  },
+  {
+    on   = [ "R", "a" ],
+    run  = "plugin sudo -- create",
+    desc = "Créer avec sudo"
+  },
+  {
+    on   = [ "R", "m" ],
+    run  = "plugin sudo -- chmod",
+    desc = "chmod avec sudo"
   },
 # -- Navigation rapide ----------------------------------------------
   {
