@@ -1,177 +1,185 @@
 [mgr]
+
+# -- Fermeture et filtrage ------------------------------------------
 prepend_keymap = [
- {
-   on   = [ "q" ],
-   run  = "close",
-   desc = "Fermer l'onglet courant. Si un seul onglet, ferme yazi (quit)."
- },
- {
-   on   = [ "F" ],
-   run  = "filter --smart",
-   desc = "Filtrer les éléments du dossier courant"
- },
- {
-   on   = [ "f" ],
-   run  = "find --smart",
-   desc = "Rechercher un fichier ou un dossier"
- },
- {
-   on   = [ "d", "d" ],
-   run  = "yank --cut",
-   desc = "Couper l'élément sélectionné et le placer dans le presse-papiers"
- },
- {
-   on = [ "I" ],
-   run = "plugin toggle-pane min-preview",
-   desc = "Activer/désactiver le panneau de prévisualisation"
- },
- {
-   on = [ "i" ],
-   run = "plugin toggle-pane max-preview",
-   desc = "Maximise le panneau de prévisualisation"
- },
- {
-   on   = [ "y" ],
-   run  = "noop",
- },
- {
-   on   = [ "y", "y" ],
-   run  = "yank",
-   desc = "Copier l'élément sélectionné dans le presse-papiers"
- },
- {
-   on   = [ "D" ],
-   run  = "noop",
- },
- {
-   on   = [ "d", "D" ],
-   run  = "remove --permanently",
-   desc = "Déplacer l'élément sélectionné vers la corbeille"
- },
- {
-   on   = [ "d", "T" ],
-   run  = "remove",
-   desc = "Déplacer l'élément sélectionné vers la corbeille"
- },
- {
-   on   = [ "p" ],
-   run  = "noop",
- },
- {
-   on   = [ "p", "p" ],
-   run  = "paste",
-   desc = "Coller l'élément du presse-papiers dans le dossier courant"
- },
- {
-   on   = [ "P" ],
-   run  = "noop",
- },
- {
-   on   = [ "p", "o" ],
-   run  = "paste --force",
-   desc = "Coller (--force) l'élément du presse-papiers dans le dossier courant"
- },
- {
-   on   = [ "p", "h" ],
-   run  = "hardlink",
-   desc = "Créer un lien dur dans le dossier courant vers l'élément du presse-papier"
- },
- {
-   on   = [ "u", "d" ],
-   run  = "unyank",
-   desc = "Retirer l'élément du presse-papiers"
- },
- {
-  on   = [ "g", "p" ],
-  run  = "shell --block 'ya emit cd \"$(wl-paste)\"'",
-  desc = "Aller à la racine du système de fichiers"
- },
- {
-  on   = [ "g", "r" ],
-  run  = "cd /",
-  desc = "Aller à la racine du système de fichiers"
- },
- {
-  on   = [ "g", "d" ],
-  run  = "cd /dev",
-  desc = "Aller au dossier /dev"
- },
- {
-  on   = [ "g", "v" ],
-  run  = "cd /var",
-  desc = "Aller au dossier /var"
- },
- {
-  on   = [ "M" ],
-  run  = "plugin mount",
-  desc = "Monter un périphérique de stockage"
- },
- {
-   on   = [ "c", "a", "a" ],
-   run  = "plugin compress",
-   desc = "Archive selected files"
- },
- {
-   on   = [ "c", "a", "p" ],
-   run  = "plugin compress -p",
-   desc = "Archive selected files (password)"
- },
- {
-   on   = [ "c", "a", "h" ],
-   run  = "plugin compress -ph",
-   desc = "Archive selected files (password+header)"
- },
- {
-   on   = [ "c", "a", "l" ],
-   run  = "plugin compress -l",
-   desc = "Archive selected files (compression level)"
- },
- {
-   on   = [ "c", "a", "u" ],
-   run  = "plugin compress -phl",
-   desc = "Archive selected files (password+header+level)"
- },
- {
-  on   = [ "<a-t>" ],
-  run  = [ 'shell --orphan "hypr-layout --terminal alacritty --cwd \"$PWD\" \"t(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))\" && ya emit quit"'
-         ],
-  desc = "Ouvrir un espace de travail complet avec yazi, tig, vim et Opencode",
-  for  = "unix"
- },
- {
-  on   = [ "<c-t>" ],
-  run  = 'shell --orphan "alacritty --working-directory \"$PWD\""',
-  desc = "Ouvrir un terminal dans le répertoire courant",
-  for  = "unix"
- },
- {
-  on   = [ "<c-e>" ],
-  run  = "shell --orphan \"alacritty --working-directory %d -e vim %h\"",
-  desc = "Ouvrir un terminal dans le répertoire courant",
-  for  = "unix"
- },
- {
-  on   = [ "b", "s" ],
-  run  = "shell --block 'beet import -s %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
-  desc = "beet import -s",
-  for  = "unix"
- },
- {
-  on   = [ "b", "S" ],
-  run  = "shell --block 'beet import -Is %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
-  desc = "beet import -Is",
-  for  = "unix"
- },
- {
-  on   = [ "b", "i" ],
-  run  = "shell --block 'beet import %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
-  desc = "beet import",
-  for  = "unix"
- },
- {
-  on   = [ "b", "I" ],
-  run  = "shell --block 'beet import -I %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
-  desc = "beet import -I",
-  for  = "unix"
- },
+  {
+    on   = [ "q" ],
+    run  = "close",
+    desc = "Fermer l'onglet courant. Si un seul onglet, ferme yazi (quit)."
+  },
+  {
+    on   = [ "F" ],
+    run  = "filter --smart",
+    desc = "Filtrer les éléments du dossier courant"
+  },
+  {
+    on   = [ "f" ],
+    run  = "find --smart",
+    desc = "Rechercher un fichier ou un dossier"
+  },
+# -- Volet de prévisualisation --------------------------------------
+  {
+    on   = [ "I" ],
+    run  = "plugin toggle-pane min-preview",
+    desc = "Activer/désactiver le panneau de prévisualisation"
+  },
+  {
+    on   = [ "i" ],
+    run  = "plugin toggle-pane max-preview",
+    desc = "Maximise le panneau de prévisualisation"
+  },
+# -- Presse-papiers -------------------------------------------------
+  {
+    on   = [ "d", "d" ],
+    run  = "yank --cut",
+    desc = "Couper l'élément sélectionné"
+  },
+  {
+    on  = [ "y" ],
+    run = "noop"
+  },
+  {
+    on   = [ "y", "y" ],
+    run  = "yank",
+    desc = "Copier l'élément sélectionné"
+  },
+  {
+    on  = [ "p" ],
+    run = "noop"
+  },
+  {
+    on   = [ "p", "p" ],
+    run  = "paste",
+    desc = "Coller dans le dossier courant"
+  },
+  {
+    on  = [ "P" ],
+    run = "noop"
+  },
+  {
+    on   = [ "p", "o" ],
+    run  = "paste --force",
+    desc = "Coller (--force) dans le dossier courant"
+  },
+  {
+    on   = [ "p", "h" ],
+    run  = "hardlink",
+    desc = "Créer un lien dur (vers élem. copié) dans le dossier courant"
+  },
+  {
+    on   = [ "u", "d" ],
+    run  = "unyank",
+    desc = "Retirer l'élément du presse-papiers"
+  },
+# -- Suppression ----------------------------------------------------
+  {
+    on  = [ "D" ],
+    run = "noop"
+  },
+  {
+    on   = [ "d", "D" ],
+    run  = "remove --permanently",
+    desc = "Supprimer définitivement l'élément sélectionné"
+  },
+  {
+    on   = [ "d", "T" ],
+    run  = "remove",
+    desc = "Déplacer l'élément sélectionné vers la corbeille"
+  },
+# -- Navigation rapide ----------------------------------------------
+  {
+    on   = [ "g", "p" ],
+    run  = "shell --block 'ya emit cd \"$(wl-paste)\"'",
+    desc = "Aller au chemin dans le presse-papiers"
+  },
+  {
+    on   = [ "g", "r" ],
+    run  = "cd /",
+    desc = "Aller à la racine du système de fichiers"
+  },
+  {
+    on   = [ "g", "d" ],
+    run  = "cd /dev",
+    desc = "Aller au dossier /dev"
+  },
+  {
+    on   = [ "g", "v" ],
+    run  = "cd /var",
+    desc = "Aller au dossier /var"
+  },
+# -- Montage --------------------------------------------------------
+  {
+    on   = [ "M" ],
+    run  = "plugin mount",
+    desc = "Monter un périphérique de stockage"
+  },
+# -- Compression / archivage ----------------------------------------
+  {
+    on   = [ "c", "a", "a" ],
+    run  = "plugin compress",
+    desc = "Archiver sélection"
+  },
+  {
+    on   = [ "c", "a", "p" ],
+    run  = "plugin compress -p",
+    desc = "Archiver sélection (mot de passe)"
+  },
+  {
+    on   = [ "c", "a", "h" ],
+    run  = "plugin compress -ph",
+    desc = "Archiver sélection (mdp+en-têtes)"
+  },
+  {
+    on   = [ "c", "a", "l" ],
+    run  = "plugin compress -l",
+    desc = "Archiver sélection (niveau de compression)"
+  },
+  {
+    on   = [ "c", "a", "u" ],
+    run  = "plugin compress -phl",
+    desc = "Archiver sélection (mdp+en-têtes+niveau)"
+  },
+# -- Terminaux et outils externes -----------------------------------
+  {
+    on  = [ "<a-t>" ],
+    run = [ 'shell --orphan "hypr-layout --terminal alacritty --cwd \"$PWD\" \"t(h(v(30%%:{yazi .}, {tig -w}), {nu}), h({vim}, 40%%:{opencode}))\" && ya emit quit"' ],
+    desc = "Ouvrir un espace de travail complet avec yazi, tig, vim et Opencode",
+    for  = "unix"
+  },
+  {
+    on   = [ "<c-t>" ],
+    run  = 'shell --orphan "alacritty --working-directory \"$PWD\""',
+    desc = "Ouvrir un terminal dans le répertoire courant",
+    for  = "unix"
+  },
+  {
+    on   = [ "<c-e>" ],
+    run  = "shell --orphan \"alacritty --working-directory %d -e vim %h\"",
+    desc = "Ouvrir Vim dans le répertoire courant", for = "unix"
+  },
+# -- Beet (importation musicale) ------------------------------------
+  {
+    on   = [ "b", "s" ],
+    run  = "shell --block 'beet import -s %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+    desc = "beet import -s",
+    for  = "unix"
+  },
+  {
+    on   = [ "b", "S" ],
+    run  = "shell --block 'beet import -Is %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+    desc = "beet import -Is",
+    for  = "unix"
+  },
+  {
+    on   = [ "b", "i" ],
+    run  = "shell --block 'beet import %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+    desc = "beet import",
+    for  = "unix"
+  },
+  {
+    on   = [ "b", "I" ],
+    run  = "shell --block 'beet import -I %h; read -p \"Appuyez sur ENTRER pour continuer...\" _'",
+    desc = "beet import -I",
+    for  = "unix"
+  },
 ]
