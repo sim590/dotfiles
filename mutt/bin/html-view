@@ -151,17 +151,17 @@ def find_all_refs(html_content):
     """Trouve toutes les références d'images intégrées (cid:, rel)."""
     refs = []
 
-    # srcset
-    for m in re.finditer(r"""srcset\s*=\s*["']([^"']+)["']""",
+    # srcset (guillemets optionnels)
+    for m in re.finditer(r"""srcset\s*=\s*["']?([^"'\s>]+(?:\s+[^"'\s>]+)*)["']?""",
                          html_content, re.IGNORECASE):
         for cm in re.finditer(r'cid:([^\s,]+)', m.group(1), re.IGNORECASE):
             r = cm.group(1).strip().lower()
             if r:
                 refs.append(r); dbg(f'  found cid ref in srcset: "{r}"')
 
-    # src / background / poster / href  (pas srcset)
+    # src / background / poster / href  (pas srcset, guillemets optionnels)
     for m in re.finditer(
-            r"""(?:src|background|poster|href)\s*=\s*["']cid:([^"'\s>?#]+)["']""",
+            r"""(?:src|background|poster|href)\s*=\s*["']?cid:([^"'\s>?#]+)["']?""",
             html_content, re.IGNORECASE):
         r = m.group(1).strip().lower()
         if r:
@@ -175,9 +175,9 @@ def find_all_refs(html_content):
         if r:
             refs.append(r); dbg(f'  found cid ref in CSS: "{r}"')
 
-    # URLs relatives
+    # URLs relatives (guillemets optionnels)
     for m in re.finditer(
-            r"""(?:src|background|poster)\s*=\s*["']((?!(?:https?|data|cid):)[^"'\s]+)["']""",
+            r"""(?:src|background|poster)\s*=\s*["']?((?!(?:https?|data|cid):)[^"'\s>]+)["']?""",
             html_content, re.IGNORECASE):
         r = m.group(1).strip().lower()
         if r and not r.startswith('http') and not r.startswith('//'):
@@ -221,9 +221,9 @@ def embed_mime_images(html_content, part_index):
     if not ref_to_uri:
         return html_content
 
-    # Pattern 1: src / background / poster avec cid:
+    # Pattern 1: src / background / poster avec cid: (guillemets optionnels)
     html_content = re.sub(
-        r"""(?P<attr>src|background|poster)\s*=\s*["']cid:(?P<ref>[^"'\s>?#]+)["']""",
+        r"""(?P<attr>src|background|poster)\s*=\s*["']?cid:(?P<ref>[^"'\s>?#]+)["']?""",
         lambda m: (
             f'{m.group("attr")}="{ref_to_uri[m.group("ref").strip().lower()]}"'
             if m.group("ref").strip().lower() in ref_to_uri else m.group(0)
@@ -231,7 +231,7 @@ def embed_mime_images(html_content, part_index):
         html_content, flags=re.IGNORECASE,
     )
 
-    # Pattern 2: srcset
+    # Pattern 2: srcset (guillemets optionnels)
     def _replace_srcset(m):
         def _sub(cm):
             r = cm.group(1).strip().lower()
@@ -240,7 +240,7 @@ def embed_mime_images(html_content, part_index):
         return f'srcset="{new}"'
 
     html_content = re.sub(
-        r"""srcset\s*=\s*["']([^"']+)["']""",
+        r"""srcset\s*=\s*["']?([^"'\s>]+(?:\s+[^"'\s>]+)*)["']?""",
         _replace_srcset, html_content, flags=re.IGNORECASE,
     )
 
@@ -255,14 +255,14 @@ def embed_mime_images(html_content, part_index):
         _css_cid_sub, html_content, flags=re.IGNORECASE,
     )
 
-    # Pattern 4: URLs relatives
+    # Pattern 4: URLs relatives (guillemets optionnels)
     def _rel_sub(m):
         r = m.group(2).strip().lower()
         if r in ref_to_uri:
             return f'{m.group(1)}{ref_to_uri[r]}{m.group(3)}'
         return m.group(0)
     html_content = re.sub(
-        r"""((?:src|background|poster|srcset)\s*=\s*["'])((?!(?:https?|data|cid|/)://)[^"'\s]+)(["'])""",
+        r"""((?:src|background|poster|srcset)\s*=\s*["']?)((?!(?:https?|data|cid|/)://)[^"'\s>]+)(["']?)""",
         _rel_sub, html_content, flags=re.IGNORECASE,
     )
 
@@ -313,17 +313,17 @@ def fetch_remote_images(html_content):
     """Télécharge les images distantes et les intègre en data: URIs."""
     remote_urls = set()
 
-    # src / background / poster
+    # src / background / poster (guillemets optionnels)
     for m in re.finditer(
-            r"""(?:src|background|poster)\s*=\s*["'](https?://[^"'\s>]+)["']""",
+            r"""(?:src|background|poster)\s*=\s*["']?(https?://[^"'\s>]+)["']?""",
             html_content, re.IGNORECASE):
         url = m.group(1)
         if not _should_skip_url(url):
             remote_urls.add(url)
 
-    # srcset
+    # srcset (guillemets optionnels)
     for m in re.finditer(
-            r"""srcset\s*=\s*["']([^"']+)["']""",
+            r"""srcset\s*=\s*["']?([^"'\s>]+(?:\s+[^"'\s>]+)*)["']?""",
             html_content, re.IGNORECASE):
         for um in re.finditer(r'(https?://[^\s,]+)', m.group(1), re.IGNORECASE):
             url = um.group(1)
